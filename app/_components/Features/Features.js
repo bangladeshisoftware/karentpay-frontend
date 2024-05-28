@@ -35,11 +35,11 @@ const Features = () => {
   ];
 
   return (
-    <section className='px-96 w-fit mx-auto mt-4'>
+    <section className='container mx-auto mt-8'>
       <h2 className='text-3xl font-bold text-center'>
-        E-Payment Gateway key features
+        Why choose our payment system
       </h2>
-      <div className='grid lg:grid-cols-3 grid-cols-1 gap-4 mt-4'>
+      <div className='grid wide-desktop:grid-cols-3 wide-laptop:grid-cols-3 small-laptop:grid-cols-3 grid-cols-1 gap-4 mt-6'>
         {features.map((feature) => (
           <Feature
             key={feature.id}

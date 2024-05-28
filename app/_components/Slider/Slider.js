@@ -1,40 +1,57 @@
 import {
   Carousel,
   CarouselContent,
-  CarouselItem
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious
 } from '@/components/ui/carousel';
 // import Autoplay from 'embla-carousel-autoplay';
 // import Fade from 'embla-carousel-fade';
-import img1 from '@/app/_assets/1.jpeg';
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 
-const Slider = () => {
+const Slider = ({ sliders }) => {
   return (
     <Carousel
-      className='w-full'
+      className='relative'
       opts={{ loop: true }}
       //   plugins={[Autoplay({ delay: 3000, stopOnInteraction: false }), Fade()]}
     >
       <CarouselContent>
-        <CarouselItem className='p-0 relative'>
-          <Image src={img1} alt='' className='w-full' />
-          <div className='absolute top-[12rem] left-[24rem] w-1/4'>
-            <h2 className='text-5xl text-white'>
-              No. 1 Payment Gateway Solution
-            </h2>
-            <div className='flex gap-4 w-fit mt-2'>
-              <Link href='/auth/signup'>
-                <Button className='bg-blue-800'>Get Started</Button>
-              </Link>
-              <Link href='/auth/signup'>
-                <Button className='bg-blue-800'>Contact Us</Button>
-              </Link>
+        {sliders?.map((slider) => (
+          <CarouselItem className='p-0 relative' key={slider.id}>
+            <Image
+              src={slider.image}
+              alt=''
+              className='w-full wide-desktop:h-[580px] wide-laptop:h-[480px] small-laptop:h-[380px] h-[200px]'
+              width={'100%'}
+              height={'580px'}
+            />
+            <div className='absolute wide-desktop:top-[12rem] wide-laptop:top-[12rem] small-laptop:top-[7rem] top-[4rem] wide-desktop:left-[19rem] wide-laptop:left-[4.5rem] small-laptop:left-[3rem] left-[3em]'>
+              <h2 className='wide-desktop:text-5xl wide-laptop:text-4xl small-laptop:text-4xl wide-desktop:w-[60%] wide-laptop:w-1/2 small-laptop:w-3/4 font-bold w-[60%]'>
+                {slider.title}
+              </h2>
+              <div className='flex wide-desktop:flex-row wide-laptop:flex-row small-laptop:flex-row flex-col wide-desktop:gap-4 wide-laptop:gap-4 small-laptop:gap-4 gap-2 wide-desktop:mt-5 mt-2'>
+                <Link href={slider.firstButtonLink}>
+                  <Button className='bg-blue-800'>
+                    {slider.firstButtonText}
+                  </Button>
+                </Link>
+                <Link href={slider.secondButtonLink}>
+                  <Button className='bg-blue-800'>
+                    {slider.secondButtonText}
+                  </Button>
+                </Link>
+              </div>
             </div>
-          </div>
-        </CarouselItem>
+          </CarouselItem>
+        ))}
       </CarouselContent>
+      <CarouselPrevious className='absolute wide-desktop:top-[17rem] wide-laptop:top-[12rem] small-laptop:top-[11.5rem] top-[6rem] small-laptop:left-[1rem] wide-desktop:left-[3rem] opacity-30 hover:opacity-100' />
+
+      <CarouselNext className='absolute wide-desktop:top-[17rem] wide-laptop:top-[12rem] small-laptop:top-[11.5rem] top-[6rem] small-laptop:right-[1rem] wide-desktop:right-[3rem] opacity-30 hover:opacity-100' />
     </Carousel>
   );
 };

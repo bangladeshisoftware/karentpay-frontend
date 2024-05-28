@@ -8,84 +8,73 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
 
 const NavBar = () => {
+  const socialLinks = {
+    facebookLink: '',
+    linkedInLink: '',
+    youtubeLink: ''
+  };
   return (
-    <nav className='flex items-center justify-between px-96 bg-gradient-to-br from-purple-600 to-blue-500 p-2 sticky top-0'>
-      <div className='flex items-center gap-8'>
-        <Link href='/'>
-          <Button
-            variant='ghost'
-            size='sm'
-            className='text-white hover:bg-blue-800 hover:text-white'
+    <nav className='bg-gradient-to-brs bg-[#f2f3f3] py-2 sticky top-0'>
+      <div className='container wide-desktop:flex wide-laptop:flex small-laptop:flex hidden items-center justify-between'>
+        <div className='flex items-center gap-5'>
+          <Link
+            href='/'
+            className='rounded p-1 hover:text-white hover:bg-blue-600'
           >
             Home
-          </Button>
-        </Link>
-        <Link href='/about'>
-          <Button
-            variant='ghost'
-            size='sm'
-            className='text-white hover:bg-blue-800 hover:text-white'
+          </Link>
+          <Link
+            href='/about'
+            className='rounded p-1 hover:text-white hover:bg-blue-600'
           >
             About
-          </Button>
-        </Link>
-        <Link href='/pricing'>
-          <Button
-            variant='ghost'
-            size='sm'
-            className='text-white hover:bg-blue-800 hover:text-white'
+          </Link>
+          <Link
+            href='/pricing'
+            className='rounded p-1 hover:text-white hover:bg-blue-600'
           >
             Pricing
-          </Button>
-        </Link>
-        <Link href='/payment-gateway'>
-          <Button
-            variant='ghost'
-            size='sm'
-            className='text-white hover:bg-blue-800 hover:text-white'
+          </Link>
+          <Link
+            href='/payment-gateway'
+            className='rounded p-1 hover:text-white hover:bg-blue-600'
           >
             Payment Gateway
-          </Button>
-        </Link>
-        <Link href='/documentations'>
-          <Button
-            variant='ghost'
-            size='sm'
-            className='text-white hover:bg-blue-800 hover:text-white'
+          </Link>
+          <Link
+            href='/documentations'
+            className='rounded p-1 hover:text-white hover:bg-blue-600'
           >
             Documentations
-          </Button>
-        </Link>
-        <Link href='/news'>
-          <Button
-            variant='ghost'
-            size='sm'
-            className='text-white hover:bg-blue-800 hover:text-white'
+          </Link>
+          <Link
+            href='/news'
+            className='rounded p-1 hover:text-white hover:bg-blue-600'
           >
             News
-          </Button>
-        </Link>
-      </div>
+          </Link>
+        </div>
 
-      <div className='flex gap-4'>
-        <Link href='facebook'>
-          <FontAwesomeIcon
-            icon={faSquareFacebook}
-            className='w-8 h-8 text-base bg-white text-blue-700 rounded-md'
-          />
-        </Link>
-        <Link href='facebook'>
-          <FontAwesomeIcon
-            icon={faLinkedin}
-            className='w-8 h-8 text-base bg-white text-blue-700 rounded-md p-[0.5px]'
-          />
-        </Link>
-        <Link href='facebook'>
-          <FontAwesomeIcon
-            icon={faSquareYoutube}
-            className='w-8 h-8 text-base bg-red-700 text-white rounded-md'
-          />
-        </Link>
+        <div className='flex gap-4'>
+          <Link href={socialLinks.facebookLink} target='_blank'>
+            <FontAwesomeIcon
+              icon={faSquareFacebook}
+              className='w-8 h-8 text-base bg-white text-blue-600 rounded-md'
+            />
+          </Link>
+          <Link href={socialLinks.linkedInLink} target='_blank'>
+            <FontAwesomeIcon
+              icon={faLinkedin}
+              className='w-8 h-8 text-base bg-white text-blue-600 rounded-md p-[0.5px]'
+            />
+          </Link>
+          <Link href={socialLinks.youtubeLink} target='_blank'>
+            <FontAwesomeIcon
+              icon={faSquareYoutube}
+              className='w-8 h-8 text-base bg-white text-[#e41f25] rounded-md p-[0.5px]'
+            />
+          </Link>
+        </div>
       </div>
     </nav>
   );
