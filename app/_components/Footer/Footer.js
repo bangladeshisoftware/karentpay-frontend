@@ -1,5 +1,4 @@
-import desktopLogo from '@/app/_assets/Logo.png';
-import mobileLogo from '@/app/_assets/Mobile-Logo.png';
+import footerLogo from '@/app/_assets/Footer-Logo.png';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -11,11 +10,12 @@ const Footer = () => {
           <div className='grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-3 md:gap-8 py-10 max-sm:max-w-sm max-sm:mx-auto gap-y-8'>
             <div className='col-span-full mb-10 lg:col-span-2 lg:mb-0'>
               <Link href='/' className='flex justify-center lg:justify-start'>
-                <Image src={desktopLogo} alt='logo' className='' priority />
+                <Image src={footerLogo} alt='logo' className='' priority />
               </Link>
               <p className='py-8 text-sm lg:max-w-xs text-center lg:text-left'>
-                Trusted in more than 100 countries & 5 million customers. Have
-                any query?
+                We Make Banking Easy For You <br />
+                Always easy to pay <br />
+                The future of Money is here
               </p>
               <Link
                 href=''

@@ -3,16 +3,16 @@ import Slider from '@/app/_components/Slider/Slider';
 
 import Reviews from '@/app/_components/Reviews/Reviews';
 import GlobalAvailability from '@/app/_components/GlobalAvailability/GlobalAvailability';
-import FAQ from '@/app/_components/FAQ/FAQ';
+import GetMore from '@/app/_components/GetMore/GetMore';
 
 export default function Home() {
   return (
     <section className='pb-4'>
       <Slider />
       <Features />
-      <Reviews />
       <GlobalAvailability />
-      <FAQ />
+      <GetMore />
+      <Reviews />
     </section>
   );
 }

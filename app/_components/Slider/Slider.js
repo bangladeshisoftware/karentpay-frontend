@@ -51,17 +51,17 @@ const Slider = () => {
               height={'580px'}
             />
             <div className='absolute lg:top-[12rem] wide-laptop:top-[12rem] small-laptop:top-[7rem] top-[4rem] lg:left-[19rem] wide-laptop:left-[4.5rem] small-laptop:left-[3rem] left-[3em]'>
-              <h2 className='lg:text-5xl wide-laptop:text-4xl small-laptop:text-4xl lg:w-[60%] wide-laptop:w-1/2 small-laptop:w-3/4 font-bold w-[60%]'>
+              <h2 className='lg:text-5xl text-white lg:w-[60%] font-bold w-[60%]'>
                 {slider.title}
               </h2>
               <div className='flex lg:flex-row wide-laptop:flex-row small-laptop:flex-row flex-col lg:gap-4 wide-laptop:gap-4 small-laptop:gap-4 gap-2 lg:mt-5 mt-2'>
                 <Link href={slider.firstButtonLink}>
-                  <Button className='bg-blue-800'>
+                  <Button className='bg-pink-600 px-12 py-6 text-base'>
                     {slider.firstButtonText}
                   </Button>
                 </Link>
                 <Link href={slider.secondButtonLink}>
-                  <Button className='bg-blue-800'>
+                  <Button className='bg-pink-600 px-12 py-6 text-base'>
                     {slider.secondButtonText}
                   </Button>
                 </Link>
