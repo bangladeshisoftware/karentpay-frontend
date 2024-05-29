@@ -35,9 +35,9 @@ const Reviews = () => {
   const minifiedReviews = reviews?.slice(0, 3);
 
   return (
-    <section className='text-gray-600 mt-12'>
+    <section className='mt-[70px]'>
       <div className='container mx-auto'>
-        <div className='flex justify-between pb-8'>
+        <div className='flex justify-between'>
           <h2 className='text-3xl font-bold'>Customer Reviews</h2>
           <Link
             href='/customer-reviews'
@@ -46,7 +46,7 @@ const Reviews = () => {
             Show more <ArrowRight className='w-4 h-4' />
           </Link>
         </div>
-        <div className='flex flex-wrap gap-4 justify-center'>
+        <div className='flex flex-wrap gap-4 justify-center mt-10'>
           {minifiedReviews.map((review) => (
             <div
               className='lg:w-[32.5%] lg:mb-0 mb-6 p-4 border rounded-lg shadow-lg'

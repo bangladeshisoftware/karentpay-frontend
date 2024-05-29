@@ -5,7 +5,10 @@ import {
   faSquareYoutube
 } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Image from 'next/image';
 import Link from 'next/link';
+import facebookIcon from '@/app/_assets/facebook.png';
+import youtubeIcon from '@/app/_assets/youtube.png';
 
 const NavBar = () => {
   const socialLinks = {
@@ -14,42 +17,42 @@ const NavBar = () => {
     youtubeLink: ''
   };
   return (
-    <nav className='bg-gradient-to-brs bg-[#f2f3f3] py-2 sticky top-0'>
+    <nav className='bg-gradient-to-r from-blue-600  to-purple-400 text-white py-2 sticky top-0'>
       <div className='container lg:flex wide-laptop:flex small-laptop:flex hidden items-center justify-between'>
         <div className='flex items-center gap-5'>
           <Link
             href='/'
-            className='rounded p-1 hover:text-white hover:bg-blue-600'
+            className='rounded p-1 hover:text-white hover:bg-blue-800'
           >
             Home
           </Link>
           <Link
             href='/about'
-            className='rounded p-1 hover:text-white hover:bg-blue-600'
+            className='rounded p-1 hover:text-white hover:bg-blue-800'
           >
             About
           </Link>
           <Link
             href='/pricing'
-            className='rounded p-1 hover:text-white hover:bg-blue-600'
+            className='rounded p-1 hover:text-white hover:bg-blue-800'
           >
             Pricing
           </Link>
           <Link
             href='/payment-gateway'
-            className='rounded p-1 hover:text-white hover:bg-blue-600'
+            className='rounded p-1 hover:text-white hover:bg-blue-800'
           >
             Payment Gateway
           </Link>
           <Link
             href='/documentations'
-            className='rounded p-1 hover:text-white hover:bg-blue-600'
+            className='rounded p-1 hover:text-white hover:bg-blue-800'
           >
             Documentations
           </Link>
           <Link
             href='/news'
-            className='rounded p-1 hover:text-white hover:bg-blue-600'
+            className='rounded p-1 hover:text-white hover:bg-blue-800'
           >
             News
           </Link>
@@ -57,21 +60,13 @@ const NavBar = () => {
 
         <div className='flex gap-4'>
           <Link href={socialLinks.facebookLink} target='_blank'>
-            <FontAwesomeIcon
-              icon={faSquareFacebook}
-              className='w-8 h-8 text-base bg-white text-blue-600 rounded-md'
-            />
-          </Link>
-          <Link href={socialLinks.linkedInLink} target='_blank'>
-            <FontAwesomeIcon
-              icon={faLinkedin}
-              className='w-8 h-8 text-base bg-white text-blue-600 rounded-md p-[0.5px]'
-            />
+            <Image src={facebookIcon} alt='facebook' className='w-8' />
           </Link>
           <Link href={socialLinks.youtubeLink} target='_blank'>
-            <FontAwesomeIcon
-              icon={faSquareYoutube}
-              className='w-8 h-8 text-base bg-white text-[#e41f25] rounded-md p-[0.5px]'
+            <Image
+              src={youtubeIcon}
+              alt='facebook'
+              className='w-8 rounded-md'
             />
           </Link>
         </div>

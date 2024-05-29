@@ -12,18 +12,18 @@ const GlobalAvailability = async () => {
   const minifiedCountries = countries?.slice(0, 52);
 
   return (
-    <section className='text-gray-600 bg-slate-100 py-6 mt-12'>
+    <section className='bg-gradient-to-br from-blue-600  to-blue-800 py-[70px] mt-[90px] text-white'>
       <div className='container mx-auto'>
-        <h2 className='text-3xl font-bold text-center'>
+        <h2 className='text-4xl font-bold text-center'>
           Global availability of our payment system
         </h2>
-        <p>
+        <p className='mt-3'>
           Epayget is currently supported in {minifiedCountries.length}{' '}
           countries, with more to come. Once Epayget is supported in your
           country, you&apos;ll be able to sell to customers anywhere in the
           world.
         </p>
-        <div className='grid lg:grid-cols-4 grid-cols-2 gap-4 justify-center mt-8'>
+        <div className='grid lg:grid-cols-4 grid-cols-2 gap-4 justify-center mt-16'>
           {minifiedCountries.map((country, index) => (
             <div key={index} className='flex items-center gap-2'>
               <Image

@@ -39,15 +39,42 @@ const Features = () => {
       title: 'Payment Notification',
       description:
         'Moneybag provides instant Payment Notifications, In-App Notifications, SMS Notifications, and Email Notifications...'
+    },
+    {
+      id: 3,
+      image: notificationImage,
+      imageAltText:
+        '<a href="https://www.freepik.com/icon/notification_8763138#fromView=search&page=1&position=1&uuid=22891ff7-4e59-4c35-bbdf-6844396e220c">Icon by Freepik</a>',
+      title: 'Payment Notification',
+      description:
+        'Moneybag provides instant Payment Notifications, In-App Notifications, SMS Notifications, and Email Notifications...'
+    },
+    {
+      id: 3,
+      image: notificationImage,
+      imageAltText:
+        '<a href="https://www.freepik.com/icon/notification_8763138#fromView=search&page=1&position=1&uuid=22891ff7-4e59-4c35-bbdf-6844396e220c">Icon by Freepik</a>',
+      title: 'Payment Notification',
+      description:
+        'Moneybag provides instant Payment Notifications, In-App Notifications, SMS Notifications, and Email Notifications...'
+    },
+    {
+      id: 3,
+      image: notificationImage,
+      imageAltText:
+        '<a href="https://www.freepik.com/icon/notification_8763138#fromView=search&page=1&position=1&uuid=22891ff7-4e59-4c35-bbdf-6844396e220c">Icon by Freepik</a>',
+      title: 'Payment Notification',
+      description:
+        'Moneybag provides instant Payment Notifications, In-App Notifications, SMS Notifications, and Email Notifications...'
     }
   ];
 
   return (
-    <section className='container mx-auto mt-12'>
-      <h2 className='text-3xl font-bold text-center'>
+    <section className='container mx-auto mt-[60px]'>
+      <h2 className='text-3xl font-bold text-'>
         Why choose our payment system
       </h2>
-      <div className='grid lg:grid-cols-3  grid-cols-1 gap-4 mt-6 justify-center mx-auto'>
+      <div className='grid lg:grid-cols-3  grid-cols-1 gap-x-4 gap-y-10 mt-12 justify-center mx-auto'>
         {features.map((feature) => (
           <Card className='w-full mx-auto shadow-lg' key={feature.id}>
             <CardHeader>

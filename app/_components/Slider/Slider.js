@@ -11,8 +11,29 @@ import {
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
+import img1 from '@/app/_assets/Homepage Slider.webp';
 
-const Slider = ({ sliders }) => {
+const Slider = () => {
+  const sliders = [
+    {
+      id: 1,
+      image: img1,
+      title: 'Automatic Payment Gateway Solution Instant Withdraw',
+      firstButtonLink: '/auth/signup',
+      firstButtonText: 'Free Appointment Book',
+      secondButtonLink: '/',
+      secondButtonText: 'Contact Sales Team'
+    },
+    {
+      id: 2,
+      image: img1,
+      title: 'Automatic Payment Gateway Solution Instant Withdraw',
+      firstButtonLink: '/auth/signup',
+      firstButtonText: 'Free Appointment Book',
+      secondButtonLink: '/',
+      secondButtonText: 'Contact Sales Team'
+    }
+  ];
   return (
     <Carousel
       className='relative'

@@ -1,34 +1,14 @@
 import Features from '@/app/_components/Features/Features';
 import Slider from '@/app/_components/Slider/Slider';
-import img1 from '@/app/_assets/Homepage Slider.webp';
+
 import Reviews from '@/app/_components/Reviews/Reviews';
 import GlobalAvailability from '@/app/_components/GlobalAvailability/GlobalAvailability';
 import FAQ from '@/app/_components/FAQ/FAQ';
 
 export default function Home() {
-  const sliders = [
-    {
-      id: 1,
-      image: img1,
-      title: "World's No. 1 Payment Gateway Solution",
-      firstButtonLink: '/auth/signup',
-      firstButtonText: 'Get Started',
-      secondButtonLink: '/',
-      secondButtonText: 'Contact'
-    },
-    {
-      id: 2,
-      image: img1,
-      title: 'No. 1 Payment Gateway Solution',
-      firstButtonLink: '/auth/signup',
-      firstButtonText: 'Get Started',
-      secondButtonLink: '/',
-      secondButtonText: 'Contact'
-    }
-  ];
   return (
     <section className='pb-4'>
-      <Slider sliders={sliders} />
+      <Slider />
       <Features />
       <Reviews />
       <GlobalAvailability />

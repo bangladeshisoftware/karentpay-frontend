@@ -5,24 +5,13 @@ import Link from 'next/link';
 
 const Footer = () => {
   return (
-    <section className='bg-[#f2f3f3] mt-12'>
+    <section className='bg-gradient-to-r from-blue-600  to-purple-400 text-white mt-[70px]'>
       <footer className='w-full container'>
         <div className='mx-auto'>
           <div className='grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-3 md:gap-8 py-10 max-sm:max-w-sm max-sm:mx-auto gap-y-8'>
             <div className='col-span-full mb-10 lg:col-span-2 lg:mb-0'>
               <Link href='/' className='flex justify-center lg:justify-start'>
-                <Image
-                  src={desktopLogo}
-                  alt='logo'
-                  className='w-auto h-auto lg:block wide-laptop:block small-laptop:block hidden'
-                  priority
-                />
-                <Image
-                  src={mobileLogo}
-                  alt='logo'
-                  className='w-auto h-auto lg:hidden wide-laptop:hidden small-laptop:hidden block'
-                  priority
-                />
+                <Image src={desktopLogo} alt='logo' className='' priority />
               </Link>
               <p className='py-8 text-sm lg:max-w-xs text-center lg:text-left'>
                 Trusted in more than 100 countries & 5 million customers. Have
@@ -30,56 +19,56 @@ const Footer = () => {
               </p>
               <Link
                 href=''
-                className='py-2.5 px-5 h-9 block w-fit bg-blue-600 rounded shadow-sm text-xs text-white mx-auto transition-all  duration-500 hover:bg-blue-700 lg:mx-0'
+                className='py-2.5 px-5 block w-fit bg-purple-800 rounded shadow-sm text-sm text-white mx-auto hover:bg-blue-700 lg:mx-0'
               >
                 Contact us
               </Link>
             </div>
             <div className='lg:mx-auto text-left '>
-              <h4 className='text-lg text-gray-900 font-bold mb-7'>Epayget</h4>
+              <h4 className='text-lg font-bold mb-7'>Epayget</h4>
               <ul className='text-sm  transition-all duration-500'>
                 <li className='mb-6'>
-                  <Link href='' className='hover:text-gray-900'>
+                  <Link href='' className='hover:text-gray-200'>
                     Home
                   </Link>
                 </li>
                 <li className='mb-6'>
-                  <Link href='' className=' hover:text-gray-900'>
+                  <Link href='' className=' hover:text-gray-200'>
                     About
                   </Link>
                 </li>
                 <li className='mb-6'>
-                  <Link href='' className='hover:text-gray-900'>
+                  <Link href='' className='hover:text-gray-200'>
                     Pricing
                   </Link>
                 </li>
                 <li>
-                  <Link href='' className='hover:text-gray-900'>
+                  <Link href='' className='hover:text-gray-200'>
                     Features
                   </Link>
                 </li>
               </ul>
             </div>
             <div className='lg:mx-auto text-left '>
-              <h4 className='text-lg text-gray-900 font-bold mb-7'>Products</h4>
+              <h4 className='text-lg font-bold mb-7'>Products</h4>
               <ul className='text-sm  transition-all duration-500'>
                 <li className='mb-6'>
-                  <Link href='' className='hover:text-gray-900'>
+                  <Link href='' className='hover:text-gray-200'>
                     Figma UI System
                   </Link>
                 </li>
                 <li className='mb-6'>
-                  <Link href='' className='hover:text-gray-900'>
+                  <Link href='' className='hover:text-gray-200'>
                     Icons Assets
                   </Link>
                 </li>
                 <li className='mb-6'>
-                  <Link href='' className='hover:text-gray-900'>
+                  <Link href='' className='hover:text-gray-200'>
                     Responsive Blocks
                   </Link>
                 </li>
                 <li>
-                  <Link href='' className='hover:text-gray-900'>
+                  <Link href='' className='hover:text-gray-200'>
                     Components Library
                   </Link>
                 </li>
@@ -89,22 +78,22 @@ const Footer = () => {
               <h4 className='text-lg font-bold mb-7'>Resources</h4>
               <ul className='text-sm  transition-all duration-500'>
                 <li className='mb-6'>
-                  <Link href='' className='hover:text-gray-900'>
+                  <Link href='' className='hover:text-gray-200'>
                     FAQs
                   </Link>
                 </li>
                 <li className='mb-6'>
-                  <Link href='' className='hover:text-gray-900'>
+                  <Link href='' className='hover:text-gray-200'>
                     Quick Start
                   </Link>
                 </li>
                 <li className='mb-6'>
-                  <Link href='' className='hover:text-gray-900'>
+                  <Link href='' className='hover:text-gray-200'>
                     Documentation
                   </Link>
                 </li>
                 <li>
-                  <Link href='' className='hover:text-gray-900'>
+                  <Link href='' className='hover:text-gray-200'>
                     User Guide
                   </Link>
                 </li>
@@ -114,29 +103,29 @@ const Footer = () => {
               <h4 className='text-lg font-bold mb-7'>Blogs</h4>
               <ul className='text-sm  transition-all duration-500'>
                 <li className='mb-6'>
-                  <Link href='' className='hover:text-gray-900'>
+                  <Link href='' className='hover:text-gray-200'>
                     News
                   </Link>
                 </li>
                 <li className='mb-6'>
-                  <Link href='' className='hover:text-gray-900'>
+                  <Link href='' className='hover:text-gray-200'>
                     Tips & Tricks
                   </Link>
                 </li>
                 <li className='mb-6'>
-                  <Link href='' className='hover:text-gray-900'>
+                  <Link href='' className='hover:text-gray-200'>
                     New Updates
                   </Link>
                 </li>
                 <li>
-                  <Link href='' className='hover:text-gray-900'>
+                  <Link href='' className='hover:text-gray-200'>
                     Events
                   </Link>
                 </li>
               </ul>
             </div>
           </div>
-          <div className='py-7 border-t border-gray-200'>
+          <div className='py-10 border-t border-gray-200'>
             <div className='flex items-center justify-center flex-col lg:justify-between lg:flex-row'>
               <span className='text-sm'>
                 ©<Link href='https://pagedone.io/'>Epayget</Link> 2024, All
@@ -145,7 +134,7 @@ const Footer = () => {
               <div className='flex mt-4 space-x-4 sm:justify-center lg:mt-0 '>
                 <Link
                   href=''
-                  className='w-9 h-9 rounded-full bg-gray-700 flex justify-center items-center hover:bg-indigo-600'
+                  className='w-9 h-9 rounded-full bg-black flex justify-center items-center hover:bg-slate-800'
                 >
                   <svg
                     xmlns='http://www.w3.org/2000/svg'
@@ -165,7 +154,7 @@ const Footer = () => {
                 </Link>
                 <Link
                   href=''
-                  className='w-9 h-9 rounded-full bg-gray-700 flex justify-center items-center hover:bg-indigo-600'
+                  className='w-9 h-9 rounded-full bg-blue-600 flex justify-center items-center hover:bg-blue-700'
                 >
                   <svg
                     className='w-[1.25rem] h-[1.125rem] text-white'
@@ -181,7 +170,7 @@ const Footer = () => {
                 </Link>
                 <Link
                   href=''
-                  className='w-9 h-9 rounded-full bg-gray-700 flex justify-center items-center hover:bg-indigo-600'
+                  className='w-9 h-9 rounded-full bg-blue-600 flex justify-center items-center hover:bg-blue-700'
                 >
                   <svg
                     className='w-[1rem] h-[1rem] text-white'
@@ -197,7 +186,7 @@ const Footer = () => {
                 </Link>
                 <Link
                   href=''
-                  className='w-9 h-9 rounded-full bg-gray-700 flex justify-center items-center hover:bg-indigo-600'
+                  className='w-9 h-9 rounded-full bg-red-600 flex justify-center items-center hover:bg-red-700'
                 >
                   <svg
                     className='w-[1.25rem] h-[0.875rem] text-white'

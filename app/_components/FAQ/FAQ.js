@@ -28,7 +28,7 @@ const FAQ = () => {
     }
   ];
   return (
-    <section className='container mt-12'>
+    <section className='container mt-[70px]'>
       <div className='grid lg:grid-cols-2 grid-cols-1 items-center lg:justify-between justify-center'>
         <div className='lg:w-full w-fit mx-auto'>
           <h2 className='text-3xl font-bold'>Frequently asked questions</h2>
