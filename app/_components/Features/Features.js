@@ -1,7 +1,15 @@
-import Feature from '@/app/_components/Features/Feature';
 import flexibilityImage from '@/app/_assets/yay.png';
 import secureApiImage from '@/app/_assets/secure.png';
 import notificationImage from '@/app/_assets/notification.png';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle
+} from '@/components/ui/card';
+import Image from 'next/image';
 
 const Features = () => {
   const features = [
@@ -35,18 +43,23 @@ const Features = () => {
   ];
 
   return (
-    <section className='container mx-auto mt-8'>
+    <section className='container mx-auto mt-12'>
       <h2 className='text-3xl font-bold text-center'>
         Why choose our payment system
       </h2>
-      <div className='grid wide-desktop:grid-cols-3 wide-laptop:grid-cols-3 small-laptop:grid-cols-3 grid-cols-1 gap-4 mt-6'>
+      <div className='grid lg:grid-cols-3  grid-cols-1 gap-4 mt-6 justify-center mx-auto'>
         {features.map((feature) => (
-          <Feature
-            key={feature.id}
-            image={feature.image}
-            title={feature.title}
-            description={feature.description}
-          />
+          <Card className='w-full mx-auto shadow-lg' key={feature.id}>
+            <CardHeader>
+              <Image
+                src={feature.image}
+                alt={feature.imageAltText}
+                className='w-20 mb-2'
+              />
+              <CardTitle>{feature.title}</CardTitle>
+              <CardDescription>{feature.description}</CardDescription>
+            </CardHeader>
+          </Card>
         ))}
       </div>
     </section>

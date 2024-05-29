@@ -14,18 +14,18 @@ const TopBar = () => {
         <Image
           src={desktopLogo}
           alt='logo'
-          className='w-auto h-auto wide-desktop:block wide-laptop:block small-laptop:block hidden'
+          className='w-auto h-auto lg:block wide-laptop:block small-laptop:block hidden'
           priority
         />
         <Image
           src={mobileLogo}
           alt='logo'
-          className='w-auto h-auto wide-desktop:hidden wide-laptop:hidden small-laptop:hidden block'
+          className='w-auto h-auto lg:hidden wide-laptop:hidden small-laptop:hidden block'
           priority
         />
       </Link>
       {/* large screens */}
-      <div className='items-center gap-3 wide-desktop:flex wide-laptop:flex small-laptop:flex hidden'>
+      <div className='items-center gap-3 lg:flex wide-laptop:flex small-laptop:flex hidden'>
         <Link
           href='/auth/signup'
           className='relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800'
@@ -47,7 +47,7 @@ const TopBar = () => {
       </div>
 
       {/* small screens */}
-      <div className='wide-desktop:hidden wide-laptop:hidden small-laptop:hidden'>
+      <div className='lg:hidden wide-laptop:hidden small-laptop:hidden'>
         <MobileDropdownMenu />
       </div>
     </section>

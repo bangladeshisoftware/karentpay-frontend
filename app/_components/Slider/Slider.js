@@ -25,15 +25,15 @@ const Slider = ({ sliders }) => {
             <Image
               src={slider.image}
               alt=''
-              className='w-full wide-desktop:h-[580px] wide-laptop:h-[480px] small-laptop:h-[380px] h-[200px]'
+              className='w-full lg:h-[580px] wide-laptop:h-[480px] small-laptop:h-[380px] h-[200px]'
               width={'100%'}
               height={'580px'}
             />
-            <div className='absolute wide-desktop:top-[12rem] wide-laptop:top-[12rem] small-laptop:top-[7rem] top-[4rem] wide-desktop:left-[19rem] wide-laptop:left-[4.5rem] small-laptop:left-[3rem] left-[3em]'>
-              <h2 className='wide-desktop:text-5xl wide-laptop:text-4xl small-laptop:text-4xl wide-desktop:w-[60%] wide-laptop:w-1/2 small-laptop:w-3/4 font-bold w-[60%]'>
+            <div className='absolute lg:top-[12rem] wide-laptop:top-[12rem] small-laptop:top-[7rem] top-[4rem] lg:left-[19rem] wide-laptop:left-[4.5rem] small-laptop:left-[3rem] left-[3em]'>
+              <h2 className='lg:text-5xl wide-laptop:text-4xl small-laptop:text-4xl lg:w-[60%] wide-laptop:w-1/2 small-laptop:w-3/4 font-bold w-[60%]'>
                 {slider.title}
               </h2>
-              <div className='flex wide-desktop:flex-row wide-laptop:flex-row small-laptop:flex-row flex-col wide-desktop:gap-4 wide-laptop:gap-4 small-laptop:gap-4 gap-2 wide-desktop:mt-5 mt-2'>
+              <div className='flex lg:flex-row wide-laptop:flex-row small-laptop:flex-row flex-col lg:gap-4 wide-laptop:gap-4 small-laptop:gap-4 gap-2 lg:mt-5 mt-2'>
                 <Link href={slider.firstButtonLink}>
                   <Button className='bg-blue-800'>
                     {slider.firstButtonText}
@@ -49,9 +49,9 @@ const Slider = ({ sliders }) => {
           </CarouselItem>
         ))}
       </CarouselContent>
-      <CarouselPrevious className='absolute wide-desktop:top-[17rem] wide-laptop:top-[12rem] small-laptop:top-[11.5rem] top-[6rem] small-laptop:left-[1rem] wide-desktop:left-[3rem] opacity-30 hover:opacity-100' />
+      <CarouselPrevious className='absolute lg:top-[17rem] wide-laptop:top-[12rem] small-laptop:top-[11.5rem] top-[6rem] small-laptop:left-[1rem] lg:left-[3rem] opacity-30 hover:opacity-100' />
 
-      <CarouselNext className='absolute wide-desktop:top-[17rem] wide-laptop:top-[12rem] small-laptop:top-[11.5rem] top-[6rem] small-laptop:right-[1rem] wide-desktop:right-[3rem] opacity-30 hover:opacity-100' />
+      <CarouselNext className='absolute lg:top-[17rem] wide-laptop:top-[12rem] small-laptop:top-[11.5rem] top-[6rem] small-laptop:right-[1rem] lg:right-[3rem] opacity-30 hover:opacity-100' />
     </Carousel>
   );
 };

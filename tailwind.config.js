@@ -32,27 +32,27 @@ module.exports = {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out'
       }
-    },
-    screens: {
-      // sm: '640px',
-      // => @media (min-width: 640px) { ... }
-
-      tab: '768px',
-      // md: '768px',
-      // => @media (min-width: 768px) { ... }
-
-      'small-laptop': '1024px',
-      // lg: '1024px',
-      // => @media (min-width: 1024px) { ... }
-
-      'wide-laptop': '1280px',
-      // xl: '1280px',
-      // => @media (min-width: 1280px) { ... }
-
-      'wide-desktop': '1536px'
-      // '2xl': '1536px'
-      // => @media (min-width: 1536px) { ... }
     }
+    // screens: {
+    //   // sm: '640px',
+    //   // => @media (min-width: 640px) { ... }
+
+    //   tab: '768px',
+    //   // md: '768px',
+    //   // => @media (min-width: 768px) { ... }
+
+    //   'small-laptop': '1024px',
+    //   // lg: '1024px',
+    //   // => @media (min-width: 1024px) { ... }
+
+    //   'wide-laptop': '1280px',
+    //   // xl: '1280px',
+    //   // => @media (min-width: 1280px) { ... }
+
+    //   lg: '1536px'
+    //   // '2xl': '1536px'
+    //   // => @media (min-width: 1536px) { ... }
+    // }
   },
   plugins: [require('tailwindcss-animate')]
 };
