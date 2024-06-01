@@ -27,6 +27,7 @@
     "pagedone": "^1.1.2",
     "react": "^18",
     "react-dom": "^18",
+    "react-icons": "^5.2.1",
     "sharp": "^0.33.4",
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7"
@@ -35,6 +36,6 @@
     "eslint": "^8",
     "eslint-config-next": "14.2.3",
     "postcss": "^8",
-    "tailwindcss": "^3.4.1"
+    "tailwindcss": "^3.4.3"
   }
 }
