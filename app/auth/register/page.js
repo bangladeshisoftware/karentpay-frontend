@@ -11,7 +11,7 @@ export default function Register() {
   return (
     <div className=" bg-white h-full  flex flex-row items-center py-10 my-auto">
       <div className="flex justify-center items-center w-full h-full  my-auto">
-        <div className="lg:h-[1000px] lg:w-[800px] md:w-[550px] h-full w-full shadow-2xl rounded-2xl mt-16 pb-6 lg:px-20 md:px-20 my-auto border-t flex flex-col  ">
+        <div className="lg:h-[1000px] lg:w-[550px] md:w-[550px] h-full w-full shadow-2xl rounded-2xl mt-16 pb-6 lg:px-20 md:px-20 my-auto border-t flex flex-col  ">
           <div className="mx-auto lg:mt-14 mt-4">
             <Image className="" src={logo} width={226} height={72} alt="" />
           </div>

@@ -1,12 +1,14 @@
 import React from "react";
 import { CgArrowsScrollV } from "react-icons/cg";
 import { RiArrowDownSLine } from "react-icons/ri";
+import { BsFillQuestionOctagonFill } from "react-icons/bs";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import Image from "next/image";
 const Question = () => {
   const faqs = [
     {
@@ -35,30 +37,57 @@ const Question = () => {
       answer:
         "You can create a new page in Next.js by adding a new file in the `pages` directory. The file name will determine the route path.",
     },
+    {
+      id: 5,
+      question:
+        "I am a Google Workspace customer, can I sign up for the AI Premium plan?",
+      answer:
+        "You can create a new page in Next.js by adding a new file in the `pages` directory. The file name will determine the route path.",
+    },
+    {
+      id: 6,
+      question:
+        "I am a Google Workspace customer, can I sign up for the AI Premium plan?",
+      answer:
+        "You can create a new page in Next.js by adding a new file in the `pages` directory. The file name will determine the route path.",
+    },
+    {
+      id: 7,
+      question:
+        "I am a Google Workspace customer, can I sign up for the AI Premium plan?",
+      answer:
+        "You can create a new page in Next.js by adding a new file in the `pages` directory. The file name will determine the route path.",
+    },
+    {
+      id: 8,
+      question:
+        "I am a Google Workspace customer, can I sign up for the AI Premium plan?",
+      answer:
+        "You can create a new page in Next.js by adding a new file in the `pages` directory. The file name will determine the route path.",
+    },
   ];
   return (
-    <section className="mt-[90px]">
-      <div className="container mx-auto   ">
+    <section className="mt-[90px] bg-gradient-to-br from-blue-600  to-blue-800">
+      <div className="container mx-auto py-14 text-white ">
         <h2 className="text-4xl font-semi-bold text-center">
           Frequently Asked Question
+          <BsFillQuestionOctagonFill className="mx-auto mt-3" fontSize={50} />
         </h2>
-        <div>
-          <div className="flex justify-end w-full items-center text-[#2563EB] py-4">
-            <p className="cursor-pointer">Expand all</p>
-            <CgArrowsScrollV fontSize={20} />
-          </div>
-          <div>
-            {faqs.map((faq, index) => (
-              <div key={index}>
-                <Accordion type="single" collapsible className="w-full">
-                  <AccordionItem value="item-1">
-                    <AccordionTrigger>{faq.question}</AccordionTrigger>
-                    <AccordionContent>{faq.answer}</AccordionContent>
-                  </AccordionItem>
-                </Accordion>
-              </div>
-            ))}
-          </div>
+        <span></span>
+        <div className="mt-8">
+          {faqs.map((faq, index) => (
+            <div
+              className="shadow-xl rounded-lg p-5 bg-blue-500 my-4"
+              key={index}
+            >
+              <Accordion type="single" collapsible className="w-full">
+                <AccordionItem value="item-1">
+                  <AccordionTrigger>{faq.question}</AccordionTrigger>
+                  <AccordionContent>{faq.answer}</AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            </div>
+          ))}
         </div>
       </div>
     </section>
