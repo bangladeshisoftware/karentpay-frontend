@@ -1,18 +1,20 @@
-import Features from '@/app/_components/Features/Features';
-import Slider from '@/app/_components/Slider/Slider';
+import Features from "@/app/_components/Features/Features";
+import Slider from "@/app/_components/Slider/Slider";
 
-import Reviews from '@/app/_components/Reviews/Reviews';
-import GlobalAvailability from '@/app/_components/GlobalAvailability/GlobalAvailability';
-import GetMore from '@/app/_components/GetMore/GetMore';
+import Reviews from "@/app/_components/Reviews/Reviews";
+import GlobalAvailability from "@/app/_components/GlobalAvailability/GlobalAvailability";
+import GetMore from "@/app/_components/GetMore/GetMore";
+import Question from "./_components/Question/Question";
 
 export default function Home() {
   return (
-    <section className='pb-4'>
+    <section className="pb-4">
       <Slider />
       <Features />
       <GlobalAvailability />
       <GetMore />
       <Reviews />
+      <Question />
     </section>
   );
 }
