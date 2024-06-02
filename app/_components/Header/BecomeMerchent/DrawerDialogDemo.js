@@ -137,7 +137,7 @@ function ProfileForm({ className, handleNext }) {
           <select
             id='industry'
             name='industry'
-            className='h-full rounded-md pl-2 outline-none bg-transparent text-gray-500 sm:text-sm w-[95%]'
+            className='h-full rounded-md pl-2 outline-none bg-transparent text-gray-500 text-base sm:text-sm w-[95%] '
             required
           >
             <option value=''>- - Select Business Type - -</option>
@@ -164,7 +164,7 @@ function ProfileForm({ className, handleNext }) {
           className='py-8 rounded-md border !outline-none focus:!outline-none focus-within:!outline-none shadow-none '
         />
       </div>
-      <Button type='submit' className='bg-[#7073F3]'>
+      <Button type='submit' className='bg-[#7073F3] mt-4'>
         Next
       </Button>
     </form>
@@ -219,7 +219,7 @@ function AdditionalInfoForm({ className, handleNext, handlePrevious }) {
           required
         />
       </div>
-      <div className='flex  gap-x-4 justify-between'>
+      <div className='flex  gap-x-4 justify-between mt-4'>
         <Button
           type='previous'
           className='bg-gray-500 w-1/2 justify-center'
@@ -266,7 +266,7 @@ function BusinessInfoForm({ className, handlePrevious }) {
           required
         />
       </div>
-      <div className='flex  gap-x-4 justify-between'>
+      <div className='flex  gap-x-4 justify-between mt-4'>
         <Button
           type='button'
           className='bg-gray-500 w-1/2 justify-center'

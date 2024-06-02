@@ -56,6 +56,12 @@ const NavBar = () => {
           >
             News
           </Link>
+          <Link
+            href='/contact'
+            className='rounded p-1 hover:text-white hover:bg-blue-800'
+          >
+            Contact
+          </Link>
         </div>
 
         <div className='flex gap-4'>
