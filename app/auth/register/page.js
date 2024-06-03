@@ -83,13 +83,18 @@ export default function Register() {
                 </Link>
               </p>
             </div>
-            <div className="bg-gradient-to-br from-purple-600 to-blue-500 w-60 mx-auto lg:mx-0 lg:w-full  p-2 rounded-md text-center text-white lg:mt-10 mt-3">
-              <button type="submit">Sign Up</button>
+            <div className="">
+              <button
+                className="bg-gradient-to-br from-purple-600 to-blue-500 w-60 mx-auto lg:mx-0 lg:w-full p-2 rounded-md text-center text-white lg:mt-10 mt-3 hover:from-blue-600 hover:to-purple-700"
+                type="submit"
+              >
+                Sign Up
+              </button>
             </div>
           </form>
-          <div className="bg-gradient-to-r from-blue-500 to-purple-600 w-60 mx-auto lg:mx-0 lg:w-full p-2 rounded-md text-center text-white lg:mt-5 mt-3 flex justify-center ">
+          <div className="">
             <button
-              className="flex items-center text-center gap-2"
+              className="bg-gradient-to-r from-blue-500 to-purple-600 w-60 mx-auto lg:mx-0 lg:w-full p-2 rounded-md text-center text-white lg:mt-5 mt-3 flex justify-center items-center hover:from-purple-700 hover:to-blue-600 gap-2"
               type="submit"
             >
               <p>Sign In with</p> <FcGoogle size={20} />{" "}
