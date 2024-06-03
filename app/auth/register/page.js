@@ -13,60 +13,60 @@ export default function Register() {
       <div className="flex justify-center items-center w-full h-full  my-auto">
         <div className="lg:h-[1000px] lg:w-[550px] md:w-[550px] h-full w-full shadow-2xl rounded-2xl mt-16 pb-6 lg:px-20 md:px-20 my-auto border-t flex flex-col  ">
           <div className="mx-auto lg:mt-14 mt-4">
-            <Image className="" src={logo} width={226} height={72} alt="" />
+            <Image className="" src={logo} width={150} height={62} alt="" />
           </div>
           <div className="lg:pt-5 lg:mt-5 mt-3 mb-5 text-[1.5rem] font-semibold text-[#2F65EC] text-center mx-auto">
-            <h2>PayGet Sign in</h2>
+            <h2>PayGet Sign Up</h2>
           </div>
           <form onSubmit={handleSignUp} className="">
-            <div className="border my-6 mx-auto  px-2 py-2 lg:mx-0 lg:py-4 lg:px-4 bg-white focus-within:border-[#2F65EC] hover:border-[#2F65EC] rounded-md w-3/4 lg:w-full">
+            <div className="border my-6 mx-auto  lg:mx-0   bg-white focus-within:border-[#2F65EC] hover:border-[#2F65EC] rounded-md w-3/4 lg:w-full">
               <input
-                className=" w-full h-full focus:border-[#2F65EC] outline-none"
+                className="w-full px-2 py-2 lg:py-3 lg:px-3 bg-transparent rounded-md outline-none"
                 type="text"
-                name="firstNmae"
+                name="firstName"
                 placeholder="First Name"
                 required
               ></input>
             </div>
-            <div className="border my-6 mx-auto  px-2 py-2 lg:mx-0 lg:py-4 lg:px-4 bg-white focus-within:border-[#2F65EC] hover:border-[#2F65EC] rounded-md w-3/4 lg:w-full">
+            <div className="border my-6 mx-auto  lg:mx-0   bg-white focus-within:border-[#2F65EC] hover:border-[#2F65EC] rounded-md w-3/4 lg:w-full">
               <input
-                className=" w-full focus:border-[#2F65EC] outline-none"
+                className="w-full px-2 py-2 lg:py-3 lg:px-3 bg-transparent rounded-md outline-none"
                 type="text"
                 name="lastName"
                 placeholder="Last Name"
                 required
               ></input>
             </div>
-            <div className="border my-6 mx-auto  px-2 py-2 lg:mx-0 lg:py-4 lg:px-4 bg-white focus-within:border-[#2F65EC] hover:border-[#2F65EC] rounded-md w-3/4 lg:w-full">
+            <div className="border my-6 mx-auto  lg:mx-0   bg-white focus-within:border-[#2F65EC] hover:border-[#2F65EC] rounded-md w-3/4 lg:w-full">
               <input
-                className=" w-full focus:border-[#2F65EC] outline-none"
+                className="w-full px-2 py-2 lg:py-3 lg:px-3 bg-transparent rounded-md outline-none"
                 type="email"
                 name="email"
                 placeholder="email"
                 required
               ></input>
             </div>
-            <div className="border my-6 mx-auto  px-2 py-2 lg:mx-0 lg:py-4 lg:px-4 bg-white focus-within:border-[#2F65EC] hover:border-[#2F65EC] rounded-md w-3/4 lg:w-full">
+            <div className="border my-6 mx-auto  lg:mx-0   bg-white focus-within:border-[#2F65EC] hover:border-[#2F65EC] rounded-md w-3/4 lg:w-full">
               <input
-                className=" w-full focus:border-[#2F65EC] outline-none"
+                className="w-full px-2 py-2 lg:py-3 lg:px-3 bg-transparent rounded-md outline-none"
                 type="number"
                 name="phone"
                 placeholder="Phone "
                 required
               ></input>
             </div>
-            <div className="border my-6 mx-auto  px-2 py-2 lg:mx-0 lg:py-4 lg:px-4 bg-white focus-within:border-[#2F65EC] hover:border-[#2F65EC] rounded-md w-3/4 lg:w-full">
+            <div className="border my-6 mx-auto  lg:mx-0   bg-white focus-within:border-[#2F65EC] hover:border-[#2F65EC] rounded-md w-3/4 lg:w-full">
               <input
-                className=" w-full  bg-transparent  outline-none"
+                className="w-full px-2 py-2 lg:py-3 lg:px-3 bg-transparent rounded-md outline-none"
                 type="password"
                 name="password"
                 placeholder="Password"
                 required
               ></input>
             </div>
-            <div className="border my-6 mx-auto  px-2 py-2 lg:mx-0 lg:py-4 lg:px-4 bg-white focus-within:border-[#2F65EC] hover:border-[#2F65EC] rounded-md w-3/4 lg:w-full">
+            <div className="border my-6 mx-auto  lg:mx-0   bg-white focus-within:border-[#2F65EC] hover:border-[#2F65EC] rounded-md w-3/4 lg:w-full">
               <input
-                className=" w-full  bg-white  outline-none"
+                className="w-full px-2 py-2 lg:py-3 lg:px-3 bg-transparent rounded-md outline-none"
                 type="password"
                 name="confirmPassword"
                 placeholder="Confirm Password"
