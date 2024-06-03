@@ -21,7 +21,7 @@ import {
 
 export default function CardWithForm() {
   return (
-    <Card className='max-w-[800px] w-full mx-auto'>
+    <Card className='max-w-[800px] w-full mx-auto transition duration-300 hover:shadow-lg hover:border-blue-500'>
       <CardHeader>
         <CardTitle>User Information</CardTitle>
         {/* <CardDescription>Deploy your new project in one-click.</CardDescription> */}
@@ -31,24 +31,39 @@ export default function CardWithForm() {
           <div className='grid w-full items-center gap-4'>
             <div className='flex flex-col space-y-1.5'>
               <Label htmlFor='name'>Name</Label>
-              <Input id='name' placeholder='Name of your project' />
+              <Input id='name' placeholder='Full Name' />
             </div>
 
             <div className='flex flex-col space-y-1.5'>
-              <Label htmlFor='email'>Email</Label>
+              <Label htmlFor='email'>
+                Email <span className='text-red-500 '>*</span>
+              </Label>
               <Input
                 type='email'
                 id='email'
-                placeholder='Name of your project'
+                placeholder='Email Address'
+                required
+              />
+            </div>
+
+            <div className='flex flex-col space-y-1.5'>
+              <Label htmlFor='phone'>
+                Phone <span className='text-red-500 '>*</span>
+              </Label>
+              <Input
+                type='text'
+                id='phone'
+                placeholder='Active Phone Number'
+                required
               />
             </div>
 
             <div className='flex flex-col space-y-1.5'>
               <Label htmlFor='address'>Address</Label>
-              <Input type='text' id='name' placeholder='Name of your project' />
+              <Input type='text' id='name' placeholder='Specific Address' />
             </div>
 
-            <div className='flex flex-col space-y-1.5'>
+            {/* <div className='flex flex-col space-y-1.5'>
               <Label htmlFor='framework'>Framework</Label>
               <Select>
                 <SelectTrigger id='framework'>
@@ -61,13 +76,17 @@ export default function CardWithForm() {
                   <SelectItem value='nuxt'>Nuxt.js</SelectItem>
                 </SelectContent>
               </Select>
-            </div>
+            </div> */}
           </div>
         </form>
       </CardContent>
-      <CardFooter className='flex justify-between'>
-        <Button variant='outline'>Cancel</Button>
-        <Button>send</Button>
+      <CardFooter className='flex justify-between gap-2'>
+        <Button className='bg-gray-500 w-1/2 justify-center' variant='outline'>
+          Cancel
+        </Button>
+        <Button type='submit' className='bg-[#7073F3] w-1/2 justify-center'>
+          Send
+        </Button>
       </CardFooter>
     </Card>
   );
