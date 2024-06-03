@@ -22,12 +22,6 @@
     "@radix-ui/react-select": "^2.0.0",
     "@radix-ui/react-slot": "^1.0.2",
     "@radix-ui/react-toast": "^1.1.5",
-<<<<<<< HEAD
-    "aos": "^2.3.4",
-=======
-    "@react-google-maps/api": "^2.19.3",
-    "@types/google.maps": "^3.55.9",
->>>>>>> e9b7e19e6a0b3ac1712fdf81695ac3193cbd5fb0
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "embla-carousel-autoplay": "^8.1.3",
