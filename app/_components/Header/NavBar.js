@@ -1,14 +1,11 @@
-import { Button } from "@/components/ui/button";
-import {
-  faLinkedin,
-  faSquareFacebook,
-  faSquareYoutube,
-} from "@fortawesome/free-brands-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+"use client";
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import facebookIcon from "@/app/_assets/facebook.png";
 import youtubeIcon from "@/app/_assets/youtube.png";
+import Dropdown from "../Dropdown/Dropdown";
+// Adjust the import path accordingly
 
 const NavBar = () => {
   const socialLinks = {
@@ -16,9 +13,16 @@ const NavBar = () => {
     linkedInLink: "",
     youtubeLink: "",
   };
+
+  const dropdownItems = [
+    { label: "About", href: "/about" },
+    { label: "Privacy & Policy", href: "/privacy-policy" },
+    { label: "Terms & Conditions", href: "/terms-and-conditions" },
+  ];
+
   return (
-    <nav className="bg-gradient-to-r from-blue-600  to-purple-400 text-white py-2 sticky top-0">
-      <div className="container lg:flex wide-laptop:flex small-laptop:flex hidden items-center justify-between">
+    <nav className="bg-gradient-to-r from-blue-600 to-purple-400 text-white py-2 sticky top-0 z-50">
+      <div className="container lg:flex wide-laptop:flex small-laptop:flex hidden items-center justify-between relative">
         <div className="flex items-center gap-5 h-10">
           <Link
             href="/"
@@ -26,12 +30,7 @@ const NavBar = () => {
           >
             Home
           </Link>
-          <Link
-            href="/about"
-            className="rounded p-1 hover:text-white hover:bg-blue-800"
-          >
-            About
-          </Link>
+
           <Link
             href="/pricing"
             className="rounded p-1 hover:text-white hover:bg-blue-800"
@@ -68,6 +67,7 @@ const NavBar = () => {
           >
             Contact
           </Link>
+          <Dropdown label="Pages" items={dropdownItems} />
         </div>
 
         <div className="flex gap-4">
@@ -75,15 +75,12 @@ const NavBar = () => {
             <Image src={facebookIcon} alt="facebook" className="w-8" />
           </Link>
           <Link href={socialLinks.youtubeLink} target="_blank">
-            <Image
-              src={youtubeIcon}
-              alt="facebook"
-              className="w-8 rounded-md"
-            />
+            <Image src={youtubeIcon} alt="youtube" className="w-8 rounded-md" />
           </Link>
         </div>
       </div>
     </nav>
   );
 };
+
 export default NavBar;

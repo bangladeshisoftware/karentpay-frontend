@@ -28,64 +28,6 @@ const About = () => {
   }, []);
   return (
     <div>
-      <section className="mt-[70px]">
-        <Slider {...settings}>
-          <div className="">
-            <Image
-              className="mx-auto my-auto"
-              src={img1}
-              height={600}
-              width={600}
-              alt=""
-            />
-          </div>
-          <div>
-            <Image
-              className="mx-auto my-auto"
-              src={img2}
-              height={600}
-              width={600}
-              alt=""
-            />
-          </div>
-          <div>
-            <Image
-              className="mx-auto my-auto"
-              src={img1}
-              height={600}
-              width={600}
-              alt=""
-            />
-          </div>
-          <div>
-            <Image
-              className="mx-auto my-auto"
-              src={img1}
-              height={600}
-              width={600}
-              alt=""
-            />
-          </div>
-          <div>
-            <Image
-              className="mx-auto my-auto"
-              src={img1}
-              height={600}
-              width={600}
-              alt=""
-            />
-          </div>
-          <div>
-            <Image
-              className="mx-auto my-auto"
-              src={img1}
-              height={600}
-              width={600}
-              alt=""
-            />
-          </div>
-        </Slider>
-      </section>
       <section className="container mx-auto mt-[70px]">
         <div data-aos="fade-right" className="flex justify-center  gap-10">
           <div>
@@ -134,7 +76,7 @@ const About = () => {
               tailored to meet the evolving demands of the digital market.
             </p>
           </div>
-          <div>
+          <div className="mt-10">
             <Image src={img2} height={400} width={500} alt="" />
           </div>
         </div>
@@ -165,7 +107,7 @@ const About = () => {
         </div>
       </section>
 
-      <section className="container mx-auto mt-[70px]">
+      <section className="container mx-auto mt-48px]">
         <div data-aos="fade-left" className="flex justify-center  gap-10">
           <div className="w-fit">
             <div className=" w-full">
@@ -211,7 +153,7 @@ const About = () => {
               </ul>
             </div>
           </div>
-          <div>
+          <div className="mt-10">
             <Image src={img2} height={400} width={500} alt="" />
           </div>
         </div>
