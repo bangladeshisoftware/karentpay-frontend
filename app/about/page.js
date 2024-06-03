@@ -8,8 +8,18 @@ import "aos/dist/aos.css";
 import { IoDiamondOutline } from "react-icons/io5";
 import { IoCheckmarkOutline } from "react-icons/io5";
 import Link from "next/link";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
 
 const About = () => {
+  var settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
   useEffect(() => {
     AOS.init({
       duration: 800,
@@ -18,6 +28,64 @@ const About = () => {
   }, []);
   return (
     <div>
+      <section className="mt-[70px]">
+        <Slider {...settings}>
+          <div className="">
+            <Image
+              className="mx-auto my-auto"
+              src={img1}
+              height={600}
+              width={600}
+              alt=""
+            />
+          </div>
+          <div>
+            <Image
+              className="mx-auto my-auto"
+              src={img2}
+              height={600}
+              width={600}
+              alt=""
+            />
+          </div>
+          <div>
+            <Image
+              className="mx-auto my-auto"
+              src={img1}
+              height={600}
+              width={600}
+              alt=""
+            />
+          </div>
+          <div>
+            <Image
+              className="mx-auto my-auto"
+              src={img1}
+              height={600}
+              width={600}
+              alt=""
+            />
+          </div>
+          <div>
+            <Image
+              className="mx-auto my-auto"
+              src={img1}
+              height={600}
+              width={600}
+              alt=""
+            />
+          </div>
+          <div>
+            <Image
+              className="mx-auto my-auto"
+              src={img1}
+              height={600}
+              width={600}
+              alt=""
+            />
+          </div>
+        </Slider>
+      </section>
       <section className="container mx-auto mt-[70px]">
         <div data-aos="fade-right" className="flex justify-center  gap-10">
           <div>
@@ -25,7 +93,7 @@ const About = () => {
           </div>
           <div className="w-fit">
             <div
-              className="bg-gradient-to-r w-20 p-4 from-blue-500 to-purple-600"
+              className="bg-gradient-to-r w-20 p-4 mt-24 from-blue-500 to-purple-600"
               style={{ borderRadius: "5% 5% 5% 45%" }}
             >
               <IoDiamondOutline fontSize={40} />
