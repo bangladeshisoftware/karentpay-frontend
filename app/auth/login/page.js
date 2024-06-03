@@ -59,13 +59,18 @@ export default function Login() {
                 </Link>
               </p>
             </div>
-            <div className="bg-gradient-to-br from-purple-600 to-blue-500 w-60 mx-auto lg:mx-0 lg:w-full  p-2 rounded-md text-center text-white mt-10">
-              <button type="submit">Sign In</button>
+            <div className="">
+              <button
+                className="bg-gradient-to-br from-purple-600 to-blue-500 w-60 mx-auto lg:mx-0 lg:w-full p-2 rounded-md text-center text-white mt-10 hover:from-blue-600 hover:to-purple-700"
+                type="submit"
+              >
+                Sign In
+              </button>
             </div>
           </form>
-          <div className="bg-gradient-to-r from-blue-500 to-purple-600 w-60 mx-auto lg:mx-0 lg:w-full p-2 rounded-md text-center text-white mt-5 flex justify-center ">
+          <div className="">
             <button
-              className="flex items-center text-center gap-2"
+              className="bg-gradient-to-r from-blue-500 to-purple-600 w-60 mx-auto lg:mx-0 lg:w-full p-2 rounded-md text-center text-white mt-5 flex justify-center items-center hover:from-purple-700 hover:to-blue-600 gap-2 "
               type="submit"
             >
               <span>Sign In with</span> <FcGoogle size={20} />
