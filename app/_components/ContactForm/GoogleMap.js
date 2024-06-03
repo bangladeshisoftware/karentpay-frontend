@@ -33,7 +33,7 @@ const MyGoogleMap = () => {
   }, []);
 
   return (
-    <LoadScript googleMapsApiKey='AIzaSyAO-xmnuavXwGep-gVVIt4xmDziNrtIxeI'>
+    <LoadScript googleMapsApiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}>
       {currentLocation.lat && currentLocation.lng ? (
         <GoogleMap
           mapContainerStyle={mapStyles}
