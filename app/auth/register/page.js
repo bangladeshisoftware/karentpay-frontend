@@ -11,7 +11,7 @@ export default function Register() {
   return (
     <div className=" bg-white h-full  flex flex-row items-center py-10 my-auto">
       <div className="flex justify-center items-center w-full h-full  my-auto">
-        <div className="lg:h-[1000px] lg:w-[550px] md:w-[550px] h-full w-full shadow-2xl rounded-2xl mt-16 pb-6 lg:px-20 md:px-20 my-auto border-t flex flex-col  ">
+        <div className="lg:h-[1000px] lg:w-[550px] md:w-[550px] sm:w-[550px] h-full w-full shadow-2xl rounded-2xl mt-16 pb-6 lg:px-20 md:px-20 sm:px-20 px-10 my-auto border-t flex flex-col  ">
           <div className="mx-auto lg:mt-14 mt-4">
             <Image className="" src={logo} width={150} height={62} alt="" />
           </div>
@@ -19,7 +19,7 @@ export default function Register() {
             <h2>PayGet Sign Up</h2>
           </div>
           <form onSubmit={handleSignUp} className="">
-            <div className="border my-6 mx-auto  lg:mx-0   bg-white focus-within:border-[#2F65EC] hover:border-[#2F65EC] rounded-md w-3/4 lg:w-full">
+            <div className="border my-6 mx-auto  lg:mx-0   bg-white focus-within:border-[#2F65EC] hover:border-[#2F65EC] rounded-md w-full lg:w-full">
               <input
                 className="w-full px-2 py-2 lg:py-3 lg:px-3 bg-transparent rounded-md outline-none"
                 type="text"
@@ -28,7 +28,7 @@ export default function Register() {
                 required
               ></input>
             </div>
-            <div className="border my-6 mx-auto  lg:mx-0   bg-white focus-within:border-[#2F65EC] hover:border-[#2F65EC] rounded-md w-3/4 lg:w-full">
+            <div className="border my-6 mx-auto  lg:mx-0   bg-white focus-within:border-[#2F65EC] hover:border-[#2F65EC] rounded-md w-full lg:w-full">
               <input
                 className="w-full px-2 py-2 lg:py-3 lg:px-3 bg-transparent rounded-md outline-none"
                 type="text"
@@ -37,7 +37,7 @@ export default function Register() {
                 required
               ></input>
             </div>
-            <div className="border my-6 mx-auto  lg:mx-0   bg-white focus-within:border-[#2F65EC] hover:border-[#2F65EC] rounded-md w-3/4 lg:w-full">
+            <div className="border my-6 mx-auto  lg:mx-0   bg-white focus-within:border-[#2F65EC] hover:border-[#2F65EC] rounded-md w-full lg:w-full">
               <input
                 className="w-full px-2 py-2 lg:py-3 lg:px-3 bg-transparent rounded-md outline-none"
                 type="email"
@@ -46,7 +46,7 @@ export default function Register() {
                 required
               ></input>
             </div>
-            <div className="border my-6 mx-auto  lg:mx-0   bg-white focus-within:border-[#2F65EC] hover:border-[#2F65EC] rounded-md w-3/4 lg:w-full">
+            <div className="border my-6 mx-auto  lg:mx-0   bg-white focus-within:border-[#2F65EC] hover:border-[#2F65EC] rounded-md w-full lg:w-full">
               <input
                 className="w-full px-2 py-2 lg:py-3 lg:px-3 bg-transparent rounded-md outline-none"
                 type="number"
@@ -55,7 +55,7 @@ export default function Register() {
                 required
               ></input>
             </div>
-            <div className="border my-6 mx-auto  lg:mx-0   bg-white focus-within:border-[#2F65EC] hover:border-[#2F65EC] rounded-md w-3/4 lg:w-full">
+            <div className="border my-6 mx-auto  lg:mx-0   bg-white focus-within:border-[#2F65EC] hover:border-[#2F65EC] rounded-md w-full lg:w-full">
               <input
                 className="w-full px-2 py-2 lg:py-3 lg:px-3 bg-transparent rounded-md outline-none"
                 type="password"
@@ -64,7 +64,7 @@ export default function Register() {
                 required
               ></input>
             </div>
-            <div className="border my-6 mx-auto  lg:mx-0   bg-white focus-within:border-[#2F65EC] hover:border-[#2F65EC] rounded-md w-3/4 lg:w-full">
+            <div className="border my-6 mx-auto  lg:mx-0   bg-white focus-within:border-[#2F65EC] hover:border-[#2F65EC] rounded-md w-full lg:w-full">
               <input
                 className="w-full px-2 py-2 lg:py-3 lg:px-3 bg-transparent rounded-md outline-none"
                 type="password"
@@ -85,7 +85,7 @@ export default function Register() {
             </div>
             <div className="">
               <button
-                className="bg-gradient-to-br from-purple-600 to-blue-500 w-60 mx-auto lg:mx-0 lg:w-full p-2 rounded-md text-center text-white lg:mt-10 mt-3 hover:from-blue-600 hover:to-purple-700"
+                className="bg-gradient-to-r from-blue-500 to-purple-600  mx-auto lg:mx-0 md:mx-0 sm:mx-0 w-full lg:w-full md:w-full sm:w-full p-2 rounded-md text-center text-white mt-5 flex justify-center items-center hover:from-purple-700 hover:to-blue-600 gap-2"
                 type="submit"
               >
                 Sign Up
@@ -94,7 +94,7 @@ export default function Register() {
           </form>
           <div className="">
             <button
-              className="bg-gradient-to-r from-blue-500 to-purple-600 w-60 mx-auto lg:mx-0 lg:w-full p-2 rounded-md text-center text-white lg:mt-5 mt-3 flex justify-center items-center hover:from-purple-700 hover:to-blue-600 gap-2"
+              className="bg-gradient-to-r from-blue-500 to-purple-600  mx-auto lg:mx-0 md:mx-0 sm:mx-0 w-full lg:w-full md:w-full sm:w-full p-2 rounded-md text-center text-white mt-5 flex justify-center items-center hover:from-purple-700 hover:to-blue-600 gap-2"
               type="submit"
             >
               <p>Sign In with</p> <FcGoogle size={20} />{" "}
