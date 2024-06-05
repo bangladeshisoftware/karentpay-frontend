@@ -5,9 +5,6 @@ import {
   CarouselNext,
   CarouselPrevious
 } from '@/components/ui/carousel';
-// import Autoplay from 'embla-carousel-autoplay';
-// import Fade from 'embla-carousel-fade';
-
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
@@ -36,11 +33,7 @@ const Slider = () => {
   ];
 
   return (
-    <Carousel
-      className='relative'
-      opts={{ loop: true }}
-      // plugins={[Autoplay({ delay: 3000, stopOnInteraction: false }), Fade()]}
-    >
+    <Carousel className='relative' opts={{ loop: true }}>
       <CarouselContent>
         {sliders.map((slider) => (
           <CarouselItem className='p-0 relative' key={slider.id}>
@@ -57,12 +50,12 @@ const Slider = () => {
               </h2>
               <div className='flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-4'>
                 <Link href={slider.firstButtonLink}>
-                  <Button className='bg-pink-600  px-2  py-0.5 text-xs sm:px-4  sm:py-2 sm:text-sm md:px-6 md:py-3 md:text-base lg:px-8 lg:py-4  lg:text-lg'>
+                  <Button className='bg-pink-600 px-2 py-1 text-xs sm:px-4 sm:py-2 sm:text-sm md:px-6 md:py-3 md:text-base lg:px-8 lg:py-4 lg:text-lg'>
                     {slider.firstButtonText}
                   </Button>
                 </Link>
                 <Link href={slider.secondButtonLink}>
-                  <Button className='bg-pink-600  px-2 py-1 text-xs sm:px-4 sm:py-2  sm:text-sm md:px-6 md:py-3 md:text-base lg:px-8 lg:py-4 lg:text-lg'>
+                  <Button className='bg-pink-600 px-2 py-1 text-xs sm:px-4 sm:py-2 sm:text-sm md:px-6 md:py-3 md:text-base lg:px-8 lg:py-4 lg:text-lg'>
                     {slider.secondButtonText}
                   </Button>
                 </Link>

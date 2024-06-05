@@ -1,30 +1,21 @@
 import { Button } from '@/components/ui/button';
 import React from 'react';
-import { CiBookmarkCheck } from 'react-icons/ci';
 import { GoCheckCircleFill } from 'react-icons/go';
-import { RxCrossCircled } from 'react-icons/rx';
+import { CiBookmarkCheck } from 'react-icons/ci';
 
-const PriceCard2 = () => {
-  const crossItems = [
-    'Statement Access',
-    'Comprehensive Support',
-    'Dedicated Key Account Manager',
-    'All Payment Methods Included by Default',
-    'No Additional Payment Method Fees'
-  ];
-
+const PriceCard3 = () => {
   return (
     <div className='border shadow-md rounded-md w-full transition-transform duration-300 hover:scale-105 hover:shadow-lg'>
       <div className='bg-gradient-to-r from-blue-600  to-purple-400 rounded-md py-10 '>
-        <div className='border rounded-full flex justify-center mx-auto text-white mt-2 mb-10 w-32 '>
-          <div className='mt-1 text-xl'>
+        <div className='border rounded-full flex justify-center mx-auto text-white mt-2  mb-10 w-36 pl-4 pr-4'>
+          <div className='mt-1  text-xl'>
             <CiBookmarkCheck />
           </div>
-          <div className='ml-1 text-xl'>Silver</div>
+          <div className='ml-1  text-xl'>Diamond</div>
         </div>
         <div>
-          <h1 className='text-xl text-center text-white font-bold pb-2'>
-            E-Payment Education
+          <h1 className='text-xl text-center text-white pb-2 font-bold'>
+            E-Payment SME Business
           </h1>
         </div>
         <div>
@@ -54,16 +45,8 @@ const PriceCard2 = () => {
             index !== array.length - 1 ? 'border-b-2' : ''
           }`}
         >
-          <div
-            className={`pt-1 pr-2 ${
-              crossItems.includes(text) ? 'text-red-500' : 'text-[#7073F3]'
-            }`}
-          >
-            {crossItems.includes(text) ? (
-              <RxCrossCircled />
-            ) : (
-              <GoCheckCircleFill />
-            )}
+          <div className='pt-1 pr-2 text-[#7073F3]'>
+            <GoCheckCircleFill />
           </div>
           <div>
             <p>{text}</p>
@@ -79,4 +62,4 @@ const PriceCard2 = () => {
   );
 };
 
-export default PriceCard2;
+export default PriceCard3;

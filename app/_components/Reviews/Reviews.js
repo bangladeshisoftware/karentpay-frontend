@@ -32,24 +32,25 @@ const Reviews = () => {
       designation: 'Businessman'
     }
   ];
-  const minifiedReviews = reviews?.slice(0, 3);
 
   return (
     <section className='mt-[70px]'>
       <div className='container mx-auto'>
-        <div className='flex justify-between'>
-          <h2 className='text-3xl font-bold'>Customer Reviews</h2>
+        <div className='flex flex-col md:flex-row md:justify-between items-center md:items-start'>
+          <h2 className='text-2xl sm:text-3xl font-bold text-center md:text-left mb-4 md:mb-0'>
+            Customer Reviews
+          </h2>
           <Link
             href='/customer-reviews'
-            className='px-7 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded flex items-center gap-1 w-fit text-sm'
+            className='px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded flex items-center gap-1 w-fit text-sm'
           >
             Show more <ArrowRight className='w-4 h-4' />
           </Link>
         </div>
         <div className='flex flex-wrap gap-4 justify-center mt-10'>
-          {minifiedReviews.map((review) => (
+          {reviews.map((review) => (
             <div
-              className='lg:w-[32.5%] lg:mb-0 mb-6 p-4 border rounded-lg shadow-lg'
+              className='w-full md:w-[48%] lg:w-[32.5%] mb-6 p-4 border rounded-lg shadow-lg'
               key={review.id}
             >
               <div className='h-full text-center'>
@@ -61,7 +62,9 @@ const Reviews = () => {
                   height={200}
                   priority
                 />
-                <p className='leading-relaxed'>{review.description}</p>
+                <p className='leading-relaxed text-sm sm:text-base md:text-sm lg:text-base'>
+                  {review.description}
+                </p>
                 <span className='inline-block h-1 w-10 rounded bg-blue-600 mt-6 mb-4'></span>
                 <h2 className='text-gray-900 font-bold title-font tracking-wider text-sm'>
                   {review.name}

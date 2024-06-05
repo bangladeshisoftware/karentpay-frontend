@@ -70,7 +70,7 @@ export function DrawerDialogDemo({ open, setOpen }) {
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogContent className='max-w-[800px] w-full mx-auto'>
         <DialogHeader>
-          <DialogTitle className='text-[#7073F3] text-3xl text-center py-4'>
+          <DialogTitle className='bg-gradient-to-r from-blue-600  to-purple-400 inline-block text-transparent bg-clip-text text-3xl text-center py-4'>
             Become A Merchant
           </DialogTitle>
         </DialogHeader>

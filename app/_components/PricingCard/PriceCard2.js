@@ -1,20 +1,27 @@
 import { Button } from '@/components/ui/button';
 import React from 'react';
+import { CiBookmarkCheck } from 'react-icons/ci';
 import { GoCheckCircleFill } from 'react-icons/go';
 import { RxCrossCircled } from 'react-icons/rx';
 
 const PriceCard2 = () => {
   const crossItems = [
-    'Statement Access',
-    'Comprehensive Support',
-    'Dedicated Key Account Manager',
+    // 'Statement Access',
+    // 'Comprehensive Support',
+    // 'Dedicated Key Account Manager',
     'All Payment Methods Included by Default',
     'No Additional Payment Method Fees'
   ];
 
   return (
     <div className='border shadow-md rounded-md w-full transition-transform duration-300 hover:scale-105 hover:shadow-lg'>
-      <div className='bg-gradient-to-r from-blue-600  to-purple-400 rounded-md py-7'>
+      <div className='bg-gradient-to-r from-blue-600  to-purple-400 rounded-md py-10 '>
+        <div className='border rounded-full flex justify-center mx-auto text-white mt-2 mb-10 w-32'>
+          <div className='mt-1  text-xl'>
+            <CiBookmarkCheck />
+          </div>
+          <div className='ml-1 text-xl'>Gold</div>
+        </div>
         <div>
           <h1 className='text-xl text-center text-white font-bold pb-2'>
             E-Payment SME Business
@@ -22,9 +29,8 @@ const PriceCard2 = () => {
         </div>
         <div>
           <p className='text-base text-center mb-5 text-white px-4'>
-            E-Payment GateWay offers institutions competitive prices, empowering
-            them to streamline operations and prioritize their educational
-            mission. Prices are as follows:
+            E-Payment GateWay offers institutions competitive prices are as
+            follows:
           </p>
         </div>
       </div>
@@ -65,7 +71,7 @@ const PriceCard2 = () => {
         </div>
       ))}
       <div className='text-center mt-4 mb-4'>
-        <Button className='bg-gradient-to-r from-blue-600  to-purple-400 transition-transform duration-300 hover:scale-105 px-12 py-6'>
+        <Button className='bg-gradient-to-r from-blue-600  to-purple-400 transition-transform duration-300 hover:scale-105 px-12 py-6 mb-6'>
           Choose Plan
         </Button>
       </div>
