@@ -4,16 +4,17 @@ import Link from "next/link";
 const Dropdown = ({ label, items }) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const toggleDropdown = () => {
-    setIsOpen(!isOpen);
+  const handleMouseEnter = () => {
+    setIsOpen(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsOpen(false);
   };
 
   return (
-    <div className="relative">
-      <button
-        onClick={toggleDropdown}
-        className="rounded p-1 hover:text-white hover:bg-blue-800"
-      >
+    <div className="relative" onMouseEnter={handleMouseEnter}>
+      <button className="rounded p-1 hover:text-white hover:bg-blue-800">
         {label}
       </button>
       {isOpen && (
@@ -25,7 +26,7 @@ const Dropdown = ({ label, items }) => {
               }}
               href={item.href}
               key={index}
-              className="block px-4 py-2 hover:bg-gray-200 hover:underline hover:scale-105 hover:rotate-x-15 hover:rotate-y-15 border-b text-base transition-colors duration-200 ease-in-out first:rounded-t-lg last:rounded-b-lg"
+              className="block px-4 py-2 hover:bg-gray-200 hover: hover:scale-105 hover:rotate-x-15 hover:rotate-y-15 border-b text-base transition-colors duration-200 ease-in-out first:rounded-t-lg last:rounded-b-lg"
             >
               {item.label}
             </Link>
