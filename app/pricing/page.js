@@ -39,8 +39,8 @@ const pricing = () => {
         <div className='text-3xl text-center font-bold py-4 mb-10'>
           Start your Gold plan trial today
         </div>
-        <div className='flex justify-around w-full items-center border rounded-md shadow-md  py-8 mb-28 transition-all duration-300 hover:border-blue-500'>
-          <div>
+        <div className='flex flex-col md:flex-row justify-around w-full items-center border rounded-md shadow-md p-4 sm:p-6 md:p-8 mb-24 transition-all duration-300 hover:border-blue-500'>
+          <div className='mb-4 md:mb-0 md:mr-8'>
             <div className='text-2xl text-[#7073F3]'>
               Per transaction we cut BDT 10.00TK
             </div>
@@ -48,25 +48,25 @@ const pricing = () => {
               BDT 20.00/Per Transaction
             </div>
             <div>
-              <Button className='bg-gradient-to-r from-blue-600  to-purple-400 transition-transform duration-300 hover:scale-105 px-12 py-6 mt-4 mb-4'>
-                Start Transaction
+              <Button className='bg-gradient-to-r from-blue-600 to-purple-400 transition-transform duration-300 hover:scale-105 px-6 py-3 sm:px-8 sm:py-4 mt-4'>
+                Get Offer
               </Button>
             </div>
           </div>
-          <div>
-            <div className='flex items-center py-2'>
+          <div className='space-y-2'>
+            <div className='flex items-center'>
               <IoCheckmark className='text-blue-500 mr-2' />
               <p>E-Payment GetWay Advanced</p>
             </div>
-            <div className='flex items-center py-2'>
-              <IoCheckmark className='text-blue-500 mr-2 ' />
+            <div className='flex items-center'>
+              <IoCheckmark className='text-blue-500 mr-2' />
               <p>Additional Store Support</p>
             </div>
-            <div className='flex items-center py-2'>
-              <IoCheckmark className='text-blue-500 mr-2 ' />
+            <div className='flex items-center'>
+              <IoCheckmark className='text-blue-500 mr-2' />
               <p>All Payment Methods Included</p>
             </div>
-            <div className='flex items-center py-2'>
+            <div className='flex items-center'>
               <IoCheckmark className='text-blue-500 mr-2' />
               <p>Other Diamond plan benefits</p>
             </div>

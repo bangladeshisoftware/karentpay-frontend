@@ -48,7 +48,7 @@ const Slider = () => {
               <h2 className='text-white font-bold text-center text-sm sm:text-lg md:text-2xl lg:text-5xl mb-2 sm:mb-4 lg:mb-6 mt-2 sm:mt-10 lg:mt-6'>
                 {slider.title}
               </h2>
-              <div className='flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-4'>
+              <div className='flex flex-row  lg:flex-row items-center gap-2 sm:gap-4 sm:flex-col md:flex-col'>
                 <Link href={slider.firstButtonLink}>
                   <Button className='bg-pink-600 px-2 py-1 text-xs sm:px-4 sm:py-2 sm:text-sm md:px-6 md:py-3 md:text-base lg:px-8 lg:py-4 lg:text-lg'>
                     {slider.firstButtonText}
