@@ -70,8 +70,8 @@ const Features = () => {
   ];
 
   return (
-    <section className='container mx-auto mt-[60px]'>
-      <h2 className='text-3xl font-bold text-'>
+    <section className='container mx-auto mt-[60px] '>
+      <h2 className='text-3xl font-bold flex text-center'>
         Why choose our payment system
       </h2>
       <div className='grid lg:grid-cols-3  grid-cols-1 gap-x-4 gap-y-10 mt-12 justify-center mx-auto'>
