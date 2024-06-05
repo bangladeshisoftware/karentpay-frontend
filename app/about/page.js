@@ -2,7 +2,7 @@
 import Image from "next/image";
 import React, { useEffect } from "react";
 import img1 from "@/app/_assets/About_img1.jpg";
-import img2 from "@/app/_assets/About_img2.avif";
+import img2 from "@/app/_assets/About_img2.jpg";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { IoDiamondOutline } from "react-icons/io5";
@@ -29,9 +29,12 @@ const About = () => {
   return (
     <div>
       <section className="container mx-auto mt-[70px]">
-        <div data-aos="fade-right" className="flex justify-center  gap-10">
+        <div
+          data-aos="fade-right"
+          className="flex flex-col lg:flex-row items-center lg:justify-center lg:gap-10 md:gap-10 gap-4"
+        >
           <div>
-            <Image src={img1} height={500} width={500} alt="" />
+            <Image className="" src={img1} height={500} width={500} alt="" />
           </div>
           <div className="w-fit">
             <div
@@ -61,7 +64,10 @@ const About = () => {
       </section>
 
       <section className="container mx-auto mt-[70px]">
-        <div data-aos="fade-left" className="flex justify-center  gap-10">
+        <div
+          data-aos="fade-left"
+          className="flex flex-col-reverse lg:flex-row items-center lg:justify-center gap-10"
+        >
           <div className="w-fit">
             <div className=" w-full">
               <h2 className="text-3xl font-bold mt-24">
@@ -83,7 +89,10 @@ const About = () => {
       </section>
 
       <section className="container mx-auto mt-[70px]">
-        <div data-aos="fade-right" className="flex justify-center  gap-10">
+        <div
+          data-aos="fade-right"
+          className="flex flex-col lg:flex-row items-center lg:justify-center  gap-10"
+        >
           <div>
             <Image src={img1} height={500} width={500} alt="" />
           </div>
@@ -108,7 +117,10 @@ const About = () => {
       </section>
 
       <section className="container mx-auto mt-48px]">
-        <div data-aos="fade-left" className="flex justify-center  gap-10">
+        <div
+          data-aos="fade-left"
+          className="flex flex-col-reverse lg:flex-row items-center lg:justify-center  gap-10 mt-10 lg:mt-0 md:mt-0"
+        >
           <div className="w-fit">
             <div className=" w-full">
               <h2 className="text-3xl font-bold mt-24">
@@ -154,7 +166,7 @@ const About = () => {
             </div>
           </div>
           <div className="mt-10">
-            <Image src={img2} height={400} width={500} alt="" />
+            <Image className="" src={img2} height={400} width={500} alt="" />
           </div>
         </div>
       </section>
