@@ -15,7 +15,13 @@ const Slider = () => {
     {
       id: 1,
       image: img1,
-      title: 'Automatic Payment Gateway Solution Instant Withdraw',
+      title: (
+        <>
+          Automatic Payment Gateway Solution
+          <br />
+          Instant Withdraw
+        </>
+      ),
       firstButtonLink: '/auth/signup',
       firstButtonText: 'Free Appointment Book',
       secondButtonLink: '/',
@@ -24,7 +30,13 @@ const Slider = () => {
     {
       id: 2,
       image: img1,
-      title: 'Automatic Payment Gateway Solution Instant Withdraw',
+      title: (
+        <>
+          Automatic Payment Gateway Solution
+          <br />
+          Instant Withdraw
+        </>
+      ),
       firstButtonLink: '/auth/signup',
       firstButtonText: 'Free Appointment Book',
       secondButtonLink: '/',

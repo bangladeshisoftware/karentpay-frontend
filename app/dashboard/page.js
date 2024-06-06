@@ -1,0 +1,78 @@
+'use client';
+import React, { useState } from 'react';
+import Balance from '@/app/dashboard/components/Balance';
+import Customer from '@/app/dashboard/components/Customer';
+import Home from '@/app/dashboard/components/Home';
+import Product_Catalog from '@/app/dashboard/components/Product_Catalog';
+import Transactions from '@/app/dashboard/components/Transactions';
+import Header from '@/app/dashboard/components/Header';
+
+function Dashboard() {
+  const [activeComponent, setActiveComponent] = useState('home');
+
+  const renderComponent = () => {
+    return (
+      <>
+        <Header />
+        {(() => {
+          switch (activeComponent) {
+            case 'home':
+              return <Home />;
+            case 'balance':
+              return <Balance />;
+            case 'transactions':
+              return <Transactions />;
+            case 'customer':
+              return <Customer />;
+            case 'productCatalog':
+              return <Product_Catalog />;
+            default:
+              return <Home />;
+          }
+        })()}
+      </>
+    );
+  };
+
+  return (
+    <div className='flex h-screen'>
+      <aside className='w-1/5 bg-gray-100 border-r p-4'>
+        <ul>
+          <li
+            className='mb-4 cursor-pointer'
+            onClick={() => setActiveComponent('home')}
+          >
+            Home
+          </li>
+          <li
+            className='mb-4 cursor-pointer'
+            onClick={() => setActiveComponent('balance')}
+          >
+            Balance
+          </li>
+          <li
+            className='mb-4 cursor-pointer'
+            onClick={() => setActiveComponent('transactions')}
+          >
+            Transactions
+          </li>
+          <li
+            className='mb-4 cursor-pointer'
+            onClick={() => setActiveComponent('customer')}
+          >
+            Customer
+          </li>
+          <li
+            className='mb-4 cursor-pointer'
+            onClick={() => setActiveComponent('productCatalog')}
+          >
+            Product Catalog
+          </li>
+        </ul>
+      </aside>
+      <main className='flex-1 p-0 overflow-auto'>{renderComponent()}</main>
+    </div>
+  );
+}
+
+export default Dashboard;

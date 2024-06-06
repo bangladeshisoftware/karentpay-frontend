@@ -7,9 +7,17 @@ import facebookIcon from '@/app/_assets/facebook.png';
 import youtubeIcon from '@/app/_assets/youtube.png';
 import Dropdown from '../Dropdown/Dropdown';
 import footerLogo from '@/app/_assets/Footer-Logo.png';
+import { DrawerDialogDemo } from '@/app/_components/Header/BecomeMerchent/DrawerDialogDemo';
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
+  const handleOpenDrawer = (e) => {
+    e.preventDefault();
+    setIsDrawerOpen(true);
+    setIsOpen(false); // Close the mobile menu when the drawer opens
+  };
 
   const socialLinks = {
     facebookLink: '',
@@ -85,12 +93,18 @@ const NavBar = () => {
 
       {/* small and medium screens */}
       <div className='container lg:hidden wide-laptop:hidden small-laptop:hidden flex items-center justify-between relative'>
-        <button onClick={() => setIsOpen(!isOpen)} className='p-2'>
-          <Menu className='w-6 h-6 text-white' />
-        </button>
-        <Link href='/'>
-          <Image src={footerLogo} alt='Footer Logo' className='w-24 h-10' />
-        </Link>
+        <div className='flex items-center'>
+          <button onClick={() => setIsOpen(!isOpen)} className='p-1 m-0'>
+            <Menu className='w-10 h-10 text-white' />
+          </button>
+          <Link href='/'>
+            <Image
+              src={footerLogo}
+              alt='Footer Logo'
+              className='w-36 h-12 ml-6'
+            />
+          </Link>
+        </div>
       </div>
 
       {isOpen && (
@@ -151,9 +165,9 @@ const NavBar = () => {
           />
           {/* Additional links for small and medium screens */}
           <Link
-            href='/become-merchant'
+            href='/become_merchant'
             className='rounded p-1 hover:text-white hover:bg-blue-800 w-full text-left'
-            onClick={() => setIsOpen(false)}
+            onClick={handleOpenDrawer}
           >
             Become a Merchant
           </Link>
@@ -166,6 +180,8 @@ const NavBar = () => {
           </Link>
         </div>
       )}
+      {/* Drawer Dialog */}
+      <DrawerDialogDemo open={isDrawerOpen} setOpen={setIsDrawerOpen} />
     </nav>
   );
 };
