@@ -13,7 +13,11 @@ const Dropdown = ({ label, items }) => {
   };
 
   return (
-    <div className="relative" onMouseEnter={handleMouseEnter}>
+    <div
+      className="relative"
+      onClick={handleMouseLeave}
+      onMouseEnter={handleMouseEnter}
+    >
       <button className="rounded p-1 hover:text-white hover:bg-blue-800">
         {label}
       </button>

@@ -1,13 +1,11 @@
 import Image from "next/image";
 import React from "react";
-import PaymentCard from "../_components/paymentCard/PaymentCard";
 import bkash from "@/app/_assets/bkash.png";
 import nagad from "@/app/_assets/nagad.png";
 import upay from "@/app/_assets/Upay.png";
 import rocket from "@/app/_assets/rocket.png";
 import mycash from "@/app/_assets/mycash.png";
 import ok from "@/app/_assets/ok-logo.png";
-import iwallet from "@/app/_assets/iwallet.png";
 import PhonePe from "@/app/_assets/PhonePe-Logo.png";
 import paytm from "@/app/_assets/paytm.png";
 import FreeCharge from "@/app/_assets/FreeCharge_Logo.png";
@@ -36,7 +34,6 @@ const PaymentGateway = () => {
       title: "rocket",
       img: rocket,
     },
-
     {
       id: 5,
       title: "MyCash",
@@ -71,6 +68,7 @@ const PaymentGateway = () => {
       img: apb,
     },
   ];
+
   return (
     <div className="mt-[70px]">
       <div className="container text-center">
@@ -87,31 +85,30 @@ const PaymentGateway = () => {
             steps.
           </p>
         </div>
-        <div className=" mt-20">
+        <div className="mt-20">
           <h2 className="text-3xl font-bold lg:text-left md:text-left text-center">
             Bangladesh Payment Gateway Support
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 sm:gap-6 lg:gap-2 md:gap-6  mt-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 sm:gap-6 lg:gap-2 md:gap-6 mt-10">
             {bdExchangers.map((exchanger) => (
               <div
                 key={exchanger.id}
-                className="w-full lg:w-[200px] md:w-[200px] h-[150px] flex flex-col  items-center justify-center border  rounded-lg shadow-md transition-transform duration-300 hover:hover:scale-110 hover:rotate-x-15 hover:rotate-y-15 cursor-pointer "
+                className="w-full  scale-110 lg:scale-100 md:scale-100 lg:w-[200px] md:w-[200px] h-[150px] flex flex-col items-center justify-center border rounded-lg shadow-md transition-transform duration-300 hover:scale-110 focus-within:border-4 focus-within:border-blue-500 cursor-pointer"
               >
                 <Image
                   className="h-auto"
                   src={exchanger.img}
                   height={100}
                   width={100}
-                  alt=""
+                  alt={exchanger.title}
                 />
                 <h3 className="text-lg font-medium">{exchanger.title}</h3>
               </div>
             ))}
           </div>
         </div>
-
-        <div className=" mt-20">
-          <h2 className="text-3xl font-bold text-center lg:text-left md:text-left ">
+        <div className="mt-20">
+          <h2 className="text-3xl font-bold text-center lg:text-left md:text-left">
             India Payment Gateway Support
           </h2>
         </div>
@@ -119,10 +116,14 @@ const PaymentGateway = () => {
           {IndiaExchangers.map((exchanger) => (
             <div
               key={exchanger.id}
-              className="w-full lg:w-[200px] md:w-[200px] h-[150px] flex flex-col items-center justify-center gap-3 border  rounded-lg shadow-md transition-transform duration-300 hover:hover:scale-110 hover:rotate-x-15 hover:rotate-y-15 cursor-pointer "
+              className="w-full  scale-110 lg:scale-100 md:scale-100 lg:w-[200px] md:w-[200px] h-[150px] flex flex-col items-center justify-center gap-3 border rounded-lg shadow-md transition-transform duration-300 hover:scale-110 focus-within:border-4 focus-within:border-blue-500 cursor-pointer"
             >
-              <Image className="h-auto w-[100px]" src={exchanger.img} alt="" />
-              <h3 className="text-lg font-medium ">{exchanger.title}</h3>
+              <Image
+                className="h-auto w-[100px]"
+                src={exchanger.img}
+                alt={exchanger.title}
+              />
+              <h3 className="text-lg font-medium">{exchanger.title}</h3>
             </div>
           ))}
         </div>

@@ -37,12 +37,6 @@ const TermsCondition = () => {
             <Image className="" src={img1} height={500} width={500} alt="" />
           </div>
           <div className="w-fit">
-            <div
-              className="bg-gradient-to-r w-20 p-4 mt-24 from-blue-500 to-purple-600"
-              style={{ borderRadius: "5% 5% 5% 45%" }}
-            >
-              <IoDiamondOutline fontSize={40} />
-            </div>
             <div className="border-b w-full">
               <h2 className="text-3xl font-bold mt-10">About Us</h2>
               <p className="mt-5 mb-5">
