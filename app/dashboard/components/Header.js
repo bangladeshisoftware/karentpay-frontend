@@ -32,7 +32,7 @@ function Header() {
           </Link>
           <p className="text-sm font-medium">Test mode</p>
           <div
-            className={`w-10 h-5 flex items-center bg-gray-300 rounded-full p-0 cursor-pointer ${
+            className={`w-10 h-5 flex items-center  rounded-full p-0 cursor-pointer ${
               isOn ? "bg-blue-500" : "bg-gray-300"
             }`}
             onClick={toggleSwitch}
