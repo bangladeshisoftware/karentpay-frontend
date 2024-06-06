@@ -35,42 +35,47 @@ function Dashboard() {
   };
 
   return (
-    <div className='flex h-screen'>
-      <aside className='w-1/5 bg-gray-100 border-r p-4'>
-        <ul>
-          <li
-            className='mb-4 cursor-pointer'
-            onClick={() => setActiveComponent('home')}
-          >
-            Home
-          </li>
-          <li
-            className='mb-4 cursor-pointer'
-            onClick={() => setActiveComponent('balance')}
-          >
-            Balance
-          </li>
-          <li
-            className='mb-4 cursor-pointer'
-            onClick={() => setActiveComponent('transactions')}
-          >
-            Transactions
-          </li>
-          <li
-            className='mb-4 cursor-pointer'
-            onClick={() => setActiveComponent('customer')}
-          >
-            Customer
-          </li>
-          <li
-            className='mb-4 cursor-pointer'
-            onClick={() => setActiveComponent('productCatalog')}
-          >
-            Product Catalog
-          </li>
-        </ul>
-      </aside>
-      <main className='flex-1 p-0 overflow-auto'>{renderComponent()}</main>
+    <div className='flex container2 h-screen'>
+      <div className='w-[25%] bg-gray-100 border-r p-4 h-full'>
+        <aside>
+          <ul>
+            <li
+              className='mb-4 cursor-pointer'
+              onClick={() => setActiveComponent('home')}
+            >
+              Home
+            </li>
+            <li
+              className='mb-4 cursor-pointer'
+              onClick={() => setActiveComponent('balance')}
+            >
+              Balance
+            </li>
+            <li
+              className='mb-4 cursor-pointer'
+              onClick={() => setActiveComponent('transactions')}
+            >
+              Transactions
+            </li>
+            <li
+              className='mb-4 cursor-pointer'
+              onClick={() => setActiveComponent('customer')}
+            >
+              Customer
+            </li>
+            <li
+              className='mb-4 cursor-pointer'
+              onClick={() => setActiveComponent('productCatalog')}
+            >
+              Product Catalog
+            </li>
+          </ul>
+        </aside>
+      </div>
+      <div className='flex-1 p-0 overflow-auto'>
+        <main>{renderComponent()}</main>
+      </div>
+      {/* <main className='flex-1 p-0 overflow-auto'>{renderComponent()}</main> */}
     </div>
   );
 }
