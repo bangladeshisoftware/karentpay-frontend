@@ -1,76 +1,78 @@
-"use client";
-import React, { useState } from "react";
-import Balance from "@/app/dashboard/components/Balance";
-import Developer from "@/app/dashboard/components/Developer";
+'use client';
+import React, { useState } from 'react';
+import Balance from '@/app/dashboard/components/Balance';
+import Customer from '@/app/dashboard/components/Developer';
+import Home from '@/app/dashboard/components/Home';
+import Product_Catalog from '@/app/dashboard/components/Product_Catalog';
+import Transactions from '@/app/dashboard/components/Transactions';
+import Header from '@/app/dashboard/components/Header';
+import { FiHome } from 'react-icons/fi';
+import { AiOutlineDollar } from 'react-icons/ai';
+import { GrTransaction } from 'react-icons/gr';
+import { CiUser } from 'react-icons/ci';
+import { FaRegUser } from 'react-icons/fa6';
+import { SiConstruct3 } from 'react-icons/si';
+import { TbSquareLetterW } from 'react-icons/tb';
 
-import Home from "@/app/dashboard/components/Home";
-import Product_Catalog from "@/app/dashboard/components/Product_Catalog";
-import Transactions from "@/app/dashboard/components/Transactions";
-import Header from "@/app/dashboard/components/Header";
-import { FiHome } from "react-icons/fi";
-import { AiOutlineDollar } from "react-icons/ai";
-import { GrTransaction } from "react-icons/gr";
-import { CiUser } from "react-icons/ci";
-import { FaRegUser } from "react-icons/fa6";
-import { usePathname } from "next/navigation";
 import {
   ResizableHandle,
   ResizablePanel,
-  ResizablePanelGroup,
-} from "@/components/ui/resizable";
-import Link from "next/link";
+  ResizablePanelGroup
+} from '@/components/ui/resizable';
+import Link from 'next/link';
+import Developer from '@/app/dashboard/components/Developer';
 
 function Dashboard() {
-  const [activeComponent, setActiveComponent] = useState("home");
+  const [activeComponent, setActiveComponent] = useState('home');
   const [isOn, setIsOn] = useState(true);
 
   const containerType = [
     {
       id: 1,
-      type: "container-dashboard",
-      minSize: 15,
+      type: 'container-dashboard',
+      minSize: 15
     },
     {
       id: 2,
-      type: "container-1",
-      minSize: 20,
+      type: 'container-1',
+      minSize: 20
     },
     {
       id: 3,
-      type: "container-2",
-      minSize: 20,
+      type: 'container-2',
+      minSize: 20
     },
     {
       id: 4,
-      type: "container-3",
-      minSize: 20,
+      type: 'container-3',
+      minSize: 20
     },
     {
       id: 5,
-      type: "container-4",
-      minSize: 40,
+      type: 'container-4',
+      minSize: 40
     },
     {
       id: 6,
-      type: "container-5",
-      minSize: 50,
+      type: 'container-5',
+      minSize: 50
     },
     {
       id: 7,
-      type: "container-6",
+      type: 'container-6'
     },
     {
       id: 8,
-      type: "container-7",
+      type: 'container-7'
     },
     {
       id: 9,
-      type: "container-8",
+      type: 'container-8'
     },
     {
       id: 10,
-      type: "container-9",
-    },
+      type: 'container-9'
+    }
   ];
 
   const selectedContainer = containerType[3];
@@ -84,13 +86,13 @@ function Dashboard() {
       <>
         {(() => {
           switch (activeComponent) {
-            case "balance":
+            case 'balance':
               return <Balance />;
-            case "transactions":
+            case 'transactions':
               return <Transactions />;
-            case "developer":
+            case 'developer':
               return <Developer />;
-            case "productCatalog":
+            case 'productCatalog':
               return <Product_Catalog />;
             default:
               return <Home isTest={isOn} />;
@@ -109,44 +111,50 @@ function Dashboard() {
 
   return (
     <div className={`${selectedContainer.type} flex h-screen mx-auto`}>
-      <ResizablePanelGroup direction="horizontal">
+      <ResizablePanelGroup direction='horizontal'>
         <ResizablePanel defaultSize={15} minSize={getMinSize()}>
           <div
             className={`bg-gradient-to-b from-blue-600 to-purple-400 text-white `}
           >
-            <aside className="py-5 px-4">
+            <aside className='py-5 px-4'>
               <ul>
                 <li
-                  className="mb-4 cursor-pointer flex items-center hover:bg-blue-500 transition-all duration-300 p-2 rounded-md"
-                  onClick={() => setActiveComponent("home")}
+                  className='mb-4 cursor-pointer flex items-center hover:bg-blue-500 transition-all duration-300 p-2 rounded-md'
+                  onClick={() => setActiveComponent('home')}
                 >
-                  <FiHome className="mr-2 " />
-                  Home
+                  <FiHome className='mr-2 text-2xl ' />
+                  Dashbord
                 </li>
                 <li
-                  className="mb-4 cursor-pointer flex items-center hover:bg-blue-500 transition-all duration-300 p-2 rounded-md"
-                  onClick={() => setActiveComponent("balance")}
+                  className='mb-4 cursor-pointer flex items-center hover:bg-blue-500 transition-all duration-300 p-2 rounded-md'
+                  onClick={() => setActiveComponent('balance')}
                 >
-                  <AiOutlineDollar className="mr-2 " /> Balance
+                  <AiOutlineDollar className='mr-2  text-2xl' /> Balance
                 </li>
                 <li
-                  className="mb-4 cursor-pointer flex items-center hover:bg-blue-500 transition-all duration-300 p-2 rounded-md"
-                  onClick={() => setActiveComponent("transactions")}
+                  className='mb-4 cursor-pointer flex items-center hover:bg-blue-500 transition-all duration-300 p-2 rounded-md'
+                  onClick={() => setActiveComponent('transactions')}
                 >
-                  <GrTransaction className="mr-2" /> Transactions
+                  <SiConstruct3 className='mr-2 text-2xl' /> Transactions
+                </li>
+                <li
+                  className='mb-4 cursor-pointer flex items-center hover:bg-blue-500 transition-all duration-300 p-2 rounded-md'
+                  onClick={() => setActiveComponent('transactions')}
+                >
+                  <TbSquareLetterW className='mr-2 text-2xl' /> Transactions
                 </li>
                 <Link
-                  href="/dashboard/developer"
-                  className="mb-4 cursor-pointer flex items-center hover:bg-blue-500 transition-all duration-300 p-2 rounded-md"
-                  onClick={() => setActiveComponent("developer")}
+                  href='/dashboard/developer'
+                  className='mb-4 cursor-pointer flex items-center hover:bg-blue-500 transition-all duration-300 p-2 rounded-md'
+                  onClick={() => setActiveComponent('developer')}
                 >
-                  <FaRegUser className="mr-2" /> Developer
+                  <FaRegUser className='mr-2 test-xl text-2xl' /> Developer
                 </Link>
                 <li
-                  className="mb-4 cursor-pointer flex items-center hover:bg-blue-500 transition-all duration-300 p-2 rounded-md"
-                  onClick={() => setActiveComponent("productCatalog")}
+                  className='mb-4 cursor-pointer flex items-center hover:bg-blue-500 transition-all duration-300 p-2 rounded-md'
+                  onClick={() => setActiveComponent('productCatalog')}
                 >
-                  <AiOutlineDollar className="mr-2" /> Product Catalog
+                  <AiOutlineDollar className='mr-2 text-2xl' /> Setting
                 </li>
               </ul>
             </aside>
@@ -154,9 +162,8 @@ function Dashboard() {
         </ResizablePanel>
         <ResizableHandle />
         <ResizablePanel defaultSize={85} minSize={40}>
-          <div className="flex-1 p-0 overflow-auto">
+          <div className='flex-1 p-0 overflow-auto'>
             <Header isOn={isOn} toggleSwitch={toggleSwitch} />
-
             <main>{renderComponent()}</main>
           </div>
         </ResizablePanel>
