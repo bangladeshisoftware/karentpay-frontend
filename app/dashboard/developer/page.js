@@ -69,8 +69,6 @@ export default function Developer() {
   };
   return (
     <div className="container ml-0 mt-5">
-      <h2 className="text-3xl font-bold">Developers</h2>
-
       <div className="w-full border p-3 mt-3 rounded-md flex items-center justify-between">
         <h3 className="text-xl font-semibold">API keys</h3>
         <Link className="" href="#">

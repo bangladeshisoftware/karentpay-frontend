@@ -17,10 +17,15 @@ function Header({ isOn, toggleSwitch }) {
   // };
   return (
     <div className="w-full bg-white  py-4 ">
-      <div className="flex  items-center justify-end  mr-10 ">
-        <div className="flex items-center gap-3">
+      <div className="   mr-10 ">
+        <div className="flex justify-between items-center gap-3">
+          {isOn ? (
+            <h3 className="text-2xl font-bold ml-8">Test</h3>
+          ) : (
+            <h3 className="text-2xl font-bold ml-8">Developer</h3>
+          )}
           <div
-            className={`w-60 h-14  flex items-center justify-around mr-2  rounded-md cursor-pointer bg-[#111857]`}
+            className={`w-60 h-12  flex items-center justify-around mr-2  rounded-md cursor-pointer bg-[#111857]`}
             onClick={() => toggleSwitch()}
           >
             <p
@@ -42,7 +47,7 @@ function Header({ isOn, toggleSwitch }) {
               } w-24 h-10 rounded-md text-center flex items-center justify-center text-sm text-white font-bold`}
               onClick={() => toggleSwitch}
             >
-              Developer mode
+              Dev mode
             </p>
           </div>
         </div>

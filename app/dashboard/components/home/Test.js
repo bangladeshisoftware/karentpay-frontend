@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import ApiRequest from "@/app/_lib/Api_request";
 import Link from "next/link";
 import { IoIosArrowRoundForward } from "react-icons/io";
-import { GiWaterRecycling } from "react-icons/gi";
+import { FaArrowRotateRight } from "react-icons/fa6";
 
 const Test = () => {
   const [key, setKey] = useState({});
@@ -66,7 +66,6 @@ const Test = () => {
 
   return (
     <div className="container ml-0 mt-5">
-      <h2 className="text-3xl font-bold">Test</h2>
       <div className="w-full border p-3 mt-3 rounded-md flex items-center justify-between">
         <h3 className="text-xl font-semibold">API keys</h3>
         <Link className="" href="#">
@@ -126,7 +125,7 @@ const Test = () => {
                 <td>9jun</td>
                 <td>
                   <button>
-                    <GiWaterRecycling fontSize={20} fill="green" />
+                    <FaArrowRotateRight fontSize={20} fill="green" />
                   </button>
                 </td>
               </tr>
@@ -176,7 +175,7 @@ const Test = () => {
                 <td>9jun</td>
                 <td>
                   <button>
-                    <GiWaterRecycling fontSize={20} fill="green" />
+                    <FaArrowRotateRight fontSize={20} fill="green" />
                   </button>
                 </td>
               </tr>
