@@ -9,15 +9,18 @@ import Header from '@/app/dashboard/components/Header';
 
 function Dashboard() {
   const [activeComponent, setActiveComponent] = useState('home');
+  const [isOn, setIsOn] = useState(true);
+
+  const toggleSwitch = () => {
+    setIsOn(!isOn);
+  };
 
   const renderComponent = () => {
     return (
       <>
-        <Header />
+        <Header isOn={isOn} toggleSwitch={toggleSwitch} />
         {(() => {
-          switch (activeComponent) {
-            case 'home':
-              return <Home />;
+          switch (activeComponent) {            
             case 'balance':
               return <Balance />;
             case 'transactions':
@@ -27,7 +30,7 @@ function Dashboard() {
             case 'productCatalog':
               return <Product_Catalog />;
             default:
-              return <Home />;
+              return <Home isTest={isOn} />;
           }
         })()}
       </>

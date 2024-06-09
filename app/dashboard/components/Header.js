@@ -1,18 +1,23 @@
 "use client";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { IoIosSearch } from "react-icons/io";
 import { GoQuestion } from "react-icons/go";
 import { IoNotificationsOutline } from "react-icons/io5";
 import { MdOutlineSettings } from "react-icons/md";
 import { CiCirclePlus } from "react-icons/ci";
 
-function Header() {
-  const [isOn, setIsOn] = useState(false);
+function Header({isOn,toggleSwitch}) {
 
-  const toggleSwitch = () => {
-    setIsOn(!isOn);
-  };
+
+  // make use EEffect
+
+
+  // const [isOn, setIsOn] = useState(true);
+
+  // const toggleSwitch = () => {
+  //   setIsOn(!isOn);
+  // };
   return (
     <div className="w-full bg-white  py-4 px-8">
       <div className="flex justify-between items-center max-w-[90%]">
@@ -35,7 +40,7 @@ function Header() {
             className={`w-10 h-5 flex items-center  rounded-full p-0 cursor-pointer ${
               isOn ? "bg-blue-500" : "bg-gray-300"
             }`}
-            onClick={toggleSwitch}
+            onClick={() => toggleSwitch()}  
           >
             <div
               className={`bg-white w-6 h-6 rounded-full shadow-md transform transition-transform ${

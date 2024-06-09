@@ -4,21 +4,39 @@ import Image from "next/image";
 import logo from "@/app/_assets/epayget-white-logo.png";
 import { FcGoogle } from "react-icons/fc";
 import Link from "next/link";
+import ApiRequest from "@/app/_lib/Api_request";
+import { toast } from 'react-toastify';
+import { useRouter } from "next/navigation";
+import {SetCookies,GetCookies} from "@/app/_lib/cookiesSetting";  
 
 export default function Register() {
+  const router = useRouter();
   const [countries, setCountries] = useState([]);
   const [showCountryList, setShowCountryList] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCountry, setSelectedCountry] = useState("");
 
+  const [countryId, setCountryId] = useState(0);
+  const [phoneCode, setPhoneCode] = useState("+00");
+
+
   useEffect(() => {
     const fetchCountries = async () => {
       try {
-        const response = await fetch(
-          "https://countriesnow.space/api/v0.1/countries/flag/images"
-        );
-        const data = await response.json();
-        setCountries(data.data);
+        // const response = await fetch(
+        //   "https://countriesnow.space/api/v0.1/countries/flag/images"
+        // );
+        const response=await ApiRequest({
+          url:'/country',
+          method:'Get'
+        });
+      
+        if(response.status==200){
+          setCountries(response.data);
+        }else{
+          toast.error(response.message)
+        }
+    
       } catch (error) {
         console.error("Error fetching country data:", error);
       }
@@ -29,17 +47,56 @@ export default function Register() {
 
   const handleCountryClick = (country) => {
     setSelectedCountry(country.name);
+    setCountryId(country.id);
+    setPhoneCode(country.phone_code);
     setShowCountryList(false);
   };
-  const minifiedCountries = countries.slice(0, 220);
-  console.log(countries);
+  const minifiedCountries = countries.slice(0, 220);  
   const filteredCountries = minifiedCountries.filter((country) =>
     country.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const handleSignUp = (e) => {
-    e.preventDefault();
+
+  const handleSignUp = async(formdata) => {
+ formdata.append('country',countryId);
+
+    const response=await ApiRequest({
+      url:'/register',
+      formdata:formdata
+    });
+  
+    if(response.status==201){
+      const token=await SetCookies({name:"auth_token",value:response.data.trim()}); 
+      if(token){
+        toast.success("Successfully Registered");
+        location.reload();
+      }else{
+        toast.error("Something went wrong");
+      }
+
+    }else if (response.status==400){ 
+      var err=JSON.parse(response.message);
+      console.log(err);
+      if(err.name){
+        toast.error(err.name[0]);
+      }else if(err.email){
+        toast.error(err.email[0]);
+      }else if(err.phone){
+        toast.error(err.phone[0]);
+      }else if(err.country){
+        toast.error(err.country[0]);
+      }else if(err.password){
+        toast.error(err.password[0]);
+      }
+     
+    }else{
+      toast.error(response.message);      
+    }
+   
   };
+
+
+  
 
   return (
     <div className="bg-white h-full flex flex-row items-center py-10 my-auto">
@@ -57,12 +114,12 @@ export default function Register() {
           <div className="lg:pt-5 lg:mt-5 mt-3 mb-5 text-[1.5rem] font-semibold text-[#2F65EC] text-center mx-auto">
             <h2>PayGet Sign Up</h2>
           </div>
-          <form onSubmit={handleSignUp} className="">
+          <form action={handleSignUp} className="">
             <div className="border my-6 mx-auto lg:mx-0 bg-white focus-within:border-[#2F65EC] hover:border-[#2F65EC] rounded-md w-full lg:w-full">
               <input
                 className="w-full px-2 py-2 lg:py-3 lg:px-3 bg-transparent rounded-md outline-none"
                 type="text"
-                name="Name"
+                name="name"
                 placeholder="Fullname"
                 required
               />
@@ -79,24 +136,28 @@ export default function Register() {
                   <input
                     className="w-full px-2 py-2 lg:py-3 lg:px-3 bg-transparent rounded-md outline-none border-b"
                     type="text"
+                    name="search"
                     placeholder="Search country..."
                     value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
+                    onChange={(e) =>setSearchTerm(e.target.value)}
                   />
                   {filteredCountries.map((country, index) => (
                     <div
                       key={index}
-                      className="flex items-center px-2 py-2 lg:py-3 lg:px-3 cursor-pointer hover:bg-gray-200"
+                      className="flex items-center px-2 py-2 lg:py-3 lg:px-3 cursor-pointer hover:bg-gray-200 w-full justify-between"
                       onClick={() => handleCountryClick(country)}
                     >
-                      <Image
+                      <span className='flex items-center'>
+                      {/* <Image
                         src={country.flag}
                         alt={country.name}
                         width={20}
                         height={15}
                         className="mr-2"
-                      />
+                      />                     */}
                       {country.name}
+                      </span>
+                       <span className="text-right"> {country.phone_code}</span>
                     </div>
                   ))}
                 </div>
@@ -111,12 +172,13 @@ export default function Register() {
                 required
               />
             </div>
-            <div className="border my-6 mx-auto lg:mx-0 bg-white focus-within:border-[#2F65EC] hover:border-[#2F65EC] rounded-md w-full lg:w-full">
+            <div className="flex items-center  border my-6 mx-auto lg:mx-0 bg-white focus-within:border-[#2F65EC] hover:border-[#2F65EC] rounded-md w-full lg:w-full">
+              <span className='ml-2 text-slate-600'>{phoneCode}</span>
               <input
-                className="w-full px-2 py-2 lg:py-3 lg:px-3 bg-transparent rounded-md outline-none"
+                className="w-full pr-2 pl-1 py-2 lg:py-3 lg:px-3 bg-transparent rounded-md outline-none"
                 type="number"
                 name="phone"
-                placeholder="Phone"
+                placeholder="Phone No."
                 required
               />
             </div>

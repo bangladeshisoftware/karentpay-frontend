@@ -1,20 +1,59 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import logo from "@/app/_assets/epayget-white-logo.png";
 import { FcGoogle } from "react-icons/fc";
 import Link from "next/link";
 import { ResetPasswordToast } from "@/app/_components/ResetPassword/ResetPasswordToast";
+import {toast} from 'react-toastify';
+import ApiRequest from "@/app/_lib/Api_request";
+import { useRouter } from "next/navigation";
+import {SetCookies,GetCookies} from "@/app/_lib/cookiesSetting";
+
+
 
 export default function Login() {
+  useEffect(() => {
+
+  },[])
+ 
+  const router = useRouter();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
-  const handleLogin = (e) => {
-    e.preventDefault();
+  const handleLogin = async(formData) => {
+    const response=await ApiRequest({url:'/login',formdata:formData});
+
+    if(response.status==200){      
+      localStorage.setItem("auth_token",response.data.trim());
+      const token=await SetCookies({name:"auth_token",value:response.data.trim()}); 
+      if(token){
+        toast.success("Successfully Logged In");
+        location.reload();
+      }else{
+        toast.error("Something went wrong");
+      }    
+     
+    }else if(response.status==400){
+      console.log(response.message);
+      var err=JSON.parse(response.message);
+      if (err.email) {
+        toast.error(err.email[0]);        
+      }else if(err.password){
+        toast.error(err.password[0]);
+      }else{
+        toast.error("Something went wrong");
+      }
+    }
+    else{
+      toast.error(response.message);
+    }
+
   };
 
   return (
-    <div className=" bg-white h-screen  flex flex-row items-center ">
+    <>
+    
+      <div className=" bg-white h-screen  flex flex-row items-center ">
       <ResetPasswordToast open={isDrawerOpen} setOpen={setIsDrawerOpen} />
       <div className="flex justify-center items-center w-full h-screen p-5 ">
         <div className="h-[680px] lg:w-[550px] md:w-[550px] sm:w-[550px]  w-full shadow-2xl border-t rounded-2xl py-14 pb-5 lg:px-20 md:px-20 sm:px-20 px-10 flex flex-col  ">
@@ -24,13 +63,14 @@ export default function Login() {
           <div className="pt-6 mb-5 text-[1.5rem] font-semibold text-[#2F65EC] text-center mx-auto">
             <h2>PayGet Sign in</h2>
           </div>
-          <form onSubmit={handleLogin}>
+          <form action={handleLogin}>
             <div className="border my-6 mx-auto  lg:mx-0   bg-white focus-within:border-[#2F65EC] hover:border-[#2F65EC] rounded-md w-full lg:w-full">
               <input
                 className=" w-full px-2 py-2 lg:py-3 lg:px-3 md:px-3 bg-transparent rounded-md outline-none"
-                type="text"
-                name="username"
-                placeholder="UserName"
+                type="email"
+                name="email"
+                placeholder="Email"
+                autocomplate="true"
               />
             </div>
             <div className="border my-6 mx-auto   lg:mx-0  bg-white focus-within:border-[#2F65EC] hover:border-[#2F65EC] rounded-md w-full lg:w-full">
@@ -79,5 +119,6 @@ export default function Login() {
         </div>
       </div>
     </div>
+    </>
   );
 }

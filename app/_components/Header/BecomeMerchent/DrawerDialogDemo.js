@@ -1,6 +1,8 @@
-import { useState } from "react";
+'use client';
+import React,{useState,useEffect} from 'react';
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import ApiRequest from "@/app/_lib/Api_request";
 import {
   Dialog,
   DialogContent,
@@ -9,8 +11,12 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { toast } from 'react-toastify';
 
 function StepIndicator({ step }) {
+  
+
+
   return (
     <div className="flex items-center max-w-[350px] lg:max-w-[750px] md:max-w-[550px] justify-around py-4">
       <div className="flex flex-col items-center gap-2">
@@ -57,9 +63,18 @@ function StepIndicator({ step }) {
 
 export function DrawerDialogDemo({ open, setOpen }) {
   const [step, setStep] = useState(1);
+  const [data, setData] = useState({});
 
-  const handleNext = () => {
-    setStep((prev) => prev + 1);
+  const handleData = (name,value) => {  
+    setData(prevState=>({ 
+      ...prevState,
+      [name]:value
+    }
+  ));
+  };
+
+  const handleNext = (e) => {     
+    setStep((prev) => prev + 1);    
   };
 
   const handlePrevious = () => {
@@ -79,6 +94,7 @@ export function DrawerDialogDemo({ open, setOpen }) {
           <ProfileForm
             className="border border-gray-300 rounded-lg p-4"
             handleNext={handleNext}
+            handleData={handleData}
           />
         )}
         {step === 2 && (
@@ -86,12 +102,15 @@ export function DrawerDialogDemo({ open, setOpen }) {
             className="border border-gray-300 rounded-lg p-4"
             handleNext={handleNext}
             handlePrevious={handlePrevious}
+            handleData={handleData}
           />
         )}
         {step === 3 && (
           <BusinessInfoForm
             className="border border-gray-300 rounded-lg p-4"
             handlePrevious={handlePrevious}
+            data={data}
+            setOpen={setOpen}
           />
         )}
       </DialogContent>
@@ -99,13 +118,43 @@ export function DrawerDialogDemo({ open, setOpen }) {
   );
 }
 
-function ProfileForm({ className, handleNext }) {
+function ProfileForm({ className, handleNext,handleData }) {
+    const [company,setcompany]=useState([]);
+    const[industry,setindustry]=useState([]);
+    useEffect(() => {
+      getUser();
+    },[])
+
+    const getUser=async()=>{
+          const response=await ApiRequest({
+            url:'/business_structure',
+            method:'get',
+          });
+          if(response.status==200){
+            setcompany(response.data.company);
+            setindustry(response.data.industry);
+          }else{
+            console.log(response);   
+          }  
+        }
   return (
     <form
       className={cn("grid items-start gap-4", className)}
       onSubmit={(e) => {
         e.preventDefault();
+        const company=e.target.company.value;
+        const industry=e.target.industry.value;
+        const description=e.target.description.value;
+
+        if(company=='' || industry==""){
+          return;
+        }
+        handleData('company',company);
+        handleData('industry',industry);
+        handleData('description',description);
         handleNext();
+
+      
       }}
     >
       <div className="grid gap-2">
@@ -120,12 +169,11 @@ function ProfileForm({ className, handleNext }) {
             required
           >
             <option value="">- - Select Identity - -</option>
-            <option>Educational Institute</option>
-            <option>Public Limited</option>
-            <option>Partnership</option>
-            <option>Proprietorship</option>
-            <option>Non-profit</option>
-            <option>Private Limited</option>
+            
+            {company.map((item)=>(
+               <option key={item.id} value={item.id}> {item.company_name} </option>
+            ))}           
+           
           </select>
         </div>
       </div>
@@ -141,16 +189,10 @@ function ProfileForm({ className, handleNext }) {
             required
           >
             <option value="">- - Select Business Type - -</option>
-            <option>Education</option>
-            <option>IT</option>
-            <option>eEommerce</option>
-            <option>fEommerce</option>
-            <option>Clothing/Apparel</option>
-            <option>Charity/Donation</option>
-            <option>Even Ticket/Registration</option>
-            <option>Hotel & Resorts</option>
-            <option>Health Service</option>
-            <option>Others</option>
+            {industry.map((item)=>(
+              <option key={item.id} value={item.id}>{item.industry_name}</option>
+            ))}
+
           </select>
         </div>
       </div>
@@ -171,13 +213,24 @@ function ProfileForm({ className, handleNext }) {
   );
 }
 
-function AdditionalInfoForm({ className, handleNext, handlePrevious }) {
+function AdditionalInfoForm({ className, handleNext, handlePrevious,handleData }) {
   return (
     <form
       className={cn("grid items-start gap-4", className)}
       onSubmit={(e) => {
         e.preventDefault();
-        handleNext();
+        const name=e.target.full_name.value;
+        const email=e.target.email.value;
+        const phone=e.target.phone.value;
+
+        if(name=='' || email=='' || phone==''){
+          return;
+        }
+        handleData('name',name);
+        handleData('email',email);
+        handleData('phone',phone);
+         handleNext();
+       
       }}
     >
       <div className="grid gap-2">
@@ -187,6 +240,7 @@ function AdditionalInfoForm({ className, handleNext, handlePrevious }) {
         <Input
           type="text"
           id="legal-name"
+          name='full_name'
           className="!outline-none py-2 rounded-md border   focus:!outline-none focus-within:!outline-none  focus:!border-transparent"
           placeholder="Full Name"
           required
@@ -199,6 +253,7 @@ function AdditionalInfoForm({ className, handleNext, handlePrevious }) {
         <Input
           type="email"
           id="email"
+          name="email"
           className="py-2 rounded-md border"
           placeholder="Email Address"
           required
@@ -212,6 +267,7 @@ function AdditionalInfoForm({ className, handleNext, handlePrevious }) {
         <Input
           type="text"
           id="phone"
+          name="phone"
           className="py-2 rounded-md border"
           // className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight
           // focus:outline-none focus:bg-white focus:border-gray-500"
@@ -239,9 +295,33 @@ function AdditionalInfoForm({ className, handleNext, handlePrevious }) {
   );
 }
 
-function BusinessInfoForm({ className, handlePrevious }) {
+function BusinessInfoForm({ className, handlePrevious,data,setOpen }) {
+ 
+  const handleSubmit=async(formdata)=>{
+    formdata.append('company',data.company);    
+    formdata.append('industry',data.industry);    
+    formdata.append('description',data.description);    
+    formdata.append('name',data.name);    
+    formdata.append('email',data.email);    
+    formdata.append('phone',data.phone);  
+
+    const response=await ApiRequest({
+      url:'/submit_merchant',
+      formdata:formdata
+    });
+   
+    if (response.status==201) {
+      toast.success('Form Submitted Successfully, We will contact your Email soon');
+      setOpen(false);
+    }else{
+      toast.error(response.message);
+    }
+    console.log(response);   
+    
+  }
+
   return (
-    <form className={cn("grid items-start gap-4", className)}>
+    <form  action={handleSubmit} className={cn("grid items-start gap-4", className)}>
       <div className="grid gap-2">
         <Label htmlFor="business-name" className="text-base">
           Business Name <span className="text-red-500 ">*</span>
@@ -249,6 +329,7 @@ function BusinessInfoForm({ className, handlePrevious }) {
         <Input
           type="text"
           id="business-name"
+          name="business_name"
           className="py-2 rounded-md border"
           placeholder="As per Trade License"
           required
@@ -261,6 +342,7 @@ function BusinessInfoForm({ className, handlePrevious }) {
         <Input
           type="text"
           id="address"
+          name="address"
           className="py-2 rounded-md border"
           placeholder="Specific Address"
           required
