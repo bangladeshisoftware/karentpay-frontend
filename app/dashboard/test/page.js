@@ -3,15 +3,13 @@ import React, { useState, useEffect } from "react";
 import ApiRequest from "@/app/_lib/Api_request";
 import Link from "next/link";
 import { IoIosArrowRoundForward } from "react-icons/io";
-import { SlOptions } from "react-icons/sl";
-import { MdDelete } from "react-icons/md";
-import { FaBan } from "react-icons/fa";
-export default function Developer() {
+
+const Test = () => {
   const [key, setKey] = useState({});
   const [copyMessage1, setCopyMessage1] = useState("");
   const [copyMessage2, setCopyMessage2] = useState("");
   const [showText, setShowText] = useState(false);
-  const [DeleteBan, setDeleteBan] = useState(false);
+
   useEffect(() => {
     getTestKey();
   }, []);
@@ -64,13 +62,10 @@ export default function Developer() {
   const handleHideText = () => {
     setShowText(false);
   };
-  const handleDeleteBan = () => {
-    setDeleteBan(!DeleteBan);
-  };
+
   return (
     <div className="container ml-0 mt-5">
       <h2 className="text-3xl font-bold">Developers</h2>
-
       <div className="w-full border p-3 mt-3 rounded-md flex items-center justify-between">
         <h3 className="text-xl font-semibold">API keys</h3>
         <Link className="" href="#">
@@ -82,49 +77,24 @@ export default function Developer() {
       </div>
 
       <div className="mt-5 border rounded-md">
-        <div className="border-b p-4 text-center flex items-center  justify-between ">
-          <h3 className="text-xl font-semibold  ">Standard keys</h3>
-          <h3 className="text-xl font-semibold  ">Domain Name</h3>
-          <div className="relative">
-            <SlOptions onClick={handleDeleteBan} />
-            {DeleteBan ? (
-              <div className="bg-white border shadow-md rounded-sm absolute right-0 p-2 flex flex-col gap-2">
-                <p className="flex items-center gap-1">
-                  Delete{" "}
-                  <span>
-                    <MdDelete className="text-red-900" />
-                  </span>
-                </p>
-                <p className="flex items-center gap-1">
-                  Ban{" "}
-                  <span>
-                    <FaBan className="text-red-700" />
-                  </span>
-                </p>
-              </div>
-            ) : (
-              ""
-            )}
-          </div>
-          {/* <p className="text-sm font-normal">
+        <div className="border-b p-4">
+          <h3 className="text-xl font-semibold">Standard keys</h3>
+          <p className="text-sm font-normal">
             Create a key that unlocks full API access, enabling extensive
             interaction with your account.{" "}
-            <Link href="#">
-              <span className="text-[#2F65EC]">Learn more</span>
-            </Link>
-          </p> */}
+          </p>
         </div>
         <div className="">
           <table>
             <thead>
               <tr className="w-full text-left  mt-3 h-8 border-b ">
-                <th className="lg:w-[30%]  text-xs font-medium">
+                <th className="w-[500px]  text-xs font-medium">
                   <div className="ml-4">NAME</div>
                 </th>
-                <th className="lg:w-[30%] font-medium text-xs">TOKEN</th>
-                <th className="lg:w-[15%] font-medium text-xs">LAST USED</th>
-                <th className="lg:w-[15%] font-medium text-xs">CREATED</th>
-                <th className="lg:w-[10%] font-medium text-xs">STATUS</th>
+                <th className="lg:w-[500px] font-medium text-xs">TOKEN</th>
+                <th className="lg:w-[400px] font-medium text-xs">LAST USED</th>
+                <th className="lg:w-[400px] font-medium text-xs">CREATED</th>
+                <th className="lg:w-[100px]"></th>
               </tr>
             </thead>
             <tbody>
@@ -153,6 +123,7 @@ export default function Developer() {
                 </td>
                 <td>-</td>
                 <td>9jun</td>
+                <td>...</td>
               </tr>
               <tr className="text-xs mt-4">
                 <td>
@@ -198,36 +169,14 @@ export default function Developer() {
                 </td>
                 <td>-</td>
                 <td>9jun</td>
+                <td>...</td>
               </tr>
             </tbody>
           </table>
         </div>
       </div>
-
-      <div className="mt-5 border rounded-md">
-        <div className="border-b p-4">
-          <h3 className="text-xl font-semibold">Restricted keys</h3>
-        </div>
-        <table>
-          <thead>
-            <tr className="w-full text-left text-xs  border-b h-8">
-              <th className="w-[75%]">
-                <div className="ml-4 font-medium">NAME</div>
-              </th>
-              <th className="w-[200px] font-medium">TOKEN</th>
-              <th className="w-[200px] font-medium">LAST USED</th>
-              <th className="w-[200px] font-medium">CREATED</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr className="text-xs ml-3 h-8">
-              <td>
-                <p className="ml-4">No restricted keys</p>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
     </div>
   );
-}
+};
+
+export default Test;

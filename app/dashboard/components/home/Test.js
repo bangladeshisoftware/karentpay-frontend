@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import ApiRequest from "@/app/_lib/Api_request";
 import Link from "next/link";
 import { IoIosArrowRoundForward } from "react-icons/io";
+import { GiWaterRecycling } from "react-icons/gi";
 
 const Test = () => {
   const [key, setKey] = useState({});
@@ -65,10 +66,7 @@ const Test = () => {
 
   return (
     <div className="container ml-0 mt-5">
-      <h2 className="text-3xl font-bold">Developers</h2>
-      <div className="border-b">
-        <p className="mt-2">API keys</p>
-      </div>
+      <h2 className="text-3xl font-bold">Test</h2>
       <div className="w-full border p-3 mt-3 rounded-md flex items-center justify-between">
         <h3 className="text-xl font-semibold">API keys</h3>
         <Link className="" href="#">
@@ -85,9 +83,6 @@ const Test = () => {
           <p className="text-sm font-normal">
             Create a key that unlocks full API access, enabling extensive
             interaction with your account.{" "}
-            <Link href="#">
-              <span className="text-[#2F65EC]">Learn more</span>
-            </Link>
           </p>
         </div>
         <div className="">
@@ -129,7 +124,11 @@ const Test = () => {
                 </td>
                 <td>-</td>
                 <td>9jun</td>
-                <td>...</td>
+                <td>
+                  <button>
+                    <GiWaterRecycling fontSize={20} fill="green" />
+                  </button>
+                </td>
               </tr>
               <tr className="text-xs mt-4">
                 <td>
@@ -175,7 +174,11 @@ const Test = () => {
                 </td>
                 <td>-</td>
                 <td>9jun</td>
-                <td>...</td>
+                <td>
+                  <button>
+                    <GiWaterRecycling fontSize={20} fill="green" />
+                  </button>
+                </td>
               </tr>
             </tbody>
           </table>
