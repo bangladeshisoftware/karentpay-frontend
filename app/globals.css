@@ -74,3 +74,37 @@
     @apply bg-background text-foreground;
   }
 }
+
+.container-dashboard {
+  width: 100%;
+}
+
+.container-1 {
+  width: 90%;
+}
+
+.container-2 {
+  width: 80%;
+}
+
+.container-3 {
+  width: 70%;
+}
+.container-4 {
+  width: 60%;
+}
+.container-5 {
+  width: 50%;
+}
+.container-6 {
+  width: 40%;
+}
+.container-7 {
+  width: 30%;
+}
+.container-8 {
+  width: 20%;
+}
+.container-9 {
+  width: 10%;
+}
