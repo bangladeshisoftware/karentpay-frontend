@@ -2,14 +2,15 @@ import React from 'react';
 import { FaUsers } from 'react-icons/fa';
 import { GiShoppingBag } from 'react-icons/gi';
 import { LuShoppingCart } from 'react-icons/lu';
+import { HiOutlineCurrencyDollar } from 'react-icons/hi';
 
 function Balance() {
   return (
-    <div className='rounded-md mt-10 ml-2'>
-      <div className='flex justify-around gap-4 pb-5'>
-        <div className='border rounded-md shadow px-20 py-8 bg-gradient-to-r from-blue-500 to-purple-500 text-white flex items-center transition-all duration-300 hover:shadow-lg'>
+    <div className='rounded-md mt-10 ml-5'>
+      <div className='grid grid-cols-3 justify-around gap-4 pb-5'>
+        <div className='border rounded-md shadow px-20 py-16 bg-gradient-to-r from-blue-500 to-purple-500 text-white flex items-center transition-all duration-300 hover:shadow-lg'>
           <div className='mr-3 text-2xl bg-[#FFFF] rounded-full text-black p-3'>
-            <FaUsers />
+            <HiOutlineCurrencyDollar />
           </div>
           <div>
             <div>
@@ -22,7 +23,7 @@ function Balance() {
         </div>
         <div className='border rounded-md shadow px-20 py-8 bg-gradient-to-r from-green-300 to-teal-400 text-white flex items-center transition-all duration-300 hover:shadow-lg'>
           <div className='mr-3 text-2xl bg-[#FFFF] rounded-full text-black p-3'>
-            <LuShoppingCart />
+            <HiOutlineCurrencyDollar />
           </div>
           <div>
             <div>
@@ -35,7 +36,7 @@ function Balance() {
         </div>
         <div className='border rounded-md shadow px-20 py-8 bg-gradient-to-r from-pink-300 to-orange-400 text-white flex items-center transition-all duration-300 hover:shadow-lg'>
           <div className='mr-3 text-2xl bg-[#FFFF] rounded-full text-black p-3'>
-            <GiShoppingBag />
+            <HiOutlineCurrencyDollar />
           </div>
           <div>
             <div>

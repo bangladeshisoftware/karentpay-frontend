@@ -7,7 +7,7 @@ function Wtransactions() {
     <div className='mt-10'>
       <div className='border rounded-md shadow p-8 bg-[#FFFFFF] m-4 transition-all duration-300 hover:shadow-lg'>
         <div className='mb-4'>
-          <h2 className='text-2xl font-bold'>User Information</h2>
+          <h2 className='text-2xl font-bold'>Withdraw Transaction</h2>
         </div>
         <div className='overflow-auto'>
           <table className='min-w-full bg-white'>

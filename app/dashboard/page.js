@@ -15,6 +15,7 @@ import { SiConstruct3 } from 'react-icons/si';
 import { TbSquareLetterW } from 'react-icons/tb';
 import { IoSettingsOutline } from 'react-icons/io5';
 import { MdOutlinePayment } from 'react-icons/md';
+import { FaHandsHelping } from 'react-icons/fa';
 
 import {
   ResizableHandle,
@@ -24,6 +25,7 @@ import {
 import Developer2 from './components/Developer2';
 import Wtransactions from '@/app/dashboard/components/Wtransactions';
 import Payment from '@/app/dashboard/components/payment';
+import Support from '@/app/dashboard/components/Support';
 
 function Dashboard() {
   const [activeComponent, setActiveComponent] = useState('home');
@@ -96,6 +98,8 @@ function Dashboard() {
         return <Payment />;
       case 'developer':
         return <Developer2 isTest={isOn} />;
+      case 'support':
+        return <Support />;
       case 'productCatalog':
         return <Product_Catalog />;
       default:
@@ -179,6 +183,16 @@ function Dashboard() {
                   onClick={() => setActiveComponent('developer')}
                 >
                   <FaRegUser className='mr-2 text-2xl' /> Developer
+                </li>
+                <li
+                  className={`mb-4 cursor-pointer flex items-center p-2 rounded-md transition-all duration-300 ${
+                    activeComponent === 'support'
+                      ? 'bg-[#FFFF] text-black'
+                      : 'hover:bg-blue-500 text-gray-200'
+                  }`}
+                  onClick={() => setActiveComponent('support')}
+                >
+                  <FaHandsHelping className='mr-2 text-2xl' /> Support
                 </li>
                 <li
                   className={`mb-4 cursor-pointer flex items-center p-2 rounded-md transition-all duration-300 ${
