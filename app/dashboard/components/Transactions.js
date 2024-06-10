@@ -42,7 +42,7 @@ function Transactions() {
                           required=''
                         />
                         <button className='btn bg-red-500 text-white px-14 rounded-md ml-2'>
-                          TransactionID
+                          Search
                         </button>
                       </div>
                     </div>

@@ -127,7 +127,7 @@ function Dashboard() {
                   className={`mb-4 cursor-pointer flex items-center p-2 rounded-md transition-all duration-300 ${
                     activeComponent === 'home'
                       ? 'bg-[#FFFF] text-black'
-                      : 'hover:bg-blue-500 text-gray-200'
+                      : 'hover:bg-gradient-to-r from-blue-800 to-purple-950 text-gray-200'
                   }`}
                   onClick={() => setActiveComponent('home')}
                 >
@@ -138,7 +138,7 @@ function Dashboard() {
                   className={`mb-4 cursor-pointer flex items-center p-2 rounded-md transition-all duration-300 ${
                     activeComponent === 'balance'
                       ? 'bg-[#FFFF] text-black'
-                      : 'hover:bg-blue-500 text-gray-200'
+                      : 'hover:bg-gradient-to-r from-blue-800 to-purple-950 text-gray-200'
                   }`}
                   onClick={() => setActiveComponent('balance')}
                 >
@@ -148,7 +148,7 @@ function Dashboard() {
                   className={`mb-4 cursor-pointer flex items-center p-2 rounded-md transition-all duration-300 ${
                     activeComponent === 'transactions'
                       ? 'bg-[#FFFF] text-black'
-                      : 'hover:bg-blue-500 text-gray-200'
+                      : 'hover:bg-gradient-to-r from-blue-800 to-purple-950 text-gray-200'
                   }`}
                   onClick={() => setActiveComponent('transactions')}
                 >
@@ -158,7 +158,7 @@ function Dashboard() {
                   className={`mb-4 cursor-pointer flex items-center p-2 rounded-md transition-all duration-300 ${
                     activeComponent === 'wtransactions'
                       ? 'bg-[#FFFF] text-black'
-                      : 'hover:bg-blue-500 text-gray-200'
+                      : 'hover:bg-gradient-to-r from-blue-800 to-purple-950 text-gray-200'
                   }`}
                   onClick={() => setActiveComponent('wtransactions')}
                 >
@@ -168,7 +168,7 @@ function Dashboard() {
                   className={`mb-4 cursor-pointer flex items-center p-2 rounded-md transition-all duration-300 ${
                     activeComponent === 'payments'
                       ? 'bg-[#FFFF] text-black'
-                      : 'hover:bg-blue-500 text-gray-200'
+                      : 'hover:bg-gradient-to-r from-blue-800 to-purple-950 text-gray-200'
                   }`}
                   onClick={() => setActiveComponent('payments')}
                 >
@@ -178,7 +178,7 @@ function Dashboard() {
                   className={`mb-4 cursor-pointer flex items-center p-2 rounded-md transition-all duration-300 ${
                     activeComponent === 'developer'
                       ? 'bg-[#FFFF] text-black'
-                      : 'hover:bg-blue-500 text-gray-200'
+                      : 'hover:bg-gradient-to-r from-blue-800 to-purple-950 text-gray-200'
                   }`}
                   onClick={() => setActiveComponent('developer')}
                 >
@@ -188,7 +188,7 @@ function Dashboard() {
                   className={`mb-4 cursor-pointer flex items-center p-2 rounded-md transition-all duration-300 ${
                     activeComponent === 'support'
                       ? 'bg-[#FFFF] text-black'
-                      : 'hover:bg-blue-500 text-gray-200'
+                      : 'hover:bg-gradient-to-r from-blue-800 to-purple-950 text-gray-200'
                   }`}
                   onClick={() => setActiveComponent('support')}
                 >
@@ -198,7 +198,7 @@ function Dashboard() {
                   className={`mb-4 cursor-pointer flex items-center p-2 rounded-md transition-all duration-300 ${
                     activeComponent === 'productCatalog'
                       ? 'bg-[#FFFF] text-black'
-                      : 'hover:bg-blue-500 text-gray-200'
+                      : 'hover:bg-gradient-to-r from-blue-800 to-purple-950 text-gray-200'
                   }`}
                   onClick={() => setActiveComponent('productCatalog')}
                 >
