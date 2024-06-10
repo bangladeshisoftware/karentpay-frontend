@@ -21,7 +21,6 @@ import {
   ResizablePanel,
   ResizablePanelGroup
 } from '@/components/ui/resizable';
-import Link from 'next/link';
 import Developer2 from './components/Developer2';
 import Wtransactions from '@/app/dashboard/components/Wtransactions';
 import Payment from '@/app/dashboard/components/payment';
@@ -86,28 +85,22 @@ function Dashboard() {
   };
 
   const renderComponent = () => {
-    return (
-      <>
-        {(() => {
-          switch (activeComponent) {
-            case 'balance':
-              return <Balance />;
-            case 'transactions':
-              return <Transactions />;
-            case 'wtransactions':
-              return <Wtransactions />;
-            case 'payments':
-              return <Payment />;
-            case 'developer':
-              return <Developer2 isTest={isOn} />;
-            case 'productCatalog':
-              return <Product_Catalog />;
-            default:
-              return <Home />;
-          }
-        })()}
-      </>
-    );
+    switch (activeComponent) {
+      case 'balance':
+        return <Balance />;
+      case 'transactions':
+        return <Transactions />;
+      case 'wtransactions':
+        return <Wtransactions />;
+      case 'payments':
+        return <Payment />;
+      case 'developer':
+        return <Developer2 isTest={isOn} />;
+      case 'productCatalog':
+        return <Product_Catalog />;
+      default:
+        return <Home />;
+    }
   };
 
   const getMinSize = () => {
@@ -122,49 +115,77 @@ function Dashboard() {
       <ResizablePanelGroup direction='horizontal'>
         <ResizablePanel defaultSize={15} minSize={getMinSize()}>
           <div
-            className={`bg-gradient-to-b from-blue-600 to-purple-400 text-white rounded-md `}
+            className={`bg-gradient-to-b from-blue-600 to-purple-400 text-white rounded-md`}
           >
-            <aside className='py-5 px-4 mt-5 '>
+            <aside className='py-5 px-4 mt-10'>
               <ul>
                 <li
-                  className='mb-4 cursor-pointer flex items-center hover:bg-blue-500 transition-all duration-300 p-2 rounded-md'
+                  className={`mb-4 cursor-pointer flex items-center p-2 rounded-md transition-all duration-300 ${
+                    activeComponent === 'home'
+                      ? 'bg-[#FFFF] text-black'
+                      : 'hover:bg-blue-500 text-gray-200'
+                  }`}
                   onClick={() => setActiveComponent('home')}
                 >
-                  <FiHome className='mr-2 text-2xl ' />
-                  Dashbord
+                  <FiHome className='mr-2 text-2xl' />
+                  Dashboard
                 </li>
                 <li
-                  className='mb-4 cursor-pointer flex items-center hover:bg-blue-500 transition-all duration-300 p-2 rounded-md'
+                  className={`mb-4 cursor-pointer flex items-center p-2 rounded-md transition-all duration-300 ${
+                    activeComponent === 'balance'
+                      ? 'bg-[#FFFF] text-black'
+                      : 'hover:bg-blue-500 text-gray-200'
+                  }`}
                   onClick={() => setActiveComponent('balance')}
                 >
-                  <AiOutlineDollar className='mr-2  text-2xl' /> Balance
+                  <AiOutlineDollar className='mr-2 text-2xl' /> Balance
                 </li>
                 <li
-                  className='mb-4 cursor-pointer flex items-center hover:bg-blue-500 transition-all duration-300 p-2 rounded-md'
+                  className={`mb-4 cursor-pointer flex items-center p-2 rounded-md transition-all duration-300 ${
+                    activeComponent === 'transactions'
+                      ? 'bg-[#FFFF] text-black'
+                      : 'hover:bg-blue-500 text-gray-200'
+                  }`}
                   onClick={() => setActiveComponent('transactions')}
                 >
                   <SiConstruct3 className='mr-2 text-2xl' /> Transactions
                 </li>
                 <li
-                  className='mb-4 cursor-pointer flex items-center hover:bg-blue-500 transition-all duration-300 p-2 rounded-md'
+                  className={`mb-4 cursor-pointer flex items-center p-2 rounded-md transition-all duration-300 ${
+                    activeComponent === 'wtransactions'
+                      ? 'bg-[#FFFF] text-black'
+                      : 'hover:bg-blue-500 text-gray-200'
+                  }`}
                   onClick={() => setActiveComponent('wtransactions')}
                 >
-                  <TbSquareLetterW className='mr-2 text-2xl' /> Transactions
+                  <TbSquareLetterW className='mr-2 text-2xl' /> W Transactions
                 </li>
                 <li
-                  className='mb-4 cursor-pointer flex items-center hover:bg-blue-500 transition-all duration-300 p-2 rounded-md'
+                  className={`mb-4 cursor-pointer flex items-center p-2 rounded-md transition-all duration-300 ${
+                    activeComponent === 'payments'
+                      ? 'bg-[#FFFF] text-black'
+                      : 'hover:bg-blue-500 text-gray-200'
+                  }`}
                   onClick={() => setActiveComponent('payments')}
                 >
                   <MdOutlinePayment className='mr-2 text-2xl' /> Payments
                 </li>
                 <li
-                  className='mb-4 cursor-pointer flex items-center hover:bg-blue-500 transition-all duration-300 p-2 rounded-md'
+                  className={`mb-4 cursor-pointer flex items-center p-2 rounded-md transition-all duration-300 ${
+                    activeComponent === 'developer'
+                      ? 'bg-[#FFFF] text-black'
+                      : 'hover:bg-blue-500 text-gray-200'
+                  }`}
                   onClick={() => setActiveComponent('developer')}
                 >
-                  <FaRegUser className='mr-2 test-xl text-2xl' /> Developer
+                  <FaRegUser className='mr-2 text-2xl' /> Developer
                 </li>
                 <li
-                  className='mb-4 cursor-pointer flex items-center hover:bg-blue-500 transition-all duration-300 p-2 rounded-md'
+                  className={`mb-4 cursor-pointer flex items-center p-2 rounded-md transition-all duration-300 ${
+                    activeComponent === 'productCatalog'
+                      ? 'bg-[#FFFF] text-black'
+                      : 'hover:bg-blue-500 text-gray-200'
+                  }`}
                   onClick={() => setActiveComponent('productCatalog')}
                 >
                   <IoSettingsOutline className='mr-2 text-2xl' /> Settings
@@ -182,7 +203,6 @@ function Dashboard() {
             <main>{renderComponent()}</main>
           </div>
         </ResizablePanel>
-        {/* <main className='flex-1 p-0 overflow-auto'>{renderComponent()}</main> */}
       </ResizablePanelGroup>
     </div>
   );
