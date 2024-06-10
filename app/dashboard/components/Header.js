@@ -17,7 +17,7 @@ function Header({ isOn, toggleSwitch }) {
   // };
   return (
     <div className="w-full bg-white  py-4 ">
-      <div className="   mr-10 ">
+      <div className="    ">
         <div className="flex justify-between items-center gap-3">
           {isOn ? (
             <h3 className="text-2xl font-bold ml-8">Test</h3>
