@@ -46,15 +46,28 @@ const Test = () => {
   };
 
   const handleCopy2 = (text) => {
-    navigator.clipboard
-      .writeText(text)
-      .then(() => {
-        setCopyMessage2("Copied!");
-        setTimeout(() => setCopyMessage2(""), 2000);
-      })
-      .catch((err) => {
-        console.error("Failed to copy: ", err);
-      });
+    console.log(showText, "showtext");
+    if (showText) {
+      navigator.clipboard
+        .writeText(text)
+        .then(() => {
+          setCopyMessage2("Copied!");
+          setTimeout(() => setCopyMessage2(""), 2000);
+        })
+        .catch((err) => {
+          console.error("Failed to copy: ", err);
+        });
+    } else {
+      navigator.clipboard
+        .writeText(" ")
+        .then(() => {
+          setCopyMessage2("Copied!");
+          setTimeout(() => setCopyMessage2(""), 2000);
+        })
+        .catch((err) => {
+          console.error("Failed to copy: ", err);
+        });
+    }
   };
 
   const handleRevealText = () => {
@@ -65,7 +78,7 @@ const Test = () => {
   };
 
   return (
-    <div className="container ml-0 mt-5">
+    <div className=" ml-8 mt-5">
       <div className="w-full border p-3 mt-3 rounded-md flex items-center justify-between">
         <h3 className="text-xl font-semibold">API keys</h3>
         <Link className="" href="#">

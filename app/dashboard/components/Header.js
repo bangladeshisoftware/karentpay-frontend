@@ -25,7 +25,7 @@ function Header({ isOn, toggleSwitch }) {
             <h3 className="text-2xl font-bold ml-8">Developer</h3>
           )}
           <div
-            className={`w-60 h-12  flex items-center justify-around mr-2  rounded-md cursor-pointer bg-[#111857]`}
+            className={`w-60 h-12  flex items-center justify-around   rounded-md cursor-pointer bg-[#111857]`}
             onClick={() => toggleSwitch()}
           >
             <p
