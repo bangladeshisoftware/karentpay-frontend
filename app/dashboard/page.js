@@ -14,6 +14,7 @@ import { FaRegUser } from 'react-icons/fa6';
 import { SiConstruct3 } from 'react-icons/si';
 import { TbSquareLetterW } from 'react-icons/tb';
 import { IoSettingsOutline } from 'react-icons/io5';
+import { MdOutlinePayment } from 'react-icons/md';
 
 import {
   ResizableHandle,
@@ -23,6 +24,7 @@ import {
 import Link from 'next/link';
 import Developer2 from './components/Developer2';
 import Wtransactions from '@/app/dashboard/components/Wtransactions';
+import Payment from '@/app/dashboard/components/payment';
 
 function Dashboard() {
   const [activeComponent, setActiveComponent] = useState('home');
@@ -94,6 +96,8 @@ function Dashboard() {
               return <Transactions />;
             case 'wtransactions':
               return <Wtransactions />;
+            case 'payments':
+              return <Payment />;
             case 'developer':
               return <Developer2 isTest={isOn} />;
             case 'productCatalog':
@@ -146,6 +150,12 @@ function Dashboard() {
                   onClick={() => setActiveComponent('wtransactions')}
                 >
                   <TbSquareLetterW className='mr-2 text-2xl' /> Transactions
+                </li>
+                <li
+                  className='mb-4 cursor-pointer flex items-center hover:bg-blue-500 transition-all duration-300 p-2 rounded-md'
+                  onClick={() => setActiveComponent('payments')}
+                >
+                  <MdOutlinePayment className='mr-2 text-2xl' /> Payments
                 </li>
                 <li
                   className='mb-4 cursor-pointer flex items-center hover:bg-blue-500 transition-all duration-300 p-2 rounded-md'
