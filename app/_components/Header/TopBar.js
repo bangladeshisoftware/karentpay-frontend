@@ -17,6 +17,7 @@ const TopBar = () => {
 
   const token=async () => {
     const token =await GetCookies({ name: 'auth_token' });
+    console.log("token",token);
     if (token) {
       setAuthToken(true);
     }else{
@@ -47,9 +48,9 @@ const TopBar = () => {
           />
         </Link>
         <div className='flex items-center gap-3'>
-          {(authToken !=null && authToken) && <BecomeMerchant /> }
-          {/* <BecomeMerchant /> */}
-          {(authToken !=null && !authToken)&&
+           <BecomeMerchant /> 
+         
+          {!authToken && authToken !=null &&
           <Link
             href='/auth/login'
             className='relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800'

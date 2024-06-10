@@ -8,7 +8,8 @@ const SetCookies=({name,value})=>{
 const GetCookies=async({name})=>{
     const cookieStore = cookies()
     const token = cookieStore.get(name)
-    if(token){
+    
+    if(typeof token !== 'undefined' && token !== null){
       return token.value;
     }else{
       return false;

@@ -5,14 +5,26 @@ import { faRegistered } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
 import { useState } from 'react';
+import ApiRequest from '@/app/_lib/Api_request';
+import { GetCookies } from '@/app/_lib/cookiesSetting';
+import { toast } from 'react-toastify';
 
 const BecomeMerchant = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
-  const handleOpenDrawer = (e) => {
+  const handleOpenDrawer =async(e) => {
     e.preventDefault();
-    setIsDrawerOpen(true);
+
+    const token =await GetCookies({ name: 'auth_token' });
+    if (!token) {
+      toast.error("Please Login First, To Become Merchant");
+    }else{
+      setIsDrawerOpen(true);
+      
+    }
   };
+
+  
 
   return (
     <div>
