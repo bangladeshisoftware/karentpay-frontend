@@ -81,7 +81,7 @@ export default function Developer() {
   };
   return (
     <div className="ml-8   mt-5">
-      <div className="w-full border p-3 mt-3 rounded-md flex items-center justify-between">
+      <div className="w-full border lg:p-3 mt-3 rounded-md lg:flex  lg:items-center lg:justify-between">
         <h3 className="text-xl font-semibold">API keys</h3>
         <Link className="" href="#">
           <span className="text-sm text-[#2F65EC] font-medium flex items-center">
@@ -92,7 +92,7 @@ export default function Developer() {
       </div>
 
       <div className="mt-5 border rounded-md">
-        <div className="border-b p-4 text-center flex items-center  justify-between ">
+        <div className="border-b lg:p-4 text-center lg:flex md:flex items-center  lg:justify-between md:justify-between  ">
           <h3 className="text-xl font-semibold  ">Standard keys</h3>
           <h3 className="text-xl font-semibold  ">Domain Name</h3>
           <div className="relative">
@@ -125,16 +125,16 @@ export default function Developer() {
           </p> */}
         </div>
         <div className="">
-          <table>
+          <table className="min-w-full">
             <thead>
               <tr className="w-full text-left  mt-3 h-8 border-b ">
-                <th className="lg:w-[30%]  text-xs font-medium">
+                <th className="w-[30%]  text-xs font-medium">
                   <div className="ml-4">NAME</div>
                 </th>
-                <th className="lg:w-[30%] font-medium text-xs">TOKEN</th>
-                <th className="lg:w-[15%] font-medium text-xs">LAST USED</th>
-                <th className="lg:w-[15%] font-medium text-xs">CREATED</th>
-                <th className="lg:w-[10%] font-medium text-xs">STATUS</th>
+                <th className="w-[30%] font-medium text-xs">TOKEN</th>
+                <th className="w-[15%] font-medium text-xs">LAST USED</th>
+                <th className="w-[15%] font-medium text-xs">CREATED</th>
+                <th className="w-[10%] font-medium text-xs">STATUS</th>
               </tr>
             </thead>
             <tbody>
@@ -143,7 +143,7 @@ export default function Developer() {
                   <div className="ml-3 font-semibold">Publishable key</div>
                 </td>
                 <td
-                  className="break-words cursor-pointer relative "
+                  className="break-words whitespace-nowrap overflow-hidden overflow-ellipsis cursor-pointer relative "
                   onClick={() =>
                     handleCopy1(
                       "pk_test_51POXHyGQoiRj0oYpQgjiiaOxOnhhmT7ZFvGQUdAOV9aRJSM4i50shZI6ICgXtw3bhXzIINJDkRh2o8ioxxEWpT8V00w4lYTsM3"

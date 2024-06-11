@@ -79,7 +79,7 @@ const Test = () => {
 
   return (
     <div className=" ml-8 mt-5">
-      <div className="w-full border p-3 mt-3 rounded-md flex items-center justify-between">
+      <div className="w-full border p-3 mt-3 rounded-md lg:flex items-center justify-between">
         <h3 className="text-xl font-semibold">API keys</h3>
         <Link className="" href="#">
           <span className="text-sm text-[#2F65EC] font-medium flex items-center">
@@ -97,15 +97,19 @@ const Test = () => {
             interaction with your account.{" "}
           </p>
         </div>
-        <div className="">
-          <table>
+        <div className="overflow-x-auto">
+          <table className="table-auto">
             <thead>
               <tr className="w-full text-left  mt-3 h-8 border-b ">
                 <th className="w-[500px]  text-xs font-medium">
                   <div className="ml-4">NAME</div>
                 </th>
-                <th className="lg:w-[500px] font-medium text-xs">TOKEN</th>
-                <th className="lg:w-[400px] font-medium text-xs">LAST USED</th>
+                <th className="lg:w-[500px] md:w-[300px] md:h-10 font-medium text-xs">
+                  TOKEN
+                </th>
+                <th className="lg:w-[400px] md:w-[300px] font-medium text-xs">
+                  LAST USED
+                </th>
                 <th className="lg:w-[400px] font-medium text-xs">CREATED</th>
                 <th className="lg:w-[100px]"></th>
               </tr>
@@ -116,7 +120,7 @@ const Test = () => {
                   <div className="ml-3 font-semibold">Publishable key</div>
                 </td>
                 <td
-                  className="break-words cursor-pointer relative "
+                  className="break-words overflow-hidden cursor-pointer relative "
                   onClick={() =>
                     handleCopy1(
                       "pk_test_51POXHyGQoiRj0oYpQgjiiaOxOnhhmT7ZFvGQUdAOV9aRJSM4i50shZI6ICgXtw3bhXzIINJDkRh2o8ioxxEWpT8V00w4lYTsM3"
