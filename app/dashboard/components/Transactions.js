@@ -1,10 +1,66 @@
-import React from 'react';
+'use client';
+import React, { useState } from 'react';
+import Datepicker from 'react-tailwindcss-datepicker';
 
 function Transactions() {
+  const [dateRange, setDateRange] = useState({
+    startDate: null,
+    endDate: null
+  });
+
+  const handleDateRangeChange = (newValue) => {
+    console.log('newValue:', newValue);
+    setDateRange(newValue);
+  };
+
+  const transactionsData = [
+    {
+      id: 1,
+      customerName: 'Jane Smith',
+      method: 'Credit Card',
+      amount: '$750',
+      trxId: 'REF789012',
+      date: '2024-06-15',
+      status: 'Pending'
+    },
+    {
+      id: 2,
+      customerName: 'John Doe',
+      method: 'PayPal',
+      amount: '$1200',
+      trxId: 'REF123456',
+      date: '2024-07-10',
+      status: 'Completed'
+    },
+    {
+      id: 3,
+      customerName: 'Alice Johnson',
+      method: 'Bank Transfer',
+      amount: '$450',
+      trxId: 'REF654321',
+      date: '2024-08-08',
+      status: 'Failed'
+    }
+  ];
+
+  // Filter transactions based on the selected date range
+  const filteredTransactions = transactionsData.filter((transaction) => {
+    const transactionDate = new Date(transaction.date);
+    const startDateObj = dateRange.startDate
+      ? new Date(dateRange.startDate)
+      : null;
+    const endDateObj = dateRange.endDate ? new Date(dateRange.endDate) : null;
+
+    return (
+      (!startDateObj || transactionDate >= startDateObj) &&
+      (!endDateObj || transactionDate <= endDateObj)
+    );
+  });
+
   return (
-    <div className='mt-10'>
+    <div className='mt-10 '>
       <div>
-        <section class=' shadow-md border rounded-md ml-5'>
+        <section class=' shadow-md border rounded-md ml-5 mb-36'>
           <div class=' max-w-screen-xl '>
             {/* <!-- Start coding here --> */}
             <div class='bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden'>
@@ -45,46 +101,31 @@ function Transactions() {
                     </div>
                   </form>
                 </div>
-                <div class='w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0'>
-                  <div class='flex items-center space-x-3 w-full md:w-auto'>
-                    <button
-                      id='filterDropdownButton'
-                      data-dropdown-toggle='filterDropdown'
-                      class='w-full md:w-auto flex items-center justify-center py-2 px-4 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700'
-                      type='button'
-                    >
-                      <svg
-                        xmlns='http://www.w3.org/2000/svg'
-                        aria-hidden='true'
-                        class='h-4 w-4 mr-2 text-gray-400'
-                        viewbox='0 0 20 20'
-                        fill='currentColor'
-                      >
-                        <path
-                          fill-rule='evenodd'
-                          d='M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-.293.707L12 11.414V15a1 1 0 01-.293.707l-2 2A1 1 0 018 17v-5.586L3.293 6.707A1 1 0 013 6V3z'
-                          clip-rule='evenodd'
-                        />
-                      </svg>
-                      Filter
-                      <svg
-                        class='-mr-1 ml-1.5 w-5 h-5'
-                        fill='currentColor'
-                        viewbox='0 0 20 20'
-                        xmlns='http://www.w3.org/2000/svg'
-                        aria-hidden='true'
-                      >
-                        <path
-                          clip-rule='evenodd'
-                          fill-rule='evenodd'
-                          d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z'
-                        />
-                      </svg>
-                    </button>
+                <div className='w-fit md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0'>
+                  <div className='flex items-center space-x-3 w-full md:w-auto'>
+                    <Datepicker
+                      showShortcuts={true}
+                      showFooter={true}
+                      configs={{
+                        shortcuts: {
+                          today: 'Today',
+                          yesterday: 'Yesterday',
+                          past: (period) => `Past ${period}`,
+                          currentMonth: 'Current Month',
+                          pastMonth: 'Past Month'
+                        },
+                        footer: {
+                          cancel: 'Cancel',
+                          apply: 'Apply'
+                        }
+                      }}
+                      value={dateRange}
+                      onChange={handleDateRangeChange}
+                    />
                   </div>
                 </div>
               </div>
-              <div class='overflow-x-auto'>
+              <div class='overflow-x-auto h-[60%]'>
                 <table class='w-full text-sm text-left text-gray-500 dark:text-gray-400'>
                   <thead class='text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400'>
                     <tr>
@@ -109,77 +150,36 @@ function Transactions() {
                       <th scope='col' class='px-4 py-3'>
                         Status
                       </th>
-                      <th scope='col' class='px-4 py-3'>
-                        <span class='sr-only'>Actions</span>
-                      </th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr class='border-b dark:border-gray-700'>
-                      <th
-                        scope='row'
-                        class='px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white'
+                    {filteredTransactions.map((transaction, index) => (
+                      <tr
+                        className='border-b dark:border-gray-700'
+                        key={transaction.id}
                       >
-                        1
-                      </th>
-                      <td class='px-4 py-3'>Jane Smith</td>
-                      <td class='px-4 py-3'>Credit Card</td>
-                      <td class='px-4 py-3'>$750</td>
-                      <td class='px-4 py-3'>REF789012</td>
-                      <td class='px-4 py-3'>2024-06-15</td>
-                      <td class='px-4 py-3'>Pending</td>
-                      <td class='px-4 py-3 flex items-center justify-end'></td>
-                    </tr>
-                    <tr class='border-b dark:border-gray-700'>
-                      <th
-                        scope='row'
-                        class='px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white'
-                      >
-                        2
-                      </th>
-                      <td class='px-4 py-3'>Jane Smith</td>
-                      <td class='px-4 py-3'>Credit Card</td>
-                      <td class='px-4 py-3'>$750</td>
-                      <td class='px-4 py-3'>REF789012</td>
-                      <td class='px-4 py-3'>2024-06-15</td>
-                      <td class='px-4 py-3'>Pending</td>
-                      <td class='px-4 py-3 flex items-center justify-end'></td>
-                    </tr>
-                    <tr class='border-b dark:border-gray-700'>
-                      <th
-                        scope='row'
-                        class='px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white'
-                      >
-                        3
-                      </th>
-                      <td class='px-4 py-3'>Jane Smith</td>
-                      <td class='px-4 py-3'>Credit Card</td>
-                      <td class='px-4 py-3'>$750</td>
-                      <td class='px-4 py-3'>REF789012</td>
-                      <td class='px-4 py-3'>2024-06-15</td>
-                      <td class='px-4 py-3'>Pending</td>
-                      <td class='px-4 py-3 flex items-center justify-end'></td>
-                    </tr>
-                    <tr class='border-b dark:border-gray-700'>
-                      <th
-                        scope='row'
-                        class='px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white'
-                      >
-                        4
-                      </th>
-                      <td class='px-4 py-3'>Jane Smith</td>
-                      <td class='px-4 py-3'>Credit Card</td>
-                      <td class='px-4 py-3'>$750</td>
-                      <td class='px-4 py-3'>REF789012</td>
-                      <td class='px-4 py-3'>2024-06-15</td>
-                      <td class='px-4 py-3'>Pending</td>
-                      <td class='px-4 py-3 flex items-center justify-end'></td>
-                    </tr>
+                        <th
+                          scope='row'
+                          className='px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white'
+                        >
+                          {index + 1}
+                        </th>
+                        <td className='px-4 py-3'>
+                          {transaction.customerName}
+                        </td>
+                        <td className='px-4 py-3'>{transaction.method}</td>
+                        <td className='px-4 py-3'>{transaction.amount}</td>
+                        <td className='px-4 py-3'>{transaction.trxId}</td>
+                        <td className='px-4 py-3'>{transaction.date}</td>
+                        <td className='px-4 py-3'>{transaction.status}</td>
+                      </tr>
+                    ))}
                   </tbody>
                 </table>
               </div>
+              {/* this is pagination */}
               <nav
-                class='flex flex-col md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0 p-4'
+                class='flex flex-col mt-24  md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0 p-16'
                 aria-label='Table navigation'
               >
                 <span class='text-sm font-normal text-gray-500 dark:text-gray-400'>

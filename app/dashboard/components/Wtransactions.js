@@ -1,17 +1,111 @@
 'use client';
 import React, { useState } from 'react';
 import { FaPlus } from 'react-icons/fa';
+import Datepicker from 'react-tailwindcss-datepicker';
 
 function Wtransactions() {
   const [showModal, setShowModal] = useState(false);
+  const [dateRange, setDateRange] = useState({
+    startDate: null,
+    endDate: null
+  });
 
   const openModal = () => setShowModal(true);
   const closeModal = () => setShowModal(false);
 
+  const handleDateRangeChange = (newValue) => {
+    console.log('newValue:', newValue);
+    setDateRange(newValue);
+  };
+  // Sample JSON data for transactions
+  const transactions = [
+    {
+      id: 1,
+      type: 'Deposit',
+      currencyName: 'USD',
+      network: 'Bank Transfer',
+      depositAddress: 'N/A',
+      trxid: 'TRX123456',
+      debit: 1000,
+      date: '2024-02-01',
+      status: 'Completed'
+    },
+    {
+      id: 2,
+      type: 'Deposit',
+      currencyName: 'USD',
+      network: 'Bank Transfer',
+      depositAddress: 'N/A',
+      trxid: 'TRX123456',
+      debit: 1000,
+      date: '2024-03-01',
+      status: 'Completed'
+    },
+    {
+      id: 3,
+      type: 'Deposit',
+      currencyName: 'USD',
+      network: 'Bank Transfer',
+      depositAddress: 'N/A',
+      trxid: 'TRX123456',
+      debit: 1000,
+      date: '2024-04-01',
+      status: 'Completed'
+    },
+    {
+      id: 4,
+      type: 'Deposit',
+      currencyName: 'USD',
+      network: 'Bank Transfer',
+      depositAddress: 'N/A',
+      trxid: 'TRX123456',
+      debit: 1000,
+      date: '2024-05-01',
+      status: 'Completed'
+    },
+    {
+      id: 5,
+      type: 'Deposit',
+      currencyName: 'USD',
+      network: 'Bank Transfer',
+      depositAddress: 'N/A',
+      trxid: 'TRX123456',
+      debit: 1000,
+      date: '2024-06-01',
+      status: 'Completed'
+    },
+    {
+      id: 6,
+      type: 'Deposit',
+      currencyName: 'USD',
+      network: 'Bank Transfer',
+      depositAddress: 'N/A',
+      trxid: 'TRX123456',
+      debit: 1000,
+      date: '2024-07-01',
+      status: 'Completed'
+    }
+    // Add more transaction objects here as needed
+  ];
+
+  // Filter transactions based on the selected date range
+  const filteredTransactions = transactions.filter((transaction) => {
+    const transactionDate = new Date(transaction.date);
+    const startDateObj = dateRange.startDate
+      ? new Date(dateRange.startDate)
+      : null;
+    const endDateObj = dateRange.endDate ? new Date(dateRange.endDate) : null;
+
+    return (
+      (!startDateObj || transactionDate >= startDateObj) &&
+      (!endDateObj || transactionDate <= endDateObj)
+    );
+  });
+
   return (
     <div className='mt-10'>
       <div>
-        <section className='shadow-md border rounded-md ml-5'>
+        <section className='shadow-md border rounded-md ml-5 mb-36'>
           <div className='max-w-screen-xl'>
             {/* <!-- Start coding here --> */}
             <div className='bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden'>
@@ -50,10 +144,10 @@ function Wtransactions() {
                         </button>
                         <button
                           type='button'
-                          className='btn bg-red-500 text-white px-14 rounded-md ml-2 flex items-center'
+                          className='btn bg-red-500 text-white justify-center rounded-md ml-2 mr-2 pr-2 flex items-center'
                           onClick={openModal}
                         >
-                          <FaPlus className='ml-6 mr-2 ' />
+                          <FaPlus className=' ml-2 mr-2 ' />
                           Withdraw
                         </button>
                       </div>
@@ -62,45 +156,30 @@ function Wtransactions() {
                 </div>
                 <div className='w-fit md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0'>
                   <div className='flex items-center space-x-3 w-full md:w-auto'>
-                    <button
-                      id='filterDropdownButton'
-                      data-dropdown-toggle='filterDropdown'
-                      className='w-full md:w-auto flex items-center justify-center py-2 px-4 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700'
-                      type='button'
-                    >
-                      <svg
-                        xmlns='http://www.w3.org/2000/svg'
-                        aria-hidden='true'
-                        className='h-4 w-4 mr-2 text-gray-400'
-                        viewBox='0 0 20 20'
-                        fill='currentColor'
-                      >
-                        <path
-                          fillRule='evenodd'
-                          d='M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-.293.707L12 11.414V15a1 1 0 01-.293.707l-2 2A1 1 0 018 17v-5.586L3.293 6.707A1 1 0 013 6V3z'
-                          clipRule='evenodd'
-                        />
-                      </svg>
-                      Filter
-                      <svg
-                        className='-mr-1 ml-1.5 w-5 h-5'
-                        fill='currentColor'
-                        viewBox='0 0 20 20'
-                        xmlns='http://www.w3.org/2000/svg'
-                        aria-hidden='true'
-                      >
-                        <path
-                          clipRule='evenodd'
-                          fillRule='evenodd'
-                          d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z'
-                        />
-                      </svg>
-                    </button>
+                    <Datepicker
+                      showShortcuts={true}
+                      showFooter={true}
+                      configs={{
+                        shortcuts: {
+                          today: 'Today',
+                          yesterday: 'Yesterday',
+                          past: (period) => `Past ${period}`,
+                          currentMonth: 'Current Month',
+                          pastMonth: 'Past Month'
+                        },
+                        footer: {
+                          cancel: 'Cancel',
+                          apply: 'Apply'
+                        }
+                      }}
+                      value={dateRange}
+                      onChange={handleDateRangeChange}
+                    />
                   </div>
                 </div>
               </div>
-              <div className='overflow-x-auto'>
-                <table className='w-full text-sm text-left text-gray-500 dark:text-gray-400'>
+              <div className='overflow-x-auto h-[60%]'>
+                <table className='w-full text-sm text-left text-gray-500 dark:text-gray-400 '>
                   <thead className='text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400'>
                     <tr>
                       <th scope='col' className='px-4 py-3'>
@@ -136,83 +215,38 @@ function Wtransactions() {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr className='border-b dark:border-gray-700'>
-                      <th
-                        scope='row'
-                        className='px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white'
+                    {filteredTransactions.map((transaction) => (
+                      <tr
+                        key={transaction.id}
+                        className='border-b dark:border-gray-700'
                       >
-                        1
-                      </th>
-                      <td className='px-4 py-3'>Deposit</td>
-                      <td className='px-4 py-3'>USD</td>
-                      <td className='px-4 py-3'>Bank Transfer</td>
-                      <td className='px-4 py-3'>N/A</td>
-                      <td className='px-4 py-3'>TRX123456</td>
-                      <td className='px-4 py-3'>1000</td>
-                      <td className='px-4 py-3'>2024-05-01</td>
-                      <td className='px-4 py-3'>Completed</td>
-                      <td className='px-4 py-3 flex items-center justify-end'></td>
-                    </tr>
-
-                    <tr className='border-b dark:border-gray-700'>
-                      <th
-                        scope='row'
-                        className='px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white'
-                      >
-                        2
-                      </th>
-                      <td className='px-4 py-3'>Deposit</td>
-                      <td className='px-4 py-3'>USD</td>
-                      <td className='px-4 py-3'>Bank Transfer</td>
-                      <td className='px-4 py-3'>N/A</td>
-                      <td className='px-4 py-3'>TRX123456</td>
-                      <td className='px-4 py-3'>1000</td>
-                      <td className='px-4 py-3'>2024-06-01</td>
-                      <td className='px-4 py-3'>Completed</td>
-                      <td className='px-4 py-3 flex items-center justify-end'></td>
-                    </tr>
-
-                    <tr className='border-b dark:border-gray-700'>
-                      <th
-                        scope='row'
-                        className='px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white'
-                      >
-                        3
-                      </th>
-                      <td className='px-4 py-3'>Deposit</td>
-                      <td className='px-4 py-3'>USD</td>
-                      <td className='px-4 py-3'>Bank Transfer</td>
-                      <td className='px-4 py-3'>N/A</td>
-                      <td className='px-4 py-3'>TRX123456</td>
-                      <td className='px-4 py-3'>1000</td>
-                      <td className='px-4 py-3'>2024-07-01</td>
-                      <td className='px-4 py-3'>Completed</td>
-                      <td className='px-4 py-3 flex items-center justify-end'></td>
-                    </tr>
-
-                    <tr className='border-b dark:border-gray-700'>
-                      <th
-                        scope='row'
-                        className='px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white'
-                      >
-                        4
-                      </th>
-                      <td className='px-4 py-3'>Deposit</td>
-                      <td className='px-4 py-3'>USD</td>
-                      <td className='px-4 py-3'>Bank Transfer</td>
-                      <td className='px-4 py-3'>N/A</td>
-                      <td className='px-4 py-3'>TRX123456</td>
-                      <td className='px-4 py-3'>1000</td>
-                      <td className='px-4 py-3'>2024-08-01</td>
-                      <td className='px-4 py-3'>Completed</td>
-                      <td className='px-4 py-3 flex items-center justify-end'></td>
-                    </tr>
+                        <th
+                          scope='row'
+                          className='px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white'
+                        >
+                          {transaction.id}
+                        </th>
+                        <td className='px-4 py-3'>{transaction.type}</td>
+                        <td className='px-4 py-3'>
+                          {transaction.currencyName}
+                        </td>
+                        <td className='px-4 py-3'>{transaction.network}</td>
+                        <td className='px-4 py-3'>
+                          {transaction.depositAddress}
+                        </td>
+                        <td className='px-4 py-3'>{transaction.trxid}</td>
+                        <td className='px-4 py-3'>{transaction.debit}</td>
+                        <td className='px-4 py-3'>{transaction.date}</td>
+                        <td className='px-4 py-3'>{transaction.status}</td>
+                        <td className='px-4 py-3 flex items-center justify-end'></td>
+                      </tr>
+                    ))}
                   </tbody>
                 </table>
               </div>
               {/* showing page number & table */}
               <nav
-                className='flex flex-col md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0 p-4'
+                className='flex flex-col mt-24  md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0 p-10'
                 aria-label='Table navigation'
               >
                 <span className='text-sm font-normal text-gray-500 dark:text-gray-400'>

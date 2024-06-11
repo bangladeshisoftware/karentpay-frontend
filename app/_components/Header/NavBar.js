@@ -32,7 +32,7 @@ const NavBar = () => {
   ];
 
   return (
-    <nav className='bg-gradient-to-r from-blue-600 to-purple-400 text-white py-2 sticky top-0 z-50'>
+    <nav className='bg-gradient-to-r from-blue-800 to-purple-950 text-gray-200 py-2 sticky top-0 z-50'>
       {/* large screens */}
       <div className='container lg:flex wide-laptop:flex small-laptop:flex hidden items-center justify-between relative'>
         <div className='flex items-center gap-5 h-10'>
@@ -108,7 +108,7 @@ const NavBar = () => {
       </div>
 
       {isOpen && (
-        <div className='lg:hidden wide-laptop:hidden small-laptop:hidden absolute top-full left-0 w-full bg-gradient-to-r from-blue-600 to-purple-400 text-white flex flex-col items-start p-4'>
+        <div className='lg:hidden wide-laptop:hidden small-laptop:hidden absolute top-full left-0 w-full bg-gradient-to-r from-blue-800 to-purple-950 text-gray-200 flex flex-col items-start p-4'>
           <Link
             href='/'
             className='rounded p-1 hover:text-white hover:bg-blue-800 w-full text-left'
