@@ -47,7 +47,6 @@ export default function Developer() {
   };
 
   const handleCopy2 = (text) => {
-    console.log(showText, "showtext");
     if (showText) {
       navigator.clipboard
         .writeText(text)
@@ -179,7 +178,14 @@ export default function Developer() {
                         "pk_test_51POXHyGQoiRj0oYpQgjiiaOxOnhhmT7ZFvGQUdAOV9aRJSM4i50shZI6ICgXtw3bhXzIINJDkRh2o8ioxxEWpT8V00w4lYTsM3"
                       )
                     }
-                    onMouseEnter={() => setCopyMessage2("Click to copy")}
+                    onMouseEnter={() => {
+                      console.log(showText, "show");
+                      if (showText) {
+                        setCopyMessage2("Click to copy");
+                      } else {
+                        setCopyMessage2("");
+                      }
+                    }}
                     onMouseLeave={() => setCopyMessage2("")}
                   >
                     {copyMessage2 && (
