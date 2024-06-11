@@ -1,7 +1,4 @@
 import React from 'react';
-import Image from 'next/image';
-import img2 from '@/app/_assets/r2.jpg';
-import { IoIosSearch } from 'react-icons/io';
 
 function Transactions() {
   return (
@@ -41,7 +38,7 @@ function Transactions() {
                           placeholder='Search'
                           required=''
                         />
-                        <button className='btn bg-red-500 text-white px-14 rounded-md ml-2'>
+                        <button className='btn bg-gradient-to-r from-blue-800 to-purple-950 text-gray-200 px-14 rounded-md ml-2'>
                           Search
                         </button>
                       </div>
@@ -49,73 +46,7 @@ function Transactions() {
                   </form>
                 </div>
                 <div class='w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0'>
-                  <button
-                    type='button'
-                    class='flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800'
-                  >
-                    <svg
-                      class='h-3.5 w-3.5 mr-2'
-                      fill='currentColor'
-                      viewbox='0 0 20 20'
-                      xmlns='http://www.w3.org/2000/svg'
-                      aria-hidden='true'
-                    >
-                      <path
-                        clip-rule='evenodd'
-                        fill-rule='evenodd'
-                        d='M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z'
-                      />
-                    </svg>
-                    Add product
-                  </button>
                   <div class='flex items-center space-x-3 w-full md:w-auto'>
-                    <button
-                      id='actionsDropdownButton'
-                      data-dropdown-toggle='actionsDropdown'
-                      class='w-full md:w-auto flex items-center justify-center py-2 px-4 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700'
-                      type='button'
-                    >
-                      <svg
-                        class='-ml-1 mr-1.5 w-5 h-5'
-                        fill='currentColor'
-                        viewbox='0 0 20 20'
-                        xmlns='http://www.w3.org/2000/svg'
-                        aria-hidden='true'
-                      >
-                        <path
-                          clip-rule='evenodd'
-                          fill-rule='evenodd'
-                          d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z'
-                        />
-                      </svg>
-                      Actions
-                    </button>
-                    <div
-                      id='actionsDropdown'
-                      class='hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600'
-                    >
-                      <ul
-                        class='py-1 text-sm text-gray-700 dark:text-gray-200'
-                        aria-labelledby='actionsDropdownButton'
-                      >
-                        <li>
-                          <a
-                            href='#'
-                            class='block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white'
-                          >
-                            Mass Edit
-                          </a>
-                        </li>
-                      </ul>
-                      <div class='py-1'>
-                        <a
-                          href='#'
-                          class='block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white'
-                        >
-                          Delete all
-                        </a>
-                      </div>
-                    </div>
                     <button
                       id='filterDropdownButton'
                       data-dropdown-toggle='filterDropdown'
@@ -150,89 +81,6 @@ function Transactions() {
                         />
                       </svg>
                     </button>
-                    <div
-                      id='filterDropdown'
-                      class='z-10 hidden w-48 p-3 bg-white rounded-lg shadow dark:bg-gray-700'
-                    >
-                      <h6 class='mb-3 text-sm font-medium text-gray-900 dark:text-white'>
-                        Choose brand
-                      </h6>
-                      <ul
-                        class='space-y-2 text-sm'
-                        aria-labelledby='filterDropdownButton'
-                      >
-                        <li class='flex items-center'>
-                          <input
-                            id='apple'
-                            type='checkbox'
-                            value=''
-                            class='w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500'
-                          />
-                          <label
-                            for='apple'
-                            class='ml-2 text-sm font-medium text-gray-900 dark:text-gray-100'
-                          >
-                            Apple (56)
-                          </label>
-                        </li>
-                        <li class='flex items-center'>
-                          <input
-                            id='fitbit'
-                            type='checkbox'
-                            value=''
-                            class='w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500'
-                          />
-                          <label
-                            for='fitbit'
-                            class='ml-2 text-sm font-medium text-gray-900 dark:text-gray-100'
-                          >
-                            Microsoft (16)
-                          </label>
-                        </li>
-                        <li class='flex items-center'>
-                          <input
-                            id='razor'
-                            type='checkbox'
-                            value=''
-                            class='w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500'
-                          />
-                          <label
-                            for='razor'
-                            class='ml-2 text-sm font-medium text-gray-900 dark:text-gray-100'
-                          >
-                            Razor (49)
-                          </label>
-                        </li>
-                        <li class='flex items-center'>
-                          <input
-                            id='nikon'
-                            type='checkbox'
-                            value=''
-                            class='w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500'
-                          />
-                          <label
-                            for='nikon'
-                            class='ml-2 text-sm font-medium text-gray-900 dark:text-gray-100'
-                          >
-                            Nikon (12)
-                          </label>
-                        </li>
-                        <li class='flex items-center'>
-                          <input
-                            id='benq'
-                            type='checkbox'
-                            value=''
-                            class='w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500'
-                          />
-                          <label
-                            for='benq'
-                            class='ml-2 text-sm font-medium text-gray-900 dark:text-gray-100'
-                          >
-                            BenQ (74)
-                          </label>
-                        </li>
-                      </ul>
-                    </div>
                   </div>
                 </div>
               </div>
@@ -272,640 +120,60 @@ function Transactions() {
                         scope='row'
                         class='px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white'
                       >
-                        Apple iMac 27&#34;
+                        1
                       </th>
-                      <td class='px-4 py-3'>PC</td>
-                      <td class='px-4 py-3'>Apple</td>
-                      <td class='px-4 py-3'>300</td>
-                      <td class='px-4 py-3'>$2999</td>
-                      <td class='px-4 py-3 flex items-center justify-end'>
-                        <button
-                          id='apple-imac-27-dropdown-button'
-                          data-dropdown-toggle='apple-imac-27-dropdown'
-                          class='inline-flex items-center p-0.5 text-sm font-medium text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none dark:text-gray-400 dark:hover:text-gray-100'
-                          type='button'
-                        >
-                          <svg
-                            class='w-5 h-5'
-                            aria-hidden='true'
-                            fill='currentColor'
-                            viewbox='0 0 20 20'
-                            xmlns='http://www.w3.org/2000/svg'
-                          >
-                            <path d='M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z' />
-                          </svg>
-                        </button>
-                        <div
-                          id='apple-imac-27-dropdown'
-                          class='hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600'
-                        >
-                          <ul
-                            class='py-1 text-sm text-gray-700 dark:text-gray-200'
-                            aria-labelledby='apple-imac-27-dropdown-button'
-                          >
-                            <li>
-                              <a
-                                href='#'
-                                class='block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white'
-                              >
-                                Show
-                              </a>
-                            </li>
-                            <li>
-                              <a
-                                href='#'
-                                class='block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white'
-                              >
-                                Edit
-                              </a>
-                            </li>
-                          </ul>
-                          <div class='py-1'>
-                            <a
-                              href='#'
-                              class='block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white'
-                            >
-                              Delete
-                            </a>
-                          </div>
-                        </div>
-                      </td>
+                      <td class='px-4 py-3'>Jane Smith</td>
+                      <td class='px-4 py-3'>Credit Card</td>
+                      <td class='px-4 py-3'>$750</td>
+                      <td class='px-4 py-3'>REF789012</td>
+                      <td class='px-4 py-3'>2024-06-15</td>
+                      <td class='px-4 py-3'>Pending</td>
+                      <td class='px-4 py-3 flex items-center justify-end'></td>
                     </tr>
                     <tr class='border-b dark:border-gray-700'>
                       <th
                         scope='row'
                         class='px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white'
                       >
-                        Apple iMac 20&#34;
+                        2
                       </th>
-                      <td class='px-4 py-3'>PC</td>
-                      <td class='px-4 py-3'>Apple</td>
-                      <td class='px-4 py-3'>200</td>
-                      <td class='px-4 py-3'>$1499</td>
-                      <td class='px-4 py-3 flex items-center justify-end'>
-                        <button
-                          id='apple-imac-20-dropdown-button'
-                          data-dropdown-toggle='apple-imac-20-dropdown'
-                          class='inline-flex items-center p-0.5 text-sm font-medium text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none dark:text-gray-400 dark:hover:text-gray-100'
-                          type='button'
-                        >
-                          <svg
-                            class='w-5 h-5'
-                            aria-hidden='true'
-                            fill='currentColor'
-                            viewbox='0 0 20 20'
-                            xmlns='http://www.w3.org/2000/svg'
-                          >
-                            <path d='M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z' />
-                          </svg>
-                        </button>
-                        <div
-                          id='apple-imac-20-dropdown'
-                          class='hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600'
-                        >
-                          <ul
-                            class='py-1 text-sm text-gray-700 dark:text-gray-200'
-                            aria-labelledby='apple-imac-20-dropdown-button'
-                          >
-                            <li>
-                              <a
-                                href='#'
-                                class='block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white'
-                              >
-                                Show
-                              </a>
-                            </li>
-                            <li>
-                              <a
-                                href='#'
-                                class='block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white'
-                              >
-                                Edit
-                              </a>
-                            </li>
-                          </ul>
-                          <div class='py-1'>
-                            <a
-                              href='#'
-                              class='block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white'
-                            >
-                              Delete
-                            </a>
-                          </div>
-                        </div>
-                      </td>
+                      <td class='px-4 py-3'>Jane Smith</td>
+                      <td class='px-4 py-3'>Credit Card</td>
+                      <td class='px-4 py-3'>$750</td>
+                      <td class='px-4 py-3'>REF789012</td>
+                      <td class='px-4 py-3'>2024-06-15</td>
+                      <td class='px-4 py-3'>Pending</td>
+                      <td class='px-4 py-3 flex items-center justify-end'></td>
                     </tr>
                     <tr class='border-b dark:border-gray-700'>
                       <th
                         scope='row'
                         class='px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white'
                       >
-                        Apple iPhone 14
+                        3
                       </th>
-                      <td class='px-4 py-3'>Phone</td>
-                      <td class='px-4 py-3'>Apple</td>
-                      <td class='px-4 py-3'>1237</td>
-                      <td class='px-4 py-3'>$999</td>
-                      <td class='px-4 py-3 flex items-center justify-end'>
-                        <button
-                          id='apple-iphone-14-dropdown-button'
-                          data-dropdown-toggle='apple-iphone-14-dropdown'
-                          class='inline-flex items-center p-0.5 text-sm font-medium text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none dark:text-gray-400 dark:hover:text-gray-100'
-                          type='button'
-                        >
-                          <svg
-                            class='w-5 h-5'
-                            aria-hidden='true'
-                            fill='currentColor'
-                            viewbox='0 0 20 20'
-                            xmlns='http://www.w3.org/2000/svg'
-                          >
-                            <path d='M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z' />
-                          </svg>
-                        </button>
-                        <div
-                          id='apple-iphone-14-dropdown'
-                          class='hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600'
-                        >
-                          <ul
-                            class='py-1 text-sm text-gray-700 dark:text-gray-200'
-                            aria-labelledby='apple-iphone-14-dropdown-button'
-                          >
-                            <li>
-                              <a
-                                href='#'
-                                class='block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white'
-                              >
-                                Show
-                              </a>
-                            </li>
-                            <li>
-                              <a
-                                href='#'
-                                class='block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white'
-                              >
-                                Edit
-                              </a>
-                            </li>
-                          </ul>
-                          <div class='py-1'>
-                            <a
-                              href='#'
-                              class='block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white'
-                            >
-                              Delete
-                            </a>
-                          </div>
-                        </div>
-                      </td>
+                      <td class='px-4 py-3'>Jane Smith</td>
+                      <td class='px-4 py-3'>Credit Card</td>
+                      <td class='px-4 py-3'>$750</td>
+                      <td class='px-4 py-3'>REF789012</td>
+                      <td class='px-4 py-3'>2024-06-15</td>
+                      <td class='px-4 py-3'>Pending</td>
+                      <td class='px-4 py-3 flex items-center justify-end'></td>
                     </tr>
                     <tr class='border-b dark:border-gray-700'>
                       <th
                         scope='row'
                         class='px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white'
                       >
-                        Apple iPad Air
+                        4
                       </th>
-                      <td class='px-4 py-3'>Tablet</td>
-                      <td class='px-4 py-3'>Apple</td>
-                      <td class='px-4 py-3'>4578</td>
-                      <td class='px-4 py-3'>$1199</td>
-                      <td class='px-4 py-3 flex items-center justify-end'>
-                        <button
-                          id='apple-ipad-air-dropdown-button'
-                          data-dropdown-toggle='apple-ipad-air-dropdown'
-                          class='inline-flex items-center p-0.5 text-sm font-medium text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none dark:text-gray-400 dark:hover:text-gray-100'
-                          type='button'
-                        >
-                          <svg
-                            class='w-5 h-5'
-                            aria-hidden='true'
-                            fill='currentColor'
-                            viewbox='0 0 20 20'
-                            xmlns='http://www.w3.org/2000/svg'
-                          >
-                            <path d='M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z' />
-                          </svg>
-                        </button>
-                        <div
-                          id='apple-ipad-air-dropdown'
-                          class='hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600'
-                        >
-                          <ul
-                            class='py-1 text-sm text-gray-700 dark:text-gray-200'
-                            aria-labelledby='apple-ipad-air-dropdown-button'
-                          >
-                            <li>
-                              <a
-                                href='#'
-                                class='block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white'
-                              >
-                                Show
-                              </a>
-                            </li>
-                            <li>
-                              <a
-                                href='#'
-                                class='block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white'
-                              >
-                                Edit
-                              </a>
-                            </li>
-                          </ul>
-                          <div class='py-1'>
-                            <a
-                              href='#'
-                              class='block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white'
-                            >
-                              Delete
-                            </a>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr class='border-b dark:border-gray-700'>
-                      <th
-                        scope='row'
-                        class='px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white'
-                      >
-                        Xbox Series S
-                      </th>
-                      <td class='px-4 py-3'>Gaming/Console</td>
-                      <td class='px-4 py-3'>Microsoft</td>
-                      <td class='px-4 py-3'>56</td>
-                      <td class='px-4 py-3'>$299</td>
-                      <td class='px-4 py-3 flex items-center justify-end'>
-                        <button
-                          id='xbox-series-s-dropdown-button'
-                          data-dropdown-toggle='xbox-series-s-dropdown'
-                          class='inline-flex items-center p-0.5 text-sm font-medium text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none dark:text-gray-400 dark:hover:text-gray-100'
-                          type='button'
-                        >
-                          <svg
-                            class='w-5 h-5'
-                            aria-hidden='true'
-                            fill='currentColor'
-                            viewbox='0 0 20 20'
-                            xmlns='http://www.w3.org/2000/svg'
-                          >
-                            <path d='M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z' />
-                          </svg>
-                        </button>
-                        <div
-                          id='xbox-series-s-dropdown'
-                          class='hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600'
-                        >
-                          <ul
-                            class='py-1 text-sm text-gray-700 dark:text-gray-200'
-                            aria-labelledby='xbox-series-s-dropdown-button'
-                          >
-                            <li>
-                              <a
-                                href='#'
-                                class='block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white'
-                              >
-                                Show
-                              </a>
-                            </li>
-                            <li>
-                              <a
-                                href='#'
-                                class='block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white'
-                              >
-                                Edit
-                              </a>
-                            </li>
-                          </ul>
-                          <div class='py-1'>
-                            <a
-                              href='#'
-                              class='block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white'
-                            >
-                              Delete
-                            </a>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr class='border-b dark:border-gray-700'>
-                      <th
-                        scope='row'
-                        class='px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white'
-                      >
-                        PlayStation 5
-                      </th>
-                      <td class='px-4 py-3'>Gaming/Console</td>
-                      <td class='px-4 py-3'>Sony</td>
-                      <td class='px-4 py-3'>78</td>
-                      <td class='px-4 py-3'>$799</td>
-                      <td class='px-4 py-3 flex items-center justify-end'>
-                        <button
-                          id='playstation-5-dropdown-button'
-                          data-dropdown-toggle='playstation-5-dropdown'
-                          class='inline-flex items-center p-0.5 text-sm font-medium text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none dark:text-gray-400 dark:hover:text-gray-100'
-                          type='button'
-                        >
-                          <svg
-                            class='w-5 h-5'
-                            aria-hidden='true'
-                            fill='currentColor'
-                            viewbox='0 0 20 20'
-                            xmlns='http://www.w3.org/2000/svg'
-                          >
-                            <path d='M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z' />
-                          </svg>
-                        </button>
-                        <div
-                          id='playstation-5-dropdown'
-                          class='hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600'
-                        >
-                          <ul
-                            class='py-1 text-sm text-gray-700 dark:text-gray-200'
-                            aria-labelledby='playstation-5-dropdown-button'
-                          >
-                            <li>
-                              <a
-                                href='#'
-                                class='block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white'
-                              >
-                                Show
-                              </a>
-                            </li>
-                            <li>
-                              <a
-                                href='#'
-                                class='block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white'
-                              >
-                                Edit
-                              </a>
-                            </li>
-                          </ul>
-                          <div class='py-1'>
-                            <a
-                              href='#'
-                              class='block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white'
-                            >
-                              Delete
-                            </a>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr class='border-b dark:border-gray-700'>
-                      <th
-                        scope='row'
-                        class='px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white'
-                      >
-                        Xbox Series X
-                      </th>
-                      <td class='px-4 py-3'>Gaming/Console</td>
-                      <td class='px-4 py-3'>Microsoft</td>
-                      <td class='px-4 py-3'>200</td>
-                      <td class='px-4 py-3'>$699</td>
-                      <td class='px-4 py-3 flex items-center justify-end'>
-                        <button
-                          id='xbox-series-x-dropdown-button'
-                          data-dropdown-toggle='xbox-series-x-dropdown'
-                          class='inline-flex items-center p-0.5 text-sm font-medium text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none dark:text-gray-400 dark:hover:text-gray-100'
-                          type='button'
-                        >
-                          <svg
-                            class='w-5 h-5'
-                            aria-hidden='true'
-                            fill='currentColor'
-                            viewbox='0 0 20 20'
-                            xmlns='http://www.w3.org/2000/svg'
-                          >
-                            <path d='M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z' />
-                          </svg>
-                        </button>
-                        <div
-                          id='xbox-series-x-dropdown'
-                          class='hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600'
-                        >
-                          <ul
-                            class='py-1 text-sm text-gray-700 dark:text-gray-200'
-                            aria-labelledby='xbox-series-x-dropdown-button'
-                          >
-                            <li>
-                              <a
-                                href='#'
-                                class='block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white'
-                              >
-                                Show
-                              </a>
-                            </li>
-                            <li>
-                              <a
-                                href='#'
-                                class='block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white'
-                              >
-                                Edit
-                              </a>
-                            </li>
-                          </ul>
-                          <div class='py-1'>
-                            <a
-                              href='#'
-                              class='block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white'
-                            >
-                              Delete
-                            </a>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr class='border-b dark:border-gray-700'>
-                      <th
-                        scope='row'
-                        class='px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white'
-                      >
-                        Apple Watch SE
-                      </th>
-                      <td class='px-4 py-3'>Watch</td>
-                      <td class='px-4 py-3'>Apple</td>
-                      <td class='px-4 py-3'>657</td>
-                      <td class='px-4 py-3'>$399</td>
-                      <td class='px-4 py-3 flex items-center justify-end'>
-                        <button
-                          id='apple-watch-se-dropdown-button'
-                          data-dropdown-toggle='apple-watch-se-dropdown'
-                          class='inline-flex items-center p-0.5 text-sm font-medium text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none dark:text-gray-400 dark:hover:text-gray-100'
-                          type='button'
-                        >
-                          <svg
-                            class='w-5 h-5'
-                            aria-hidden='true'
-                            fill='currentColor'
-                            viewbox='0 0 20 20'
-                            xmlns='http://www.w3.org/2000/svg'
-                          >
-                            <path d='M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z' />
-                          </svg>
-                        </button>
-                        <div
-                          id='apple-watch-se-dropdown'
-                          class='hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600'
-                        >
-                          <ul
-                            class='py-1 text-sm text-gray-700 dark:text-gray-200'
-                            aria-labelledby='apple-watch-se-dropdown-button'
-                          >
-                            <li>
-                              <a
-                                href='#'
-                                class='block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white'
-                              >
-                                Show
-                              </a>
-                            </li>
-                            <li>
-                              <a
-                                href='#'
-                                class='block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white'
-                              >
-                                Edit
-                              </a>
-                            </li>
-                          </ul>
-                          <div class='py-1'>
-                            <a
-                              href='#'
-                              class='block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white'
-                            >
-                              Delete
-                            </a>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr class='border-b dark:border-gray-700'>
-                      <th
-                        scope='row'
-                        class='px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white'
-                      >
-                        NIKON D850
-                      </th>
-                      <td class='px-4 py-3'>Photo</td>
-                      <td class='px-4 py-3'>Nikon</td>
-                      <td class='px-4 py-3'>465</td>
-                      <td class='px-4 py-3'>$599</td>
-                      <td class='px-4 py-3 flex items-center justify-end'>
-                        <button
-                          id='nikon-d850-dropdown-button'
-                          data-dropdown-toggle='nikon-d850-dropdown'
-                          class='inline-flex items-center p-0.5 text-sm font-medium text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none dark:text-gray-400 dark:hover:text-gray-100'
-                          type='button'
-                        >
-                          <svg
-                            class='w-5 h-5'
-                            aria-hidden='true'
-                            fill='currentColor'
-                            viewbox='0 0 20 20'
-                            xmlns='http://www.w3.org/2000/svg'
-                          >
-                            <path d='M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z' />
-                          </svg>
-                        </button>
-                        <div
-                          id='nikon-d850-dropdown'
-                          class='hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600'
-                        >
-                          <ul
-                            class='py-1 text-sm text-gray-700 dark:text-gray-200'
-                            aria-labelledby='nikon-d850-dropdown-button'
-                          >
-                            <li>
-                              <a
-                                href='#'
-                                class='block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white'
-                              >
-                                Show
-                              </a>
-                            </li>
-                            <li>
-                              <a
-                                href='#'
-                                class='block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white'
-                              >
-                                Edit
-                              </a>
-                            </li>
-                          </ul>
-                          <div class='py-1'>
-                            <a
-                              href='#'
-                              class='block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white'
-                            >
-                              Delete
-                            </a>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr class='border-b dark:border-gray-700'>
-                      <th
-                        scope='row'
-                        class='px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white'
-                      >
-                        Monitor BenQ EX2710Q
-                      </th>
-                      <td class='px-4 py-3'>TV/Monitor</td>
-                      <td class='px-4 py-3'>BenQ</td>
-                      <td class='px-4 py-3'>354</td>
-                      <td class='px-4 py-3'>$499</td>
-                      <td class='px-4 py-3 flex items-center justify-end'>
-                        <button
-                          id='benq-ex2710q-dropdown-button'
-                          data-dropdown-toggle='benq-ex2710q-dropdown'
-                          class='inline-flex items-center p-0.5 text-sm font-medium text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none dark:text-gray-400 dark:hover:text-gray-100'
-                          type='button'
-                        >
-                          <svg
-                            class='w-5 h-5'
-                            aria-hidden='true'
-                            fill='currentColor'
-                            viewbox='0 0 20 20'
-                            xmlns='http://www.w3.org/2000/svg'
-                          >
-                            <path d='M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z' />
-                          </svg>
-                        </button>
-                        <div
-                          id='benq-ex2710q-dropdown'
-                          class='hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600'
-                        >
-                          <ul
-                            class='py-1 text-sm text-gray-700 dark:text-gray-200'
-                            aria-labelledby='benq-ex2710q-dropdown-button'
-                          >
-                            <li>
-                              <a
-                                href='#'
-                                class='block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white'
-                              >
-                                Show
-                              </a>
-                            </li>
-                            <li>
-                              <a
-                                href='#'
-                                class='block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white'
-                              >
-                                Edit
-                              </a>
-                            </li>
-                          </ul>
-                          <div class='py-1'>
-                            <a
-                              href='#'
-                              class='block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white'
-                            >
-                              Delete
-                            </a>
-                          </div>
-                        </div>
-                      </td>
+                      <td class='px-4 py-3'>Jane Smith</td>
+                      <td class='px-4 py-3'>Credit Card</td>
+                      <td class='px-4 py-3'>$750</td>
+                      <td class='px-4 py-3'>REF789012</td>
+                      <td class='px-4 py-3'>2024-06-15</td>
+                      <td class='px-4 py-3'>Pending</td>
+                      <td class='px-4 py-3 flex items-center justify-end'></td>
                     </tr>
                   </tbody>
                 </table>
