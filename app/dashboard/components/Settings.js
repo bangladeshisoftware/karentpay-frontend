@@ -14,7 +14,7 @@ function Product_Catalog() {
   };
 
   return (
-    <div className="mt-10 ml-8    flex flex-col ">
+    <div className="mt-10 ml-2 lg:ml-8  px-5 lg:px-0  flex flex-col ">
       <div className="nav bg-gradient-to-r from-purple-500 to-blue-600 hidden lg:flex md:flex xl:flex lg:gap-4 border rounded-md shadow-md  items-center h-fit mt-2  text-white  lg:py-4">
         <h3
           className={` cursor-pointer rounded-md p-2 ml-3 ${
@@ -170,7 +170,7 @@ function Product_Catalog() {
         </button> */}
       </div>
 
-      <div className="contain w-full h-fit border shadow-md rounded-sm mt-12 pb-8 lg:px-12 md:px-10 xs:px-12 px-4 ">
+      <div className="contain w-full h-fit border shadow-md rounded-sm mt-12 pb-8 lg:px-12  xs:px-12 px-4 ">
         {selected == "profile" && !updated && (
           <div className="lg:mx-24 xl:mx-24 md:mx-16 sm:mx-8 mx-0 font-normal ">
             <div className="mt-8">

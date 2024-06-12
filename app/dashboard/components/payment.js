@@ -75,7 +75,7 @@ const Payment = () => {
 
   return (
     <div className="mt-5 w-full">
-      <div className="lg:w-[500px] lg:h-[700px] rounded-md border shadow-md mx-auto ">
+      <div className="lg:w-[500px] lg:h-[700px] rounded-md border shadow-md mx-auto px-5 lg:px-0">
         <div className="container flex justify-start gap-10 items-center mt-5 border-b pb-4 border-gray-300">
           <div className="flex justify-start items-center mt-5">
             <Image src={desktopLogo} height={100} width={100} alt="Logo" />
