@@ -30,7 +30,7 @@ import Support from '@/app/dashboard/components/Support';
 function Dashboard() {
   const [activeComponent, setActiveComponent] = useState('home');
   const [isOn, setIsOn] = useState(true);
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [windowWidth, setWindowWidth] = useState(1024); // Default to 1024, update after mounting
 
   const containerType = [
     {
@@ -121,6 +121,7 @@ function Dashboard() {
   };
 
   useEffect(() => {
+    setWindowWidth(window.innerWidth); // Set initial width on mount
     window.addEventListener('resize', handleResize);
     return () => {
       window.removeEventListener('resize', handleResize);
