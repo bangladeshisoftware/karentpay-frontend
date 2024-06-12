@@ -6,7 +6,7 @@ import { Menu } from 'lucide-react';
 import facebookIcon from '@/app/_assets/facebook.png';
 import youtubeIcon from '@/app/_assets/youtube.png';
 import Dropdown from '../Dropdown/Dropdown';
-import footerLogo from '@/app/_assets/Footer-Logo.png';
+import Logo from '@/app/_assets/Mobile-Logo.png';
 import { DrawerDialogDemo } from '@/app/_components/Header/BecomeMerchent/DrawerDialogDemo';
 
 const NavBar = () => {
@@ -98,11 +98,7 @@ const NavBar = () => {
             <Menu className='w-10 h-10 text-white' />
           </button>
           <Link href='/'>
-            <Image
-              src={footerLogo}
-              alt='Footer Logo'
-              className='w-36 h-12 ml-6'
-            />
+            <Image src={Logo} alt='Logo' className='w-36 h-12 ml-6' />
           </Link>
         </div>
       </div>

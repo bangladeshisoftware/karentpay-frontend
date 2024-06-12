@@ -21,7 +21,7 @@ function Balance() {
             </div>
           </div>
         </div>
-        <div className='border rounded-md shadow px-20 py-8 bg-gradient-to-r from-green-300 to-teal-400 text-white flex items-center transition-all duration-300 hover:shadow-lg'>
+        <div className='border rounded-md shadow px-20 py-8 bg-gradient-to-r from-blue-500 to-purple-500 text-white flex items-center transition-all duration-300 hover:shadow-lg'>
           <div className='mr-3 text-2xl bg-[#FFFF] rounded-full text-black p-3'>
             <HiOutlineCurrencyDollar />
           </div>
@@ -34,7 +34,7 @@ function Balance() {
             </div>
           </div>
         </div>
-        <div className='border rounded-md shadow px-20 py-8 bg-gradient-to-r from-pink-300 to-orange-400 text-white flex items-center transition-all duration-300 hover:shadow-lg'>
+        <div className='border rounded-md shadow px-20 py-8 bg-gradient-to-r from-blue-500 to-purple-500 text-white flex items-center transition-all duration-300 hover:shadow-lg'>
           <div className='mr-3 text-2xl bg-[#FFFF] rounded-full text-black p-3'>
             <HiOutlineCurrencyDollar />
           </div>

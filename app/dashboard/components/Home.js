@@ -26,7 +26,7 @@ function Home() {
             </div>
           </div>
         </div>
-        <div className='border rounded-md shadow px-20 py-16 bg-gradient-to-r from-green-300 to-teal-400 text-white flex items-center transition-all duration-300 hover:shadow-lg'>
+        <div className='border rounded-md shadow px-20 py-16 bg-gradient-to-r from-blue-500 to-purple-500 text-white flex items-center transition-all duration-300 hover:shadow-lg'>
           <div className='mr-3 text-2xl bg-[#FFFF] rounded-full text-black p-3'>
             <LuShoppingCart />
           </div>
@@ -39,7 +39,7 @@ function Home() {
             </div>
           </div>
         </div>
-        <div className='border rounded-md shadow px-20 py-16 bg-gradient-to-r from-pink-300 to-orange-400 text-white flex items-center transition-all duration-300 hover:shadow-lg'>
+        <div className='border rounded-md shadow px-20 py-16 bg-gradient-to-r from-blue-500 to-purple-500 text-white flex items-center transition-all duration-300 hover:shadow-lg'>
           <div className='mr-3 text-2xl bg-[#FFFF] rounded-full text-black p-3'>
             <GiShoppingBag />
           </div>
@@ -68,7 +68,7 @@ function Home() {
             </div>
           </div>
         </div>
-        <div className='border rounded-md shadow px-20 py-16 bg-gradient-to-r from-green-300 to-teal-400 text-white flex items-center transition-all duration-300 hover:shadow-lg'>
+        <div className='border rounded-md shadow px-20 py-16 bg-gradient-to-r from-blue-500 to-purple-500 text-white flex items-center transition-all duration-300 hover:shadow-lg'>
           <div className='mr-3 text-2xl bg-[#FFFF] rounded-full text-black p-3'>
             <LuShoppingCart />
           </div>
@@ -84,7 +84,7 @@ function Home() {
       </div>
       {/* card 3*/}
       <div className='grid grid-cols-3 justify-around gap-4 pb-5'>
-        <div className='border col-span-3 rounded-md shadow px-20 py-20 bg-gradient-to-r from-pink-300 to-orange-400 text-white flex items-center transition-all duration-300 hover:shadow-lg'>
+        <div className='border col-span-3 rounded-md shadow px-20 py-20 bg-gradient-to-r from-blue-500 to-purple-500 text-white flex items-center transition-all duration-300 hover:shadow-lg'>
           <div className='mr-3 text-2xl bg-[#FFFF] rounded-full text-black p-3'>
             <GiShoppingBag />
           </div>
