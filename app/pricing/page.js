@@ -23,14 +23,14 @@ const pricing = () => {
           <br /> bang for your buck every time
         </p>
       </div> */}
-      <div className='flex flex-col md:flex-row gap-16 justify-evenly items-center container mb-24 px-0'>
-        <div className='w-full md:w-[30%]'>
+      <div className='flex flex-col md:flex-row sm:flex-cols-2 md:mb-4 gap-16 justify-evenly items-center container mb-24 px-0'>
+        <div className='w-full scale-100 lg:scale-100 md:scale-98 md:w-[30%]'>
           <PricingCard />
         </div>
-        <div className='w-full md:w-[30%]'>
+        <div className='w-full scale-100 lg:scale-100 md:scale-98 md:w-[30%]'>
           <PriceCard2 />
         </div>
-        <div className='w-full md:w-[30%]'>
+        <div className='w-full scale-100 lg:scale-100 md:scale-98 md:w-[30%]'>
           <PriceCard3 />
         </div>
       </div>

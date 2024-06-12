@@ -45,9 +45,9 @@ const Contact = () => {
         </div>
       </div>
       {/* Location */}
-      <div className='flex flex-col lg:flex-row justify-between border shadow-md rounded-md transition duration-300 hover:shadow-lg hover:border-blue-500 sm:py-4 md:py-4'>
-        <div className='flex flex-col lg:flex-row items-center justify-center lg:mb-10 lg:w-1/2'>
-          <div>
+      <div className='flex flex-col lg:flex-row justify-between border shadow-md rounded-md transition duration-300 hover:shadow-lg hover:border-blue-500 sm:py-4 md:py-4 '>
+        <div className='flex flex-col lg:flex-row items-center justify-center lg:mb-10 lg:w-1/2 '>
+          <div className='mt-4 lg:mt-0'>
             <Image
               alt='headquarter'
               className='inline-block object-cover object-center  lg:mt-4 rounded-md'
@@ -71,7 +71,7 @@ const Contact = () => {
           </div>
         </div>
         <div className='flex flex-col lg:flex-row items-center justify-center lg:mb-10 lg:w-1/2'>
-          <div>
+          <div className='mt-4 lg:mt-0'>
             <Image
               alt='local'
               className='inline-block object-cover object-center  lg:mt-4 rounded-md'
