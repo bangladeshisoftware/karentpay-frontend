@@ -69,10 +69,14 @@ const Question = () => {
         <div className="mt-16">
           {faqs.map((faq, index) => (
             <div
-              className="shadow-xl rounded-lg p-5 bg-gradient-to-r from-blue-600  to-purple-400 my-4"
+              className="shadow-xl scale-110 lg:scale-100 md:scale-100 lg:w-full md:w-full  rounded-lg p-5 bg-gradient-to-r from-blue-600  to-purple-400 my-4 "
               key={index}
             >
-              <Accordion type="single" collapsible className="w-full">
+              <Accordion
+                type="single"
+                collapsible
+                className="w-full scale-110 lg:scale-100 md:scale-100 lg:w-full md:w-full "
+              >
                 <AccordionItem value="item-1">
                   <AccordionTrigger>{faq.question}</AccordionTrigger>
                   <AccordionContent>{faq.answer}</AccordionContent>
