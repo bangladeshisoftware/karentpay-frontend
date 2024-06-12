@@ -20,9 +20,9 @@ function Header({ isOn, toggleSwitch }) {
       <div className="  px-5 lg:px-0  ">
         <div className="flex justify-between items-center gap-3">
           {isOn ? (
-            <h3 className="text-2xl font-bold ml-2">Test</h3>
+            <h3 className="text-2xl font-bold ml-2 lg:ml-8">Test</h3>
           ) : (
-            <h3 className="text-2xl font-bold ml-2">Developer</h3>
+            <h3 className="text-2xl font-bold ml-2 lg:ml-8">Developer</h3>
           )}
           <div
             className={`w-60 h-12  flex items-center justify-around   rounded-md cursor-pointer bg-[#111857]`}
