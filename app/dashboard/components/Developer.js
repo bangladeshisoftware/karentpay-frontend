@@ -124,17 +124,25 @@ export default function Developer() {
             </Link>
           </p> */}
         </div>
-        <div className="">
-          <table className="min-w-full">
+        <div className="overflow-x-auto">
+          <table className="table-auto">
             <thead>
               <tr className="w-full text-left  mt-3 h-8 border-b ">
-                <th className="w-[30%]  text-xs font-medium">
+                <th className="w-[200px]  text-xs font-medium">
                   <div className="ml-4">NAME</div>
                 </th>
-                <th className="w-[30%] font-medium text-xs">TOKEN</th>
-                <th className="w-[15%] font-medium text-xs">LAST USED</th>
-                <th className="w-[15%] font-medium text-xs">CREATED</th>
-                <th className="w-[10%] font-medium text-xs">STATUS</th>
+                <th className="lg:w-[200px] md:w-[300px] md:h-10 font-medium text-xs">
+                  TOKEN
+                </th>
+                <th className="lg:w-[200px] md:w-[300px] md:h-10 font-medium text-xs">
+                  LAST USED
+                </th>
+                <th className="lg:w-[200px] md:w-[300px] md:h-10font-medium text-xs">
+                  CREATED
+                </th>
+                <th className="lg:w-[200px] md:w-[300px] md:h-10 font-medium text-xs">
+                  STATUS
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -143,7 +151,7 @@ export default function Developer() {
                   <div className="ml-3 font-semibold">Publishable key</div>
                 </td>
                 <td
-                  className="break-words whitespace-nowrap overflow-hidden overflow-ellipsis cursor-pointer relative "
+                  className="break-words overflow-hidden cursor-pointer relative "
                   onClick={() =>
                     handleCopy1(
                       "pk_test_51POXHyGQoiRj0oYpQgjiiaOxOnhhmT7ZFvGQUdAOV9aRJSM4i50shZI6ICgXtw3bhXzIINJDkRh2o8ioxxEWpT8V00w4lYTsM3"

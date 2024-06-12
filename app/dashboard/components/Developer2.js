@@ -3,5 +3,5 @@ import Test from "./home/Test";
 import Developer from "./Developer";
 
 export default function Developer2({ isTest }) {
-  return <div className="w-screen">{isTest ? <Test /> : <Developer />}</div>;
+  return <div className="w-full">{isTest ? <Test /> : <Developer />}</div>;
 }

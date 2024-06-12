@@ -121,7 +121,7 @@ function Dashboard() {
           <div
             className={`bg-gradient-to-b from-blue-600 to-purple-400 text-white rounded-md`}
           >
-            <aside className="py-5 hidden sm:block px-4 mt-10">
+            <aside className="py-5  block px-4 mt-10">
               <ul>
                 <li
                   className={`mb-4 cursor-pointer flex items-center p-2 rounded-md transition-all duration-300 ${

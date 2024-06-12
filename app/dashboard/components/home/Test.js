@@ -79,7 +79,7 @@ const Test = () => {
 
   return (
     <div className=" ml-8 mt-5">
-      <div className="w-screen border p-3 mt-3 rounded-md lg:flex items-center justify-between">
+      <div className="w-full border p-3 mt-3 rounded-md lg:flex items-center justify-between">
         <h3 className="text-xl font-semibold">API keys</h3>
         <Link className="" href="#">
           <span className="text-sm text-[#2F65EC] font-medium flex items-center">
@@ -101,16 +101,16 @@ const Test = () => {
           <table className="table-auto">
             <thead>
               <tr className="w-full text-left  mt-3 h-8 border-b ">
-                <th className="w-[500px]  text-xs font-medium">
+                <th className="w-[200px]  text-xs font-medium">
                   <div className="ml-4">NAME</div>
                 </th>
-                <th className="lg:w-[500px] md:w-[300px] md:h-10 font-medium text-xs">
+                <th className="lg:w-[200px] md:w-[300px] md:h-10 font-medium text-xs">
                   TOKEN
                 </th>
-                <th className="lg:w-[400px] md:w-[300px] font-medium text-xs">
+                <th className="lg:w-[200px] md:w-[300px] font-medium text-xs">
                   LAST USED
                 </th>
-                <th className="lg:w-[400px] font-medium text-xs">CREATED</th>
+                <th className="lg:w-[200px] font-medium text-xs">CREATED</th>
                 <th className="lg:w-[100px]"></th>
               </tr>
             </thead>
