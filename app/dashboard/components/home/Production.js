@@ -131,7 +131,7 @@ export default function Production() {
                   className="break-words cursor-pointer relative "
                   onClick={() =>
                     handleCopy1(
-                      "pk_test_51POXHyGQoiRj0oYpQgjiiaOxOnhhmT7ZFvGQUdAOV9aRJSM4i50shZI6ICgXtw3bhXzIINJDkRh2o8ioxxEWpT8V00w4lYTsM3"
+                      "curently working"
                     )
                   }
                   onMouseEnter={() => setCopyMessage1("Click to copy")}
@@ -142,9 +142,7 @@ export default function Production() {
                       {copyMessage1}
                     </div>
                   )}
-                  pk_test_51POXHyGQoiRj0oYpQgjiiaOxOnhhmT7
-                  ZFvGQUdAOV9aRJSM4i50shZI6ICgXtw
-                  3bhXzIINJDkRh2o8ioxxEWpT8V00w4lYTsM3
+                 curently working
                 </td>
                 <td>-</td>
                 <td>9jun</td>
@@ -160,7 +158,7 @@ export default function Production() {
                     }`}
                     onClick={() =>
                       handleCopy2(
-                        "pk_test_51POXHyGQoiRj0oYpQgjiiaOxOnhhmT7ZFvGQUdAOV9aRJSM4i50shZI6ICgXtw3bhXzIINJDkRh2o8ioxxEWpT8V00w4lYTsM3"
+                        "curently working"
                       )
                     }
                     onMouseEnter={() => setCopyMessage2("Click to copy")}
@@ -171,9 +169,7 @@ export default function Production() {
                         {copyMessage2}
                       </div>
                     )}
-                    pk_test_51POXHyGQoiRj0oYpQgjiiaOxOnhhmT7
-                    ZFvGQUdAOV9aRJSM4i50shZI6ICgXtw
-                    3bhXzIINJDkRh2o8ioxxEWpT8V00w4lYTsM3 <br />
+                   curently working <br />
                   </span>
                   {showText ? (
                     <button

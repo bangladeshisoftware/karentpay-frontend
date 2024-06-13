@@ -5,10 +5,16 @@ const ApiRequest=async({url,formdata=null,method="post",type="application/json"}
 
  
     var token=await GetCookies({name:'auth_token'});
-    console.log(token);
+
+    if(localStorage.getItem('secret_key')){
+      var secret_key=localStorage.getItem('secret_key');
+    }else{
+      var secret_key="";
+    }
+    
 
     const api_request = axios.create({
-        baseURL: process.env.NEXT_BASE_URL,       
+        baseURL: 'http://localhost:8000/api',       
       });
       api_request.defaults.headers.common['Authorization'] =`Bearer ${token}`;
 
@@ -19,10 +25,13 @@ const ApiRequest=async({url,formdata=null,method="post",type="application/json"}
           responseType: type,       
           data:formdata,
           headers: {
-            'X-SECRET-KEY': '3644d26b4a52c8f37e79f21c05da07198524bd21'
+            'X-SECRET-KEY': secret_key
             }
         }
       );
+      
+      
+
         let { data } = await response;
         if(type=="multipart/form-data"){
           return data

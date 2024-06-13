@@ -29,10 +29,30 @@ const Payment = () => {
   const[amount,setamount]=useState(0);
 
 
+  useEffect(()=>{
+    checkSecret();
+  },[])
+  const checkSecret=async()=>{
+    if(!localStorage.getItem('secret_key')){    
+   
+   
+      const response = await ApiRequest({
+        url: "/key",
+        method: "get",
+      });
+      if (response.status === 200) {
+        localStorage.setItem('secret_key',response.data[0].privet_key)
+      } else {
+        console.log(response);
+      }
+  
+  }
+  }
+
+
+
   const handlePayment=async()=>{
     if(selected=="mobile"){
-
-
       if(mobilePay==''||mobilePay.id<1){
         toast.error('please select payment method to continue')
         return;
@@ -68,9 +88,6 @@ const Payment = () => {
     }else{
       toast.error('Just for mobile payment Available')
     }
-
-   
-
   }
 
 
@@ -304,7 +321,7 @@ const Payment = () => {
           <button 
           onClick={()=>handlePayment()}
           className="bg-gradient-to-r from-purple-500 to-blue-600 p-3 w-full rounded-sm font-md text-lg text-white">
-            Pay $10.00
+            Pay {parseFloat(amount).fixed(2)}
           </button>
         </div>
       </div>

@@ -272,7 +272,7 @@ function Dashboard() {
           />
         </nav>
         <ResizablePanel defaultSize={85} minSize={40}>
-          <div className='flex-1 p-0 overflow-auto'>
+          <div className='flex-1 p-0 '>
             {activeComponent === 'developer' && (
               <Header isOn={isOn} toggleSwitch={toggleSwitch} />
             )}

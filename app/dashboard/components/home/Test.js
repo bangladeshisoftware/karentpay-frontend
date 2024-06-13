@@ -4,6 +4,8 @@ import ApiRequest from "@/app/_lib/Api_request";
 import Link from "next/link";
 import { IoIosArrowRoundForward } from "react-icons/io";
 import { FaArrowRotateRight } from "react-icons/fa6";
+import { format } from 'date-fns';
+
 
 const Test = () => {
   const [key, setKey] = useState({});
@@ -25,7 +27,7 @@ const Test = () => {
       method: "get",
     });
     if (response.status === 200) {
-      setKey(response.data);
+      setKey(response.data[0]);
     } else {
       console.log(response);
     }
@@ -93,12 +95,11 @@ const Test = () => {
         <div className="border-b p-4">
           <h3 className="text-xl font-semibold">Standard keys</h3>
           <p className="text-sm font-normal">
-            Create a key that unlocks full API access, enabling extensive
-            interaction with your account.{" "}
+          This key only for testing Purpose
           </p>
         </div>
-        <div className="overflow-x-auto">
-          <table className="table-auto">
+        <div>
+          <table className="table-auto w-full ">
             <thead>
               <tr className="w-full text-left  mt-3 h-8 border-b ">
                 <th className="w-[200px]  text-xs font-medium">
@@ -115,16 +116,14 @@ const Test = () => {
               </tr>
             </thead>
             <tbody>
-              <tr className="text-xs ml-4 h-20 border-b">
+              <tr className="text-xs ml-4 h-20 border-b w-full">
                 <td>
                   <div className="ml-3 font-semibold">Publishable key</div>
                 </td>
                 <td
-                  className="break-words overflow-hidden cursor-pointer relative "
+                  className={`relative cursor-pointer`}
                   onClick={() =>
-                    handleCopy1(
-                      "pk_test_51POXHyGQoiRj0oYpQgjiiaOxOnhhmT7ZFvGQUdAOV9aRJSM4i50shZI6ICgXtw3bhXzIINJDkRh2o8ioxxEWpT8V00w4lYTsM3"
-                    )
+                    handleCopy1(key.public_key)
                   }
                   onMouseEnter={() => setCopyMessage1("Click to copy")}
                   onMouseLeave={() => setCopyMessage1("")}
@@ -134,17 +133,11 @@ const Test = () => {
                       {copyMessage1}
                     </div>
                   )}
-                  pk_test_51POXHyGQoiRj0oYpQgjiiaOxOnhhmT7
-                  ZFvGQUdAOV9aRJSM4i50shZI6ICgXtw
-                  3bhXzIINJDkRh2o8ioxxEWpT8V00w4lYTsM3
+                {key.public_key} &nbsp;&nbsp;&nbsp;
                 </td>
                 <td>-</td>
-                <td>9jun</td>
-                <td>
-                  <button>
-                    <FaArrowRotateRight fontSize={20} fill="green" />
-                  </button>
-                </td>
+                <td>{key.created_at&&format(key.created_at, 'dd' + ' ' + 'MMMM' + ' ' + 'yyyy')}</td>
+                
               </tr>
               <tr className="text-xs mt-4">
                 <td>
@@ -155,11 +148,7 @@ const Test = () => {
                     className={`relative cursor-pointer ${
                       !showText ? "blur-lg" : ""
                     }`}
-                    onClick={() =>
-                      handleCopy2(
-                        "pk_test_51POXHyGQoiRj0oYpQgjiiaOxOnhhmT7ZFvGQUdAOV9aRJSM4i50shZI6ICgXtw3bhXzIINJDkRh2o8ioxxEWpT8V00w4lYTsM3"
-                      )
-                    }
+                    onClick={() =>  handleCopy2(key.privet_key)}
                     onMouseEnter={() => setCopyMessage2("Click to copy")}
                     onMouseLeave={() => setCopyMessage2("")}
                   >
@@ -168,9 +157,7 @@ const Test = () => {
                         {copyMessage2}
                       </div>
                     )}
-                    pk_test_51POXHyGQoiRj0oYpQgjiiaOxOnhhmT7
-                    ZFvGQUdAOV9aRJSM4i50shZI6ICgXtw
-                    3bhXzIINJDkRh2o8ioxxEWpT8V00w4lYTsM3 <br />
+                  {key.privet_key} &nbsp;&nbsp;&nbsp;<br />
                   </span>
                   {showText ? (
                     <button
@@ -189,12 +176,8 @@ const Test = () => {
                   )}
                 </td>
                 <td>-</td>
-                <td>9jun</td>
-                <td>
-                  <button>
-                    <FaArrowRotateRight fontSize={20} fill="green" />
-                  </button>
-                </td>
+                <td>{key.created_at&&format(key.created_at, 'dd' + ' ' + 'MMMM' + ' ' + 'yyyy')}</td>
+                
               </tr>
             </tbody>
           </table>

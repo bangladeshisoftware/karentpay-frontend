@@ -22,6 +22,10 @@ export default function Login() {
 
   const handleLogin = async(formData) => {
     const response=await ApiRequest({url:'/login',formdata:formData});
+    if(!response){
+      toast.error("Something went wrong");
+      return;  
+    }
 
     if(response.status==200){      
       localStorage.setItem("auth_token",response.data.trim());

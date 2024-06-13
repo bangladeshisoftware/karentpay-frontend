@@ -82,7 +82,7 @@ export default function Developer() {
   return (
     <div className="ml-2 lg:ml-8   mt-5">
       <div className="w-full border lg:p-3 mt-3 rounded-md lg:flex  lg:items-center lg:justify-between">
-        <h3 className="text-xl font-semibold">Test API keys</h3>
+        <h3 className="text-xl font-semibold"> API keys</h3>
         <Link className="" href="#">
           <span className="text-sm text-[#2F65EC] font-medium flex items-center">
             Learn more about API Authentication{" "}
@@ -154,7 +154,7 @@ export default function Developer() {
                   className="break-words overflow-hidden cursor-pointer relative "
                   onClick={() =>
                     handleCopy1(
-                      "pk_test_51POXHyGQoiRj0oYpQgjiiaOxOnhhmT7ZFvGQUdAOV9aRJSM4i50shZI6ICgXtw3bhXzIINJDkRh2o8ioxxEWpT8V00w4lYTsM3"
+                      "curently working"
                     )
                   }
                   onMouseEnter={() => setCopyMessage1("Click to copy")}
@@ -165,9 +165,7 @@ export default function Developer() {
                       {copyMessage1}
                     </div>
                   )}
-                  pk_test_51POXHyGQoiRj0oYpQgjiiaOxOnhhmT7
-                  ZFvGQUdAOV9aRJSM4i50shZI6ICgXtw
-                  3bhXzIINJDkRh2o8ioxxEWpT8V00w4lYTsM3
+                curently working
                 </td>
                 <td>-</td>
                 <td>9jun</td>
@@ -183,7 +181,7 @@ export default function Developer() {
                     }`}
                     onClick={() =>
                       handleCopy2(
-                        "pk_test_51POXHyGQoiRj0oYpQgjiiaOxOnhhmT7ZFvGQUdAOV9aRJSM4i50shZI6ICgXtw3bhXzIINJDkRh2o8ioxxEWpT8V00w4lYTsM3"
+                        "curently working"
                       )
                     }
                     onMouseEnter={() => {
@@ -201,9 +199,7 @@ export default function Developer() {
                         {copyMessage2}
                       </div>
                     )}
-                    pk_test_51POXHyGQoiRj0oYpQgjiiaOxOnhhmT7
-                    ZFvGQUdAOV9aRJSM4i50shZI6ICgXtw
-                    3bhXzIINJDkRh2o8ioxxEWpT8V00w4lYTsM3 <br />
+                   curently working <br />
                   </span>
                   {showText ? (
                     <button
