@@ -6,12 +6,14 @@ import Image from 'next/image';
 import desktopLogo from '@/app/_assets/Logo.png';
 import { GetCookies,deleteCookies } from '@/app/_lib/cookiesSetting';
 import { toast } from 'react-toastify';
-
+import Dashboard from './../../dashboard/page';
+import ApiRequest from '@/app/_lib/Api_request';
 
 const TopBar = () => {
   const [dropdownDefaultButton, setDropdownDefaultButton] = useState(false);
   const dropdown = useRef(null);
   const trigger = useRef(null);
+  
 
   const [authToken, setAuthToken] = useState(null);
   useEffect(() => {
@@ -52,6 +54,32 @@ const TopBar = () => {
     return () => document.removeEventListener('click', clickHandler);
   }, [dropdownDefaultButton]);
 
+
+  const[user,setuser]=useState('');
+  useEffect(() => {
+    handlePayment();
+  }, []);
+  
+  
+    const handlePayment=async()=>{    
+      const token =await GetCookies({ name: 'auth_token' });
+      console.log("token",token);
+      if (token) {        
+        const response=await ApiRequest({
+          url:'/user',
+         method:'get',
+        });
+        if(response.status==200){
+          setuser(response.data.user)
+        
+        }else{
+          toast.error(response.message)
+        }
+      }
+        
+    }
+
+
   return (
     <section className='container flex justify-between items-center my-4 hidden lg:flex wide-laptop:flex small-laptop:flex'>
       {/* large screens */}
@@ -80,40 +108,33 @@ const TopBar = () => {
 
 
         {(authToken !=null && authToken)&&
-          <button
-            onClick={() => logOut()}
-            className='relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800'
-          >
-            <span className='relative px-5 py-2 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded group-hover:bg-opacity-0 flex items-center gap-1'>
-              Logout
-            </span>
-          </button>
-          }
-
-
-<div className='relative'>
+          <div className='relative'>
             <button
               ref={trigger}
               onClick={() => setDropdownDefaultButton(!dropdownDefaultButton)}
               className='relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800'
             >
               <span className='relative px-5 py-2 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded group-hover:bg-opacity-0 flex items-center gap-1'>
-                Dropdown
+                {user?user.name:'Dropdown'}
               </span>
             </button>
             {dropdownDefaultButton &&
               <div className=" bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 absolute button-0 left-0 " style={{ zIndex: '1000' }} ref={dropdown}>
                 <ul className="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
                   <li>
-                    <a href="#" className="block px-4 py-2 hover:bg-[#351476] hover:text-white dark:hover:text-white">My Admin</a>
+                    <Link href="/dashboard" className="block px-4 py-2 hover:bg-[#351476] hover:text-white dark:hover:text-white">Dashboard</Link>
                   </li>
                   <li>
-                    <a href="#" className="block px-4 py-2 hover:bg-[#351476] hover:text-white dark:hover:text-white">Sign out</a>
+                    <Link 
+                    onClick={() => logOut()}
+                    href="#" className="block px-4 py-2 hover:bg-[#351476] hover:text-white dark:hover:text-white">Sign out</Link>
                   </li>
                 </ul>
               </div>
             }
           </div>
+        }
+        
 
 
         </div>
