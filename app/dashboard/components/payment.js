@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import desktopLogo from "@/app/_assets/kpay.png";
 import Image from "next/image";
 import { MdSupportAgent, MdOutlineSendToMobile } from "react-icons/md";
@@ -19,9 +19,61 @@ import city from "@/app/_assets/city-bank.png";
 import islami from "@/app/_assets/islami.png";
 import visa from "@/app/_assets/visa.png";
 import mastercard from "@/app/_assets/mastercard.png";
+import {toast} from 'react-toastify';
+import ApiRequest from "@/app/_lib/Api_request";
 
 const Payment = () => {
   const [selected, setSelected] = useState("mobile");
+
+  const [mobilePay, setmobilePay] = useState(0);
+  const[amount,setamount]=useState(0);
+
+
+  const handlePayment=async()=>{
+    if(selected=="mobile"){
+
+
+      if(mobilePay==''||mobilePay.id<1){
+        toast.error('please select payment method to continue')
+        return;
+      }
+      console.log(mobilePay);
+      if(mobilePay.id !=1){
+        toast.error('Just Bkash Pyment Available, Other payment will be available Soon')
+        return;
+      }
+
+      if(amount<10){
+        toast.error('Minimum Pay 10Tk')
+        return;
+      }
+
+      var rf=Math.floor(Math.random() * 1000000000) + 100000;
+      const response=await ApiRequest({
+        url:'/v1/create_payment',
+        formdata:{
+          currency:'BDT',
+          amount:amount,
+          reference:rf,
+          callback_url:process.env.NEXT_PUBLIC_PAYMENT_DOMAIN
+        }
+      });
+      if(response.status==201){
+        window.location = response.data.payment_url;
+      
+      }else{
+        toast.error(response.message)
+      }
+      console.log(response);
+    }else{
+      toast.error('Just for mobile payment Available')
+    }
+
+   
+
+  }
+
+
 
   const mobileBanks = [
     {
@@ -144,8 +196,9 @@ const Payment = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-6 sm:gap-6 lg:gap-2 md:gap-6 mt-10 ml-4">
               {mobileBanks.map((bank) => (
                 <div
-                  key={bank.id}
-                  className="w-full scale-110 lg:scale-100 md:scale-100 lg:w-[100px] md:w-[70px] h-[120px] flex flex-col items-center justify-center border rounded-lg shadow-md transition-transform duration-300 hover:scale-110 focus-within:border-4 focus-within:border-blue-500 focus-within:scale-110 cursor-pointer"
+                  key={bank.id} 
+                  onClick={()=>setmobilePay(bank)}
+                  className={`${bank.id==mobilePay.id&&'border-purple-600 scale-110'} w-full scale-110 lg:scale-100 md:scale-100 lg:w-[100px] md:w-[70px] h-[120px] flex flex-col items-center justify-center border rounded-lg shadow-md transition-transform duration-300 hover:scale-110 focus-within:border-4 focus-within:border-blue-500 focus-within:scale-110 cursor-pointer`}
                 >
                   <Image
                     className="h-auto"
@@ -162,7 +215,10 @@ const Payment = () => {
               <input
                 type="phone"
                 placeholder="Amount"
-                value=""
+                value={amount}
+                onChange={(e)=>{
+                  setamount(e.target.value);
+                }}
                 className="outline-none py-2 px-3  ml-0 bg-gray-100  rounded-sm w-full"
               />
             </div>
@@ -245,7 +301,9 @@ const Payment = () => {
           </div>
         )}
         <div className="mt-10 w-full overflow-y-hidden flex flex-col  ">
-          <button className="bg-gradient-to-r from-purple-500 to-blue-600 p-3 w-full rounded-sm font-md text-lg text-white">
+          <button 
+          onClick={()=>handlePayment()}
+          className="bg-gradient-to-r from-purple-500 to-blue-600 p-3 w-full rounded-sm font-md text-lg text-white">
             Pay $10.00
           </button>
         </div>

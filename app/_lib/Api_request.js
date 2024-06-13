@@ -18,7 +18,11 @@ const ApiRequest=async({url,formdata=null,method="post",type="application/json"}
           url: url,
           responseType: type,       
           data:formdata,
-        });
+          headers: {
+            'X-SECRET-KEY': '3644d26b4a52c8f37e79f21c05da07198524bd21'
+            }
+        }
+      );
         let { data } = await response;
         if(type=="multipart/form-data"){
           return data

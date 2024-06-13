@@ -82,7 +82,7 @@ export default function Developer() {
   return (
     <div className="ml-2 lg:ml-8   mt-5">
       <div className="w-full border lg:p-3 mt-3 rounded-md lg:flex  lg:items-center lg:justify-between">
-        <h3 className="text-xl font-semibold">API keys</h3>
+        <h3 className="text-xl font-semibold">Test API keys</h3>
         <Link className="" href="#">
           <span className="text-sm text-[#2F65EC] font-medium flex items-center">
             Learn more about API Authentication{" "}

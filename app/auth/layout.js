@@ -5,9 +5,9 @@ export default async function LoginLayout({ children }) {
 
 const token=await GetCookies({name:'auth_token'});
 
-// if (token) {
-//   redirect('/dashboard');  
-// }
+if (token) {
+  redirect('/dashboard');  
+}
 
   return (
    <section>{children}</section>
