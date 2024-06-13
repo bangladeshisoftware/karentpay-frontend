@@ -8,7 +8,7 @@ const ApiRequest=async({url,formdata=null,method="post",type="application/json"}
     console.log(token);
 
     const api_request = axios.create({
-        baseURL: 'http://localhost:8000/api',       
+        baseURL: process.env.NEXT_BASE_URL,       
       });
       api_request.defaults.headers.common['Authorization'] =`Bearer ${token}`;
 
