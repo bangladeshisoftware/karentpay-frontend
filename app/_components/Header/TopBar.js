@@ -27,6 +27,9 @@ const TopBar = () => {
 
 
   const logOut =async () => {
+    if(localStorage.getItem('secret_key')){
+      localStorage.removeItem('secret_key');
+    }
    const deleteToken=await deleteCookies({ name: 'auth_token' });
    if(deleteToken) {
     location.reload(true);

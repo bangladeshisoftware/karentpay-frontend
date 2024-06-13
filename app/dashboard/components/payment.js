@@ -321,7 +321,7 @@ const Payment = () => {
           <button 
           onClick={()=>handlePayment()}
           className="bg-gradient-to-r from-purple-500 to-blue-600 p-3 w-full rounded-sm font-md text-lg text-white">
-            Pay {parseFloat(amount).fixed(2)}
+            Pay {amount}
           </button>
         </div>
       </div>
