@@ -217,7 +217,7 @@ function Product_Catalog() {
             <div className="mt-8">
               <h3 className="">
                 Country
-                <p className="border  w-full rounded-sm p-2 ">Bangladesh</p>
+                <p className="border  w-full rounded-sm p-2 ">{user.country_name}</p>
               </h3>
             </div>
             <div className="mt-8">
@@ -227,22 +227,17 @@ function Product_Catalog() {
                   className="border
                   w-full rounded-sm p-2 "
                 >
-                  abcdef@gmail.com
+                 {user.email}
                 </p>
               </h3>
             </div>
             <div className="mt-8">
               <h3 className="">
                 Phone
-                <p className="border  w-full rounded-sm p-2 ">01234567890</p>
+                <p className="border  w-full rounded-sm p-2 ">{user.phone}</p>
               </h3>
             </div>
-            <div className="mt-8">
-              <h3 className="">
-                Password
-                <p className="border  w-full rounded-sm p-2 ">********</p>
-              </h3>
-            </div>
+            
             <div className="mt-8">
               <button
                 onClick={() => {
