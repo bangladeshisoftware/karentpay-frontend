@@ -5,6 +5,7 @@ import EditProfile from "./Edit-Profile/EditProfile";
 function Product_Catalog() {
   const [selected, setSelected] = useState("profile");
   const [updated, setUpdated] = useState(false);
+
   const handleSelect = (section) => {
     setSelected(section);
   };
@@ -12,6 +13,13 @@ function Product_Catalog() {
   const handleUpdate = () => {
     setUpdated(!updated);
   };
+
+
+
+  const[user,setUser]=useState('');
+
+
+
 
   return (
     <div className="mt-10 ml-2 lg:ml-8  px-5 lg:px-0  flex flex-col ">

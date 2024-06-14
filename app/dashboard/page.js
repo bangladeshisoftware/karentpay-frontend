@@ -1,7 +1,6 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import Balance from '@/app/dashboard/components/Balance';
-import Developer from '@/app/dashboard/components/Developer';
 import Home from '@/app/dashboard/components/Home';
 import Product_Catalog from '@/app/dashboard/components/Settings';
 import Transactions from '@/app/dashboard/components/Transactions';
@@ -22,7 +21,7 @@ import {
   ResizablePanel,
   ResizablePanelGroup
 } from '@/components/ui/resizable';
-import Developer2 from './components/Developer2';
+import Developer from './components/Developer';
 import Wtransactions from '@/app/dashboard/components/Wtransactions';
 import Payment from '@/app/dashboard/components/payment';
 import Support from '@/app/dashboard/components/Support';
@@ -99,7 +98,7 @@ function Dashboard() {
       case 'payments':
         return <Payment />;
       case 'developer':
-        return <Developer2 isTest={isOn} />;
+        return <Developer isTest={isOn} />;
       case 'support':
         return <Support />;
       case 'productCatalog':

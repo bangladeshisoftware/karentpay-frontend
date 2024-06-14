@@ -1,61 +1,88 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Datepicker from "react-tailwindcss-datepicker";
+import ApiRequest from "@/app/_lib/Api_request";
+import { GetCookies } from '@/app/_lib/cookiesSetting';
+import { toast } from 'react-toastify';
+import { format } from 'date-fns';
 
 function Transactions() {
+
+  const[transactions,setTransactions]=useState([])
+  const [transactionsData,settransactionsData]=useState([]) ;
   const [dateRange, setDateRange] = useState({
     startDate: null,
     endDate: null,
   });
 
-  const handleDateRangeChange = (newValue) => {
+  const handleDateRangeChange = async(newValue) => {
     console.log("newValue:", newValue);
     setDateRange(newValue);
+    const token =await GetCookies({ name: 'auth_token' });   
+    if (token) {        
+      const response=await ApiRequest({
+        url:'/transactionsByDate',
+        formdata:{startDate:newValue.startDate,endDate:newValue.endDate,},
+      });
+
+      if(response.status==200){
+        settransactionsData(response.data)    
+       console.log(response.data);      
+      }else{
+        toast.error(response.message)
+      }
+    }
+     
   };
 
-  const transactionsData = [
-    {
-      id: 1,
-      customerName: "Jane Smith",
-      method: "Credit Card",
-      amount: "$750",
-      trxId: "REF789012",
-      date: "2024-06-15",
-      status: "Pending",
-    },
-    {
-      id: 2,
-      customerName: "John Doe",
-      method: "PayPal",
-      amount: "$1200",
-      trxId: "REF123456",
-      date: "2024-07-10",
-      status: "Completed",
-    },
-    {
-      id: 3,
-      customerName: "Alice Johnson",
-      method: "Bank Transfer",
-      amount: "$450",
-      trxId: "REF654321",
-      date: "2024-08-08",
-      status: "Failed",
-    },
-  ];
+
+
+
+
+  useEffect(() => {
+    fatchData();
+  }, []);
+
+  const fatchData=async()=>{
+    const token =await GetCookies({ name: 'auth_token' });   
+    if (token) {        
+      const response=await ApiRequest({
+        url:'/transactions',
+       method:'get',
+      });
+      if(response.status==200){
+        settransactionsData(response.data)    
+       // console.log(response.data);
+      
+      }else{
+        toast.error(response.message)
+      }
+    }
+  };
+
+  const searchData=async(data)=>{
+    if(data.length>1){
+      const token =await GetCookies({ name: 'auth_token' });   
+      if (token) {        
+        const response=await ApiRequest({
+          url:'/transactions',
+        formdata:{search:data},
+        });
+        if(response.status==200){
+          settransactionsData(response.data)    
+        // console.log(response.data);
+        
+        }else{
+          toast.error(response.message)
+        }
+      }
+    }
+  };
+
+
 
   // Filter transactions based on the selected date range
-  const filteredTransactions = transactionsData.filter((transaction) => {
-    const transactionDate = new Date(transaction.date);
-    const startDateObj = dateRange.startDate
-      ? new Date(dateRange.startDate)
-      : null;
-    const endDateObj = dateRange.endDate ? new Date(dateRange.endDate) : null;
 
-    return (
-      (!startDateObj || transactionDate >= startDateObj) &&
-      (!endDateObj || transactionDate <= endDateObj)
-    );
-  });
 
   return (
     <div className="mt-10 ">
@@ -88,15 +115,14 @@ function Transactions() {
                       </div>
                       <div className="flex">
                         <input
+                          onChange={(e)=>searchData(e.target.value)}
                           type="text"
                           id="simple-search"
                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                           placeholder="Search"
                           required=""
                         />
-                        <button className="btn bg-gradient-to-r from-blue-800 to-purple-950 text-gray-200 px-14 rounded-md ml-2">
-                          Search
-                        </button>
+                        
                       </div>
                     </div>
                   </form>
@@ -133,8 +159,12 @@ function Transactions() {
                         Sl
                       </th>
                       <th scope="col" class="px-4 py-3">
-                        Customer Name
+                        Date
                       </th>
+                      <th scope="col" class="px-4 py-3">
+                        Reference
+                      </th>
+                   
                       <th scope="col" class="px-4 py-3">
                         Method
                       </th>
@@ -142,10 +172,11 @@ function Transactions() {
                         Amount
                       </th>
                       <th scope="col" class="px-4 py-3">
-                        TrxId & Reference
+                        TrxId 
                       </th>
+
                       <th scope="col" class="px-4 py-3">
-                        Date
+                      customerMsisdn
                       </th>
                       <th scope="col" class="px-4 py-3">
                         Status
@@ -153,7 +184,7 @@ function Transactions() {
                     </tr>
                   </thead>
                   <tbody>
-                    {filteredTransactions.map((transaction, index) => (
+                    {transactionsData.map((transaction, index) => (
                       <tr
                         className="border-b dark:border-gray-700"
                         key={transaction.id}
@@ -164,14 +195,13 @@ function Transactions() {
                         >
                           {index + 1}
                         </th>
-                        <td className="px-4 py-3">
-                          {transaction.customerName}
-                        </td>
-                        <td className="px-4 py-3">{transaction.method}</td>
+                        <td className="px-4 py-3">{transaction.created_at&&format(transaction.created_at, 'dd' + ' ' + 'MMMM' + ' ' + 'yyyy')}</td> 
+                        <td className="px-4 py-3">{transaction.reference}</td>                         
+                        <td className="px-4 py-3">{transaction.payment_method}</td>
                         <td className="px-4 py-3">{transaction.amount}</td>
-                        <td className="px-4 py-3">{transaction.trxId}</td>
-                        <td className="px-4 py-3">{transaction.date}</td>
-                        <td className="px-4 py-3">{transaction.status}</td>
+                        <td className="px-4 py-3">{transaction.trxID}</td>    
+                        <td className="px-4 py-3">{transaction.customerMsisdn}</td>                       
+                        <td className="px-4 py-3">{transaction.transactionStatus}</td>
                       </tr>
                     ))}
                   </tbody>

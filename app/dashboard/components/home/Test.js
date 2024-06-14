@@ -48,7 +48,7 @@ const Test = () => {
   };
 
   const handleCopy2 = (text) => {
-    console.log(showText, "showtext");
+    
     if (showText) {
       navigator.clipboard
         .writeText(text)

@@ -11,7 +11,7 @@ export default function Production() {
   const [copyMessage1, setCopyMessage1] = useState("");
   const [copyMessage2, setCopyMessage2] = useState("");
   const [showText, setShowText] = useState(false);
-
+  const [DeleteBan, setDeleteBan] = useState(false);
   useEffect(() => {
     getTestKey();
   }, []);
@@ -47,15 +47,27 @@ export default function Production() {
   };
 
   const handleCopy2 = (text) => {
-    navigator.clipboard
-      .writeText(text)
-      .then(() => {
-        setCopyMessage2("Copied!");
-        setTimeout(() => setCopyMessage2(""), 2000);
-      })
-      .catch((err) => {
-        console.error("Failed to copy: ", err);
-      });
+    if (showText) {
+      navigator.clipboard
+        .writeText(text)
+        .then(() => {
+          setCopyMessage2("Copied!");
+          setTimeout(() => setCopyMessage2(""), 2000);
+        })
+        .catch((err) => {
+          console.error("Failed to copy: ", err);
+        });
+    } else {
+      navigator.clipboard
+        .writeText(" ")
+        .then(() => {
+          setCopyMessage2("Copied!");
+          setTimeout(() => setCopyMessage2(""), 2000);
+        })
+        .catch((err) => {
+          console.error("Failed to copy: ", err);
+        });
+    }
   };
 
   const handleRevealText = () => {
@@ -64,14 +76,13 @@ export default function Production() {
   const handleHideText = () => {
     setShowText(false);
   };
+  const handleDeleteBan = () => {
+    setDeleteBan(!DeleteBan);
+  };
   return (
-    <div className="container ml-0 mt-5">
-      <h2 className="text-3xl font-bold">Developers</h2>
-      <div className="border-b">
-        <p className="mt-2">API keys</p>
-      </div>
-      <div className="w-full border p-3 mt-3 rounded-md flex items-center justify-between">
-        <h3 className="text-xl font-semibold">API keys</h3>
+    <div className="ml-2 lg:ml-8   mt-5">
+      <div className="w-full border lg:p-3 mt-3 rounded-md lg:flex  lg:items-center lg:justify-between">
+        <h3 className="text-xl font-semibold"> API keys</h3>
         <Link className="" href="#">
           <span className="text-sm text-[#2F65EC] font-medium flex items-center">
             Learn more about API Authentication{" "}
@@ -81,25 +92,29 @@ export default function Production() {
       </div>
 
       <div className="mt-5 border rounded-md">
-        <div className="border-b p-4 text-center flex items-center  justify-between ">
+        <div className="border-b lg:p-4 text-center lg:flex md:flex items-center  lg:justify-between md:justify-between  ">
           <h3 className="text-xl font-semibold  ">Standard keys</h3>
           <h3 className="text-xl font-semibold  ">Domain Name</h3>
           <div className="relative">
-            <SlOptions />
-            <div className="bg-white border shadow-md rounded-sm absolute p-2 flex flex-col gap-2">
-              <p className="flex items-center gap-1">
-                Delete{" "}
-                <span>
-                  <MdDelete className="text-red-900" />
-                </span>
-              </p>
-              <p className="flex items-center gap-1">
-                Ban{" "}
-                <span>
-                  <FaBan className="text-red-700" />
-                </span>
-              </p>
-            </div>
+            <SlOptions onClick={handleDeleteBan} />
+            {DeleteBan ? (
+              <div className="bg-white border shadow-md rounded-sm absolute right-0 p-2 flex flex-col gap-2">
+                <p className="flex items-center gap-1">
+                  Delete{" "}
+                  <span>
+                    <MdDelete className="text-red-900" />
+                  </span>
+                </p>
+                <p className="flex items-center gap-1">
+                  Ban{" "}
+                  <span>
+                    <FaBan className="text-red-700" />
+                  </span>
+                </p>
+              </div>
+            ) : (
+              ""
+            )}
           </div>
           {/* <p className="text-sm font-normal">
             Create a key that unlocks full API access, enabling extensive
@@ -109,17 +124,25 @@ export default function Production() {
             </Link>
           </p> */}
         </div>
-        <div className="">
-          <table>
+        <div className="overflow-x-auto">
+          <table className="table-auto">
             <thead>
               <tr className="w-full text-left  mt-3 h-8 border-b ">
-                <th className="lg:w-[30%]  text-xs font-medium">
+                <th className="w-[200px]  text-xs font-medium">
                   <div className="ml-4">NAME</div>
                 </th>
-                <th className="lg:w-[30%] font-medium text-xs">TOKEN</th>
-                <th className="lg:w-[15%] font-medium text-xs">LAST USED</th>
-                <th className="lg:w-[15%] font-medium text-xs">CREATED</th>
-                <th className="lg:w-[10%] font-medium text-xs">STATUS</th>
+                <th className="lg:w-[200px] md:w-[300px] md:h-10 font-medium text-xs">
+                  TOKEN
+                </th>
+                <th className="lg:w-[200px] md:w-[300px] md:h-10 font-medium text-xs">
+                  LAST USED
+                </th>
+                <th className="lg:w-[200px] md:w-[300px] md:h-10font-medium text-xs">
+                  CREATED
+                </th>
+                <th className="lg:w-[200px] md:w-[300px] md:h-10 font-medium text-xs">
+                  STATUS
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -128,7 +151,7 @@ export default function Production() {
                   <div className="ml-3 font-semibold">Publishable key</div>
                 </td>
                 <td
-                  className="break-words cursor-pointer relative "
+                  className="break-words overflow-hidden cursor-pointer relative "
                   onClick={() =>
                     handleCopy1(
                       "curently working"
@@ -142,7 +165,7 @@ export default function Production() {
                       {copyMessage1}
                     </div>
                   )}
-                 curently working
+                curently working
                 </td>
                 <td>-</td>
                 <td>9jun</td>
@@ -161,7 +184,14 @@ export default function Production() {
                         "curently working"
                       )
                     }
-                    onMouseEnter={() => setCopyMessage2("Click to copy")}
+                    onMouseEnter={() => {
+                      console.log(showText, "show");
+                      if (showText) {
+                        setCopyMessage2("Click to copy");
+                      } else {
+                        setCopyMessage2("");
+                      }
+                    }}
                     onMouseLeave={() => setCopyMessage2("")}
                   >
                     {copyMessage2 && (

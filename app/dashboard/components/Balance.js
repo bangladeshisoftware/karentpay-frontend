@@ -21,9 +21,7 @@ useEffect(() => {
        method:'get',
       });
       if(response.status==200){
-        setbalance(response.data.user.balance)
-       console.log(response);
-      
+        setbalance(response.data.user.balance)        
       }else{
         toast.error(response.message)
       }
