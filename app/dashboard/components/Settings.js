@@ -1,7 +1,13 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { FaRegEdit } from "react-icons/fa";
 import EditProfile from "./Edit-Profile/EditProfile";
+import ApiRequest from '@/app/_lib/Api_request';
+import { GetCookies } from '@/app/_lib/cookiesSetting';
+import { toast } from 'react-toastify';
+
+
+
 function Product_Catalog() {
   const [selected, setSelected] = useState("profile");
   const [updated, setUpdated] = useState(false);
@@ -16,7 +22,28 @@ function Product_Catalog() {
 
 
 
-  const[user,setUser]=useState('');
+  const[user,setuser]=useState('');
+  useEffect(()=>{
+    getuser()
+  },[])
+
+  const getuser=async()=>{
+    const token =await GetCookies({ name: 'auth_token' });
+      console.log("token",token);
+      if (token) {        
+        const response=await ApiRequest({
+          url:'/marchentuser',
+         method:'get',
+        });
+        if(response.status==200){
+          setuser(response.data)
+          console.log(response.data.user)
+        
+        }else{
+          toast.error(response.message)
+        }
+      }
+  }
 
 
 
@@ -184,7 +211,7 @@ function Product_Catalog() {
             <div className="mt-8">
               <h3 className="">
                 Name
-                <p className="border  w-full rounded-sm p-2 ">abcdef</p>
+                <p className="border  w-full rounded-sm p-2 ">{user.name}</p>
               </h3>
             </div>
             <div className="mt-8">
