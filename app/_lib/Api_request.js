@@ -14,7 +14,7 @@ const ApiRequest=async({url,formdata=null,method="post",type="application/json"}
     
 
     const api_request = axios.create({
-        baseURL: 'http://localhost:8000/api',       
+        baseURL: 'https://laravel.epayget.com/api',       
       });
       api_request.defaults.headers.common['Authorization'] =`Bearer ${token}`;
 
