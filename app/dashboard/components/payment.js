@@ -19,99 +19,127 @@ import city from "@/app/_assets/city-bank.png";
 import islami from "@/app/_assets/islami.png";
 import visa from "@/app/_assets/visa.png";
 import mastercard from "@/app/_assets/mastercard.png";
-import {toast} from 'react-toastify';
+import { toast } from 'react-toastify';
 import ApiRequest from "@/app/_lib/Api_request";
 
 const Payment = () => {
   const [selected, setSelected] = useState("mobile");
+  const [mobilePay, setMobilePay] = useState(0);
+  const [amount, setAmount] = useState(0);
+  const [mobileStatus, setMobileStatus] = useState({
+    bkash: true,
+    nagad: true,
+    upay: true,
+    rocket: true
+  });
+  const [internetStatus, setInternetStatus] = useState({
+    dbbl: true,
+    asia: true,
+    city: true,
+    islami: true
+  });
+  const [cardStatus, setCardStatus] = useState(true);
 
-  const [mobilePay, setmobilePay] = useState(0);
-  const[amount,setamount]=useState(0);
-
-
-  useEffect(()=>{
+  useEffect(() => {
     checkSecret();
-  },[])
-  const checkSecret=async()=>{
-    if(!localStorage.getItem('secret_key')){    
-   
-   
+  }, []);
+
+  const checkSecret = async () => {
+    if (!localStorage.getItem('secret_key')) {
       const response = await ApiRequest({
         url: "/key",
         method: "get",
       });
       if (response.status === 200) {
-        localStorage.setItem('secret_key',response.data[0].privet_key)
+        localStorage.setItem('secret_key', response.data[0].privet_key)
       } else {
         console.log(response);
       }
-  
-  }
-  }
-
-
-
-  const handlePayment=async()=>{
-    if(selected=="mobile"){
-      if(mobilePay==''||mobilePay.id<1){
-        toast.error('please select payment method to continue')
-        return;
-      }
-      console.log(mobilePay);
-      if(mobilePay.id !=1){
-        toast.error('Just Bkash Pyment Available, Other payment will be available Soon')
-        return;
-      }
-
-      if(amount<10){
-        toast.error('Minimum Pay 10Tk')
-        return;
-      }
-
-      var rf=Math.floor(Math.random() * 1000000000) + 100000;
-      const response=await ApiRequest({
-        url:'/v1/create_payment',
-        formdata:{
-          currency:'BDT',
-          amount:amount,
-          reference:rf,
-          callback_url:process.env.NEXT_PUBLIC_PAYMENT_DOMAIN
-        }
-      });
-      if(response.status==201){
-        window.location = response.data.payment_url;
-      
-      }else{
-        toast.error(response.message)
-      }
-      console.log(response);
-    }else{
-      toast.error('Just for mobile payment Available')
     }
   }
 
+  const handleToggle = (key, type) => {
+    if (type === 'mobile') {
+      setMobileStatus(prevState => ({
+        ...prevState,
+        [key]: !prevState[key]
+      }));
+    } else if (type === 'internet') {
+      setInternetStatus(prevState => ({
+        ...prevState,
+        [key]: !prevState[key]
+      }));
+    }
+  }
 
+  const handlePayment = async () => {
+    if (selected === "mobile") {
+      if (mobilePay === '' || mobilePay.id < 1) {
+        toast.error('Please select a payment method to continue');
+        return;
+      }
+
+      if (!mobileStatus.bkash || !mobileStatus.nagad || !mobileStatus.rocket || !mobileStatus.upay) {
+        console.log(mobileStatus[mobilePay.key]);
+        toast.error(`${mobilePay.title} is turned off. Please select an active payment method.`);
+        return;
+      }
+
+      // if (mobilePay.id !== 1) {
+      //   toast.error('Just Bkash Payment Available, Other payments will be available Soon');
+      //   return;
+      // }
+
+      if (amount < 10) {
+        toast.error('Minimum Pay 10Tk');
+        return;
+      }
+
+      var rf = Math.floor(Math.random() * 1000000000) + 100000;
+      const response = await ApiRequest({
+        url: '/v1/create_payment',
+        formdata: {
+          currency: 'BDT',
+          amount: amount,
+          reference: rf,
+          callback_url: process.env.NEXT_PUBLIC_PAYMENT_DOMAIN
+        }
+      });
+      if (response.status == 201) {
+        window.location = response.data.payment_url;
+      } else {
+        toast.error(response.message);
+      }
+      console.log(response);
+    } else {
+      toast.error('Just for mobile payment Available');
+    }
+  }
 
   const mobileBanks = [
     {
       id: 1,
       title: "Bkash",
       img: bkash,
+      key: "bkash"
     },
     {
       id: 2,
       title: "Nagad",
       img: nagad,
+      key: "nagad"
     },
     {
       id: 3,
       title: "Upay",
       img: upay,
+      key: "upay"
     },
     {
       id: 4,
       title: "rocket",
       img: rocket,
+      key: "rocket"
     },
   ];
 
@@ -120,21 +148,25 @@ const Payment = () => {
       id: 1,
       title: "DBBL",
       img: dbbl,
+      key: "dbbl"
     },
     {
       id: 2,
       title: "Bank Asia",
       img: asia,
+      key: "asia"
     },
     {
       id: 3,
       title: "City Bank",
       img: city,
+      key: "city"
     },
     {
       id: 4,
       title: "Islami Bank",
       img: islami,
+      key: "islami"
     },
   ];
 
@@ -212,31 +244,32 @@ const Payment = () => {
           <div className="mt-10">
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-6 sm:gap-6 lg:gap-2 md:gap-6 mt-10 ml-4">
               {mobileBanks.map((bank) => (
-                <div
-                  key={bank.id} 
-                  onClick={()=>setmobilePay(bank)}
-                  className={`${bank.id==mobilePay.id&&'border-purple-600 scale-110'} w-full scale-110 lg:scale-100 md:scale-100 lg:w-[100px] md:w-[70px] h-[120px] flex flex-col items-center justify-center border rounded-lg shadow-md transition-transform duration-300 hover:scale-110 focus-within:border-4 focus-within:border-blue-500 focus-within:scale-110 cursor-pointer`}
-                >
-                  <Image
-                    className="h-auto"
-                    src={bank.img}
-                    height={50}
-                    width={80}
-                    alt={bank.title}
-                  />
-                  <h3 className="text-sm font-medium">{bank.title}</h3>
+                <div key={bank.id} className="flex flex-col items-center">
+                  <div
+                    onClick={() => setMobilePay(bank)}
+                    className={`${
+                      bank.id === mobilePay.id ? 'border-purple-600 scale-110' : ''
+                    } w-full scale-110 lg:scale-100 md:scale-100 lg:w-[100px] md:w-[70px] h-[120px] flex flex-col items-center justify-center border rounded-lg shadow-md transition-transform duration-300 hover:scale-110 cursor-pointer`}
+                  >
+                    <Image className="h-auto" src={bank.img} height={50} width={80} alt={bank.title} />
+                    <h3 className="text-sm font-medium">{bank.title}</h3>
+                  </div>
+                  <button
+                    onClick={() => handleToggle(bank.key, 'mobile')}
+                    className={`mt-2 text-xs ${mobileStatus[bank.key] ? 'text-green-500' : 'text-red-500'}`}
+                  >
+                    {mobileStatus[bank.key] ? 'Turn Off' : 'Turn On'}
+                  </button>
                 </div>
               ))}
             </div>
-            <div className="w-[90%] flex justify-center text-center focus-within:border focus-within:border-blue-500 rounded-sm bg-gray-100 items-center  mt-10 ml-6">
+            <div className="w-[90%] flex justify-center text-center focus-within:border focus-within:border-blue-500 rounded-sm bg-gray-100 items-center mt-10 ml-6">
               <input
                 type="phone"
                 placeholder="Amount"
                 value={amount}
-                onChange={(e)=>{
-                  setamount(e.target.value);
-                }}
-                className="outline-none py-2 px-3  ml-0 bg-gray-100  rounded-sm w-full"
+                onChange={(e) => setAmount(e.target.value)}
+                className="outline-none py-2 px-3 ml-0 bg-gray-100 rounded-sm w-full"
               />
             </div>
           </div>
@@ -246,27 +279,28 @@ const Payment = () => {
           <div className="mt-10">
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-6 sm:gap-6 lg:gap-2 md:gap-6 mt-10 ml-4">
               {internetBanks.map((bank) => (
-                <div
-                  key={bank.id}
-                  className="w-full scale-110 lg:scale-100 md:scale-100 lg:w-[100px] md:w-[70px] h-[120px] flex flex-col items-center justify-center border rounded-lg shadow-md transition-transform duration-300 hover:scale-110 focus-within:border-4 focus-within:border-blue-500 focus-within:scale-110 cursor-pointer"
-                >
-                  <Image
-                    className="h-auto"
-                    src={bank.img}
-                    height={50}
-                    width={80}
-                    alt={bank.title}
-                  />
-                  <h3 className="text-sm font-medium">{bank.title}</h3>
+                <div key={bank.id} className="flex flex-col items-center">
+                  <div
+                    className="w-full scale-110 lg:scale-100 md:scale-100 lg:w-[100px] md:w-[70px] h-[120px] flex flex-col items-center justify-center border rounded-lg shadow-md transition-transform duration-300 hover:scale-110 cursor-pointer"
+                  >
+                    <Image className="h-auto" src={bank.img} height={50} width={80} alt={bank.title} />
+                    <h3 className="text-sm font-medium">{bank.title}</h3>
+                  </div>
+                  <button
+                    onClick={() => handleToggle(bank.key, 'internet')}
+                    className={`mt-2 text-xs ${internetStatus[bank.key] ? 'text-green-500' : 'text-red-500'}`}
+                  >
+                    {internetStatus[bank.key] ? 'Turn Off' : 'Turn On'}
+                  </button>
                 </div>
               ))}
             </div>
-            <div className="w-[90%] flex justify-center text-center focus-within:border focus-within:border-blue-500 rounded-sm bg-gray-100 items-center  mt-10 ml-6">
+            <div className="w-[90%] flex justify-center text-center focus-within:border focus-within:border-blue-500 rounded-sm bg-gray-100 items-center mt-10 ml-6">
               <input
                 type="phone"
                 placeholder="Amount"
                 value=""
-                className="outline-none py-2 px-3  ml-0 bg-gray-100  rounded-sm w-full"
+                className="outline-none py-2 px-3 ml-0 bg-gray-100 rounded-sm w-full"
               />
             </div>
           </div>
@@ -274,53 +308,58 @@ const Payment = () => {
 
         {selected === "card" && (
           <div className="mt-10">
-            <div className="w-[90%] flex justify-center text-center focus-within:border focus-within:border-blue-500 rounded-sm bg-gray-100 items-center  mt-5 ml-6">
-              <BsFillCreditCard2FrontFill
-                fontSize={25}
-                className="text-blue-900 ml-2"
-              />
+            <button
+                    onClick={() =>{setCardStatus(!cardStatus)}}
+                    className={` flex justify-center w-full text-xs ${cardStatus ? 'text-green-500' : 'text-red-500'}`}
+                  >
+                    {cardStatus ? 'Turn Off' : 'Turn On'}
+                  </button>
+            <div className="w-[90%] flex justify-center text-center focus-within:border focus-within:border-blue-500 rounded-sm bg-gray-100 items-center mt-5 ml-6">
+              <BsFillCreditCard2FrontFill fontSize={25} className="text-blue-900 ml-2" />
+              
               <input
                 type="phone"
                 placeholder="Card Number"
                 value=""
-                className="outline-none py-2 px-3  ml-0 bg-gray-100  rounded-sm w-full"
+                className="outline-none py-2 px-3 ml-0 bg-gray-100 rounded-sm w-full"
               />
             </div>
             <div className="w-[90%] flex justify-between gap-2 mt-10 text-center mx-auto">
-              <div className="w-[60%] flex  text-center focus-within:border focus-within:border-blue-500 rounded-sm bg-gray-100 items-center ">
+              <div className="w-[60%] flex text-center focus-within:border focus-within:border-blue-500 rounded-sm bg-gray-100 items-center">
                 <SlCalender fontSize={30} className="text-black w-10 ml-4" />
                 <input
                   type="date"
                   placeholder="Card Number"
                   value=""
-                  className="outline-none py-2 px-3  ml-4   rounded-sm w-full mr-6 bg-gray-100"
+                  className="outline-none py-2 px-3 ml-4 rounded-sm w-full mr-6 bg-gray-100"
                 />
               </div>
-              <div className="w-[50%]  flex gap-2 text-center focus-within:border focus-within:border-blue-500 rounded-sm bg-gray-100 items-center">
+              <div className="w-[50%] flex gap-2 text-center focus-within:border focus-within:border-blue-500 rounded-sm bg-gray-100 items-center">
                 <FaBarcode fontSize={40} className="text-black ml-2" />
                 <input
                   type="phone"
                   placeholder="CVC/CVV"
                   value=""
-                  className="outline-none py-2 px-3    rounded-sm w-full mr-6 bg-gray-100"
+                  className="outline-none py-2 px-3 rounded-sm w-full mr-6 bg-gray-100"
                 />
               </div>
             </div>
-            <div className="w-[90%] flex justify-center text-center focus-within:border focus-within:border-blue-500 rounded-sm bg-gray-100 items-center  mt-10 ml-6">
+            <div className="w-[90%] flex justify-center text-center focus-within:border focus-within:border-blue-500 rounded-sm bg-gray-100 items-center mt-10 ml-6">
               <ImProfile fontSize={25} className="text-black ml-2" />
               <input
                 type="name"
                 placeholder="Card Holder"
                 value=""
-                className="outline-none py-2 px-3  ml-0 bg-gray-100  rounded-sm w-full"
+                className="outline-none py-2 px-3 ml-0 bg-gray-100 rounded-sm w-full"
               />
             </div>
           </div>
         )}
-        <div className="mt-10 w-full overflow-y-hidden flex flex-col  ">
-          <button 
-          onClick={()=>handlePayment()}
-          className="bg-gradient-to-r from-purple-500 to-blue-600 p-3 w-full rounded-sm font-md text-lg text-white">
+        <div className="mt-10 w-full overflow-y-hidden flex flex-col">
+          <button
+            onClick={() => handlePayment()}
+            className="bg-gradient-to-r from-purple-500 to-blue-600 p-3 w-full rounded-sm font-md text-lg text-white"
+          >
             Pay {amount}
           </button>
         </div>
