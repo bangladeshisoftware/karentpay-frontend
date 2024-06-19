@@ -104,8 +104,8 @@ function Wtransactions() {
 
   return (
     <div className="mt-10">
-      <div className="px-5 lg:px-0">
-        <section className="shadow-md border rounded-md ml-2 lg:ml-5 mb-36">
+      <div className="px-1 lg:px-0">
+        <section className="shadow-md border rounded-md ml-1 lg:ml-5 mb-36">
           <div className="max-w-screen-xl">
             {/* <!-- Start coding here --> */}
             <div className="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">

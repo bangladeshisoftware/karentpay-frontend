@@ -34,8 +34,8 @@ useEffect(() => {
 
 
   return (
-    <div className="rounded-md mt-10 ml-2 lg:ml-5">
-      <div className="grid grid-cols-1 lg:grid-cols-3 justify-around gap-4 px-5 lg:px-0 pb-5">
+    <div className="rounded-md mt-10 ml-1 lg:ml-5">
+      <div className="grid grid-cols-1 lg:grid-cols-3 justify-around gap-4 px-1 lg:px-0 pb-5">
         <div className="border rounded-md shadow px-20 py-16 bg-gradient-to-r from-blue-500 to-purple-500 text-white flex items-center transition-all duration-300 hover:shadow-lg">
           <div className="mr-3 text-2xl bg-[#FFFF] rounded-full text-black p-3">
             <HiOutlineCurrencyDollar />
