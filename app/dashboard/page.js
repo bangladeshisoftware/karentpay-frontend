@@ -81,7 +81,7 @@ function Dashboard() {
   ];
 
   const selectedContainer =
-    windowWidth < 1024 ? containerType[0] : containerType[3];
+    windowWidth < 1024 ? containerType[0] : containerType[2];
 
   const toggleSwitch = () => {
     setIsOn(!isOn);
