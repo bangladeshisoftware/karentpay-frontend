@@ -86,11 +86,11 @@ function Transactions() {
 
   return (
     <div className="mt-10 ">
-      <div className="lg:px-0 px-5">
-        <section class=" shadow-md border rounded-md ml-2 lg:ml-5 mb-36">
+      <div className="lg:px-0 px-1">
+        <section class=" shadow-md border rounded-md ml-1 lg:ml-5 mb-36">
           <div class=" max-w-screen-xl ">
             {/* <!-- Start coding here --> */}
-            <div class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
+            <div class="bg-white dark:bg-gray-800  shadow-md sm:rounded-lg overflow-hidden">
               <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
                 <div class="w-full md:w-1/2">
                   <form class="flex items-center">

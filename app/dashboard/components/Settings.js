@@ -49,7 +49,7 @@ function Product_Catalog() {
 
 
   return (
-    <div className="mt-10 ml-2 lg:ml-8  px-5 lg:px-0  flex flex-col ">
+    <div className="mt-10 ml-1 lg:ml-8  px-1 lg:px-0  flex flex-col ">
       <div className="nav bg-gradient-to-r from-purple-500 to-blue-600 hidden lg:flex md:flex xl:flex lg:gap-4 border rounded-md shadow-md  items-center h-fit mt-2  text-white  lg:py-4">
         <h3
           className={` cursor-pointer rounded-md p-2 ml-3 ${

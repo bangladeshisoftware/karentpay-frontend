@@ -1,5 +1,9 @@
 import React, { useState } from "react";
 import { MdUploadFile } from "react-icons/md";
+import { GiTicket } from "react-icons/gi";
+import { MdAirplaneTicket } from "react-icons/md";
+import { MdOutlineAirplaneTicket } from "react-icons/md";
+
 function Support() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [subject, setSubject] = useState("");
@@ -47,10 +51,10 @@ function Support() {
   const currentTickets = tickets.slice(startIndex, startIndex + itemsPerPage);
 
   return (
-    <div className="mt-10 ml-2 lg:ml-8">
-      <div className="grid lg:grid-cols-3 grid-cols-1 px-5 lg:px-0 justify-around gap-4 pb-5">
-        <div className="border rounded-md shadow px-20 py-16 bg-gradient-to-r from-blue-500 to-purple-500 text-white flex items-center transition-all duration-300 hover:shadow-lg">
-          <div className="mr-3 text-2xl bg-[#FFFF] rounded-full text-black p-3"></div>
+    <div className="mt-10 ml-1 lg:ml-8">
+      <div className="grid lg:grid-cols-3 grid-cols-1 px-1 lg:px-0 justify-around gap-4 pb-5">
+        <div className="border border-blue-500 rounded-md shadow px-20 py-16  text-black flex items-center transition-all duration-300 hover:shadow-lg">
+          <div className="mr-3 text-2xl border border-blue-500 rounded-full text-black p-3"><GiTicket /></div>
           <div>
             <div>
               <h2 className="text-xl font-bold">200</h2>
@@ -60,8 +64,8 @@ function Support() {
             </div>
           </div>
         </div>
-        <div className="border rounded-md shadow px-20 py-16 lg:py-8 bg-gradient-to-r from-blue-500 to-purple-500 text-white flex items-center transition-all duration-300 hover:shadow-lg">
-          <div className="mr-3 text-2xl bg-[#FFFF] rounded-full text-black p-3"></div>
+        <div className="border border-blue-500 rounded-md shadow px-20 py-16 lg:py-8  text-black flex items-center transition-all duration-300 hover:shadow-lg">
+          <div className="mr-3 text-2xl border border-blue-500 rounded-full text-black p-3"><MdAirplaneTicket /></div>
           <div>
             <div>
               <h2 className="text-xl font-bold">75</h2>
@@ -71,8 +75,8 @@ function Support() {
             </div>
           </div>
         </div>
-        <div className="border rounded-md shadow px-20 py-16 lg:py-8 bg-gradient-to-r from-blue-500 to-purple-500 text-white flex items-center transition-all duration-300 hover:shadow-lg">
-          <div className="mr-3 text-2xl bg-[#FFFF] rounded-full text-black p-3"></div>
+        <div className="border border-blue-500 rounded-md shadow px-20 py-16 lg:py-8  text-black flex items-center transition-all duration-300 hover:shadow-lg">
+          <div className="mr-3 text-2xl border border-blue-500 rounded-full text-black p-3"><MdOutlineAirplaneTicket /></div>
           <div>
             <div>
               <h2 className="text-xl font-bold">125</h2>
