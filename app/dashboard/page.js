@@ -81,7 +81,7 @@ function Dashboard() {
   ];
 
   const selectedContainer =
-    windowWidth < 1024 ? containerType[0] : containerType[2];
+    windowWidth < 1024 ? containerType[0] : containerType[3];
 
   const toggleSwitch = () => {
     setIsOn(!isOn);
@@ -236,7 +236,7 @@ function Dashboard() {
         )}
         <ResizableHandle />
         {/* Navbar for small and medium devices */}
-        <nav className='lg:hidden fixed bottom-0 left-0 w-full bg-gradient-to-b from-blue-600 to-purple-400 text-white flex justify-between px-4 py-2'>
+        <nav className='lg:hidden fixed bottom-0 left-0 w-full border border-blue-500 rounded-md bg-gray-200 text-purple-950 flex justify-between px-4 py-2'>
           <FiHome
             className='text-2xl cursor-pointer'
             onClick={() => setActiveComponent('home')}
@@ -271,11 +271,11 @@ function Dashboard() {
           />
         </nav>
         <ResizablePanel defaultSize={85} minSize={40}>
-          <div className='flex-1 p-0 '>
+          <div className='flex-1 p-0 overflow-y-auto scrollbar-hide'>
             {activeComponent === 'developer' && (
               <Header isOn={isOn} toggleSwitch={toggleSwitch} />
             )}
-            <main>{renderComponent()}</main>
+            <main className='h-screen'>{renderComponent()}</main>
           </div>
         </ResizablePanel>
       </ResizablePanelGroup>

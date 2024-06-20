@@ -92,13 +92,13 @@ const NavBar = () => {
       </div>
 
       {/* small and medium screens */}
-      <div className='container lg:hidden wide-laptop:hidden small-laptop:hidden flex items-center justify-between relative'>
+      <div className='container lg:hidden wide-laptop:hidden small-laptop:hidden flex items-center justify-between relative px-2'>
         <div className='flex items-center'>
-          <button onClick={() => setIsOpen(!isOpen)} className='p-1 m-0'>
-            <Menu className='w-10 h-10 text-white' />
+          <button onClick={() => setIsOpen(!isOpen)} className='p-1 m-0 '>
+            <Menu className='w-14 h-16 text-white' />
           </button>
           <Link href='/'>
-            <Image src={Logo} alt='Logo' className='w-36 h-12 ml-6' />
+            <Image src={Logo} alt='Logo' className='w-44 h-14 ml-6' />
           </Link>
         </div>
       </div>
