@@ -79,11 +79,11 @@ const Payment = () => {
         return;
       }
 
-      if (!mobileStatus.bkash || !mobileStatus.nagad || !mobileStatus.rocket || !mobileStatus.upay) {
-        console.log(mobileStatus[mobilePay.key]);
-        toast.error(`${mobilePay.title} is turned off. Please select an active payment method.`);
-        return;
-      }
+      // if (!mobileStatus.bkash || !mobileStatus.nagad || !mobileStatus.rocket || !mobileStatus.upay) {
+      //   console.log(mobileStatus[mobilePay.key]);
+      //   toast.error(`${mobilePay.title} is turned off. Please select an active payment method.`);
+      //   return;
+      // }
 
       // if (mobilePay.id !== 1) {
       //   toast.error('Just Bkash Payment Available, Other payments will be available Soon');
@@ -254,12 +254,7 @@ const Payment = () => {
                     <Image className="h-auto" src={bank.img} height={50} width={80} alt={bank.title} />
                     <h3 className="text-sm font-medium">{bank.title}</h3>
                   </div>
-                  <button
-                    onClick={() => handleToggle(bank.key, 'mobile')}
-                    className={`mt-2 text-xs ${mobileStatus[bank.key] ? 'text-green-500' : 'text-red-500'}`}
-                  >
-                    {mobileStatus[bank.key] ? 'Turn Off' : 'Turn On'}
-                  </button>
+                
                 </div>
               ))}
             </div>
@@ -286,12 +281,7 @@ const Payment = () => {
                     <Image className="h-auto" src={bank.img} height={50} width={80} alt={bank.title} />
                     <h3 className="text-sm font-medium">{bank.title}</h3>
                   </div>
-                  <button
-                    onClick={() => handleToggle(bank.key, 'internet')}
-                    className={`mt-2 text-xs ${internetStatus[bank.key] ? 'text-green-500' : 'text-red-500'}`}
-                  >
-                    {internetStatus[bank.key] ? 'Turn Off' : 'Turn On'}
-                  </button>
+                
                 </div>
               ))}
             </div>
@@ -308,12 +298,7 @@ const Payment = () => {
 
         {selected === "card" && (
           <div className="mt-10">
-            <button
-                    onClick={() =>{setCardStatus(!cardStatus)}}
-                    className={` flex justify-center w-full text-xs ${cardStatus ? 'text-green-500' : 'text-red-500'}`}
-                  >
-                    {cardStatus ? 'Turn Off' : 'Turn On'}
-                  </button>
+            
             <div className="w-[90%] flex justify-center text-center focus-within:border focus-within:border-blue-500 rounded-sm bg-gray-100 items-center mt-5 ml-6">
               <BsFillCreditCard2FrontFill fontSize={25} className="text-blue-900 ml-2" />
               

@@ -120,6 +120,19 @@ function Product_Catalog() {
         >
           PassKeys
         </h3>
+
+        <h3
+          onClick={() => {
+            handleSelect("paymentSettings");
+          }}
+          className={` cursor-pointer p-2 rounded-md ${
+            selected == "paymentSettings"
+              ? "bg-gradient-to-r from-blue-800 to-purple-950"
+              : "none"
+          }`}
+        >
+          Payment Settings
+        </h3>
         {/* <button className="px-4 border rounded-md  flex items-center gap-2 hover:border-blue-600 focus-within:border-blue-600">
           Edit
           <span>
@@ -197,6 +210,19 @@ function Product_Catalog() {
         >
           PassKeys
         </h3>
+
+        <h3
+          onClick={() => {
+            handleSelect("paymentSettings");
+          }}
+          className={` cursor-pointer p-2 rounded-md ${
+            selected == "paymentSettings"
+              ? "bg-gradient-to-r from-blue-800 to-purple-950"
+              : "none"
+          }`}
+        >
+          Payment Settings
+        </h3>
         {/* <button className="px-4 border rounded-md  flex items-center gap-2 hover:border-blue-600 focus-within:border-blue-600">
           Edit
           <span>
@@ -260,6 +286,28 @@ function Product_Catalog() {
           ) : (
             ""
           )}
+        </div>
+        <div>
+          {selected == "paymentSettings" ? (
+            <form>
+              <div className="border  my-6 mx-auto lg:mx-0 bg-white focus-within:border-[#2F65EC] hover:border-[#2F65EC] rounded-md w-full lg:w-full">
+          <input
+            className="w-full px-2 py-2 lg:py-3 lg:px-3 bg-transparent rounded-md outline-none"
+            type="text"
+            name="name"
+            placeholder="Payment Name"
+          />
+        </div>
+        <div className="border  my-6 mx-auto lg:mx-0 bg-white focus-within:border-[#2F65EC] hover:border-[#2F65EC] rounded-md w-full lg:w-full">
+          <input
+            className="w-full px-2 py-2 lg:py-3 lg:px-3 bg-transparent rounded-md outline-none"
+            type="file"
+            name="img"
+            placeholder=""
+          />
+        </div>
+            </form>
+          ):""}
         </div>
       </div>
     </div>
