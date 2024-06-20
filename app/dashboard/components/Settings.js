@@ -5,12 +5,17 @@ import EditProfile from "./Edit-Profile/EditProfile";
 import ApiRequest from '@/app/_lib/Api_request';
 import { GetCookies } from '@/app/_lib/cookiesSetting';
 import { toast } from 'react-toastify';
+import BankingDrawer from "./BankingDrawer/BankingDrawer";
+import ToggleButton from "./Toggle/ToggleButton";
+
 
 
 
 function Product_Catalog() {
   const [selected, setSelected] = useState("profile");
   const [updated, setUpdated] = useState(false);
+
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   const handleSelect = (section) => {
     setSelected(section);
@@ -20,7 +25,10 @@ function Product_Catalog() {
     setUpdated(!updated);
   };
 
+ const handlePaymentSetting = (e)=>{
+  e.preventDefault();
 
+ }
 
   const[user,setuser]=useState('');
   useEffect(()=>{
@@ -49,7 +57,8 @@ function Product_Catalog() {
 
 
   return (
-    <div className="mt-10 ml-1 lg:ml-8  px-1 lg:px-0  flex flex-col ">
+    <div className="mt-10 z-10 ml-1 lg:ml-8  px-1 lg:px-0  flex flex-col ">
+     
       <div className="nav bg-gradient-to-r from-purple-500 to-blue-600 hidden lg:flex md:flex xl:flex lg:gap-4 border rounded-md shadow-md  items-center h-fit mt-2  text-white  lg:py-4">
         <h3
           className={` cursor-pointer rounded-md p-2 ml-3 ${
@@ -287,29 +296,79 @@ function Product_Catalog() {
             ""
           )}
         </div>
-        <div>
+        <div className="h-screen">
           {selected == "paymentSettings" ? (
-            <form>
-              <div className="border  my-6 mx-auto lg:mx-0 bg-white focus-within:border-[#2F65EC] hover:border-[#2F65EC] rounded-md w-full lg:w-full">
+            <form onSubmit={handlePaymentSetting} className="">
+              <div className="my-6">
+              <label className="mt-6 text-xl font-bold">Payment Title</label>
+              <div className="border  my-3 mx-auto lg:mx-0 bg-white focus-within:border-[#2F65EC] hover:border-[#2F65EC] rounded-md w-full lg:w-full">
           <input
             className="w-full px-2 py-2 lg:py-3 lg:px-3 bg-transparent rounded-md outline-none"
             type="text"
             name="name"
-            placeholder="Payment Name"
+            placeholder="Payment Title"
           />
         </div>
-        <div className="border  my-6 mx-auto lg:mx-0 bg-white focus-within:border-[#2F65EC] hover:border-[#2F65EC] rounded-md w-full lg:w-full">
+              </div>
+              <div className="my-6">
+              <label className="mt-6 text-xl font-bold">Payment URL</label>
+              <div className="border  my-3 mx-auto lg:mx-0 bg-white focus-within:border-[#2F65EC] hover:border-[#2F65EC] rounded-md w-full lg:w-full">
           <input
             className="w-full px-2 py-2 lg:py-3 lg:px-3 bg-transparent rounded-md outline-none"
-            type="file"
-            name="img"
-            placeholder=""
+            type="url"
+            name="name"
+            placeholder="Payment URL"
           />
         </div>
+              </div>
+       <div className="border-b">
+       <label className="mt-6 text-xl font-bold">Upload Logo</label>
+       <div className="relative border my-3 mx-auto lg:mx-0 bg-white focus-within:border-[#2F65EC] hover:border-[#2F65EC] rounded-md w-full lg:w-full">
+              
+              <input
+                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                type="file"
+                name="img"
+                id="imgUpload"
+               
+              />
+              <div className="flex items-center justify-between rounded-md overflow-hidden">
+                <label
+                  htmlFor="imgUpload"
+                  className="px-4 py-2 lg:py-3 lg:px-6 text-center bg-black text-white cursor-pointer w-1/4"
+                >
+                  No file chosen
+                </label>
+                <span
+                  id="fileName"
+                  className="px-4 py-2 lg:py-3 lg:px-6 bg-white text-white w-full text-center"
+                >
+                  
+                </span>
+              </div>
+            </div>
+       </div>
+      <div>
+      <h3 className="mt-6 text-xl font-bold">Manage Your Payment Gateway</h3>
+      <button onClick={()=>{setIsDrawerOpen(true)}} className="my-6 bg-tansparent border-black border rounded-md hover:border-blue-600 w-full py-3 text-left px-4 font-semibold">Mobile Banking</button>
+      <button className="my-6 bg-tansparent border-black border rounded-md hover:border-blue-600 w-full py-3 text-left px-4 font-semibold">Internet Banking</button>
+      </div>
             </form>
           ):""}
         </div>
       </div>
+     {
+      isDrawerOpen && ( <BankingDrawer  show={setIsDrawerOpen} onClose={() => setIsDrawerOpen(false)}>
+      <h3 className="text-lg font-semibold mb-4">Mobile Banking Options</h3>
+      <div className="flex flex-col space-y-2">
+      <ToggleButton optionName="Bkash" />
+          <ToggleButton optionName="Nagad" />
+          <ToggleButton optionName="Rocket" />
+          <ToggleButton optionName="Upay" />
+        
+      </div>
+    </BankingDrawer>)
+     }
     </div>
   );
 }
