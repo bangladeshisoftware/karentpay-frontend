@@ -1,21 +1,47 @@
 "use client";
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { FaRegEdit } from "react-icons/fa";
 import EditProfile from "./Edit-Profile/EditProfile";
-import ApiRequest from '@/app/_lib/Api_request';
-import { GetCookies } from '@/app/_lib/cookiesSetting';
-import { toast } from 'react-toastify';
+import ApiRequest from "@/app/_lib/Api_request";
+import { GetCookies } from "@/app/_lib/cookiesSetting";
+import { toast } from "react-toastify";
 import BankingDrawer from "./BankingDrawer/BankingDrawer";
 import ToggleButton from "./Toggle/ToggleButton";
-
-
-
 
 function Product_Catalog() {
   const [selected, setSelected] = useState("profile");
   const [updated, setUpdated] = useState(false);
+  const [isMobileDrawerOpen, setIsMobileDrawerOpen] = useState(false);
+  const [isInternetDrawerOpen, setIsInternetDrawerOpen] = useState(false);
+  const [fileNames, setFileNames] = useState({
+    file0:"No file chosen",
+    file1: "No file chosen",
+    file2: "No file chosen",
+    file3: "No file chosen",
+    file4: "No file chosen"
+  });
+  const [user, setUser] = useState("");
 
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  useEffect(() => {
+    getuser();
+  }, []);
+
+  const getuser = async () => {
+    const token = await GetCookies({ name: "auth_token" });
+    console.log("token", token);
+    if (token) {
+      const response = await ApiRequest({
+        url: "/marchentuser",
+        method: "get",
+      });
+      if (response.status == 200) {
+        setUser(response.data);
+        console.log(response.data.user);
+      } else {
+        toast.error(response.message);
+      }
+    }
+  };
 
   const handleSelect = (section) => {
     setSelected(section);
@@ -25,43 +51,23 @@ function Product_Catalog() {
     setUpdated(!updated);
   };
 
- const handlePaymentSetting = (e)=>{
-  e.preventDefault();
+  const handlePaymentSetting = (e) => {
+    e.preventDefault();
+  };
 
- }
-
-  const[user,setuser]=useState('');
-  useEffect(()=>{
-    getuser()
-  },[])
-
-  const getuser=async()=>{
-    const token =await GetCookies({ name: 'auth_token' });
-      console.log("token",token);
-      if (token) {        
-        const response=await ApiRequest({
-          url:'/marchentuser',
-         method:'get',
-        });
-        if(response.status==200){
-          setuser(response.data)
-          console.log(response.data.user)
-        
-        }else{
-          toast.error(response.message)
-        }
-      }
-  }
-
-
-
+  const handleFileChange = (e, fileKey) => {
+    const file = e.target.files[0];
+    setFileNames(prevState => ({
+      ...prevState,
+      [fileKey]: file ? file.name : "No file chosen"
+    }));
+  };
 
   return (
-    <div className="mt-10 z-10 ml-1 lg:ml-8  px-1 lg:px-0  flex flex-col ">
-     
-      <div className="nav bg-gradient-to-r from-purple-500 to-blue-600 hidden lg:flex md:flex xl:flex lg:gap-4 border rounded-md shadow-md  items-center h-fit mt-2  text-white  lg:py-4">
+    <div className="mt-10 z-10 ml-1 lg:ml-8 px-1 lg:px-0 flex flex-col">
+      <div className="nav bg-gradient-to-r from-purple-500 to-blue-600 hidden lg:flex md:flex xl:flex lg:gap-4 border rounded-md shadow-md items-center h-fit mt-2 text-white lg:py-4">
         <h3
-          className={` cursor-pointer rounded-md p-2 ml-3 ${
+          className={`cursor-pointer rounded-md p-2 ml-3 ${
             selected == "profile"
               ? "bg-gradient-to-r from-blue-800 to-purple-950"
               : "none"
@@ -80,7 +86,7 @@ function Product_Catalog() {
               onClick={() => {
                 handleSelect("update");
               }}
-              className={` cursor-pointer p-2 rounded-md ${
+              className={`cursor-pointer p-2 rounded-md ${
                 selected == "update"
                   ? "bg-gradient-to-r from-blue-800 to-purple-950"
                   : "none"
@@ -95,7 +101,7 @@ function Product_Catalog() {
           onClick={() => {
             handleSelect("verification");
           }}
-          className={` cursor-pointer p-2 rounded-md ${
+          className={`cursor-pointer p-2 rounded-md ${
             selected == "verification"
               ? "bg-gradient-to-r from-blue-800 to-purple-950"
               : "none"
@@ -108,7 +114,7 @@ function Product_Catalog() {
           onClick={() => {
             handleSelect("integration");
           }}
-          className={` cursor-pointer p-2 rounded-md ${
+          className={`cursor-pointer p-2 rounded-md ${
             selected == "integration"
               ? "bg-gradient-to-r from-blue-800 to-purple-950"
               : "none"
@@ -121,7 +127,7 @@ function Product_Catalog() {
           onClick={() => {
             handleSelect("passkey");
           }}
-          className={` cursor-pointer p-2 rounded-md ${
+          className={`cursor-pointer p-2 rounded-md ${
             selected == "passkey"
               ? "bg-gradient-to-r from-blue-800 to-purple-950"
               : "none"
@@ -134,7 +140,7 @@ function Product_Catalog() {
           onClick={() => {
             handleSelect("paymentSettings");
           }}
-          className={` cursor-pointer p-2 rounded-md ${
+          className={`cursor-pointer p-2 rounded-md ${
             selected == "paymentSettings"
               ? "bg-gradient-to-r from-blue-800 to-purple-950"
               : "none"
@@ -142,16 +148,10 @@ function Product_Catalog() {
         >
           Payment Settings
         </h3>
-        {/* <button className="px-4 border rounded-md  flex items-center gap-2 hover:border-blue-600 focus-within:border-blue-600">
-          Edit
-          <span>
-            <FaRegEdit />
-          </span>
-        </button> */}
       </div>
-      <div className="nav bg-gradient-to-r from-purple-500 to-blue-600 flex flex-col lg:hidden md:hidden xl:hidden lg:gap-4 border rounded-md shadow-md  items-center h-fit  mt-2  text-white  lg:py-4">
+      <div className="nav bg-gradient-to-r from-purple-500 to-blue-600 flex flex-col lg:hidden md:hidden xl:hidden lg:gap-4 border rounded-md shadow-md items-center h-fit mt-2 text-white lg:py-4">
         <h3
-          className={` cursor-pointer rounded-md p-2 ml-3 ${
+          className={`cursor-pointer rounded-md p-2 ml-3 ${
             selected == "profile"
               ? "bg-gradient-to-r from-blue-800 to-purple-950"
               : "none"
@@ -170,7 +170,7 @@ function Product_Catalog() {
               onClick={() => {
                 handleSelect("update");
               }}
-              className={` cursor-pointer p-2 rounded-md ${
+              className={`cursor-pointer p-2 rounded-md ${
                 selected == "update"
                   ? "bg-gradient-to-r from-blue-800 to-purple-950"
                   : "none"
@@ -185,7 +185,7 @@ function Product_Catalog() {
           onClick={() => {
             handleSelect("verification");
           }}
-          className={` cursor-pointer p-2 rounded-md ${
+          className={`cursor-pointer p-2 rounded-md ${
             selected == "verification"
               ? "bg-gradient-to-r from-blue-800 to-purple-950"
               : "none"
@@ -198,7 +198,7 @@ function Product_Catalog() {
           onClick={() => {
             handleSelect("integration");
           }}
-          className={` cursor-pointer p-2 rounded-md ${
+          className={`cursor-pointer p-2 rounded-md ${
             selected == "integration"
               ? "bg-gradient-to-r from-blue-800 to-purple-950"
               : "none"
@@ -211,7 +211,7 @@ function Product_Catalog() {
           onClick={() => {
             handleSelect("passkey");
           }}
-          className={` cursor-pointer p-2 rounded-md ${
+          className={`cursor-pointer p-2 rounded-md ${
             selected == "passkey"
               ? "bg-gradient-to-r from-blue-800 to-purple-950"
               : "none"
@@ -224,7 +224,7 @@ function Product_Catalog() {
           onClick={() => {
             handleSelect("paymentSettings");
           }}
-          className={` cursor-pointer p-2 rounded-md ${
+          className={`cursor-pointer p-2 rounded-md ${
             selected == "paymentSettings"
               ? "bg-gradient-to-r from-blue-800 to-purple-950"
               : "none"
@@ -232,47 +232,38 @@ function Product_Catalog() {
         >
           Payment Settings
         </h3>
-        {/* <button className="px-4 border rounded-md  flex items-center gap-2 hover:border-blue-600 focus-within:border-blue-600">
-          Edit
-          <span>
-            <FaRegEdit />
-          </span>
-        </button> */}
       </div>
 
-      <div className="contain w-full h-fit border shadow-md rounded-sm mt-12 pb-8 lg:px-12  xs:px-12 px-4 ">
+      <div className="contain w-full h-fit border shadow-md rounded-sm mt-12 pb-8 lg:px-12 xs:px-12 px-4">
         {selected == "profile" && !updated && (
-          <div className="lg:mx-24 xl:mx-24 md:mx-16 sm:mx-8 mx-0 font-normal ">
+          <div className="lg:mx-24 xl:mx-24 md:mx-16 sm:mx-8 mx-0 font-normal">
             <div className="mt-8">
               <h3 className="">
                 Name
-                <p className="border  w-full rounded-sm p-2 ">{user.name}</p>
+                <p className="border w-full rounded-sm p-2 ">{user.name}</p>
               </h3>
             </div>
             <div className="mt-8">
               <h3 className="">
                 Country
-                <p className="border  w-full rounded-sm p-2 ">{user.country_name}</p>
-              </h3>
-            </div>
-            <div className="mt-8">
-              <h3 className="">
-                Email
-                <p
-                  className="border
-                  w-full rounded-sm p-2 "
-                >
-                 {user.email}
+                <p className="border w-full rounded-sm p-2 ">
+                  {user.country_name}
                 </p>
               </h3>
             </div>
             <div className="mt-8">
               <h3 className="">
-                Phone
-                <p className="border  w-full rounded-sm p-2 ">{user.phone}</p>
+                Email
+                <p className="border w-full rounded-sm p-2 ">{user.email}</p>
               </h3>
             </div>
-            
+            <div className="mt-8">
+              <h3 className="">
+                Phone
+                <p className="border w-full rounded-sm p-2 ">{user.phone}</p>
+              </h3>
+            </div>
+
             <div className="mt-8">
               <button
                 onClick={() => {
@@ -300,75 +291,193 @@ function Product_Catalog() {
           {selected == "paymentSettings" ? (
             <form onSubmit={handlePaymentSetting} className="">
               <div className="my-6">
-              <label className="mt-6 text-xl font-bold">Payment Title</label>
-              <div className="border  my-3 mx-auto lg:mx-0 bg-white focus-within:border-[#2F65EC] hover:border-[#2F65EC] rounded-md w-full lg:w-full">
-          <input
-            className="w-full px-2 py-2 lg:py-3 lg:px-3 bg-transparent rounded-md outline-none"
-            type="text"
-            name="name"
-            placeholder="Payment Title"
-          />
-        </div>
+                <label className="mt-6 ">Payment Title</label>
+                <div className="border my-3 mx-auto lg:mx-0 bg-white focus-within:border-[#2F65EC] hover:border-[#2F65EC] rounded-md w-full lg:w-full">
+                  <input
+                    className="w-full px-2 py-2 lg:py-3 lg:px-3 bg-transparent rounded-md outline-none"
+                    type="text"
+                    name="name"
+                    placeholder="Payment Title"
+                  />
+                </div>
               </div>
               <div className="my-6">
-              <label className="mt-6 text-xl font-bold">Payment URL</label>
-              <div className="border  my-3 mx-auto lg:mx-0 bg-white focus-within:border-[#2F65EC] hover:border-[#2F65EC] rounded-md w-full lg:w-full">
-          <input
-            className="w-full px-2 py-2 lg:py-3 lg:px-3 bg-transparent rounded-md outline-none"
-            type="url"
-            name="name"
-            placeholder="Payment URL"
-          />
-        </div>
+                <label className="mt-6  ">Company Logo</label>
+                <div className="relative border my-3 mx-auto lg:mx-0 bg-white focus-within:border-[#2F65EC] hover:border-[#2F65EC] rounded-md w-full lg:w-full">
+                  <input
+                    className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                    type="file"
+                    name="img1"
+                    id="imgUpload1"
+                    onChange={(e) => handleFileChange(e, 'file0')}
+                  />
+                  <div className="flex items-center justify-between rounded-md overflow-hidden">
+                    <label
+                      htmlFor="imgUpload1"
+                      className="px-4 py-2 lg:py-3 lg:px-6 text-center bg-black text-white cursor-pointer w-1/4"
+                    >
+                      Choose file
+                    </label>
+                    <span
+                      id="fileName1"
+                      className="px-4 py-2 lg:py-3 lg:px-6 bg-transparent text-black w-full text-center"
+                    >
+                      {fileNames.file0}
+                    </span>
+                  </div>
+                </div>
               </div>
-       <div className="border-b">
-       <label className="mt-6 text-xl font-bold">Upload Logo</label>
-       <div className="relative border my-3 mx-auto lg:mx-0 bg-white focus-within:border-[#2F65EC] hover:border-[#2F65EC] rounded-md w-full lg:w-full">
-              
-              <input
-                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-                type="file"
-                name="img"
-                id="imgUpload"
-               
-              />
-              <div className="flex items-center justify-between rounded-md overflow-hidden">
-                <label
-                  htmlFor="imgUpload"
-                  className="px-4 py-2 lg:py-3 lg:px-6 text-center bg-black text-white cursor-pointer w-1/4"
-                >
-                  No file chosen
-                </label>
-                <span
-                  id="fileName"
-                  className="px-4 py-2 lg:py-3 lg:px-6 bg-white text-white w-full text-center"
-                >
-                  
-                </span>
+              <div className="border-b">
+                <label className="mt-6 ">Upload Setting Logo</label>
+                <div className="relative border my-3 mx-auto lg:mx-0 bg-white focus-within:border-[#2F65EC] hover:border-[#2F65EC] rounded-md w-full lg:w-full">
+                  <input
+                    className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                    type="file"
+                    name="img1"
+                    id="imgUpload1"
+                    onChange={(e) => handleFileChange(e, 'file1')}
+                  />
+                  <div className="flex items-center justify-between rounded-md overflow-hidden">
+                    <label
+                      htmlFor="imgUpload1"
+                      className="px-4 py-2 lg:py-3 lg:px-6 text-center bg-black text-white cursor-pointer w-1/4"
+                    >
+                      Choose file
+                    </label>
+                    <span
+                      id="fileName1"
+                      className="px-4 py-2 lg:py-3 lg:px-6 bg-transparent text-black w-full text-center"
+                    >
+                      {fileNames.file1}
+                    </span>
+                  </div>
+                </div>
+                <div className="relative border my-3 mx-auto lg:mx-0 bg-white focus-within:border-[#2F65EC] hover:border-[#2F65EC] rounded-md w-full lg:w-full">
+                  <input
+                    className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                    type="file"
+                    name="img2"
+                    id="imgUpload2"
+                    onChange={(e) => handleFileChange(e, 'file2')}
+                  />
+                  <div className="flex items-center justify-between rounded-md overflow-hidden">
+                    <label
+                      htmlFor="imgUpload2"
+                      className="px-4 py-2 lg:py-3 lg:px-6 text-center bg-black text-white cursor-pointer w-1/4"
+                    >
+                      Choose file
+                    </label>
+                    <span
+                      id="fileName2"
+                      className="px-4 py-2 lg:py-3 lg:px-6 bg-transparent text-black w-full text-center"
+                    >
+                      {fileNames.file2}
+                    </span>
+                  </div>
+                </div>
+                <div className="relative border my-3 mx-auto lg:mx-0 bg-white focus-within:border-[#2F65EC] hover:border-[#2F65EC] rounded-md w-full lg:w-full">
+                  <input
+                    className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                    type="file"
+                    name="img3"
+                    id="imgUpload3"
+                    onChange={(e) => handleFileChange(e, 'file3')}
+                  />
+                  <div className="flex items-center justify-between rounded-md overflow-hidden">
+                    <label
+                      htmlFor="imgUpload3"
+                      className="px-4 py-2 lg:py-3 lg:px-6 text-center bg-black text-white cursor-pointer w-1/4"
+                    >
+                      Choose file
+                    </label>
+                    <span
+                      id="fileName3"
+                      className="px-4 py-2 lg:py-3 lg:px-6 bg-transparent text-black w-full text-center"
+                    >
+                      {fileNames.file3}
+                    </span>
+                  </div>
+                </div>
+                <div className="relative border my-3 mx-auto lg:mx-0 bg-white focus-within:border-[#2F65EC] hover:border-[#2F65EC] rounded-md w-full lg:w-full">
+                  <input
+                    className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                    type="file"
+                    name="img4"
+                    id="imgUpload4"
+                    onChange={(e) => handleFileChange(e, 'file4')}
+                  />
+                  <div className="flex items-center justify-between rounded-md overflow-hidden">
+                    <label
+                      htmlFor="imgUpload4"
+                      className="px-4 py-2 lg:py-3 lg:px-6 text-center bg-black text-white cursor-pointer w-1/4"
+                    >
+                      Choose file
+                    </label>
+                    <span
+                      id="fileName4"
+                      className="px-4 py-2 lg:py-3 lg:px-6 bg-transparent text-black w-full text-center"
+                    >
+                      {fileNames.file4}
+                    </span>
+                  </div>
+                </div>
               </div>
-            </div>
-       </div>
-      <div>
-      <h3 className="mt-6 text-xl font-bold">Manage Your Payment Gateway</h3>
-      <button onClick={()=>{setIsDrawerOpen(true)}} className="my-6 bg-tansparent border-black border rounded-md hover:border-blue-600 w-full py-3 text-left px-4 font-semibold">Mobile Banking</button>
-      <button className="my-6 bg-tansparent border-black border rounded-md hover:border-blue-600 w-full py-3 text-left px-4 font-semibold">Internet Banking</button>
-      </div>
+              <div>
+                <h3 className="mt-6  ">
+                  Manage Your Payment Gateway
+                </h3>
+                <button
+                  onClick={() => {
+                    setIsMobileDrawerOpen(true);
+                  }}
+                  className="my-6 bg-tansparent border-black border rounded-md hover:border-blue-600 w-full py-3 text-left px-4 font-semibold"
+                >
+                  Mobile Banking
+                </button>
+                <button  onClick={() => {
+                    setIsInternetDrawerOpen(true);
+                  }} className="my-6 bg-tansparent border-black border rounded-md hover:border-blue-600 w-full py-3 text-left px-4 font-semibold">
+                  Internet Banking
+                </button>
+              </div>
             </form>
-          ):""}
+          ) : (
+            ""
+          )}
         </div>
       </div>
-     {
-      isDrawerOpen && ( <BankingDrawer  show={setIsDrawerOpen} onClose={() => setIsDrawerOpen(false)}>
-      <h3 className="text-lg font-semibold mb-4">Mobile Banking Options</h3>
-      <div className="flex flex-col space-y-2">
-      <ToggleButton optionName="Bkash" />
-          <ToggleButton optionName="Nagad" />
-          <ToggleButton optionName="Rocket" />
-          <ToggleButton optionName="Upay" />
+      {isMobileDrawerOpen && (
+        <>
+        <BankingDrawer
+          show={setIsMobileDrawerOpen}
+          onClose={() => setIsMobileDrawerOpen(false)}
+        >
+          <h3 className="text-lg font-semibold mb-4">Mobile Banking Options</h3>
+          <div className="flex flex-col space-y-2">
+            <ToggleButton optionName="Bkash" />
+            <ToggleButton optionName="Nagad" />
+            <ToggleButton optionName="Rocket" />
+            <ToggleButton optionName="Upay" />
+          </div>
+        </BankingDrawer>
         
-      </div>
-    </BankingDrawer>)
-     }
+      </>)}
+      {
+        isInternetDrawerOpen && (
+          <BankingDrawer
+          show={setIsInternetDrawerOpen}
+          onClose={() => setIsInternetDrawerOpen(false)}
+        >
+          <h3 className="text-lg font-semibold mb-4">Mobile Banking Options</h3>
+          <div className="flex flex-col space-y-2">
+            <ToggleButton optionName="DBBL" />
+            <ToggleButton optionName="Bank Asia" />
+            <ToggleButton optionName="City Bank" />
+            <ToggleButton optionName="Islami Bank" />
+          </div>
+        </BankingDrawer>
+        )
+      }
     </div>
   );
 }
