@@ -15,6 +15,8 @@ import { TbSquareLetterW } from 'react-icons/tb';
 import { IoSettingsOutline } from 'react-icons/io5';
 import { MdOutlinePayment } from 'react-icons/md';
 import { FaHandsHelping } from 'react-icons/fa';
+import { PiHandWithdrawFill } from "react-icons/pi";
+import { FaRegFileWord } from "react-icons/fa6";
 
 import {
   ResizableHandle,
@@ -171,7 +173,7 @@ function Dashboard() {
                     }`}
                     onClick={() => setActiveComponent('transactions')}
                   >
-                    <SiConstruct3 className='mr-2 text-2xl' />{' '}
+                    <PiHandWithdrawFill className='mr-2 text-2xl' />{' '}
                     {windowWidth >= 1024 && 'Transactions'}
                   </li>
                   <li
@@ -182,7 +184,7 @@ function Dashboard() {
                     }`}
                     onClick={() => setActiveComponent('wtransactions')}
                   >
-                    <TbSquareLetterW className='mr-2 text-2xl' />
+                    <FaRegFileWord className='mr-2 text-2xl' />
                     {windowWidth >= 1024 && 'W Transactions'}
                   </li>
                   <li
@@ -236,7 +238,7 @@ function Dashboard() {
         )}
         <ResizableHandle />
         {/* Navbar for small and medium devices */}
-        <nav className='lg:hidden fixed bottom-0 left-0 w-full border border-blue-500 rounded-md bg-gray-200 text-purple-950 flex justify-between px-4 py-2'>
+        <nav className='lg:hidden fixed bottom-0 left-0 w-full border border-blue-500 rounded-md bg-black text-blue-200 flex justify-between px-4 py-2'>
           <FiHome
             className='text-2xl cursor-pointer'
             onClick={() => setActiveComponent('home')}
@@ -245,11 +247,11 @@ function Dashboard() {
             className='text-2xl cursor-pointer'
             onClick={() => setActiveComponent('balance')}
           />
-          <SiConstruct3
+          <PiHandWithdrawFill
             className='text-2xl cursor-pointer'
             onClick={() => setActiveComponent('transactions')}
           />
-          <TbSquareLetterW
+          <FaRegFileWord
             className='text-2xl cursor-pointer'
             onClick={() => setActiveComponent('wtransactions')}
           />
