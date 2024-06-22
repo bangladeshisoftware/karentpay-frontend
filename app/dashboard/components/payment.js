@@ -174,6 +174,39 @@ const Payment = () => {
     setSelected(section);
   };
 
+
+
+  const [link, setlink] = useState(null);
+
+  useEffect(() => {
+    getPayLink();
+  }, []);
+
+  const getPayLink = async () => {
+    const response = await ApiRequest({
+      url: "/v1/pay_with_link",
+      method: "get",
+    });
+    if (response.status === 200) {
+      setlink(response.data);
+    } else {
+      console.log(response);
+    }
+  }
+
+
+  const getNewLink=async()=>{
+    const response = await ApiRequest({
+      url: "/v1/pay_with_link",
+    });
+    if (response.status === 200) {
+      setlink(response.data);
+    } else {
+      console.log(response);
+    }
+  }
+
+
   return (
     <div className="mt-10 w-full">
       <div className="lg:w-[500px] lg:h-[700px] rounded-md border shadow-md mx-auto px-5 lg:px-0">
@@ -348,7 +381,18 @@ const Payment = () => {
             Pay {amount}
           </button>
         </div>
+        
+
+         <div  className="mt-10 w-full">
+           <p className="pl-5 ">{link}</p>
+           <br/>
+           <button
+           onClick={()=>getNewLink()}
+            className="bg-gradient-to-r from-purple-500 to-blue-600 p-3 w-full rounded-sm font-md text-lg text-white"> New Link </button>
+         </div>
       </div>
+
+      
     </div>
   );
 };
