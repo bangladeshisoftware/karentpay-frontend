@@ -83,8 +83,8 @@ const Slider = () => {
 
       <div className="block sm:hidden mt-4 text-center">
         <div>
-          <div className="flex flex-col items-center gap-2">
-            <div className="flex flex-row gap-4">
+          <div className="flex flex-col items-center gap-2 mx-auto">
+            <div className="flex flex-row gap-2 ">
               <Link href={sliders[0].firstButtonLink}>
                 <Button className='bg-pink-600 px-4 py-2 text-sm w-full'>
                   {sliders[0].firstButtonText}
