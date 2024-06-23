@@ -1,12 +1,48 @@
 'use client';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { FaCopy } from 'react-icons/fa';
 import { MdDeleteForever } from 'react-icons/md';
 import { RiDeleteBin2Fill } from "react-icons/ri";
+import { toast } from 'react-toastify';
+import ApiRequest from "@/app/_lib/Api_request";
 
 
 
 function PaymentCopy() {
+
+
+  
+  const [link, setlink] = useState(null);
+
+  useEffect(() => {
+    getPayLink();
+  }, []);
+
+  const getPayLink = async () => {
+    const response = await ApiRequest({
+      url: "/v1/pay_with_link",
+      method: "get",
+    });
+    if (response.status === 200) {
+      setlink(response.data);
+    } else {
+      console.log(response);
+    }
+  }
+
+  const getNewLink=async()=>{
+    const response = await ApiRequest({
+      url: "/v1/pay_with_link",
+    });
+    if (response.status === 200) {
+      getPayLink()
+    } else {
+      console.log(response);
+    }
+  }
+
+
+
   const [copied, setCopied] = useState(false);
   const [copyText, setCopyText] = useState("");
   const [date, searchData] = useState("");
@@ -15,20 +51,27 @@ function PaymentCopy() {
     try {
       await navigator.clipboard.writeText(link);
       setCopied(true);
-      setCopyText(link)
+      setCopyText(link);
       setTimeout(() => setCopied(false), 3000);
     } catch (err) {
       console.error('Failed to copy:', err);
     }
   };
 
-  const handleNewLink = () => {
-    alert('create new link')
-  }
+  const[deleteid,setDeleteid]=useState(null)
 
+ 
   const [deleteModalOpen, setDeleteModalOpen] = useState(false)
-  const handleDeleteLink = (id) => {
-    console.log(id);
+  const handleDeleteLink =async (id) => {
+    const response = await ApiRequest({
+      url: "/v1/pay_with_link/"+id,
+      method: "delete",
+    });
+    if (response.status === 200) {
+      getPayLink()
+    } else {
+      console.log(response);
+    }
     setDeleteModalOpen(false)
   }
   return (
@@ -39,7 +82,9 @@ function PaymentCopy() {
             {/* <!-- Start coding here --> */}
             <div class="bg-white dark:bg-gray-800  shadow-md sm:rounded-lg overflow-hidden">
               <div className='px-5 pt-5 flex items-center justify-end' >
-                <button onClick={handleNewLink}
+                <button onClick={()=>{
+                  getNewLink()
+                }}
                   className="text-white bg-gradient-to-r from-[#395BEF] to-[#5C28D5] font-medium rounded-[4px] px-4 py-2  flex items-center gap-1"
                 >
                   New Link
@@ -64,38 +109,51 @@ function PaymentCopy() {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr className="border-b dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700">
-                      <td className="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        1
-                      </td>
-                      <td className="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white ">
-                        https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0HZZONB2Xa0AoNJhtiqwQHnRIxFaHUteyaQ&s
-                      </td>
-                      <td className="px-4 py-2 flex-1 ">
-                        <div className="flex items-center gap-2 relative">
-                          <button
-                            className={`text-white text-xl w-fit ${copied ? 'bg-green-500' : 'bg-blue-500'
-                              } hover:bg-blue-800 font-medium rounded-[4px] px-3 py-1  flex items-center gap-1`}
-                            onClick={() => handleCopy('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0HZZONB2Xa0AoNJhtiqwQHnRIxFaHUteyaQ&s')}
-                            disabled={copied}
-                          >
-                            <FaCopy />
-                          </button>
-                          {
-                            copied && <span className='absolute z-1000 -bottom-2 -right-4'>Copy</span>
-                          }
-                        </div>
-                      </td>
-                      <td className="px-4 py-2 flex-1">
-                        <div className="flex items-center gap-2">
-                          <button onClick={() => setDeleteModalOpen(true)}
-                            className="text-white text-xl w-fit bg-red-500 hover:bg-red-800 font-medium rounded-[4px] px-4 py-1 flex items-center gap-1"
-                          >
-                            <RiDeleteBin2Fill />
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
+
+                  {link?.map((item, index) => (
+                    
+                       <tr key={index} className="border-b dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700">
+                       <td className="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                         {index+1}
+                       </td>
+                       <td className="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white ">
+                         {item.link}
+                       </td>
+                       <td className="px-4 py-2 flex-1 ">
+                         <div className="flex items-center gap-2 relative">
+                           <button
+                             className={`text-white text-xl w-fit ${copied ? 'bg-green-500' : 'bg-blue-500'} hover:bg-blue-800 font-medium rounded-[4px] px-3 py-1  flex items-center gap-1`}
+                             onClick={() =>{
+                              handleCopy(item.link);
+                              toast.success('Successfully copied')
+                             }}
+                           >
+                             <FaCopy />
+                           </button>
+                         
+                         </div>
+                       </td>
+                       <td className="px-4 py-2 flex-1">
+                         <div className="flex items-center gap-2">
+                           <button onClick={() => {
+                            console.log(item.id)
+                            setDeleteid(item.id)
+                            setDeleteModalOpen(true);
+                            
+                           }}
+                             className="text-white text-xl w-fit bg-red-500 hover:bg-red-800 font-medium rounded-[4px] px-4 py-1 flex items-center gap-1"
+                           >
+                             <RiDeleteBin2Fill />
+                           </button>
+                         </div>
+                       </td>
+                     </tr>
+                    
+                  ))}
+                 
+
+
+
                   </tbody>
                 </table>
                 {
@@ -116,7 +174,7 @@ function PaymentCopy() {
                           </h3>
                           {/* Add your modal content here */}
                           <button
-                            onClick={() => handleDeleteLink(1)}
+                            onClick={() => handleDeleteLink(deleteid)}
                             type="button"
                             className="text-white bg-gradient-to-r from-[#395BEF] to-[#5C28D5] focus:outline-none font-medium rounded-[4px] text-sm inline-flex items-center px-5 py-2.5 text-center"
                           >
