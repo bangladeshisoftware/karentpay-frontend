@@ -5,10 +5,12 @@ const nextConfig = {
 
     remotePatterns: [
       {
+      
         hostname: "pagedone.io",
         pathname: "**",
       },
       {
+      
         hostname: "dummyimage.com",
         pathname: "**",
       },
