@@ -27,6 +27,7 @@ import Developer from './components/Developer';
 import Wtransactions from '@/app/dashboard/components/Wtransactions';
 import Payment from '@/app/dashboard/components/payment';
 import Support from '@/app/dashboard/components/Support';
+import PaymentCopy from './components/PaymentCopy';
 
 function Dashboard() {
   const [activeComponent, setActiveComponent] = useState('home');
@@ -98,7 +99,8 @@ function Dashboard() {
       case 'wtransactions':
         return <Wtransactions />;
       case 'payments':
-        return <Payment />;
+        // return <Payment />;
+        return <PaymentCopy/>;
       case 'developer':
         return <Developer isTest={isOn} />;
       case 'support':
