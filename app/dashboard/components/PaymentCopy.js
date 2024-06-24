@@ -141,8 +141,7 @@ function PaymentCopy() {
                             setDeleteModalOpen(true);
                             
                            }}
-                             className="text-white text-xl w-fit bg-red-500 hover:bg-red-800 font-medium rounded-[4px] px-4 py-1 flex items-center gap-1"
-                           >
+                             className="text-white text-xl w-fit bg-red-500 hover:bg-red-800 font-medium rounded-[4px] px-4 py-1 flex items-center gap-1">
                              <RiDeleteBin2Fill />
                            </button>
                          </div>
@@ -178,7 +177,7 @@ function PaymentCopy() {
                             type="button"
                             className="text-white bg-gradient-to-r from-[#395BEF] to-[#5C28D5] focus:outline-none font-medium rounded-[4px] text-sm inline-flex items-center px-5 py-2.5 text-center"
                           >
-                            Yes, I'm sure
+                            Yes, I am sure
                           </button>
                           <button
                             onClick={() => setDeleteModalOpen(false)}
