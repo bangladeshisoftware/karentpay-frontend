@@ -2,87 +2,76 @@
 import React, { useState, useEffect } from "react";
 import Datepicker from "react-tailwindcss-datepicker";
 import ApiRequest from "@/app/_lib/Api_request";
-import { GetCookies } from '@/app/_lib/cookiesSetting';
-import { toast } from 'react-toastify';
-import { format } from 'date-fns';
+import { GetCookies } from "@/app/_lib/cookiesSetting";
+import { toast } from "react-toastify";
+import { format } from "date-fns";
 
 function Transactions() {
-
-  const[transactions,setTransactions]=useState([])
-  const [transactionsData,settransactionsData]=useState([]) ;
+  const [transactions, setTransactions] = useState([]);
+  const [transactionsData, settransactionsData] = useState([]);
   const [dateRange, setDateRange] = useState({
     startDate: null,
     endDate: null,
   });
 
-  const handleDateRangeChange = async(newValue) => {
+  const handleDateRangeChange = async (newValue) => {
     console.log("newValue:", newValue);
     setDateRange(newValue);
-    const token =await GetCookies({ name: 'auth_token' });   
-    if (token) {        
-      const response=await ApiRequest({
-        url:'/transactionsByDate',
-        formdata:{startDate:newValue.startDate,endDate:newValue.endDate,},
+    const token = await GetCookies({ name: "auth_token" });
+    if (token) {
+      const response = await ApiRequest({
+        url: "/transactionsByDate",
+        formdata: { startDate: newValue.startDate, endDate: newValue.endDate },
       });
 
-      if(response.status==200){
-        settransactionsData(response.data)    
-       console.log(response.data);      
-      }else{
-        toast.error(response.message)
+      if (response.status == 200) {
+        settransactionsData(response.data);
+        console.log(response.data);
+      } else {
+        toast.error(response.message);
       }
     }
-     
   };
-
-
-
-
 
   useEffect(() => {
     fatchData();
   }, []);
 
-  const fatchData=async()=>{
-    const token =await GetCookies({ name: 'auth_token' });   
-    if (token) {        
-      const response=await ApiRequest({
-        url:'/transactions',
-       method:'get',
+  const fatchData = async () => {
+    const token = await GetCookies({ name: "auth_token" });
+    if (token) {
+      const response = await ApiRequest({
+        url: "/transactions",
+        method: "get",
       });
-      if(response.status==200){
-        settransactionsData(response.data)    
-       // console.log(response.data);
-      
-      }else{
-        toast.error(response.message)
+      if (response.status == 200) {
+        settransactionsData(response.data);
+        // console.log(response.data);
+      } else {
+        toast.error(response.message);
       }
     }
   };
 
-  const searchData=async(data)=>{
-    if(data.length>1){
-      const token =await GetCookies({ name: 'auth_token' });   
-      if (token) {        
-        const response=await ApiRequest({
-          url:'/transactions',
-        formdata:{search:data},
+  const searchData = async (data) => {
+    if (data.length > 1) {
+      const token = await GetCookies({ name: "auth_token" });
+      if (token) {
+        const response = await ApiRequest({
+          url: "/transactions",
+          formdata: { search: data },
         });
-        if(response.status==200){
-          settransactionsData(response.data)    
-        // console.log(response.data);
-        
-        }else{
-          toast.error(response.message)
+        if (response.status == 200) {
+          settransactionsData(response.data);
+          // console.log(response.data);
+        } else {
+          toast.error(response.message);
         }
       }
     }
   };
 
-
-
   // Filter transactions based on the selected date range
-
 
   return (
     <div className="mt-10 ">
@@ -115,14 +104,13 @@ function Transactions() {
                       </div>
                       <div className="flex">
                         <input
-                          onChange={(e)=>searchData(e.target.value)}
+                          onChange={(e) => searchData(e.target.value)}
                           type="text"
                           id="simple-search"
                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                           placeholder="Search"
                           required=""
                         />
-                        
                       </div>
                     </div>
                   </form>
@@ -164,7 +152,7 @@ function Transactions() {
                       <th scope="col" class="px-4 py-3">
                         Reference
                       </th>
-                   
+
                       <th scope="col" class="px-4 py-3">
                         Method
                       </th>
@@ -172,11 +160,11 @@ function Transactions() {
                         Amount
                       </th>
                       <th scope="col" class="px-4 py-3">
-                        TrxId 
+                        TrxId
                       </th>
 
                       <th scope="col" class="px-4 py-3">
-                      customerMsisdn
+                        customerMsisdn
                       </th>
                       <th scope="col" class="px-4 py-3">
                         Status
@@ -195,13 +183,25 @@ function Transactions() {
                         >
                           {index + 1}
                         </th>
-                        <td className="px-4 py-3">{transaction.created_at&&format(transaction.created_at, 'dd' + ' ' + 'MMMM' + ' ' + 'yyyy')}</td> 
-                        <td className="px-4 py-3">{transaction.reference}</td>                         
-                        <td className="px-4 py-3">{transaction.payment_method}</td>
+                        <td className="px-4 py-3">
+                          {transaction.created_at &&
+                            format(
+                              transaction.created_at,
+                              "dd" + " " + "MMMM" + " " + "yyyy"
+                            )}
+                        </td>
+                        <td className="px-4 py-3">{transaction.reference}</td>
+                        <td className="px-4 py-3">
+                          {transaction.payment_method}
+                        </td>
                         <td className="px-4 py-3">{transaction.amount}</td>
-                        <td className="px-4 py-3">{transaction.trxID}</td>    
-                        <td className="px-4 py-3">{transaction.customerMsisdn}</td>                       
-                        <td className="px-4 py-3">{transaction.transactionStatus}</td>
+                        <td className="px-4 py-3">{transaction.trxID}</td>
+                        <td className="px-4 py-3">
+                          {transaction.customerMsisdn}
+                        </td>
+                        <td className="px-4 py-3">
+                          {transaction.transactionStatus}
+                        </td>
                       </tr>
                     ))}
                   </tbody>

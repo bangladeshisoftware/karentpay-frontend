@@ -7,7 +7,7 @@ import { GiShoppingBag } from "react-icons/gi";
 
 function Home() {
   return (
-    <div className="rounded-md mt-10 ml-0 lg:ml-5 ">
+    <div className="rounded-md mt-10 ml-0 lg:ml-5 h-auto ">
       {/* <div>
         <h2 className='text-3xl font-bold m-4'>Dashboard</h2>
       </div> */}

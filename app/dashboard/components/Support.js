@@ -87,7 +87,7 @@ function Support() {
           </div>
         </div>
       </div>
-      <div className="relative overflow-x-auto shadow-md border sm:rounded-lg mt-5">
+      <div className=" overflow-x-auto shadow-md border sm:rounded-lg mt-5">
         <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
           <caption className="p-5 text-lg font-semibold rtl:text-right text-gray-900 bg-white dark:text-white dark:bg-gray-800 w-full">
             <div className="flex justify-between ">

@@ -103,9 +103,9 @@ function Wtransactions() {
   });
 
   return (
-    <div className="mt-10">
-      <div className="px-1 lg:px-0">
-        <section className="shadow-md border rounded-md ml-1 lg:ml-5 mb-36">
+    <div className="mt-10 ">
+      <div className="px-1 lg:px-0 ">
+        <section className="shadow-md border rounded-md ml-1 lg:ml-5 mb-36 ">
           <div className="max-w-screen-xl">
             {/* <!-- Start coding here --> */}
             <div className="bg-white dark:bg-gray-800  shadow-md sm:rounded-lg overflow-hidden">
@@ -115,7 +115,7 @@ function Wtransactions() {
                     <label htmlFor="simple-search" className="sr-only">
                       Search
                     </label>
-                    <div className="relative w-full flex">
+                    <div className="relative w-full ">
                       <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                         <svg
                           aria-hidden="true"
@@ -208,9 +208,6 @@ function Wtransactions() {
                       </th>
                       <th scope="col" className="px-4 py-3">
                         Status
-                      </th>
-                      <th scope="col" className="px-4 py-3">
-                        <span className="sr-only">Actions</span>
                       </th>
                     </tr>
                   </thead>
@@ -427,7 +424,7 @@ function Wtransactions() {
               </div>
               <div className="flex justify-around">
                 <button
-                  className="btn bg-red-500 text-white px-72 py-2 rounded-md"
+                  className="btn bg-red-500 text-white px-36  md:px-48 lg:px-72 py-2 rounded-md"
                   onClick={closeModal}
                 >
                   Submit
