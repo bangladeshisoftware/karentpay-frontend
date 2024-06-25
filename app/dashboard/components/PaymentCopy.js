@@ -12,7 +12,7 @@ function PaymentCopy() {
 
 
   
-  const [link, setlink] = useState(null);
+  const [link, setlink] = useState([]);
 
   useEffect(() => {
     getPayLink();
@@ -23,8 +23,11 @@ function PaymentCopy() {
       url: "/v1/pay_with_link",
       method: "get",
     });
-    if (response.status === 200) {
-      setlink(response.data);
+    if (response.status === 200) {    
+      if(Array.isArray(response.data)){
+        setlink(response.data);
+      }
+     
     } else {
       console.log(response);
     }
