@@ -235,7 +235,7 @@ function Wtransactions() {
                         <td className="px-4 py-3">{transaction.debit}</td>
                         <td className="px-4 py-3">{transaction.date}</td>
                         <td className="px-4 py-3">{transaction.status}</td>
-                        <td className="px-4 py-3 flex items-center justify-end"></td>
+                        {/* <td className="px-4 py-3 flex items-center justify-end"></td> */}
                       </tr>
                     ))}
                   </tbody>
