@@ -146,7 +146,7 @@ function Dashboard() {
   }, []);
 
   return (
-    <div className={`${selectedContainer.type} flex h-screen mx-auto`}>
+    <div className={`${selectedContainer.type} flex h-screen mx-auto `}>
       <ResizablePanelGroup direction='horizontal'>
         {windowWidth >= 1024 && (
           <ResizablePanel defaultSize={15} minSize={getMinSize()}>
@@ -254,7 +254,7 @@ function Dashboard() {
         )}
         <ResizableHandle />
         {/* Navbar for small and medium devices */}
-        <nav className='lg:hidden fixed bottom-0 left-0 w-full border border-blue-500 rounded-md bg-black text-blue-200 flex justify-between px-4 py-2'>
+        <nav className='lg:hidden    inset-x-0 fixed bottom-0 left-0 w-full border border-blue-500  bg-black bg-opacity-70 text-blue-200 flex justify-between px-4 py-4 '>
           <FiHome
             className='text-2xl cursor-pointer'
             onClick={() => setActiveComponent('home')}
@@ -289,11 +289,11 @@ function Dashboard() {
           />
         </nav>
         <ResizablePanel defaultSize={85} minSize={40}>
-          <div className='flex-1 p-0 overflow-y-auto scrollbar-hide'>
+          <div className='flex-1 p-0 overflow-y-auto scrollbar-hide '>
             {activeComponent === 'developer' && (
               <Header isOn={isOn} toggleSwitch={toggleSwitch} />
             )}
-            <main className='h-screen'>{renderComponent()}</main>
+            <main className='h-screen '>{renderComponent()}</main>
           </div>
         </ResizablePanel>
       </ResizablePanelGroup>

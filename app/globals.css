@@ -110,3 +110,21 @@
 }
 
 /* globals.css */
+.body-background {
+  background-image: url('/bg-gradient.svg');
+  background-size: cover;          /* Ensures the image covers the entire container */
+  background-repeat: no-repeat;    /* Prevents the image from repeating */
+  background-position: center;     /* Centers the background image */
+  background-attachment: fixed;    /* Ensures the background image stays fixed during scrolling */
+  height: 100vh;                   /* Makes the body height equal to the viewport height */
+  margin: 0;                       /* Removes any default margin */
+  padding: 0;                      /* Removes any default padding */
+  width: 100%;                     /* Ensures the body width is 100% of the viewport width */
+}
+
+.break-word {
+  word-break: break-word;
+}
+
+
+

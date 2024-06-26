@@ -7,13 +7,13 @@ import { GiShoppingBag } from "react-icons/gi";
 
 function Home() {
   return (
-    <div className="rounded-md mt-10 ml-0 lg:ml-5 ">
-      {/* <div>
-        <h2 className='text-3xl font-bold m-4'>Dashboard</h2>
-      </div> */}
+    <div className="rounded-md mt-10 ml-0 lg:ml-5 h-auto ">
+      <div className=" border shadow-lg mb-2 lg:mb-2 p-3 lg:p-3 mt-3 rounded-md text-center lg:text-left lg:hidden  ">
+        <h3 className="text-xl font-semibold">Dashboard</h3>
+      </div>
       {/* card */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 px-1 lg:px-0 justify-around gap-2 pb-5">
-        <div className=" border shadow-md border-blue-500 rounded-md  px-20 py-16  text-black flex items-center transition-all duration-300 hover:shadow-lg">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 px-1 lg:px-0 justify-around gap-2 pb-5 ">
+        <div className=" border shadow-lg rounded-md  px-20 py-16  text-black flex items-center transition-all duration-300 hover:shadow-lg bg-white">
           <div className="mr-3 text-2xl border border-blue-500 rounded-full text-black p-3">
             <FaUsers />
           </div>
@@ -26,7 +26,7 @@ function Home() {
             </div>
           </div>
         </div>
-        <div className="border  border-blue-500 rounded-md shadow-md px-20 py-16  text-black flex items-center transition-all duration-300 hover:shadow-lg">
+        <div className="border  shadow-lg rounded-md  px-20 py-16  text-black flex items-center transition-all duration-300 hover:shadow-lg bg-white">
           <div className="mr-3 text-2xl border border-blue-500 rounded-full text-black p-3">
             <LuShoppingCart />
           </div>
@@ -39,7 +39,7 @@ function Home() {
             </div>
           </div>
         </div>
-        <div className="border border-blue-500 md:col-span-2 lg:col-span-1 rounded-md shadow px-20 py-16 text-black flex items-center transition-all duration-300 hover:shadow-lg">
+        <div className="border shadow-lg md:col-span-2 lg:col-span-1 rounded-md  px-20 py-16 text-black flex items-center transition-all duration-300 hover:shadow-lg bg-white">
           <div className="mr-3 text-2xl border border-blue-500 rounded-full text-black p-3">
             <GiShoppingBag />
           </div>
@@ -55,7 +55,7 @@ function Home() {
       </div>
       {/* card 2*/}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-around gap-2 px-1 lg:px-0 pb-5">
-        <div className="border border-blue-500 md:col-span-1 lg:col-span-2 rounded-md shadow px-20 py-16  text-black flex items-center transition-all duration-300 hover:shadow-lg">
+        <div className="border shadow-lg md:col-span-1 lg:col-span-2 rounded-md  px-20 py-16  text-black flex items-center transition-all duration-300 hover:shadow-lg bg-white">
           <div className="mr-3 text-2xl border border-blue-500 rounded-full text-black p-3">
             <FaUsers />
           </div>
@@ -68,7 +68,7 @@ function Home() {
             </div>
           </div>
         </div>
-        <div className="border border-blue-500 rounded-md shadow px-20 py-16  text-black flex items-center transition-all duration-300 hover:shadow-lg">
+        <div className="border shadow-lg rounded-md  px-20 py-16  text-black flex items-center transition-all duration-300 hover:shadow-lg bg-white">
           <div className="mr-3 text-2xl border border-blue-500 rounded-full text-black p-3">
             <LuShoppingCart />
           </div>
@@ -84,7 +84,7 @@ function Home() {
       </div>
       {/* card 3*/}
       <div className="grid grid-cols-3 justify-around gap-4 px-1 lg:px-0 pb-5">
-        <div className="border border-blue-500 col-span-3 md:col-span-3 lg:col-span-3 rounded-md shadow px-20 py-20  text-black flex items-center transition-all duration-300 hover:shadow-lg">
+        <div className="border shadow-lg col-span-3 md:col-span-3 lg:col-span-3 rounded-md px-20 py-20  text-black flex items-center transition-all duration-300 hover:shadow-lg bg-white">
           <div className="mr-3 text-2xl border border-blue-500 rounded-full text-black p-3">
             <GiShoppingBag />
           </div>

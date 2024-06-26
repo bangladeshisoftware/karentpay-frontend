@@ -80,7 +80,7 @@ const Test = () => {
   };
 
   return (
-    <div className=" ml-2 lg:ml-8 mt-5">
+    <div className="mx-auto mt-5">
       <div className="w-full border p-3 mt-3 rounded-md lg:flex items-center justify-between">
         <h3 className="text-xl font-semibold">API keys</h3>
         <Link className="" href="#">
