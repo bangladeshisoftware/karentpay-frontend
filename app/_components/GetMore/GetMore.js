@@ -51,13 +51,13 @@ const GetMore = () => {
           Become a member of Epayget family and enjoy exclusive features and
           offers that enlighten your business
         </p>
-        <div className="flex flex-wrap gap-4 justify-center md:justify-between  mt-10">
+        <div className="flex flex-wrap gap-4 gap-y-10 justify-center md:justify-between  mt-10">
           {more.map((m) => (
             <div
               className="w-full scale-110 lg:scale-100 md:scale-100  md:w-[48%] lg:w-[32.5%]  mb-6 border rounded-lg shadow-lg"
               key={m.id}
             >
-              <div className="h-full">
+              <div className="h-full bg-white rounded-md">
                 <Image
                   alt="testimonial"
                   className="w-full h-auto mb-8 object-cover object-center inline-block rounded-t-lg"

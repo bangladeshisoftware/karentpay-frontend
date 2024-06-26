@@ -1,17 +1,12 @@
-'use client';
-import { useState,useEffect } from 'react';
-import { FaCopy } from 'react-icons/fa';
-import { MdDeleteForever } from 'react-icons/md';
+"use client";
+import { useState, useEffect } from "react";
+import { FaCopy } from "react-icons/fa";
+import { MdDeleteForever } from "react-icons/md";
 import { RiDeleteBin2Fill } from "react-icons/ri";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 import ApiRequest from "@/app/_lib/Api_request";
 
-
-
 function PaymentCopy() {
-
-
-  
   const [link, setlink] = useState([]);
 
   useEffect(() => {
@@ -23,28 +18,25 @@ function PaymentCopy() {
       url: "/v1/pay_with_link",
       method: "get",
     });
-    if (response.status === 200) {    
-      if(Array.isArray(response.data)){
+    if (response.status === 200) {
+      if (Array.isArray(response.data)) {
         setlink(response.data);
       }
-     
     } else {
       console.log(response);
     }
-  }
+  };
 
-  const getNewLink=async()=>{
+  const getNewLink = async () => {
     const response = await ApiRequest({
       url: "/v1/pay_with_link",
     });
     if (response.status === 200) {
-      getPayLink()
+      getPayLink();
     } else {
       console.log(response);
     }
-  }
-
-
+  };
 
   const [copied, setCopied] = useState(false);
   const [copyText, setCopyText] = useState("");
@@ -57,37 +49,40 @@ function PaymentCopy() {
       setCopyText(link);
       setTimeout(() => setCopied(false), 3000);
     } catch (err) {
-      console.error('Failed to copy:', err);
+      console.error("Failed to copy:", err);
     }
   };
 
-  const[deleteid,setDeleteid]=useState(null)
+  const [deleteid, setDeleteid] = useState(null);
 
- 
-  const [deleteModalOpen, setDeleteModalOpen] = useState(false)
-  const handleDeleteLink =async (id) => {
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+  const handleDeleteLink = async (id) => {
     const response = await ApiRequest({
-      url: "/v1/pay_with_link/"+id,
+      url: "/v1/pay_with_link/" + id,
       method: "delete",
     });
     if (response.status === 200) {
-      getPayLink()
+      getPayLink();
     } else {
       console.log(response);
     }
-    setDeleteModalOpen(false)
-  }
+    setDeleteModalOpen(false);
+  };
   return (
     <div className="mt-10 ">
+      <div className=" border shadow-lg mb-2 lg:mb-2 p-3 lg:p-3 mt-3 rounded-md text-center lg:text-left lg:hidden  ">
+        <h3 className="text-xl font-semibold">Payment</h3>
+      </div>
       <div className="lg:px-0 px-1">
         <section class=" shadow-md border rounded-md ml-1 lg:ml-5 mb-36">
           <div class=" max-w-screen-xl ">
             {/* <!-- Start coding here --> */}
             <div class="bg-white dark:bg-gray-800  shadow-md sm:rounded-lg overflow-hidden">
-              <div className='px-5 pt-5 flex items-center justify-end' >
-                <button onClick={()=>{
-                  getNewLink()
-                }}
+              <div className="px-5 pt-5 flex items-center justify-end">
+                <button
+                  onClick={() => {
+                    getNewLink();
+                  }}
                   className="text-white bg-gradient-to-r from-[#395BEF] to-[#5C28D5] font-medium rounded-[4px] px-4 py-2  flex items-center gap-1"
                 >
                   New Link
@@ -112,60 +107,57 @@ function PaymentCopy() {
                     </tr>
                   </thead>
                   <tbody>
-
-                  {link?.map((item, index) => (
-                    
-                       <tr key={index} className="border-b dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700">
-                       <td className="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                         {index+1}
-                       </td>
-                       <td className="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white ">
-                         {item.link}
-                       </td>
-                       <td className="px-4 py-2 flex-1 ">
-                         <div className="flex items-center gap-2 relative">
-                           <button
-                             className={`text-white text-xl w-fit ${copied ? 'bg-green-500' : 'bg-blue-500'} hover:bg-blue-800 font-medium rounded-[4px] px-3 py-1  flex items-center gap-1`}
-                             onClick={() =>{
-                              handleCopy(item.link);
-                              toast.success('Successfully copied')
-                             }}
-                           >
-                             <FaCopy />
-                           </button>
-                         
-                         </div>
-                       </td>
-                       <td className="px-4 py-2 flex-1">
-                         <div className="flex items-center gap-2">
-                           <button onClick={() => {
-                            console.log(item.id)
-                            setDeleteid(item.id)
-                            setDeleteModalOpen(true);
-                            
-                           }}
-                             className="text-white text-xl w-fit bg-red-500 hover:bg-red-800 font-medium rounded-[4px] px-4 py-1 flex items-center gap-1">
-                             <RiDeleteBin2Fill />
-                           </button>
-                         </div>
-                       </td>
-                     </tr>
-                    
-                  ))}
-                 
-
-
-
+                    {link?.map((item, index) => (
+                      <tr
+                        key={index}
+                        className="border-b dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700"
+                      >
+                        <td className="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                          {index + 1}
+                        </td>
+                        <td className="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white ">
+                          {item.link}
+                        </td>
+                        <td className="px-4 py-2 flex-1 ">
+                          <div className="flex items-center gap-2 relative">
+                            <button
+                              className={`text-white text-xl w-fit ${
+                                copied ? "bg-green-500" : "bg-blue-500"
+                              } hover:bg-blue-800 font-medium rounded-[4px] px-3 py-1  flex items-center gap-1`}
+                              onClick={() => {
+                                handleCopy(item.link);
+                                toast.success("Successfully copied");
+                              }}
+                            >
+                              <FaCopy />
+                            </button>
+                          </div>
+                        </td>
+                        <td className="px-4 py-2 flex-1">
+                          <div className="flex items-center gap-2">
+                            <button
+                              onClick={() => {
+                                console.log(item.id);
+                                setDeleteid(item.id);
+                                setDeleteModalOpen(true);
+                              }}
+                              className="text-white text-xl w-fit bg-red-500 hover:bg-red-800 font-medium rounded-[4px] px-4 py-1 flex items-center gap-1"
+                            >
+                              <RiDeleteBin2Fill />
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
                   </tbody>
                 </table>
-                {
-                  deleteModalOpen && <div
+                {deleteModalOpen && (
+                  <div
                     id="popup-modal"
                     className="fixed top-0 right-0 left-0 z-50 flex justify-center items-center w-full h-full bg-black bg-opacity-50"
                   >
                     <div className="relative p-4 w-full max-w-md max-h-full">
                       <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
-
                         {/* Modal content */}
                         <div className="p-4 pr-10 md:p-5 text-center">
                           <div className="flex justify-center items-center text-[60px] text-red-600">
@@ -190,12 +182,11 @@ function PaymentCopy() {
                               transition: "background-image 0.5s ease",
                               color: "black",
                             }}
-
                             onMouseEnter={(e) => {
-                              e.target.style.backgroundImage = "linear-gradient(to right, #395BEF, #5C28D5,)";
+                              e.target.style.backgroundImage =
+                                "linear-gradient(to right, #395BEF, #5C28D5,)";
                               e.target.style.color = "#FFFFFF";
                             }}
-
                             onMouseLeave={(e) => {
                               e.target.style.color = "black";
                             }}
@@ -206,23 +197,23 @@ function PaymentCopy() {
                       </div>
                     </div>
                   </div>
-                }
+                )}
               </div>
               <nav
                 class="flex flex-col md:flex-row justify-between items-start md:items-center  p-5"
                 aria-label="Table navigation"
               >
-                <div className='border border-gray-300 py-1 px-3 rounded-lg'>
-                <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
-                  Showing
-                  <span class="font-semibold text-gray-900 dark:text-white">
-                    1-10
+                <div className="border border-gray-300 py-1 px-3 rounded-lg">
+                  <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
+                    Showing
+                    <span class="font-semibold text-gray-900 dark:text-white">
+                      1-10
+                    </span>
+                    of
+                    <span class="font-semibold text-gray-900 dark:text-white">
+                      1000
+                    </span>
                   </span>
-                  of
-                  <span class="font-semibold text-gray-900 dark:text-white">
-                    1000
-                  </span>
-                </span>
                 </div>
                 <ul class="inline-flex items-stretch -space-x-px">
                   <li>

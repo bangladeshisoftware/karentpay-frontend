@@ -23,7 +23,7 @@ function Support() {
   const transactions = [
     {
       id: 1,
-     
+
       currencyName: "USD",
       network: "Bank Transfer",
       depositAddress: "N/A",
@@ -34,7 +34,7 @@ function Support() {
     },
     {
       id: 2,
-      
+
       currencyName: "USD",
       network: "Bank Transfer",
       depositAddress: "N/A",
@@ -45,7 +45,7 @@ function Support() {
     },
     {
       id: 3,
-      
+
       currencyName: "USD",
       network: "Bank Transfer",
       depositAddress: "N/A",
@@ -56,7 +56,7 @@ function Support() {
     },
     {
       id: 4,
-      
+
       currencyName: "USD",
       network: "Bank Transfer",
       depositAddress: "N/A",
@@ -67,7 +67,7 @@ function Support() {
     },
     {
       id: 5,
-      
+
       currencyName: "USD",
       network: "Bank Transfer",
       depositAddress: "N/A",
@@ -78,7 +78,7 @@ function Support() {
     },
     {
       id: 6,
-      
+
       currencyName: "USD",
       network: "Bank Transfer",
       depositAddress: "N/A",
@@ -90,24 +90,23 @@ function Support() {
     // Add more transaction objects here as needed
   ];
 
-    // Filter transactions based on the selected date range
-    const filteredTransactions = transactions.filter((transaction) => {
-      const transactionDate = new Date(transaction.date);
-      const startDateObj = dateRange.startDate
-        ? new Date(dateRange.startDate)
-        : null;
-      const endDateObj = dateRange.endDate ? new Date(dateRange.endDate) : null;
-  
-      return (
-        (!startDateObj || transactionDate >= startDateObj) &&
-        (!endDateObj || transactionDate <= endDateObj)
-      );
-    });
+  // Filter transactions based on the selected date range
+  const filteredTransactions = transactions.filter((transaction) => {
+    const transactionDate = new Date(transaction.date);
+    const startDateObj = dateRange.startDate
+      ? new Date(dateRange.startDate)
+      : null;
+    const endDateObj = dateRange.endDate ? new Date(dateRange.endDate) : null;
+
+    return (
+      (!startDateObj || transactionDate >= startDateObj) &&
+      (!endDateObj || transactionDate <= endDateObj)
+    );
+  });
 
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5; // Adjust this value as needed
-
 
   const handleCreateTicket = () => {
     setIsModalOpen(true);
@@ -135,8 +134,11 @@ function Support() {
 
   return (
     <div className="mt-10 ml-1 lg:ml-8">
+      <div className=" border shadow-lg mb-2 lg:mb-2 p-3 lg:p-3 mt-3 rounded-md text-center lg:text-left lg:hidden  ">
+        <h3 className="text-xl font-semibold">Support</h3>
+      </div>
       <div className="grid lg:grid-cols-3 grid-cols-1 px-1 lg:px-0 justify-around gap-4 pb-5">
-        <div className="border border-blue-500 rounded-md shadow px-20 py-16  text-black flex items-center transition-all duration-300 hover:shadow-lg">
+        <div className="border shadow-lg rounded-md  px-20 py-16  text-black flex items-center transition-all duration-300 hover:shadow-lg bg-white">
           <div className="mr-3 text-2xl border border-blue-500 rounded-full text-black p-3">
             <GiTicket />
           </div>
@@ -149,7 +151,7 @@ function Support() {
             </div>
           </div>
         </div>
-        <div className="border border-blue-500 rounded-md shadow px-20 py-16 lg:py-8  text-black flex items-center transition-all duration-300 hover:shadow-lg">
+        <div className="border shadow-lg rounded-md  px-20 py-16 lg:py-8  text-black flex items-center transition-all duration-300 hover:shadow-lg bg-white">
           <div className="mr-3 text-2xl border border-blue-500 rounded-full text-black p-3">
             <MdAirplaneTicket />
           </div>
@@ -162,7 +164,7 @@ function Support() {
             </div>
           </div>
         </div>
-        <div className="border border-blue-500 rounded-md shadow px-20 py-16 lg:py-8  text-black flex items-center transition-all duration-300 hover:shadow-lg">
+        <div className="border shadow-lg rounded-md  px-20 py-16 lg:py-8  text-black flex items-center transition-all duration-300 hover:shadow-lg bg-white">
           <div className="mr-3 text-2xl border border-blue-500 rounded-full text-black p-3">
             <MdOutlineAirplaneTicket />
           </div>
@@ -432,7 +434,7 @@ function Support() {
                         {/* <td className="px-4 py-3">{transaction.trxid}</td>
                         <td className="px-4 py-3">{transaction.debit}</td> */}
                         <td className="px-4 py-3">{transaction.date}</td>
-                        <td className="px-4 py-3">${transaction.debit}</td> 
+                        <td className="px-4 py-3">${transaction.debit}</td>
                         <td className="px-4 py-3">{transaction.status}</td>
                         {/* <td className="px-4 py-3 flex items-center justify-end"></td> */}
                       </tr>
@@ -600,7 +602,6 @@ function Support() {
 }
 
 export default Support;
-
 
 // import React, { useState } from "react";
 // import { MdUploadFile } from "react-icons/md";

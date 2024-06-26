@@ -104,6 +104,9 @@ function Wtransactions() {
 
   return (
     <div className="mt-10 ">
+      <div className=" border shadow-lg mb-2 lg:mb-2 p-3 lg:p-3 mt-3 rounded-md text-center lg:text-left lg:hidden  ">
+        <h3 className="text-xl font-semibold">Withdraw Transaction</h3>
+      </div>
       <div className="px-1 lg:px-0 ">
         <section className="shadow-md border rounded-md ml-1 lg:ml-5 mb-36 ">
           <div className="max-w-screen-xl">

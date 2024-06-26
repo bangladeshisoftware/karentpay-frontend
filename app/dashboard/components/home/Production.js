@@ -6,19 +6,17 @@ import { IoIosArrowRoundForward } from "react-icons/io";
 import { SlOptions } from "react-icons/sl";
 import { MdDelete } from "react-icons/md";
 import { FaBan } from "react-icons/fa";
-import { format } from 'date-fns';
+import { format } from "date-fns";
 
 export default function Production() {
   const [keys, setKeys] = useState([]);
   const [copyMessage1, setCopyMessage1] = useState("");
   const [copyMessage2, setCopyMessage2] = useState("");
-  const [showText, setShowText] = useState(false);  
+  const [showText, setShowText] = useState(false);
 
   useEffect(() => {
     getTestKey();
   }, []);
-
- 
 
   const getTestKey = async () => {
     const response = await ApiRequest({
@@ -31,7 +29,6 @@ export default function Production() {
     } else {
       console.log(response);
     }
-
   };
 
   const handleCopy1 = (text) => {
@@ -46,7 +43,7 @@ export default function Production() {
       });
   };
 
-  const handleCopy2 = (text) => {    
+  const handleCopy2 = (text) => {
     if (showText) {
       navigator.clipboard
         .writeText(text)
@@ -83,8 +80,8 @@ export default function Production() {
   };
 
   return (
-    <div className="ml-2 lg:ml-8   mt-5">
-      <div className="w-full border lg:p-3 mt-3 rounded-md lg:flex  lg:items-center lg:justify-between">
+    <div className=" mt-5">
+      <div className="w-full border lg:p-3 mt-3 rounded-md lg:flex  lg:items-center lg:justify-between ">
         <h3 className="text-xl font-semibold"> API keys</h3>
         <Link className="" target="_blank" href="#">
           <span className="text-sm text-[#2F65EC] font-medium flex items-center">
@@ -94,129 +91,125 @@ export default function Production() {
         </Link>
       </div>
 
-{keys?.map((key,index)=>(
-      <div key={key.id} className="mt-5 border rounded-md">
-        <div className="border-b lg:p-4 text-center lg:flex md:flex items-center  lg:justify-between md:justify-between  ">
-          <h3 className="text-xl font-semibold  ">Standard keys</h3>
-          {/* <h3 className="text-xl font-semibold  ">Domain Name</h3> */}
-          <div className="relative">
-            <SlOptions onClick={handleDeleteBan} />
-            {DeleteBan ? (
-              <div className="bg-white border shadow-md rounded-sm absolute right-0 p-2 flex flex-col gap-2 cursor: pointer">
-              
-                <p 
-                onClick={()=>{
-                  console.log("Deactived");
-                }}
-                className="flex items-center gap-1 cursor: pointer">
-                  Deactive{" "}
-                  <span>
-                    <FaBan className="text-red-700" />
-                  </span>
-                </p>
-              </div>
-            ) : (
-              ""
-            )}
-          </div>         
-        </div>
-        <div >
-          <table className="table-auto w-full">
-            <thead>
-              <tr className="w-full text-left  mt-3 h-8 border-b ">
-                <th className="w-[200px]  text-xs font-medium">
-                  <div className="ml-4">NAME</div>
-                </th>
-                <th className="lg:w-[200px] md:w-[300px] md:h-10 font-medium text-xs">
-                  TOKEN
-                </th>
-                <th className="lg:w-[200px] md:w-[300px] md:h-10 font-medium text-xs">
-                  LAST USED
-                </th>
-                <th className="lg:w-[200px] md:w-[300px] md:h-10font-medium text-xs">
-                  CREATED
-                </th>
-                <th className="lg:w-[200px] md:w-[300px] md:h-10 font-medium text-xs">
-                  STATUS
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr className="text-xs ml-4 h-20 border-b">
-                <td>
-                  <div className="ml-3 font-semibold">Publishable key</div>
-                </td>
-                <td
-                  className={`relative cursor-pointer`}
-                  onClick={() =>
-                    handleCopy1(key?.public_key)
-                  }
-                  onMouseEnter={() => setCopyMessage1("Click to copy")}
-                  onMouseLeave={() => setCopyMessage1("")}
-                >
-                  {copyMessage1 && (
-                    <div className="absolute -top-6 left-0 bg-gray-200 text-xs p-1 rounded">
-                      {copyMessage1}
-                    </div>
-                  )}
-                {key?.public_key} &nbsp;&nbsp;&nbsp;
-                </td>
-                
-                <td>-</td>
-              <td>{key?.created_at&&format(key?.created_at, 'dd' + ' ' + 'MMMM' + ' ' + 'yyyy')}</td>
-                <td>
-                  {key?.status==1? "Active" :"Deactive"}
-                </td>
-              </tr>
-              <tr className="text-xs mt-4">
-                <td>
-                  <div className="ml-3 font-semibold">Secret key</div>
-                </td>
-                <td className="relative">
-                  <span
-                    className={`relative cursor-pointer ${
-                      !showText ? "blur-lg" : ""
-                    }`}
-                    onClick={() =>  handleCopy2(key?.privet_key)}
-                    onMouseEnter={() => setCopyMessage2("Click to copy")}
-                    onMouseLeave={() => setCopyMessage2("")}
+      {keys?.map((key, index) => (
+        <div key={key.id} className="mt-5 border rounded-md">
+          <div className="border-b lg:p-4 text-center lg:flex md:flex items-center  lg:justify-between md:justify-between  ">
+            <h3 className="text-xl font-semibold  ">Standard keys</h3>
+            {/* <h3 className="text-xl font-semibold  ">Domain Name</h3> */}
+            <div className="relative">
+              <SlOptions onClick={handleDeleteBan} />
+              {DeleteBan ? (
+                <div className="bg-white border shadow-md rounded-sm absolute right-0 p-2 flex flex-col gap-2 cursor: pointer">
+                  <p
+                    onClick={() => {
+                      console.log("Deactived");
+                    }}
+                    className="flex items-center gap-1 cursor: pointer"
                   >
-                    {copyMessage2 && (
+                    Deactive{" "}
+                    <span>
+                      <FaBan className="text-red-700" />
+                    </span>
+                  </p>
+                </div>
+              ) : (
+                ""
+              )}
+            </div>
+          </div>
+          <div className="overflow-x-auto">
+            <table className="table-auto w-full">
+              <thead>
+                <tr className="text-left mt-3 h-8 border-b">
+                  <th className="w-[200px] text-xs font-medium">
+                    <div className="ml-4">NAME</div>
+                  </th>
+                  <th className="lg:w-[200px] md:w-[300px] w-[150px] md:h-10 font-medium text-xs">
+                    TOKEN
+                  </th>
+                  <th className="lg:w-[200px] md:w-[300px] w-[150px] md:h-10 font-medium text-xs">
+                    LAST USED
+                  </th>
+                  <th className="lg:w-[200px] md:w-[300px] w-[150px] md:h-10 font-medium text-xs">
+                    CREATED
+                  </th>
+                  <th className="lg:w-[200px] md:w-[300px] w-[150px] md:h-10 font-medium text-xs">
+                    STATUS
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="text-xs ml-4 h-20 border-b">
+                  <td>
+                    <div className="ml-3 font-semibold">Publishable key</div>
+                  </td>
+                  <td
+                    className="relative cursor-pointer break-word"
+                    onClick={() => handleCopy1(key?.public_key)}
+                    onMouseEnter={() => setCopyMessage1("Click to copy")}
+                    onMouseLeave={() => setCopyMessage1("")}
+                  >
+                    {copyMessage1 && (
                       <div className="absolute -top-6 left-0 bg-gray-200 text-xs p-1 rounded">
-                        {copyMessage2}
+                        {copyMessage1}
                       </div>
                     )}
-                  {key?.privet_key} &nbsp;&nbsp;&nbsp;<br />
-                  </span>
-                  {showText ? (
-                    <button
-                      className="bg-white border rounded-md shadow-md p-1"
-                      onClick={handleHideText}
+                    {key?.public_key}
+                  </td>
+                  <td>-</td>
+                  <td>
+                    {key?.created_at && format(key?.created_at, "dd MMMM yyyy")}
+                  </td>
+                  <td>{key?.status === 1 ? "Active" : "Deactive"}</td>
+                </tr>
+                <tr className="text-xs mt-4">
+                  <td>
+                    <div className="ml-3 font-semibold">Secret key</div>
+                  </td>
+                  <td className="relative break-word">
+                    <span
+                      className={`relative cursor-pointer ${
+                        !showText ? "blur-lg" : ""
+                      }`}
+                      onClick={() => handleCopy2(key?.privet_key)}
+                      onMouseEnter={() => setCopyMessage2("Click to copy")}
+                      onMouseLeave={() => setCopyMessage2("")}
                     >
-                      Hide Token
-                    </button>
-                  ) : (
-                    <button
-                      className="bg-white border absolute top-4 left-20 rounded-md shadow-md p-1"
-                      onClick={handleRevealText}
-                    >
-                      Reveal Token
-                    </button>
-                  )}
-                </td>
-                <td>-</td>               
-                <td>{key?.created_at&&format(key?.created_at, 'dd' + ' ' + 'MMMM' + ' ' + 'yyyy')}</td>
-                <td>
-                  {key?.status==1? "Active" :"Deactive"}
-                </td>
-              </tr>
-            </tbody>
-          </table>
+                      {copyMessage2 && (
+                        <div className="absolute -top-6 left-0 bg-gray-200 text-xs p-1 rounded">
+                          {copyMessage2}
+                        </div>
+                      )}
+                      {key?.privet_key}
+                      <br />
+                    </span>
+                    {showText ? (
+                      <button
+                        className="bg-white border rounded-md shadow-md p-1"
+                        onClick={handleHideText}
+                      >
+                        Hide Token
+                      </button>
+                    ) : (
+                      <button
+                        className="bg-white border absolute top-4 left-20 rounded-md shadow-md p-1"
+                        onClick={handleRevealText}
+                      >
+                        Reveal Token
+                      </button>
+                    )}
+                  </td>
+                  <td>-</td>
+                  <td>
+                    {key?.created_at && format(key?.created_at, "dd MMMM yyyy")}
+                  </td>
+                  <td>{key?.status === 1 ? "Active" : "Deactive"}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
-      </div>
       ))}
-
-     
     </div>
   );
 }

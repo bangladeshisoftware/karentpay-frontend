@@ -132,7 +132,7 @@ function Dashboard() {
   }, []);
 
   return (
-    <div className={`${selectedContainer.type} flex h-screen mx-auto`}>
+    <div className={`${selectedContainer.type} flex h-screen mx-auto `}>
       <ResizablePanelGroup direction='horizontal'>
         {windowWidth >= 1024 && (
           <ResizablePanel defaultSize={15} minSize={getMinSize()}>
@@ -275,7 +275,7 @@ function Dashboard() {
           />
         </nav>
         <ResizablePanel defaultSize={85} minSize={40}>
-          <div className='flex-1 p-0 overflow-y-auto scrollbar-hide'>
+          <div className='flex-1 p-0 overflow-y-auto scrollbar-hide '>
             {activeComponent === 'developer' && (
               <Header isOn={isOn} toggleSwitch={toggleSwitch} />
             )}

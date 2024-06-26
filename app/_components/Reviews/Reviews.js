@@ -47,13 +47,13 @@ const Reviews = () => {
             Show more <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
-        <div className="flex flex-wrap gap-4 justify-center mt-10">
+        <div className="flex flex-wrap gap-4 gap-y-10 justify-center mt-10 ">
           {reviews.map((review) => (
             <div
-              className="w-full  md:w-[48%] lg:w-[32.5%] scale-110 lg:scale-100 md:scale-100    mb-6 p-4 border rounded-lg shadow-lg"
+              className="w-full  md:w-[48%] lg:w-[32.5%] scale-110 lg:scale-100 md:scale-100    mb-6 p-4 border rounded-lg shadow-lg bg-white"
               key={review.id}
             >
-              <div className="h-full text-center">
+              <div className="h-full text-center ">
                 <Image
                   alt="testimonial"
                   className="w-32 h-32 mb-8 object-cover object-center rounded-full inline-block border-2 border-gray-200 bg-gray-100"

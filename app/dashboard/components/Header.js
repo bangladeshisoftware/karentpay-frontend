@@ -16,7 +16,11 @@ function Header({ isOn, toggleSwitch }) {
   //   setIsOn(!isOn);
   // };
   return (
-    <div className="w-full bg-white  py-4 mt-3">
+    <div className="w-full   py-4 mt-3">
+      <div className=" border shadow-lg mb-4 lg:mb-2 p-3 lg:p-3 mt-3 rounded-md text-center lg:text-left lg:hidden  ">
+        <h3 className="text-xl font-semibold">Developer</h3>
+      </div>
+
       <div className="  px-5 lg:px-0  ">
         <div className="flex justify-between items-center gap-3">
           {isOn ? (

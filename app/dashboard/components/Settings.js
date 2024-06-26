@@ -14,11 +14,11 @@ function Product_Catalog() {
   const [isMobileDrawerOpen, setIsMobileDrawerOpen] = useState(false);
   const [isInternetDrawerOpen, setIsInternetDrawerOpen] = useState(false);
   const [fileNames, setFileNames] = useState({
-    file0:"No file chosen",
+    file0: "No file chosen",
     file1: "No file chosen",
     file2: "No file chosen",
     file3: "No file chosen",
-    file4: "No file chosen"
+    file4: "No file chosen",
   });
   const [user, setUser] = useState("");
 
@@ -57,14 +57,17 @@ function Product_Catalog() {
 
   const handleFileChange = (e, fileKey) => {
     const file = e.target.files[0];
-    setFileNames(prevState => ({
+    setFileNames((prevState) => ({
       ...prevState,
-      [fileKey]: file ? file.name : "No file chosen"
+      [fileKey]: file ? file.name : "No file chosen",
     }));
   };
 
   return (
     <div className="mt-10 z-10 ml-1 lg:ml-8 px-1 lg:px-0 flex flex-col">
+      <div className=" border shadow-lg mb-2 lg:mb-2 p-3 lg:p-3 mt-3 rounded-md text-center lg:text-left lg:hidden  ">
+        <h3 className="text-xl font-semibold">Settings</h3>
+      </div>
       <div className="nav bg-gradient-to-r from-purple-500 to-blue-600 hidden lg:flex md:flex xl:flex lg:gap-4 border rounded-md shadow-md items-center h-fit mt-2 text-white lg:py-4">
         <h3
           className={`cursor-pointer rounded-md p-2 ml-3 ${
@@ -234,7 +237,7 @@ function Product_Catalog() {
         </h3>
       </div>
 
-      <div className="contain w-full h-fit border shadow-md rounded-sm mt-12 pb-8 lg:px-12 xs:px-12 px-4">
+      <div className="container bg-white w-full h-fit border shadow-md rounded-sm mt-12 pb-8 lg:px-12 xs:px-12 px-4">
         {selected == "profile" && !updated && (
           <div className="lg:mx-24 xl:mx-24 md:mx-16 sm:mx-8 mx-0 font-normal">
             <div className="mt-8">
@@ -287,7 +290,7 @@ function Product_Catalog() {
             ""
           )}
         </div>
-        <div className="h-screen">
+        <div className="h-[60%]">
           {selected == "paymentSettings" ? (
             <form onSubmit={handlePaymentSetting} className="">
               <div className="my-6">
@@ -309,7 +312,7 @@ function Product_Catalog() {
                     type="file"
                     name="img1"
                     id="imgUpload1"
-                    onChange={(e) => handleFileChange(e, 'file0')}
+                    onChange={(e) => handleFileChange(e, "file0")}
                   />
                   <div className="flex items-center justify-between rounded-md overflow-hidden">
                     <label
@@ -335,7 +338,7 @@ function Product_Catalog() {
                     type="file"
                     name="img1"
                     id="imgUpload1"
-                    onChange={(e) => handleFileChange(e, 'file1')}
+                    onChange={(e) => handleFileChange(e, "file1")}
                   />
                   <div className="flex items-center justify-between rounded-md overflow-hidden">
                     <label
@@ -358,7 +361,7 @@ function Product_Catalog() {
                     type="file"
                     name="img2"
                     id="imgUpload2"
-                    onChange={(e) => handleFileChange(e, 'file2')}
+                    onChange={(e) => handleFileChange(e, "file2")}
                   />
                   <div className="flex items-center justify-between rounded-md overflow-hidden">
                     <label
@@ -381,7 +384,7 @@ function Product_Catalog() {
                     type="file"
                     name="img3"
                     id="imgUpload3"
-                    onChange={(e) => handleFileChange(e, 'file3')}
+                    onChange={(e) => handleFileChange(e, "file3")}
                   />
                   <div className="flex items-center justify-between rounded-md overflow-hidden">
                     <label
@@ -404,7 +407,7 @@ function Product_Catalog() {
                     type="file"
                     name="img4"
                     id="imgUpload4"
-                    onChange={(e) => handleFileChange(e, 'file4')}
+                    onChange={(e) => handleFileChange(e, "file4")}
                   />
                   <div className="flex items-center justify-between rounded-md overflow-hidden">
                     <label
@@ -423,9 +426,7 @@ function Product_Catalog() {
                 </div>
               </div>
               <div>
-                <h3 className="mt-6  ">
-                  Manage Your Payment Gateway
-                </h3>
+                <h3 className="mt-6  ">Manage Your Payment Gateway</h3>
                 <button
                   onClick={() => {
                     setIsMobileDrawerOpen(true);
@@ -434,9 +435,12 @@ function Product_Catalog() {
                 >
                   Mobile Banking
                 </button>
-                <button  onClick={() => {
+                <button
+                  onClick={() => {
                     setIsInternetDrawerOpen(true);
-                  }} className="my-6 bg-tansparent border-black border rounded-md hover:border-blue-600 w-full py-3 text-left px-4 font-semibold">
+                  }}
+                  className="my-6 bg-tansparent border-black border rounded-md hover:border-blue-600 w-full py-3 text-left px-4 font-semibold"
+                >
                   Internet Banking
                 </button>
               </div>
@@ -448,23 +452,24 @@ function Product_Catalog() {
       </div>
       {isMobileDrawerOpen && (
         <>
-        <BankingDrawer
-          show={setIsMobileDrawerOpen}
-          onClose={() => setIsMobileDrawerOpen(false)}
-        >
-          <h3 className="text-lg font-semibold mb-4">Mobile Banking Options</h3>
-          <div className="flex flex-col space-y-2">
-            <ToggleButton optionName="Bkash" />
-            <ToggleButton optionName="Nagad" />
-            <ToggleButton optionName="Rocket" />
-            <ToggleButton optionName="Upay" />
-          </div>
-        </BankingDrawer>
-        
-      </>)}
-      {
-        isInternetDrawerOpen && (
           <BankingDrawer
+            show={setIsMobileDrawerOpen}
+            onClose={() => setIsMobileDrawerOpen(false)}
+          >
+            <h3 className="text-lg font-semibold mb-4">
+              Mobile Banking Options
+            </h3>
+            <div className="flex flex-col space-y-2">
+              <ToggleButton optionName="Bkash" />
+              <ToggleButton optionName="Nagad" />
+              <ToggleButton optionName="Rocket" />
+              <ToggleButton optionName="Upay" />
+            </div>
+          </BankingDrawer>
+        </>
+      )}
+      {isInternetDrawerOpen && (
+        <BankingDrawer
           show={setIsInternetDrawerOpen}
           onClose={() => setIsInternetDrawerOpen(false)}
         >
@@ -476,8 +481,7 @@ function Product_Catalog() {
             <ToggleButton optionName="Islami Bank" />
           </div>
         </BankingDrawer>
-        )
-      }
+      )}
     </div>
   );
 }
