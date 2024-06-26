@@ -100,7 +100,21 @@ function Dashboard() {
         return <Wtransactions />;
       case 'payments':
         // return <Payment />;
-        return <PaymentCopy/>;
+        return <PaymentCopy/>;    const handleCheckboxChange = (position) => {
+          const updatedCheckedState = checkedState.map((item, index) =>
+              index === position ? !item : item
+          );
+  
+          setCheckedState(updatedCheckedState);
+          setIsAllChecked(updatedCheckedState.every((item) => item));
+      };
+  
+      const handleSelectAllChange = () => {
+          const newState = !isAllChecked;
+          setCheckedState(new Array(array.length).fill(newState));
+          setIsAllChecked(newState);
+      };
+  
       case 'developer':
         return <Developer isTest={isOn} />;
       case 'support':
