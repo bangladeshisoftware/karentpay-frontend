@@ -64,11 +64,11 @@ function Product_Catalog() {
   };
 
   return (
-    <div className="mt-10 z-10 ml-1 lg:ml-8 px-1 lg:px-0 flex flex-col">
+    <div className="mt-10 z-10 ml-0 lg:ml-8 px-0 lg:px-0 flex flex-col">
       <div className=" border shadow-lg mb-2 lg:mb-2 p-3 lg:p-3 mt-3 rounded-md text-center lg:text-left lg:hidden  ">
         <h3 className="text-xl font-semibold">Settings</h3>
       </div>
-      <div className="nav bg-gradient-to-r from-purple-500 to-blue-600 hidden lg:flex md:flex xl:flex lg:gap-4 border rounded-md shadow-md items-center h-fit mt-2 text-white lg:py-4">
+      <div className="nav bg-gradient-to-r from-purple-500 to-blue-600 hidden lg:flex md:flex xl:flex lg:gap-4 border rounded-md shadow-md items-center h-fit  text-white lg:py-4">
         <h3
           className={`cursor-pointer rounded-md p-2 ml-3 ${
             selected == "profile"
@@ -331,31 +331,43 @@ function Product_Catalog() {
                 </div>
               </div>
               <div className="border-b">
-                <label className="mt-6 ">Upload Setting Logo</label>
-                <div className="relative border my-3 mx-auto lg:mx-0 bg-white focus-within:border-[#2F65EC] hover:border-[#2F65EC] rounded-md w-full lg:w-full">
+              <label className="mt-6 ">Support</label>
+                <div className="border my-3 mx-auto lg:mx-0 bg-white focus-within:border-[#2F65EC] hover:border-[#2F65EC] rounded-md w-full lg:w-full">
                   <input
-                    className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-                    type="file"
-                    name="img1"
-                    id="imgUpload1"
-                    onChange={(e) => handleFileChange(e, "file1")}
+                    className="w-full px-2 py-2 lg:py-3 lg:px-3 bg-transparent rounded-md outline-none"
+                    type="text"
+                    name="name"
+                    placeholder=""
                   />
-                  <div className="flex items-center justify-between rounded-md overflow-hidden">
-                    <label
-                      htmlFor="imgUpload1"
-                      className="px-4 py-2 lg:py-3 lg:px-6 text-center bg-black text-white cursor-pointer w-1/4"
-                    >
-                      Choose file
-                    </label>
-                    <span
-                      id="fileName1"
-                      className="px-4 py-2 lg:py-3 lg:px-6 bg-transparent text-black w-full text-center"
-                    >
-                      {fileNames.file1}
-                    </span>
-                  </div>
                 </div>
-                <div className="relative border my-3 mx-auto lg:mx-0 bg-white focus-within:border-[#2F65EC] hover:border-[#2F65EC] rounded-md w-full lg:w-full">
+                <label className="mt-6 ">Faq</label>
+                <div className="border my-3 mx-auto lg:mx-0 bg-white focus-within:border-[#2F65EC] hover:border-[#2F65EC] rounded-md w-full lg:w-full">
+                  <input
+                    className="w-full px-2 py-2 lg:py-3 lg:px-3 bg-transparent rounded-md outline-none"
+                    type="text"
+                    name="name"
+                    placeholder=""
+                  />
+                </div>
+                <label className="mt-6 ">Gift</label>
+                <div className="border my-3 mx-auto lg:mx-0 bg-white focus-within:border-[#2F65EC] hover:border-[#2F65EC] rounded-md w-full lg:w-full">
+                  <input
+                    className="w-full px-2 py-2 lg:py-3 lg:px-3 bg-transparent rounded-md outline-none"
+                    type="text"
+                    name="name"
+                    placeholder=""
+                  />
+                </div>
+                <label className="mt-6 ">Login</label>
+                <div className="border my-3 mx-auto lg:mx-0 bg-white focus-within:border-[#2F65EC] hover:border-[#2F65EC] rounded-md w-full lg:w-full">
+                  <input
+                    className="w-full px-2 py-2 lg:py-3 lg:px-3 bg-transparent rounded-md outline-none"
+                    type="text"
+                    name="name"
+                    placeholder=""
+                  />
+                </div>
+                {/* <div className="relative border my-3 mx-auto lg:mx-0 bg-white focus-within:border-[#2F65EC] hover:border-[#2F65EC] rounded-md w-full lg:w-full">
                   <input
                     className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                     type="file"
@@ -377,8 +389,8 @@ function Product_Catalog() {
                       {fileNames.file2}
                     </span>
                   </div>
-                </div>
-                <div className="relative border my-3 mx-auto lg:mx-0 bg-white focus-within:border-[#2F65EC] hover:border-[#2F65EC] rounded-md w-full lg:w-full">
+                </div> */}
+                {/* <div className="relative border my-3 mx-auto lg:mx-0 bg-white focus-within:border-[#2F65EC] hover:border-[#2F65EC] rounded-md w-full lg:w-full">
                   <input
                     className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                     type="file"
@@ -400,8 +412,8 @@ function Product_Catalog() {
                       {fileNames.file3}
                     </span>
                   </div>
-                </div>
-                <div className="relative border my-3 mx-auto lg:mx-0 bg-white focus-within:border-[#2F65EC] hover:border-[#2F65EC] rounded-md w-full lg:w-full">
+                </div> */}
+                {/* <div className="relative border my-3 mx-auto lg:mx-0 bg-white focus-within:border-[#2F65EC] hover:border-[#2F65EC] rounded-md w-full lg:w-full">
                   <input
                     className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                     type="file"
@@ -423,7 +435,7 @@ function Product_Catalog() {
                       {fileNames.file4}
                     </span>
                   </div>
-                </div>
+                </div> */}
               </div>
               <div>
                 <h3 className="mt-6  ">Manage Your Payment Gateway</h3>

@@ -133,7 +133,7 @@ function Support() {
   // const currentTickets = tickets.slice(startIndex, startIndex + itemsPerPage);
 
   return (
-    <div className="mt-10 ml-1 lg:ml-8">
+    <div className="mt-10 ml-0 lg:ml-8">
       <div className=" border shadow-lg mb-2 lg:mb-2 p-3 lg:p-3 mt-3 rounded-md text-center lg:text-left lg:hidden  ">
         <h3 className="text-xl font-semibold">Support</h3>
       </div>

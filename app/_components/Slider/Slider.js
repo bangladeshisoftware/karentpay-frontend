@@ -53,7 +53,6 @@ const Slider = () => {
               <Image
                 src={slider.image}
                 alt=''
-                layout='responsive'
                 className='w-full'
                 style={{ height: '100%', objectFit: 'cover' }}
               />

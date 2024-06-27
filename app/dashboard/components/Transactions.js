@@ -79,7 +79,7 @@ function Transactions() {
         <h3 className="text-xl font-semibold">Cash In Transaction</h3>
       </div>
       <div className="lg:px-0 px-1">
-        <section class=" shadow-md border rounded-md ml-1 lg:ml-5 mb-36">
+        <section class=" shadow-md border rounded-md ml-0 lg:ml-5 mb-36"> 
           <div class=" max-w-screen-xl ">
             {/* <!-- Start coding here --> */}
             <div class="bg-white dark:bg-gray-800  shadow-md sm:rounded-lg overflow-hidden">

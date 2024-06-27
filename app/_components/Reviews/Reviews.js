@@ -50,7 +50,7 @@ const Reviews = () => {
         <div className="flex flex-wrap gap-4 gap-y-10 justify-center mt-10 ">
           {reviews.map((review) => (
             <div
-              className="w-full  md:w-[48%] lg:w-[32.5%] scale-110 lg:scale-100 md:scale-100    mb-6 p-4 border rounded-lg shadow-lg bg-white"
+              className=" w-full  md:w-[48%] lg:w-[32.5%] scale-110 lg:scale-100 md:scale-100    mb-6 p-4 border rounded-lg shadow-lg bg-white"
               key={review.id}
             >
               <div className="h-full text-center ">

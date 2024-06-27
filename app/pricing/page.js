@@ -39,7 +39,7 @@ const pricing = () => {
         <div className='text-3xl text-center font-bold py-4 mb-10'>
           Start your Gold plan trial today
         </div>
-        <div className='flex flex-col md:flex-row justify-around w-full items-center border rounded-md shadow-md p-4 sm:p-6 md:p-8 mb-24 transition-all duration-300 hover:border-blue-500'>
+        <div className='bg-white flex flex-col md:flex-row justify-around w-full items-center border rounded-md shadow-md p-4 sm:p-6 md:p-8 mb-24 transition-all duration-300 hover:border-blue-500'>
           <div className='mb-4 md:mb-0 md:mr-8'>
             <div className='text-2xl text-[#7073F3]'>
               Per transaction we cut BDT 10.00TK

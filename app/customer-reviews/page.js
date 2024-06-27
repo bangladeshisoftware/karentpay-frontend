@@ -180,7 +180,7 @@ const CustomerReview = () => {
           <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-8 justify-center mt-20 w-full">
             {currentReviews.map((review) => (
               <div
-                className="w-full scale-110 lg:scale-100 md:scale-100 lg:w-full md:w-full lg:mb-0 mb-6 p-4 border rounded-lg shadow-lg transition-transform duration-300 hover:scale-110 hover:rotate-x-15 hover:rotate-y-15"
+                className="bg-white w-full scale-110 lg:scale-100 md:scale-100 lg:w-full md:w-full lg:mb-0 mb-6 p-4 border rounded-lg shadow-lg transition-transform duration-300 hover:scale-110 hover:rotate-x-15 hover:rotate-y-15"
                 key={review.id}
               >
                 <div className="h-full text-center">

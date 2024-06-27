@@ -124,16 +124,16 @@ export default function Production() {
                   <th className="w-[200px] text-xs font-medium">
                     <div className="ml-4">NAME</div>
                   </th>
-                  <th className="lg:w-[200px] md:w-[300px] w-[150px] md:h-10 font-medium text-xs">
+                  <th className="lg:w-[200px] md:w-[300px] w-[150px] font-medium text-xs">
                     TOKEN
                   </th>
-                  <th className="lg:w-[200px] md:w-[300px] w-[150px] md:h-10 font-medium text-xs">
+                  <th className="lg:w-[200px] md:w-[300px] w-[150px] font-medium text-xs">
                     LAST USED
                   </th>
-                  <th className="lg:w-[200px] md:w-[300px] w-[150px] md:h-10 font-medium text-xs">
+                  <th className="lg:w-[200px] md:w-[300px] w-[150px] font-medium text-xs">
                     CREATED
                   </th>
-                  <th className="lg:w-[200px] md:w-[300px] w-[150px] md:h-10 font-medium text-xs">
+                  <th className="lg:w-[200px] md:w-[300px] w-[150px] font-medium text-xs">
                     STATUS
                   </th>
                 </tr>
@@ -144,7 +144,7 @@ export default function Production() {
                     <div className="ml-3 font-semibold">Publishable key</div>
                   </td>
                   <td
-                    className="relative cursor-pointer break-word"
+                    className="relative cursor-pointer break-words word-break-all overflow-hidden"
                     onClick={() => handleCopy1(key?.public_key)}
                     onMouseEnter={() => setCopyMessage1("Click to copy")}
                     onMouseLeave={() => setCopyMessage1("")}
@@ -154,7 +154,9 @@ export default function Production() {
                         {copyMessage1}
                       </div>
                     )}
-                    {key?.public_key}
+                    <div className="break-words word-break-all overflow-hidden">
+                      {key?.public_key}
+                    </div>
                   </td>
                   <td>-</td>
                   <td>
@@ -166,7 +168,7 @@ export default function Production() {
                   <td>
                     <div className="ml-3 font-semibold">Secret key</div>
                   </td>
-                  <td className="relative break-word">
+                  <td className="relative break-words word-break-all overflow-hidden">
                     <span
                       className={`relative cursor-pointer ${
                         !showText ? "blur-lg" : ""
@@ -180,7 +182,9 @@ export default function Production() {
                           {copyMessage2}
                         </div>
                       )}
-                      {key?.privet_key}
+                      <div className="break-words word-break-all overflow-hidden">
+                        {key?.privet_key}
+                      </div>
                       <br />
                     </span>
                     {showText ? (

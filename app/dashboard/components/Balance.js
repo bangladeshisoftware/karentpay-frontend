@@ -26,7 +26,7 @@ function Balance() {
   };
 
   return (
-    <div className="rounded-md mt-10 ml-1 lg:ml-5">
+    <div className="rounded-md mt-10 ml-0 lg:ml-5">
       <div className=" border shadow-lg mb-2 lg:mb-2 p-3 lg:p-3 mt-3 rounded-md text-center lg:text-left lg:hidden  ">
         <h3 className="text-xl font-semibold">Balance</h3>
       </div>

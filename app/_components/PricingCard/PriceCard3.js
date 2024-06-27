@@ -41,8 +41,8 @@ const PriceCard3 = () => {
       ].map((text, index, array) => (
         <div
           key={index}
-          className={`flex pl-4 py-4 transition-colors duration-300 hover:bg-gray-100 ${
-            index !== array.length - 1 ? 'border-b-2' : ''
+          className={`flex pl-4 py-4 bg-white transition-colors duration-300 hover:bg-gray-100 ${
+            index !== array.length - 1 ? 'border-b-2 border-gray-500' : ''
           }`}
         >
           <div className='pt-1 pr-2 text-[#7073F3]'>
@@ -53,7 +53,7 @@ const PriceCard3 = () => {
           </div>
         </div>
       ))}
-      <div className='text-center mt-4 mb-4'>
+      <div className='text-center py-4 bg-white'>
         <Button className='bg-gradient-to-r from-blue-600  to-purple-400 transition-transform duration-300 hover:scale-105 px-12 py-6 mb-6'>
           Choose Plan
         </Button>

@@ -93,7 +93,7 @@ const PaymentGateway = () => {
             {bdExchangers.map((exchanger) => (
               <div
                 key={exchanger.id}
-                className="w-full  scale-110 lg:scale-100 md:scale-100 lg:w-[200px] md:w-[200px] h-[150px] flex flex-col items-center justify-center border rounded-lg shadow-md transition-transform duration-300 hover:scale-110 focus-within:border-4 focus-within:border-blue-500 cursor-pointer"
+                className="bg-white w-full  scale-110 lg:scale-100 md:scale-100 lg:w-[200px] md:w-[200px] h-[150px] flex flex-col items-center justify-center border rounded-lg shadow-md transition-transform duration-300 hover:scale-110 focus-within:border-4 focus-within:border-blue-500 cursor-pointer"
               >
                 <Image
                   className="h-auto"
@@ -116,7 +116,7 @@ const PaymentGateway = () => {
           {IndiaExchangers.map((exchanger) => (
             <div
               key={exchanger.id}
-              className="w-full  scale-110 lg:scale-100 md:scale-100 lg:w-[200px] md:w-[200px] h-[150px] flex flex-col items-center justify-center gap-3 border rounded-lg shadow-md transition-transform duration-300 hover:scale-110 focus-within:border-4 focus-within:border-blue-500 cursor-pointer"
+              className="bg-white w-full  scale-110 lg:scale-100 md:scale-100 lg:w-[200px] md:w-[200px] h-[150px] flex flex-col items-center justify-center gap-3 border rounded-lg shadow-md transition-transform duration-300 hover:scale-110 focus-within:border-4 focus-within:border-blue-500 cursor-pointer"
             >
               <Image
                 className="h-auto w-[100px]"

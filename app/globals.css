@@ -122,8 +122,12 @@
   width: 100%;                     /* Ensures the body width is 100% of the viewport width */
 }
 
-.break-word {
+.break-words {
   word-break: break-word;
+}
+
+.word-break-all {
+  word-break: break-all;
 }
 
 
