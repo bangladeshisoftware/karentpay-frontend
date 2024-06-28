@@ -34,6 +34,11 @@ function Dashboard() {
   const [isOn, setIsOn] = useState(true);
   const [windowWidth, setWindowWidth] = useState(1024); // Default to 1024, update after mounting
 
+  // ali hasan code 
+  const [checkedState, setCheckedState] = useState([]);
+  const [isAllChecked, setIsAllChecked] = useState(true); 
+  const array = []
+  // ali hasan code 
   const containerType = [
     {
       id: 1,
