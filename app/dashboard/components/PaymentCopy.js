@@ -74,7 +74,7 @@ function PaymentCopy() {
         <h3 className="text-xl font-semibold">Payment</h3>
       </div>
       <div className="lg:px-0 px-1">
-        <section class=" shadow-md border rounded-md ml-0 lg:ml-5 mb-36">
+        <section class=" shadow-md border rounded-md ml-1 lg:ml-5 mb-36">
           <div class=" max-w-screen-xl ">
             {/* <!-- Start coding here --> */}
             <div class="bg-white dark:bg-gray-800  shadow-md sm:rounded-lg overflow-hidden">
@@ -116,7 +116,7 @@ function PaymentCopy() {
                           {index + 1}
                         </td>
                         <td className="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white ">
-                          {item.link}
+                          {process.env.NEXT_PUBLIC_PAYMENT_DOMAIN+'/pay/' + item.link}
                         </td>
                         <td className="px-4 py-2 flex-1 ">
                           <div className="flex items-center gap-2 relative">
@@ -125,7 +125,7 @@ function PaymentCopy() {
                                 copied ? "bg-green-500" : "bg-blue-500"
                               } hover:bg-blue-800 font-medium rounded-[4px] px-3 py-1  flex items-center gap-1`}
                               onClick={() => {
-                                handleCopy(item.link);
+                                handleCopy(process.env.NEXT_PUBLIC_PAYMENT_DOMAIN+'/pay/' + item.link);
                                 toast.success("Successfully copied");
                               }}
                             >

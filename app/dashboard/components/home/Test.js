@@ -8,18 +8,14 @@ import { format } from 'date-fns';
 
 
 const Test = () => {
-  const [key, setKey] = useState({});
+  const [key, setKey] = useState([]);
   const [copyMessage1, setCopyMessage1] = useState("");
   const [copyMessage2, setCopyMessage2] = useState("");
   const [showText, setShowText] = useState(false);
 
-  useEffect(() => {
-    getTestKey();
-  }, [getTestKey]);
+  
 
-  useEffect(() => {
-    console.log(key[0]);
-  }, [key]);
+
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const getTestKey = async () => {
@@ -35,6 +31,9 @@ const Test = () => {
 
     console.log(key);
   };
+  useEffect(() => {
+    getTestKey();
+  }, [key.length]);
 
   const handleCopy1 = (text) => {
     navigator.clipboard
