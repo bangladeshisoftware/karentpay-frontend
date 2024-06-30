@@ -162,7 +162,7 @@ export default function Production() {
                   <td>
                     {key?.created_at && format(key?.created_at, "dd MMMM yyyy")}
                   </td>
-                  <td>{key?.status === 1 ? "Active" : "Deactive"}</td>
+                  <td>{key?.status == 1 ? "Active" : "Deactive"}</td>
                 </tr>
                 <tr className="text-xs mt-4">
                   <td>
@@ -207,7 +207,7 @@ export default function Production() {
                   <td>
                     {key?.created_at && format(key?.created_at, "dd MMMM yyyy")}
                   </td>
-                  <td>{key?.status === 1 ? "Active" : "Deactive"}</td>
+                  <td>{key?.status ==1 ? "Active" : "Deactive"}</td>
                 </tr>
               </tbody>
             </table>
