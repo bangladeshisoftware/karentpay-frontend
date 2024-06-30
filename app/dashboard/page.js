@@ -18,6 +18,10 @@ import { FaHandsHelping } from 'react-icons/fa';
 import { PiHandWithdrawFill } from "react-icons/pi";
 import { FaRegFileWord } from "react-icons/fa6";
 
+import {  toast } from 'react-toastify';
+
+import ApiRequest from '@/app/_lib/Api_request';
+
 import {
   ResizableHandle,
   ResizablePanel,
@@ -92,8 +96,27 @@ function Dashboard() {
     windowWidth < 1024 ? containerType[0] : containerType[3];
 
   const toggleSwitch = () => {
-    setIsOn(!isOn);
+    console.log(isOn);
+    if (!isOn) {
+      setIsOn(true);
+    }else{
+      getTestKey();
+    }
+   
   };
+
+  const getTestKey = async () => {
+    const response = await ApiRequest({
+      url: "/marchentuser/check_live",
+      method: "get",
+    });   
+    if (response.status === 200) {
+      setIsOn(false);
+    } else {
+      toast.error(response.message);
+    }
+  };
+
 
   const renderComponent = () => {
     switch (activeComponent) {
