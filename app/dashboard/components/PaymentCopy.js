@@ -70,11 +70,12 @@ function PaymentCopy() {
   };
   return (
     <div className="mt-10 ">
+      
       <div className=" border shadow-lg mb-2 lg:mb-2 p-3 lg:p-3 mt-3 rounded-md text-center lg:text-left lg:hidden  ">
         <h3 className="text-xl font-semibold">Payment</h3>
       </div>
       <div className="lg:px-0 px-1">
-        <section class=" shadow-md border rounded-md ml-1 lg:ml-5 mb-36">
+        <section class=" shadow-md border rounded-md ml-0 lg:ml-5 mb-36">
           <div class=" max-w-screen-xl ">
             {/* <!-- Start coding here --> */}
             <div class="bg-white dark:bg-gray-800  shadow-md sm:rounded-lg overflow-hidden">

@@ -93,7 +93,7 @@ export default function Production() {
 
       {keys?.map((key, index) => (
         <div key={key.id} className="mt-5 border rounded-md">
-          <div className="border-b lg:p-4 text-center lg:flex md:flex items-center  lg:justify-between md:justify-between  ">
+          <div className="border-b lg:p-4 text-center lg:flex md:flex items-center  lg:justify-between md:justify-between">
             <h3 className="text-xl font-semibold  ">Standard keys</h3>
             {/* <h3 className="text-xl font-semibold  ">Domain Name</h3> */}
             <div className="relative">

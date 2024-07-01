@@ -30,7 +30,7 @@ const ApiRequest=async({url,formdata=null,method="post",type="application/json"}
         }
       );
       
-      
+      console.log(response);
 
         let { data } = await response;
         if(type=="multipart/form-data"){
