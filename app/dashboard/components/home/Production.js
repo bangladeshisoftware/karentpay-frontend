@@ -144,7 +144,7 @@ export default function Production() {
                     <div className="ml-3 font-semibold">Publishable key</div>
                   </td>
                   <td
-                    className="relative cursor-pointer break-words word-break-all overflow-hidden"
+                    className="relative cursor-pointer overflow-hidden overflow-ellipsis"
                     onClick={() => handleCopy1(key?.public_key)}
                     onMouseEnter={() => setCopyMessage1("Click to copy")}
                     onMouseLeave={() => setCopyMessage1("")}
@@ -154,7 +154,7 @@ export default function Production() {
                         {copyMessage1}
                       </div>
                     )}
-                    <div className="break-words word-break-all overflow-hidden">
+                    <div className="overflow-hidden overflow-ellipsis">
                       {key?.public_key}
                     </div>
                   </td>
@@ -168,7 +168,7 @@ export default function Production() {
                   <td>
                     <div className="ml-3 font-semibold">Secret key</div>
                   </td>
-                  <td className="relative break-words word-break-all overflow-hidden">
+                  <td className="relative overflow-hidden overflow-ellipsis">
                     <span
                       className={`relative cursor-pointer ${
                         !showText ? "blur-lg" : ""
@@ -182,7 +182,7 @@ export default function Production() {
                           {copyMessage2}
                         </div>
                       )}
-                      <div className="break-words word-break-all overflow-hidden">
+                      <div className="overflow-hidden overflow-ellipsis">
                         {key?.privet_key}
                       </div>
                       <br />
@@ -196,7 +196,7 @@ export default function Production() {
                       </button>
                     ) : (
                       <button
-                        className="bg-white border absolute top-4 left-20 rounded-md shadow-md p-1"
+                        className="bg-white border absolute top-4 left-20 rounded-md shadow-md p-1 "
                         onClick={handleRevealText}
                       >
                         Reveal Token

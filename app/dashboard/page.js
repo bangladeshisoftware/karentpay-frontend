@@ -95,15 +95,16 @@ function Dashboard() {
   const selectedContainer =
     windowWidth < 1024 ? containerType[0] : containerType[3];
 
-  const toggleSwitch = () => {
-    console.log(isOn);
-    if (!isOn) {
-      setIsOn(true);
-    }else{
-      getTestKey();
-    }
+    const toggleSwitch = () => {
    
-  };
+      if (!isOn) {
+        setIsOn(true);
+      }else{
+        setIsOn(false);
+       // getTestKey();
+      }
+     
+    };
 
   const getTestKey = async () => {
     const response = await ApiRequest({
