@@ -6,18 +6,12 @@ import { IoIosArrowRoundForward } from "react-icons/io";
 import { FaArrowRotateRight } from "react-icons/fa6";
 import { format } from 'date-fns';
 
-
 const Test = () => {
   const [key, setKey] = useState([]);
   const [copyMessage1, setCopyMessage1] = useState("");
   const [copyMessage2, setCopyMessage2] = useState("");
   const [showText, setShowText] = useState(false);
 
-  
-
-
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   const getTestKey = async () => {
     const response = await ApiRequest({
       url: "/key",
@@ -31,6 +25,7 @@ const Test = () => {
 
     console.log(key);
   };
+
   useEffect(() => {
     getTestKey();
   }, [key.length]);
@@ -48,7 +43,6 @@ const Test = () => {
   };
 
   const handleCopy2 = (text) => {
-    
     if (showText) {
       navigator.clipboard
         .writeText(text)
@@ -75,6 +69,7 @@ const Test = () => {
   const handleRevealText = () => {
     setShowText(true);
   };
+
   const handleHideText = () => {
     setShowText(false);
   };
@@ -91,27 +86,25 @@ const Test = () => {
         </Link>
       </div>
 
-      <div className="mt-5 border rounded-md">
+      <div className="mt-5 w-full border rounded-md">
         <div className="border-b p-4">
           <h3 className="text-xl font-semibold">Test keys</h3>
-          <p className="text-sm font-normal">
-          This key only for testing Purpose
-          </p>
+          <p className="text-sm font-normal">This key only for testing Purpose</p>
         </div>
-        <div>
+        <div className="overflow-x-auto">
           <table className="table-auto w-full">
             <thead>
-              <tr className="w-full text-left  mt-3 h-8 border-b ">
-                <th className="w-[200px]  text-xs font-medium">
+              <tr className="w-full text-left mt-3 h-8 border-b">
+                <th className="w-[200px] text-xs font-medium">
                   <div className="ml-4">NAME</div>
                 </th>
-                <th className="lg:w-[200px] md:w-[300px] md:h-10 font-medium text-xs">
+                <th className="lg:w-[200px] md:w-[300px] w-[150px] font-medium text-xs">
                   TOKEN
                 </th>
-                <th className="lg:w-[200px] md:w-[300px] font-medium text-xs">
+                <th className="lg:w-[200px] md:w-[300px] w-[150px] font-medium text-xs">
                   LAST USED
                 </th>
-                <th className="lg:w-[200px] font-medium text-xs">CREATED</th>
+                <th className="lg:w-[200px] w-[150px] font-medium text-xs">CREATED</th>
                 <th className="lg:w-[100px]"></th>
               </tr>
             </thead>
@@ -121,10 +114,8 @@ const Test = () => {
                   <div className="ml-3 font-semibold">Publishable key</div>
                 </td>
                 <td
-                  className={`relative cursor-pointer`}
-                  onClick={() =>
-                    handleCopy1(key.public_key)
-                  }
+                  className="relative cursor-pointer truncate max-w-[100px] md:max-w-[200px]"
+                  onClick={() => handleCopy1(key.public_key)}
                   onMouseEnter={() => setCopyMessage1("Click to copy")}
                   onMouseLeave={() => setCopyMessage1("")}
                 >
@@ -133,22 +124,19 @@ const Test = () => {
                       {copyMessage1}
                     </div>
                   )}
-                {key.public_key} &nbsp;&nbsp;&nbsp;
+                  <div className="overflow-hidden overflow-ellipsis">{key.public_key}</div>
                 </td>
                 <td>-</td>
-                <td>{key.created_at&&format(key.created_at, 'dd' + ' ' + 'MMMM' + ' ' + 'yyyy')}</td>
-                
+                <td>{key.created_at && format(key.created_at, 'dd MMMM yyyy')}</td>
               </tr>
               <tr className="text-xs mt-4">
                 <td>
                   <div className="ml-3 font-semibold">Secret key</div>
                 </td>
-                <td className="relative">
+                <td className="relative truncate max-w-[100px] md:max-w-[200px]">
                   <span
-                    className={`relative cursor-pointer ${
-                      !showText ? "blur-lg" : ""
-                    }`}
-                    onClick={() =>  handleCopy2(key.privet_key)}
+                    className={`relative cursor-pointer ${!showText ? "blur-lg" : ""}`}
+                    onClick={() => handleCopy2(key.privet_key)}
                     onMouseEnter={() => setCopyMessage2("Click to copy")}
                     onMouseLeave={() => setCopyMessage2("")}
                   >
@@ -157,7 +145,11 @@ const Test = () => {
                         {copyMessage2}
                       </div>
                     )}
-                  {key.privet_key} &nbsp;&nbsp;&nbsp;<br />
+                    <div className="overflow-hidden overflow-ellipsis">{key.privet_key}</div>
+                    {
+                      console.log(key.privet_key,'private key')
+                    }
+                    <br />
                   </span>
                   {showText ? (
                     <button
@@ -168,17 +160,15 @@ const Test = () => {
                     </button>
                   ) : (
                     <button
-                      className="bg-white border absolute top-4 left-20 rounded-md shadow-md p-1"
+                      className="bg-white border rounded-md shadow-md p-1 lg:ml-10 md:ml-10"
                       onClick={handleRevealText}
                     >
                       Reveal Token
                     </button>
                   )}
                 </td>
-               
-                <td>-</td>             
-                <td>{key.created_at&&format(key.created_at, 'dd' + ' ' + 'MMMM' + ' ' + 'yyyy')}</td>
-                
+                <td>-</td>
+                <td>{key.created_at && format(key.created_at, 'dd MMMM yyyy')}</td>
               </tr>
             </tbody>
           </table>
