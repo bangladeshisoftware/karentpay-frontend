@@ -12,89 +12,110 @@ function Home() {
         <h3 className="text-xl font-semibold">Dashboard</h3>
       </div>
       {/* card */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 px-1 lg:px-0 justify-around gap-2 pb-5 ">
-        <div className=" border shadow-lg rounded-md  px-20 py-16  text-black flex items-center transition-all duration-300 hover:shadow-lg bg-white">
-          <div className="mr-3 text-2xl border border-blue-500 rounded-full text-black p-3">
-            <FaUsers />
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 px-1 lg:px-0 justify-around gap-2 pb-2 ">
+        <div className="border shadow-lg rounded-md w-full h-60 flex items-center transition-all duration-300 hover:shadow-lg bg-white sm:h-60">
+          <div className="flex-grow ml-8">
+            <div>
+              <p className="font-bold">New User</p>
+            </div>
+            <div>
+              <h2 className="text-2xl font-bold my-2">8,235</h2>
+            </div>
+            <div>
+              <p>Jan-March 2024</p>
+            </div>
           </div>
-          <div>
-            <div>
-              <h2 className="text-xl font-bold ">8,235</h2>
-            </div>
-            <div>
-              <p>New User</p>
-            </div>
-          </div>
-        </div>
-        <div className="border  shadow-lg rounded-md  px-20 py-16  text-black flex items-center transition-all duration-300 hover:shadow-lg bg-white">
-          <div className="mr-3 text-2xl border border-blue-500 rounded-full text-black p-3">
-            <LuShoppingCart />
-          </div>
-          <div>
-            <div>
-              <h2 className="text-xl font-bold ">200,235</h2>
-            </div>
-            <div>
-              <p>Total Order</p>
-            </div>
+          <div className="mr-8 text-5xl text-black p-3 ">
+            <FaUsers className="text-red-500 text-opacity-80"/>
           </div>
         </div>
-        <div className="border shadow-lg md:col-span-2 lg:col-span-1 rounded-md  px-20 py-16 text-black flex items-center transition-all duration-300 hover:shadow-lg bg-white">
-          <div className="mr-3 text-2xl border border-blue-500 rounded-full text-black p-3">
-            <GiShoppingBag />
+
+
+
+        <div className="border shadow-lg rounded-md w-full h-60 flex items-center transition-all duration-300 hover:shadow-lg bg-white sm:h-60">
+          <div className="flex-grow ml-8">
+            <div>
+              <p className="font-bold">Total Order</p>
+            </div>
+            <div>
+              <h2 className="text-2xl font-bold my-2">200,235</h2>
+            </div>
+            <div>
+              <p>Jan-March 2024</p>
+            </div>
           </div>
-          <div>
+          <div className="mr-8 text-5xl text-black p-3">
+            <LuShoppingCart className="text-green-700 text-opacity-80" />
+          </div>
+        </div>
+        <div className=" md:col-span-2 lg:col-span-1 border shadow-lg rounded-md w-full h-60 flex items-center transition-all duration-300 hover:shadow-lg bg-white">
+          <div className="flex-grow ml-8">
             <div>
-              <h2 className="text-xl font-bold ">221,235</h2>
+              <p className="font-bold">Available Product</p>
             </div>
             <div>
-              <p>Available Product</p>
+              <h2 className="text-2xl font-bold my-2">221,235</h2>
             </div>
+            <div>
+              <p>Jan-March 2024</p>
+            </div>
+          </div>
+          <div className="mr-8 text-5xl text-black p-3">
+            <GiShoppingBag className="text-blue-700 text-opacity-80" />
           </div>
         </div>
       </div>
       {/* card 2*/}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-around gap-2 px-1 lg:px-0 pb-5">
-        <div className="border shadow-lg md:col-span-1 lg:col-span-2 rounded-md  px-20 py-16  text-black flex items-center transition-all duration-300 hover:shadow-lg bg-white">
-          <div className="mr-3 text-2xl border border-blue-500 rounded-full text-black p-3">
-            <FaUsers />
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-around gap-2 px-1 lg:px-0 pb-2">
+        <div className=" md:col-span-1 lg:col-span-2 border shadow-lg rounded-md w-full h-60 flex items-center transition-all duration-300 hover:shadow-lg bg-white">
+          <div className="flex-grow ml-8">
+            <div>
+              <p className="font-bold">New User</p>
+            </div>
+            <div>
+              <h2 className="text-2xl font-bold my-2">8,235</h2>
+            </div>
+            <div>
+              <p>Jan-March 2024</p>
+            </div>
           </div>
-          <div>
-            <div>
-              <h2 className="text-xl font-bold ">8,235</h2>
-            </div>
-            <div>
-              <p>New User</p>
-            </div>
+          <div className="mr-8 text-5xl text-black p-3">
+            <FaUsers className="text-red-500 text-opacity-80" />
           </div>
         </div>
-        <div className="border shadow-lg rounded-md  px-20 py-16  text-black flex items-center transition-all duration-300 hover:shadow-lg bg-white">
-          <div className="mr-3 text-2xl border border-blue-500 rounded-full text-black p-3">
-            <LuShoppingCart />
+        <div className="border shadow-lg rounded-md w-full h-60 flex items-center transition-all duration-300 hover:shadow-lg bg-white sm:h-60">
+          <div className="flex-grow ml-8">
+            <div>
+              <p className="font-bold">Total Order</p>
+            </div>
+            <div>
+              <h2 className="text-2xl font-bold my-2">200,235</h2>
+            </div>
+            <div>
+              <p>Jan-March 2024</p>
+            </div>
           </div>
-          <div>
-            <div>
-              <h2 className="text-xl font-bold ">200,235</h2>
-            </div>
-            <div>
-              <p>Total Order</p>
-            </div>
+          <div className="mr-8 text-5xl text-black p-3">
+            <LuShoppingCart className="text-green-700 text-opacity-80" />
           </div>
         </div>
       </div>
       {/* card 3*/}
       <div className="grid grid-cols-3 justify-around gap-4 px-1 lg:px-0 pb-5">
-        <div className="border shadow-lg col-span-3 md:col-span-3 lg:col-span-3 rounded-md px-20 py-20  text-black flex items-center transition-all duration-300 hover:shadow-lg bg-white">
-          <div className="mr-3 text-2xl border border-blue-500 rounded-full text-black p-3">
-            <GiShoppingBag />
+        <div className="border shadow-lg col-span-3 md:col-span-3 lg:col-span-3 rounded-md w-full h-60   text-black flex items-center transition-all duration-300 hover:shadow-lg bg-white sm:h-60">
+          <div className="flex-grow ml-8">
+            <div>
+              <p className="font-bold">Available Product</p>
+            </div>
+            <div>
+              <h2 className="text-2xl font-bold my-2">221,235</h2>
+            </div>
+            <div>
+              <p>Jan-March 2024</p>
+            </div>
           </div>
-          <div>
-            <div>
-              <h2 className="text-xl font-bold ">221,235</h2>
-            </div>
-            <div>
-              <p>Available Product</p>
-            </div>
+          <div className="mr-8 text-5xl text-black p-3">
+            <GiShoppingBag className="text-blue-500 text-opacity-80 " />
           </div>
         </div>
       </div>

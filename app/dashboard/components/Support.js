@@ -138,45 +138,58 @@ function Support() {
         <h3 className="text-xl font-semibold">Support</h3>
       </div>
       <div className="grid lg:grid-cols-3 grid-cols-1 px-1 lg:px-0 justify-around gap-4 pb-5">
-        <div className="border shadow-lg rounded-md  px-20 py-16  text-black flex items-center transition-all duration-300 hover:shadow-lg bg-white">
-          <div className="mr-3 text-2xl border border-blue-500 rounded-full text-black p-3">
-            <GiTicket />
+        <div className="border shadow-lg rounded-md w-full h-60 flex items-center transition-all duration-300 hover:shadow-lg bg-white sm:h-60">
+          <div className="flex-grow ml-8">
+            <div>
+              <p className="font-bold">Total Ticket</p>
+            </div>
+            <div>
+              <h2 className="text-2xl font-bold my-2">200</h2>
+            </div>
+            <div>
+              <p>Jan-March 2024</p>
+            </div>
           </div>
-          <div>
-            <div>
-              <h2 className="text-xl font-bold">200</h2>
-            </div>
-            <div>
-              <p>Total Ticket</p>
-            </div>
-          </div>
-        </div>
-        <div className="border shadow-lg rounded-md  px-20 py-16 lg:py-8  text-black flex items-center transition-all duration-300 hover:shadow-lg bg-white">
-          <div className="mr-3 text-2xl border border-blue-500 rounded-full text-black p-3">
-            <MdAirplaneTicket />
-          </div>
-          <div>
-            <div>
-              <h2 className="text-xl font-bold">75</h2>
-            </div>
-            <div>
-              <p>Booked Ticket</p>
-            </div>
+          <div className="mr-8 text-5xl text-black p-3 ">
+            <GiTicket className="text-red-500 text-opacity-80" />
           </div>
         </div>
-        <div className="border shadow-lg rounded-md  px-20 py-16 lg:py-8  text-black flex items-center transition-all duration-300 hover:shadow-lg bg-white">
-          <div className="mr-3 text-2xl border border-blue-500 rounded-full text-black p-3">
-            <MdOutlineAirplaneTicket />
+
+        <div className="border shadow-lg rounded-md w-full h-60 flex items-center transition-all duration-300 hover:shadow-lg bg-white sm:h-60">
+          <div className="flex-grow ml-8">
+            <div>
+              <p className="font-bold">Booked Ticket</p>
+            </div>
+            <div>
+              <h2 className="text-2xl font-bold my-2">75</h2>
+            </div>
+            <div>
+              <p>Jan-March 2024</p>
+            </div>
           </div>
-          <div>
-            <div>
-              <h2 className="text-xl font-bold">125</h2>
-            </div>
-            <div>
-              <p>Available Ticket</p>
-            </div>
+          <div className="mr-8 text-5xl text-black p-3 ">
+            <MdAirplaneTicket className="text-green-700 text-opacity-80" />
           </div>
         </div>
+
+        <div className="border shadow-lg rounded-md w-full h-60 flex items-center transition-all duration-300 hover:shadow-lg bg-white sm:h-60">
+          <div className="flex-grow ml-8">
+            <div>
+              <p className="font-bold">Available Ticket</p>
+            </div>
+            <div>
+              <h2 className="text-2xl font-bold my-2">175</h2>
+            </div>
+            <div>
+              <p>Jan-March 2024</p>
+            </div>
+          </div>
+          <div className="mr-8 text-5xl text-black p-3 ">
+            <MdOutlineAirplaneTicket className="text-blue-700 text-opacity-80" />
+          </div>
+        </div>
+
+
       </div>
       {/* <div className=" overflow-x-auto shadow-md border sm:rounded-lg mt-5">
         <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">

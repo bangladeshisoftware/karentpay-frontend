@@ -31,44 +31,54 @@ function Balance() {
         <h3 className="text-xl font-semibold">Balance</h3>
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-3 justify-around gap-4 px-1 lg:px-0 pb-5">
-        <div className="border shadow-lg rounded-md  px-20 py-16  text-black flex items-center transition-all duration-300 hover:shadow-lg bg-white">
-          <div className="mr-3 text-2xl border border-blue-500 rounded-full text-black p-3">
-            <HiOutlineCurrencyDollar />
+        <div className="border shadow-lg rounded-md w-full h-60 flex items-center transition-all duration-300 hover:shadow-lg bg-white sm:h-60">
+          <div className="flex-grow ml-8">
+            <div>
+              <p className="font-bold">Daily Balance</p>
+            </div>
+            <div>
+              <h2 className="text-2xl font-bold my-2">{balance}</h2>
+            </div>
+            <div>
+              <p>Jan-March 2024</p>
+            </div>
           </div>
-          <div>
-            <div>
-              <h2 className="text-xl font-bold "> {balance}</h2>
-            </div>
-            <div>
-              <p>Total Balance</p>
-            </div>
+          <div className="mr-8 text-5xl text-black p-3 ">
+            <HiOutlineCurrencyDollar className="text-red-500 text-opacity-80" />
           </div>
         </div>
 
-        <div className="border shadow-lg rounded-md  px-20 py-16 lg:py-8  text-black flex items-center transition-all duration-300 hover:shadow-lg bg-white">
-          <div className="mr-3 text-2xl border border-blue-500 rounded-full text-black p-3">
-            <HiOutlineCurrencyDollar />
+        <div className="border shadow-lg rounded-md w-full h-60 flex items-center transition-all duration-300 hover:shadow-lg bg-white sm:h-60">
+          <div className="flex-grow ml-8">
+            <div>
+              <p className="font-bold">Weekly Balance</p>
+            </div>
+            <div>
+              <h2 className="text-2xl font-bold my-2">{balance}</h2>
+            </div>
+            <div>
+              <p>Jan-March 2024</p>
+            </div>
           </div>
-          <div>
-            <div>
-              <h2 className="text-xl font-bold "> {balance}</h2>
-            </div>
-            <div>
-              <p>Weekly Balance</p>
-            </div>
+          <div className="mr-8 text-5xl text-black p-3 ">
+            <HiOutlineCurrencyDollar className="text-green-700 text-opacity-80" />
           </div>
         </div>
-        <div className="border shadow-lg rounded-md  px-20 py-16 lg:py-8  text-black flex items-center transition-all duration-300 hover:shadow-lg bg-white">
-          <div className="mr-3 text-2xl border border-blue-500 rounded-full text-black p-3">
-            <HiOutlineCurrencyDollar />
+
+        <div className="border shadow-lg rounded-md w-full h-60 flex items-center transition-all duration-300 hover:shadow-lg bg-white sm:h-60">
+          <div className="flex-grow ml-8">
+            <div>
+              <p className="font-bold">Monthly Balance</p>
+            </div>
+            <div>
+              <h2 className="text-2xl font-bold my-2">{balance}</h2>
+            </div>
+            <div>
+              <p>Jan-March 2024</p>
+            </div>
           </div>
-          <div>
-            <div>
-              <h2 className="text-xl font-bold "> {balance}</h2>
-            </div>
-            <div>
-              <p>Monthly Balance</p>
-            </div>
+          <div className="mr-8 text-5xl text-black p-3 ">
+            <HiOutlineCurrencyDollar className="text-blue-700 text-opacity-80" />
           </div>
         </div>
       </div>
