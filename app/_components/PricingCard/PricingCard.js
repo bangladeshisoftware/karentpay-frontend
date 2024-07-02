@@ -15,7 +15,7 @@ const PriceCard2 = () => {
 
   return (
     <div className='border shadow-md rounded-md w-full transition-transform duration-300 hover:scale-105 hover:shadow-lg'>
-      <div className='bg-gradient-to-r from-blue-600  to-purple-400 rounded-md py-10 '>
+      <div className='bg-gradient-2 rounded-md py-10 '>
         <div className='border rounded-full flex justify-center mx-auto text-white mt-2 mb-10 w-32 '>
           <div className='mt-1 text-xl'>
             <CiBookmarkCheck />
@@ -71,7 +71,7 @@ const PriceCard2 = () => {
         </div>
       ))}
       <div className='text-center  py-4 bg-white'>
-        <Button className='bg-gradient-to-r from-blue-600  to-purple-400 transition-transform duration-300 hover:scale-105 px-12 py-6 mb-6'>
+        <Button className='bg-gradient-2 transition-transform duration-300 hover:scale-105 px-12 py-6 mb-6'>
           Choose Plan
         </Button>
       </div>

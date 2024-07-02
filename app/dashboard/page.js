@@ -178,7 +178,7 @@ function Dashboard() {
         {windowWidth >= 1024 && (
           <ResizablePanel defaultSize={15} minSize={getMinSize()}>
             <div
-              className={`bg-gradient-to-b from-blue-600 to-purple-400 text-white rounded-md`}
+              className={`bg-gradient-4 text-white rounded-md`}
             >
               <aside
                 className={`py-5 px-4 mt-10 ${
@@ -189,8 +189,8 @@ function Dashboard() {
                   <li
                     className={`mb-4 cursor-pointer flex items-center p-2 rounded-md transition-all duration-300 ${
                       activeComponent === 'home'
-                        ? 'bg-gradient-to-r from-blue-800 to-purple-950 text-gray-200'
-                        : 'hover:bg-gradient-to-r from-blue-800 to-purple-950 text-gray-200'
+                        ? 'bg-gradient-2 text-gray-200'
+                        : 'hover:bg-gradient-to-r from-blue-600 to-purple-400 text-gray-200'
                     }`}
                     onClick={() => setActiveComponent('home')}
                   >
@@ -200,8 +200,8 @@ function Dashboard() {
                   <li
                     className={`mb-4 cursor-pointer flex items-center p-2 rounded-md transition-all duration-300 ${
                       activeComponent === 'balance'
-                        ? 'bg-gradient-to-r from-blue-800 to-purple-950 text-gray-200'
-                        : 'hover:bg-gradient-to-r from-blue-800 to-purple-950 text-gray-200'
+                        ? 'bg-gradient-2 text-gray-200'
+                        : 'hover:bg-gradient-to-r from-blue-600 to-purple-400 text-gray-200'
                     }`}
                     onClick={() => setActiveComponent('balance')}
                   >
@@ -211,8 +211,8 @@ function Dashboard() {
                   <li
                     className={`mb-4 cursor-pointer flex items-center p-2 rounded-md transition-all duration-300 ${
                       activeComponent === 'transactions'
-                        ? 'bg-gradient-to-r from-blue-800 to-purple-950 text-gray-200'
-                        : 'hover:bg-gradient-to-r from-blue-800 to-purple-950 text-gray-200'
+                        ? 'bg-gradient-2 text-gray-200'
+                        : 'hover:bg-gradient-to-r from-blue-600 to-purple-400 text-gray-200'
                     }`}
                     onClick={() => setActiveComponent('transactions')}
                   >
@@ -222,8 +222,8 @@ function Dashboard() {
                   <li
                     className={`mb-4 cursor-pointer flex items-center p-2 rounded-md transition-all duration-300 ${
                       activeComponent === 'wtransactions'
-                        ? 'bg-gradient-to-r from-blue-800 to-purple-950 text-gray-200'
-                        : 'hover:bg-gradient-to-r from-blue-800 to-purple-950 text-gray-200'
+                        ? 'bg-gradient-2 text-gray-200'
+                        : 'hover:bg-gradient-to-r from-blue-600 to-purple-400 text-gray-200'
                     }`}
                     onClick={() => setActiveComponent('wtransactions')}
                   >
@@ -233,8 +233,8 @@ function Dashboard() {
                   <li
                     className={`mb-4 cursor-pointer flex items-center p-2 rounded-md transition-all duration-300 ${
                       activeComponent === 'payments'
-                        ? 'bg-gradient-to-r from-blue-800 to-purple-950 text-gray-200'
-                        : 'hover:bg-gradient-to-r from-blue-800 to-purple-950 text-gray-200'
+                        ? 'bg-gradient-2 text-gray-200'
+                        : 'hover:bg-gradient-to-r from-blue-600 to-purple-400 text-gray-200'
                     }`}
                     onClick={() => setActiveComponent('payments')}
                   >
@@ -244,8 +244,8 @@ function Dashboard() {
                   <li
                     className={`mb-4 cursor-pointer flex items-center p-2 rounded-md transition-all duration-300 ${
                       activeComponent === 'developer'
-                        ? 'bg-gradient-to-r from-blue-800 to-purple-950 text-gray-200'
-                        : 'hover:bg-gradient-to-r from-blue-800 to-purple-950 text-gray-200'
+                        ? 'bg-gradient-2 text-gray-200'
+                        : 'hover:bg-gradient-to-r from-blue-600 to-purple-400 text-gray-200'
                     }`}
                     onClick={() => setActiveComponent('developer')}
                   >
@@ -255,8 +255,8 @@ function Dashboard() {
                   <li
                     className={`mb-4 cursor-pointer flex items-center p-2 rounded-md transition-all duration-300 ${
                       activeComponent === 'support'
-                        ? 'bg-gradient-to-r from-blue-800 to-purple-950 text-gray-200'
-                        : 'hover:bg-gradient-to-r from-blue-800 to-purple-950 text-gray-200'
+                        ? 'bg-gradient-2 text-gray-200'
+                        : 'hover:bg-gradient-to-r from-blue-600 to-purple-400 text-gray-200'
                     }`}
                     onClick={() => setActiveComponent('support')}
                   >
@@ -266,8 +266,8 @@ function Dashboard() {
                   <li
                     className={`mb-4 cursor-pointer flex items-center p-2 rounded-md transition-all duration-300 ${
                       activeComponent === 'productCatalog'
-                        ? 'bg-gradient-to-r from-blue-800 to-purple-950 text-gray-200'
-                        : 'hover:bg-gradient-to-r from-blue-800 to-purple-950 text-gray-200'
+                        ? 'bg-gradient-2 text-gray-200'
+                        : 'hover:bg-gradient-to-r from-blue-600 to-purple-400 text-gray-200'
                     }`}
                     onClick={() => setActiveComponent('productCatalog')}
                   >

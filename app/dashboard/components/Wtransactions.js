@@ -142,12 +142,12 @@ function Wtransactions() {
                           placeholder="Search"
                           required=""
                         />
-                        <button className="btn bg-gradient-to-r from-blue-800 to-purple-950 text-gray-200 px-14 rounded-md ml-2">
+                        <button className="btn bg-gradient-2 text-gray-200 px-14 rounded-md ml-2">
                           Search
                         </button>
                         <button
                           type="button"
-                          className="btn bg-red-500 text-white justify-center rounded-md ml-2 mr-2 pr-2 flex items-center"
+                          className="btn bg-gradient-2 text-white justify-center rounded-md ml-2 mr-2 pr-2 flex items-center"
                           onClick={openModal}
                         >
                           <FaPlus className=" ml-2 mr-2 " />
@@ -427,7 +427,7 @@ function Wtransactions() {
               </div>
               <div className="flex justify-around">
                 <button
-                  className="btn bg-red-500 text-white px-36  md:px-48 lg:px-72 py-2 rounded-md"
+                  className="btn bg-gradient-2 text-white px-36  md:px-48 lg:px-72 py-2 rounded-md"
                   onClick={closeModal}
                 >
                   Submit

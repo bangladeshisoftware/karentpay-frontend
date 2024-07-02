@@ -35,7 +35,7 @@ function Header({ isOn, toggleSwitch }) {
             <p
               className={`${
                 isOn
-                  ? "bg-gradient-to-b from-blue-600 to-purple-400"
+                  ? "bg-gradient-2"
                   : "bg-[#111857]"
               } w-24 h-10 rounded-md text-center flex items-center justify-center text-sm text-white font-bold`}
               onClick={() => toggleSwitch}
@@ -46,7 +46,7 @@ function Header({ isOn, toggleSwitch }) {
             <p
               className={`${
                 !isOn
-                  ? "bg-gradient-to-b from-blue-600 to-purple-400"
+                  ? "bg-gradient-2"
                   : "bg-[#111857]"
               } w-24 h-10 rounded-md text-center flex items-center justify-center text-sm text-white font-bold`}
               onClick={() => toggleSwitch}

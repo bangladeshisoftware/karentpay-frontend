@@ -12,7 +12,7 @@ const GlobalAvailability = async () => {
   const minifiedCountries = countries?.slice(0, 52);
 
   return (
-    <section className='bg-gradient-to-br from-blue-600  to-blue-800 py-[70px] mt-[90px] text-white'>
+    <section className='bg-gradient-2 py-[70px] mt-[90px] text-white'>
       <div className='container mx-auto'>
         <h2 className='text-4xl font-bold text-center'>
           Global availability of our payment system

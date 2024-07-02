@@ -84,7 +84,7 @@ function PaymentCopy() {
                   onClick={() => {
                     getNewLink();
                   }}
-                  className="text-white bg-gradient-to-r from-[#395BEF] to-[#5C28D5] font-medium rounded-[4px] px-4 py-2  flex items-center gap-1"
+                  className="text-white bg-gradient-2 font-medium rounded-[4px] px-4 py-2  flex items-center gap-1"
                 >
                   New Link
                 </button>

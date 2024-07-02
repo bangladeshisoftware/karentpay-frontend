@@ -75,6 +75,10 @@
   }
 }
 
+.gradient-text {
+  @apply bg-gradient-to-r from-blue-600 to-purple-400 inline-block text-transparent bg-clip-text;
+}
+
 .container-dashboard {
   width: 100%;
 }
@@ -129,6 +133,29 @@
 .word-break-all {
   word-break: break-all;
 }
+
+.bg-gradient-1 {
+  background: linear-gradient(to bottom, #2D64EC, #BA83FC);
+}
+
+.bg-gradient-2 {
+  background: linear-gradient(to right, #2D64EC, #BA83FC);
+}
+
+.bg-gradient-3 {
+  background: linear-gradient(to right, #203CA9, #3A0A68);
+}
+
+.bg-gradient-4 {
+  background: linear-gradient(to bottom, #203CA9, #3A0A68);
+}
+
+
+.hover:bg-gradient-1:hover {
+  background: linear-gradient(to right, #2D64EC, #BA83FC);
+  color: #d1d5db;
+}
+
 
 
 

@@ -10,7 +10,7 @@ const pricing = () => {
     <div className='container'>
       <div>
         <h1 className='   text-4xl font-bold mt-24 mb-28'>
-          <span className='bg-gradient-to-r from-blue-600  to-purple-400 inline-block text-transparent bg-clip-text'>
+          <span className='gradient-text'>
             E-Payment GateWay
           </span>{' '}
           Pricing: Your Gateway to Value
@@ -48,7 +48,7 @@ const pricing = () => {
               BDT 20.00/Per Transaction
             </div>
             <div>
-              <Button className='bg-gradient-to-r from-blue-600 to-purple-400 transition-transform duration-300 hover:scale-105 px-6 py-3 sm:px-8 sm:py-4 mt-4'>
+              <Button className='bg-gradient-2 transition-transform duration-300 hover:scale-105 px-6 py-3 sm:px-8 sm:py-4 mt-4'>
                 Get Offer
               </Button>
             </div>

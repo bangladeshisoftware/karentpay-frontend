@@ -81,10 +81,10 @@ export default function CardWithForm() {
         </form>
       </CardContent>
       <CardFooter className='flex justify-between gap-2'>
-        <Button className='bg-gray-500 w-1/2 justify-center' variant='outline'>
+        <Button className='bg-gray-500 w-1/2 justify-center text-white' variant='outline '>
           Cancel
         </Button>
-        <Button type='submit' className='bg-[#7073F3] w-1/2 justify-center'>
+        <Button type='submit' className='bg-gradient-2 w-1/2 justify-center'>
           Send
         </Button>
       </CardFooter>

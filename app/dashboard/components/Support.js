@@ -349,12 +349,12 @@ function Support() {
                           placeholder="Search"
                           required=""
                         />
-                        <button className="btn bg-gradient-to-r from-blue-800 to-purple-950 text-gray-200 px-14 rounded-md ml-2">
+                        <button className="btn bg-gradient-2 text-gray-200 px-14 rounded-md ml-2">
                           Search
                         </button>
                         <button
                           type="button"
-                          className="btn bg-red-500 text-white justify-center rounded-md ml-2 mr-2 pr-2 flex items-center px-4"
+                          className="btn bg-gradient-2 text-white justify-center rounded-md ml-2 mr-2 pr-2 flex items-center px-4"
                           onClick={handleCreateTicket}
                         >
                           {/* <FaPlus className=" ml-2 mr-2 " /> */}
@@ -584,7 +584,7 @@ function Support() {
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                   />
-                  <div className="w-full border rounded-md p-2 mt-3 flex items-center bg-gradient-to-r from-purple-500 to-blue-600">
+                  <div className="w-full border rounded-md p-2 mt-3 flex items-center bg-gradient-2">
                     <MdUploadFile fontSize={30} className="text-white" />
                     <input
                       className="w-full bg-transparent text-white file:bg-transparent file:border-0 file:text-white file:font-semibold file:cursor-pointer"
@@ -594,7 +594,7 @@ function Support() {
                   </div>
                 </div>
                 <div className="items-center px-6 py-3">
-                  <button className=" py-2 bg-blue-500 text-white text-base font-medium rounded-md w-full shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300">
+                  <button className=" py-2 bg-gradient-2 text-white text-base font-medium rounded-md w-full shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300">
                     Submit
                   </button>
                   <button

@@ -68,11 +68,11 @@ function Product_Catalog() {
       <div className=" border shadow-lg mb-2 lg:mb-2 p-3 lg:p-3 mt-3 rounded-md text-center lg:text-left lg:hidden  ">
         <h3 className="text-xl font-semibold">Settings</h3>
       </div>
-      <div className="nav bg-gradient-to-r from-purple-500 to-blue-600 hidden lg:flex md:flex xl:flex lg:gap-4 border rounded-md shadow-md items-center h-fit  text-white lg:py-4">
+      <div className="nav bg-gradient-3 hidden lg:flex md:flex xl:flex lg:gap-4 border rounded-md shadow-md items-center h-fit  text-white lg:py-4">
         <h3
           className={`cursor-pointer rounded-md p-2 ml-3 ${
             selected == "profile"
-              ? "bg-gradient-to-r from-blue-800 to-purple-950"
+              ? "bg-gradient-2"
               : "none"
           }`}
         >
@@ -91,7 +91,7 @@ function Product_Catalog() {
               }}
               className={`cursor-pointer p-2 rounded-md ${
                 selected == "update"
-                  ? "bg-gradient-to-r from-blue-800 to-purple-950"
+                  ? "bg-gradient-2"
                   : "none"
               }`}
             >
@@ -106,7 +106,7 @@ function Product_Catalog() {
           }}
           className={`cursor-pointer p-2 rounded-md ${
             selected == "verification"
-              ? "bg-gradient-to-r from-blue-800 to-purple-950"
+              ? "bg-gradient-2"
               : "none"
           }`}
         >
@@ -119,7 +119,7 @@ function Product_Catalog() {
           }}
           className={`cursor-pointer p-2 rounded-md ${
             selected == "integration"
-              ? "bg-gradient-to-r from-blue-800 to-purple-950"
+              ? "bg-gradient-2"
               : "none"
           }`}
         >
@@ -132,7 +132,7 @@ function Product_Catalog() {
           }}
           className={`cursor-pointer p-2 rounded-md ${
             selected == "passkey"
-              ? "bg-gradient-to-r from-blue-800 to-purple-950"
+              ? "bg-gradient-2"
               : "none"
           }`}
         >
@@ -145,18 +145,18 @@ function Product_Catalog() {
           }}
           className={`cursor-pointer p-2 rounded-md ${
             selected == "paymentSettings"
-              ? "bg-gradient-to-r from-blue-800 to-purple-950"
+              ? "bg-gradient-2"
               : "none"
           }`}
         >
           Payment Settings
         </h3>
       </div>
-      <div className="nav bg-gradient-to-r from-purple-500 to-blue-600 flex flex-col lg:hidden md:hidden xl:hidden lg:gap-4 border rounded-md shadow-md items-center h-fit mt-2 text-white lg:py-4">
+      <div className="nav bg-gradient-3 flex flex-col lg:hidden md:hidden xl:hidden lg:gap-4 border rounded-md shadow-md items-center h-fit mt-2 text-white lg:py-4">
         <h3
           className={`cursor-pointer rounded-md p-2 ml-3 ${
             selected == "profile"
-              ? "bg-gradient-to-r from-blue-800 to-purple-950"
+              ? "bg-gradient-2"
               : "none"
           }`}
         >
@@ -175,7 +175,7 @@ function Product_Catalog() {
               }}
               className={`cursor-pointer p-2 rounded-md ${
                 selected == "update"
-                  ? "bg-gradient-to-r from-blue-800 to-purple-950"
+                  ? "bg-gradient-2"
                   : "none"
               }`}
             >
@@ -190,7 +190,7 @@ function Product_Catalog() {
           }}
           className={`cursor-pointer p-2 rounded-md ${
             selected == "verification"
-              ? "bg-gradient-to-r from-blue-800 to-purple-950"
+              ? "bg-gradient-2"
               : "none"
           }`}
         >
@@ -203,7 +203,7 @@ function Product_Catalog() {
           }}
           className={`cursor-pointer p-2 rounded-md ${
             selected == "integration"
-              ? "bg-gradient-to-r from-blue-800 to-purple-950"
+              ? "bg-gradient-2"
               : "none"
           }`}
         >
@@ -216,7 +216,7 @@ function Product_Catalog() {
           }}
           className={`cursor-pointer p-2 rounded-md ${
             selected == "passkey"
-              ? "bg-gradient-to-r from-blue-800 to-purple-950"
+              ? "bg-gradient-2"
               : "none"
           }`}
         >
@@ -229,7 +229,7 @@ function Product_Catalog() {
           }}
           className={`cursor-pointer p-2 rounded-md ${
             selected == "paymentSettings"
-              ? "bg-gradient-to-r from-blue-800 to-purple-950"
+              ? "bg-gradient-2"
               : "none"
           }`}
         >
@@ -273,7 +273,7 @@ function Product_Catalog() {
                   handleUpdate();
                   handleSelect("update");
                 }}
-                className="bg-gradient-to-r from-blue-500 to-purple-600 mx-auto lg:mx-0 md:mx-0 sm:mx-0 w-full lg:w-full md:w-full sm:w-full p-2 rounded-md text-center text-white mt-5 flex justify-center items-center hover:from-purple-700 hover:to-blue-600 gap-2"
+                className="bg-gradient-2 mx-auto lg:mx-0 md:mx-0 sm:mx-0 w-full lg:w-full md:w-full sm:w-full p-2 rounded-md text-center text-white mt-5 flex justify-center items-center hover:from-purple-700 hover:to-blue-600 gap-2"
               >
                 Update
               </button>

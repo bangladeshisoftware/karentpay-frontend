@@ -17,7 +17,7 @@ const Contact = () => {
         {/* Header and contact form */}
         <div className='w-full lg:w-1/2 mt-12'>
           <div>
-            <h1 className='text-3xl sm:text-4xl lg:text-5xl py-10'>
+            <h1 className='text-3xl sm:text-4xl lg:text-5xl py-10 gradient-text'>
               Hi, how can we help?
             </h1>
           </div>
@@ -26,7 +26,7 @@ const Contact = () => {
               Help & Support
             </h2>
           </div>
-          <div className='text-lg sm:text-xl text-gray-500 mb-10'>
+          <div className='text-lg sm:text-xl text-gray-700 mb-10'>
             Have questions or need to report an issue{' '}
             <br className='hidden lg:block' />
             with a Bangladeshi Software product or service?{' '}
@@ -34,7 +34,7 @@ const Contact = () => {
             We &apos;ve got you covered.
           </div>
           <div>
-            <Button className='bg-[#3B67ED] px-4 py-2 sm:px-6 sm:py-3 text-sm sm:text-base'>
+            <Button className='bg-gradient-2 px-4 py-2 sm:px-6 sm:py-3 text-sm sm:text-base'>
               Get Support
             </Button>
           </div>

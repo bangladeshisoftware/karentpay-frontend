@@ -32,7 +32,7 @@ const NavBar = () => {
   ];
 
   return (
-    <nav className='bg-gradient-to-r from-blue-800 to-purple-950 text-gray-200 py-2 sticky top-0 z-50'>
+    <nav className='bg-gradient-3 text-gray-200 py-2 sticky top-0 z-50'>
       {/* large screens */}
       <div className='container lg:flex wide-laptop:flex small-laptop:flex hidden items-center justify-between relative'>
         <div className='flex items-center gap-5 h-10'>

@@ -5,7 +5,7 @@ import Logo from '@/app/_assets/Logo.png';
 
 const Footer = () => {
   return (
-    <section className='bg-gradient-to-r from-blue-600  to-purple-400 text-white mt-[70px]'>
+    <section className='bg-gradient-3 text-white mt-[70px]'>
       <footer className='w-full container'>
         <div className='mx-auto'>
           <div className='grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-3 md:gap-8 py-10 max-sm:max-w-sm max-sm:mx-auto gap-y-8'>
@@ -20,7 +20,7 @@ const Footer = () => {
               </p>
               <Link
                 href=''
-                className='py-2.5 px-5 block w-fit bg-purple-800 rounded shadow-sm text-sm text-white mx-auto hover:bg-blue-700 lg:mx-0'
+                className='py-2.5 px-5 block w-fit bg-gradient-2 rounded shadow-sm text-sm text-white mx-auto hover:bg-blue-700 lg:mx-0'
               >
                 Contact us
               </Link>
