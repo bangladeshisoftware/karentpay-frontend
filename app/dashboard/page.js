@@ -20,6 +20,7 @@ import { FaRegFileWord } from "react-icons/fa6";
 import { toast } from 'react-toastify';
 import ApiRequest from '@/app/_lib/Api_request';
 
+
 import {
   ResizableHandle,
   ResizablePanel,
@@ -296,7 +297,7 @@ function Dashboard() {
         )}
         <ResizableHandle />
         {/* Navbar for small and medium devices */}
-        <nav className={`lg:hidden inset-x-0 fixed bottom-0 left-0 w-full border-t-2 bg-white text-gray-700 flex justify-between px-4 py-4 z-50 transition-transform duration-300 ${scrollDirection === 'down' ? 'transform translate-y-full' : 'transform translate-y-0'}`}>
+        <nav className={`lg:hidden inset-x-0 fixed bottom-0 left-0 w-full border-t-2  bg-white text-gray-700 flex justify-between px-4 py-4 z-50 transition-transform duration-300 ${scrollDirection === 'down' ? 'transform translate-y-full' : 'transform translate-y-0'}`}>
           <FiHome
             className='text-2xl cursor-pointer'
             onClick={() => setActiveComponent('home')}
