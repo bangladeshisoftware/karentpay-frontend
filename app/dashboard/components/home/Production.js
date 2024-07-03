@@ -7,15 +7,20 @@ import { SlOptions } from "react-icons/sl";
 import { MdDelete } from "react-icons/md";
 import { FaBan } from "react-icons/fa";
 import { format } from "date-fns";
+import { DrawerDialogDemo } from '@/app/_components/Header/BecomeMerchent/DrawerDialogDemo';
 
 export default function Production() {
   const [keys, setKeys] = useState([]);
   const [copyMessage1, setCopyMessage1] = useState("");
   const [copyMessage2, setCopyMessage2] = useState("");
   const [showText, setShowText] = useState(false);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
+  const[data,setData]=useState(null);
 
   useEffect(() => {
     getTestKey();
+    getMarchent();
   }, []);
 
   const getTestKey = async () => {
@@ -79,6 +84,21 @@ export default function Production() {
     setDeleteBan(!DeleteBan);
   };
 
+  const getMarchent=async()=>{
+    const response = await ApiRequest({
+      url: "/get_marchent_apply_info",
+      method: "get",
+    });
+    console.log(response);
+    if (response.status === 200) {
+      if(response.data.length>0){setData(response.data); }
+      
+    } else {
+      console.log(response);
+    }
+
+  }
+
   return (
     <div className=" mt-5">
       <div className="w-full border lg:p-3 mt-3 rounded-md lg:flex  lg:items-center lg:justify-between ">
@@ -90,33 +110,96 @@ export default function Production() {
           </span>
         </Link>
       </div>
+          {data===null&&(
+            <div className="overflow-x-auto">
+            <div className="m-5">
+              <h1> For Live key Please Apply Merchant {' '}
+                <button 
+                onClick={()=>{
+                  console.log("clocked")
+                  setIsDrawerOpen(true);
+                }}
+                className="button text-bold text-blue-500">Apply</button> 
+              </h1>
+                  
+            </div>     
+          </div>
+          )}
+    
+
+      <div className="overflow-x-auto h-[60%]">
+                <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400 ">
+                  <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <tr>
+                      <th scope="col" className="px-4 py-3">
+                        Sl
+                      </th>
+                     
+                      <th scope="col" className="px-4 py-3">
+                      Business Name
+                      </th>
+                      <th scope="col" className="px-4 py-3">
+                        Name
+                      </th>
+                      <th scope="col" className="px-4 py-3">
+                      Email
+                      </th>
+                      <th scope="col" className="px-4 py-3">
+                      Phone
+                      </th>
+                    
+                      <th scope="col" className="px-4 py-3">
+                        Status
+                      </th>
+                      <th scope="col" className="px-4 py-3">
+                        Date
+                      </th>
+                     
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {data?.map((item,index) => (
+                      <tr
+                        key={index}
+                        className="border-b dark:border-gray-700"
+                      >
+                        <th
+                          scope="row"
+                          className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                        >
+                          {index+1}
+                        </th>
+                        <td className="px-4 py-3">{item?.business_name}</td>
+                        <td className="px-4 py-3">
+                          {item?.name}
+                        </td>
+                        <td className="px-4 py-3">{item?.email}</td>
+                        <td className="px-4 py-3">
+                          {item?.phone}
+                        </td>
+                        <td className="px-4 py-3">{item?.confirmed==0?"pending":item?.confirmed==1?"Active":item?.confirmed==2?"Rejected":""}</td>
+                        <td className="px-4 py-3">{item?.created_at && format(item?.created_at, "dd MMMM yyyy")}</td>
+                        
+                      
+                        {/* <td className="px-4 py-3 flex items-center justify-end"></td> */}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+
 
       {keys?.map((key, index) => (
         <div key={key.id} className="mt-5 border rounded-md">
           <div className="border-b lg:p-4 text-center lg:flex md:flex items-center  lg:justify-between md:justify-between">
-            <h3 className="text-xl font-semibold  ">Standard keys</h3>
+            <h3 className="text-xl font-semibold  ">{key?.business_name}</h3>
             {/* <h3 className="text-xl font-semibold  ">Domain Name</h3> */}
             <div className="relative">
               <SlOptions onClick={handleDeleteBan} />
-              {DeleteBan ? (
-                <div className="bg-white border shadow-md rounded-sm absolute right-0 p-2 flex flex-col gap-2 cursor: pointer">
-                  <p
-                    onClick={() => {
-                      console.log("Deactived");
-                    }}
-                    className="flex items-center gap-1 cursor: pointer"
-                  >
-                    Deactive{" "}
-                    <span>
-                      <FaBan className="text-red-700" />
-                    </span>
-                  </p>
-                </div>
-              ) : (
-                ""
-              )}
+             
             </div>
           </div>
+         
           <div className="overflow-x-auto">
             <table className="table-auto w-full">
               <thead>
@@ -144,7 +227,7 @@ export default function Production() {
                     <div className="ml-3 font-semibold">Publishable key</div>
                   </td>
                   <td
-                    className="relative cursor-pointer overflow-hidden overflow-ellipsis"
+                    className="relative cursor-pointer break-words word-break-all overflow-hidden"
                     onClick={() => handleCopy1(key?.public_key)}
                     onMouseEnter={() => setCopyMessage1("Click to copy")}
                     onMouseLeave={() => setCopyMessage1("")}
@@ -154,7 +237,7 @@ export default function Production() {
                         {copyMessage1}
                       </div>
                     )}
-                    <div className="overflow-hidden overflow-ellipsis">
+                    <div className="break-words word-break-all overflow-hidden">
                       {key?.public_key}
                     </div>
                   </td>
@@ -168,7 +251,7 @@ export default function Production() {
                   <td>
                     <div className="ml-3 font-semibold">Secret key</div>
                   </td>
-                  <td className="relative overflow-hidden overflow-ellipsis">
+                  <td className="relative break-words word-break-all overflow-hidden">
                     <span
                       className={`relative cursor-pointer ${
                         !showText ? "blur-lg" : ""
@@ -182,7 +265,7 @@ export default function Production() {
                           {copyMessage2}
                         </div>
                       )}
-                      <div className="overflow-hidden overflow-ellipsis">
+                      <div className="break-words word-break-all overflow-hidden">
                         {key?.privet_key}
                       </div>
                       <br />
@@ -196,7 +279,7 @@ export default function Production() {
                       </button>
                     ) : (
                       <button
-                        className="bg-white border absolute top-4 left-20 rounded-md shadow-md p-1 "
+                        className="bg-white border absolute top-4 left-20 rounded-md shadow-md p-1"
                         onClick={handleRevealText}
                       >
                         Reveal Token
@@ -214,6 +297,7 @@ export default function Production() {
           </div>
         </div>
       ))}
+      <DrawerDialogDemo open={isDrawerOpen} setOpen={setIsDrawerOpen} />
     </div>
   );
 }

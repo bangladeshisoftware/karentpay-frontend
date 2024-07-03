@@ -23,12 +23,11 @@ const Test = () => {
       console.log(response);
     }
 
-    console.log(key);
   };
 
   useEffect(() => {
     getTestKey();
-  }, [key.length]);
+  }, []);
 
   const handleCopy1 = (text) => {
     navigator.clipboard
@@ -115,7 +114,7 @@ const Test = () => {
                 </td>
                 <td
                   className="relative cursor-pointer truncate max-w-[100px] md:max-w-[200px]"
-                  onClick={() => handleCopy1(key.public_key)}
+                  onClick={() => handleCopy1(key?.public_key)}
                   onMouseEnter={() => setCopyMessage1("Click to copy")}
                   onMouseLeave={() => setCopyMessage1("")}
                 >
@@ -124,10 +123,10 @@ const Test = () => {
                       {copyMessage1}
                     </div>
                   )}
-                  <div className="overflow-hidden overflow-ellipsis">{key.public_key}</div>
+                  <div className="overflow-hidden overflow-ellipsis">{key?.public_key}</div>
                 </td>
                 <td>-</td>
-                <td>{key.created_at && format(key.created_at, 'dd MMMM yyyy')}</td>
+                <td>{key?.created_at && format(key?.created_at, 'dd MMMM yyyy')}</td>
               </tr>
               <tr className="text-xs mt-4">
                 <td>
@@ -136,7 +135,7 @@ const Test = () => {
                 <td className="relative truncate max-w-[100px] md:max-w-[200px]">
                   <span
                     className={`relative cursor-pointer ${!showText ? "blur-lg" : ""}`}
-                    onClick={() => handleCopy2(key.privet_key)}
+                    onClick={() => handleCopy2(key?.privet_key)}
                     onMouseEnter={() => setCopyMessage2("Click to copy")}
                     onMouseLeave={() => setCopyMessage2("")}
                   >
@@ -145,9 +144,9 @@ const Test = () => {
                         {copyMessage2}
                       </div>
                     )}
-                    <div className="overflow-hidden overflow-ellipsis">{key.privet_key}</div>
+                    <div className="overflow-hidden overflow-ellipsis">{key?.privet_key}</div>
                     {
-                      console.log(key.privet_key,'private key')
+                      console.log(key?.privet_key,'private key')
                     }
                     <br />
                   </span>
@@ -168,7 +167,7 @@ const Test = () => {
                   )}
                 </td>
                 <td>-</td>
-                <td>{key.created_at && format(key.created_at, 'dd MMMM yyyy')}</td>
+                <td>{key?.created_at && format(key?.created_at, 'dd MMMM yyyy')}</td>
               </tr>
             </tbody>
           </table>
