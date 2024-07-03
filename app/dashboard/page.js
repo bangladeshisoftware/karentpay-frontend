@@ -17,7 +17,7 @@ import { MdOutlinePayment } from 'react-icons/md';
 import { FaHandsHelping } from 'react-icons/fa';
 import { PiHandWithdrawFill } from "react-icons/pi";
 import { FaRegFileWord } from "react-icons/fa6";
-import {  toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import ApiRequest from '@/app/_lib/Api_request';
 
 import {
@@ -38,7 +38,7 @@ function Dashboard() {
 
   // ali hasan code 
   const [checkedState, setCheckedState] = useState([]);
-  const [isAllChecked, setIsAllChecked] = useState(true); 
+  const [isAllChecked, setIsAllChecked] = useState(true);
   const array = []
   // ali hasan code 
   const containerType = [
@@ -93,22 +93,22 @@ function Dashboard() {
   const selectedContainer =
     windowWidth < 1024 ? containerType[0] : containerType[3];
 
-    const toggleSwitch = () => {
-   
-      if (!isOn) {
-        setIsOn(true);
-      }else{
-        setIsOn(false);
-       // getTestKey();
-      }
-     
-    };
+  const toggleSwitch = () => {
+
+    if (!isOn) {
+      setIsOn(true);
+    } else {
+      setIsOn(false);
+      // getTestKey();
+    }
+
+  };
 
   const getTestKey = async () => {
     const response = await ApiRequest({
       url: "/marchentuser/check_live",
       method: "get",
-    });   
+    });
     if (response.status === 200) {
       setIsOn(false);
     } else {
@@ -127,21 +127,21 @@ function Dashboard() {
         return <Wtransactions />;
       case 'payments':
         // return <Payment />;
-        return <PaymentCopy/>;    const handleCheckboxChange = (position) => {
+        return <PaymentCopy />; const handleCheckboxChange = (position) => {
           const updatedCheckedState = checkedState.map((item, index) =>
-              index === position ? !item : item
+            index === position ? !item : item
           );
-  
+
           setCheckedState(updatedCheckedState);
           setIsAllChecked(updatedCheckedState.every((item) => item));
-      };
-  
-      const handleSelectAllChange = () => {
+        };
+
+        const handleSelectAllChange = () => {
           const newState = !isAllChecked;
           setCheckedState(new Array(array.length).fill(newState));
           setIsAllChecked(newState);
-      };
-  
+        };
+
       case 'developer':
         return <Developer isTest={isOn} />;
       case 'support':
@@ -172,6 +172,30 @@ function Dashboard() {
     };
   }, []);
 
+
+  const [scrollDirection, setScrollDirection] = useState('up');
+
+  useEffect(() => {
+    let lastScrollY = window.scrollY;
+
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      if (currentScrollY > lastScrollY && currentScrollY > 50) {
+        setScrollDirection('down');
+      } else if (currentScrollY < lastScrollY) {
+        setScrollDirection('up');
+      }
+      lastScrollY = currentScrollY;
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+
   return (
     <div className={`${selectedContainer.type} flex h-screen mx-auto `}>
       <ResizablePanelGroup direction='horizontal'>
@@ -181,94 +205,85 @@ function Dashboard() {
               className={`bg-gradient-4 text-white rounded-md`}
             >
               <aside
-                className={`py-5 px-4 mt-10 ${
-                  windowWidth < 1024 ? 'hidden' : 'block'
-                }`}
+                className={`py-5 px-4 mt-10 ${windowWidth < 1024 ? 'hidden' : 'block'
+                  }`}
               >
                 <ul>
                   <li
-                    className={`mb-4 cursor-pointer flex items-center p-2 rounded-md transition-all duration-300 ${
-                      activeComponent === 'home'
+                    className={`mb-4 cursor-pointer flex items-center p-2 rounded-md transition-all duration-300 ${activeComponent === 'home'
                         ? 'bg-gradient-2 text-gray-200'
                         : 'hover:bg-gradient-to-r from-blue-600 to-purple-400 text-gray-200'
-                    }`}
+                      }`}
                     onClick={() => setActiveComponent('home')}
                   >
                     <FiHome className='mr-2 text-2xl' />
                     {windowWidth >= 1024 && 'Dashboard'}
                   </li>
                   <li
-                    className={`mb-4 cursor-pointer flex items-center p-2 rounded-md transition-all duration-300 ${
-                      activeComponent === 'balance'
+                    className={`mb-4 cursor-pointer flex items-center p-2 rounded-md transition-all duration-300 ${activeComponent === 'balance'
                         ? 'bg-gradient-2 text-gray-200'
                         : 'hover:bg-gradient-to-r from-blue-600 to-purple-400 text-gray-200'
-                    }`}
+                      }`}
                     onClick={() => setActiveComponent('balance')}
                   >
                     <AiOutlineDollar className='mr-2 text-2xl' />{' '}
                     {windowWidth >= 1024 && 'Balance'}
                   </li>
                   <li
-                    className={`mb-4 cursor-pointer flex items-center p-2 rounded-md transition-all duration-300 ${
-                      activeComponent === 'transactions'
+                    className={`mb-4 cursor-pointer flex items-center p-2 rounded-md transition-all duration-300 ${activeComponent === 'transactions'
                         ? 'bg-gradient-2 text-gray-200'
                         : 'hover:bg-gradient-to-r from-blue-600 to-purple-400 text-gray-200'
-                    }`}
+                      }`}
                     onClick={() => setActiveComponent('transactions')}
                   >
                     <PiHandWithdrawFill className='mr-2 text-2xl' />{' '}
                     {windowWidth >= 1024 && 'Transactions'}
                   </li>
                   <li
-                    className={`mb-4 cursor-pointer flex items-center p-2 rounded-md transition-all duration-300 ${
-                      activeComponent === 'wtransactions'
+                    className={`mb-4 cursor-pointer flex items-center p-2 rounded-md transition-all duration-300 ${activeComponent === 'wtransactions'
                         ? 'bg-gradient-2 text-gray-200'
                         : 'hover:bg-gradient-to-r from-blue-600 to-purple-400 text-gray-200'
-                    }`}
+                      }`}
                     onClick={() => setActiveComponent('wtransactions')}
                   >
                     <FaRegFileWord className='mr-2 text-2xl' />
                     {windowWidth >= 1024 && 'W Transactions'}
                   </li>
                   <li
-                    className={`mb-4 cursor-pointer flex items-center p-2 rounded-md transition-all duration-300 ${
-                      activeComponent === 'payments'
+                    className={`mb-4 cursor-pointer flex items-center p-2 rounded-md transition-all duration-300 ${activeComponent === 'payments'
                         ? 'bg-gradient-2 text-gray-200'
                         : 'hover:bg-gradient-to-r from-blue-600 to-purple-400 text-gray-200'
-                    }`}
+                      }`}
                     onClick={() => setActiveComponent('payments')}
                   >
                     <MdOutlinePayment className='mr-2 text-2xl' />{' '}
                     {windowWidth >= 1024 && 'Payments'}
                   </li>
                   <li
-                    className={`mb-4 cursor-pointer flex items-center p-2 rounded-md transition-all duration-300 ${
-                      activeComponent === 'developer'
+                    className={`mb-4 cursor-pointer flex items-center p-2 rounded-md transition-all duration-300 ${activeComponent === 'developer'
                         ? 'bg-gradient-2 text-gray-200'
                         : 'hover:bg-gradient-to-r from-blue-600 to-purple-400 text-gray-200'
-                    }`}
+                      }`}
                     onClick={() => setActiveComponent('developer')}
                   >
                     <FaRegUser className='mr-2 text-2xl' />
                     {windowWidth >= 1024 && 'Developer'}
                   </li>
                   <li
-                    className={`mb-4 cursor-pointer flex items-center p-2 rounded-md transition-all duration-300 ${
-                      activeComponent === 'support'
+                    className={`mb-4 cursor-pointer flex items-center p-2 rounded-md transition-all duration-300 ${activeComponent === 'support'
                         ? 'bg-gradient-2 text-gray-200'
                         : 'hover:bg-gradient-to-r from-blue-600 to-purple-400 text-gray-200'
-                    }`}
+                      }`}
                     onClick={() => setActiveComponent('support')}
                   >
                     <FaHandsHelping className='mr-2 text-2xl' />{' '}
                     {windowWidth >= 1024 && 'Support'}
                   </li>
                   <li
-                    className={`mb-4 cursor-pointer flex items-center p-2 rounded-md transition-all duration-300 ${
-                      activeComponent === 'productCatalog'
+                    className={`mb-4 cursor-pointer flex items-center p-2 rounded-md transition-all duration-300 ${activeComponent === 'productCatalog'
                         ? 'bg-gradient-2 text-gray-200'
                         : 'hover:bg-gradient-to-r from-blue-600 to-purple-400 text-gray-200'
-                    }`}
+                      }`}
                     onClick={() => setActiveComponent('productCatalog')}
                   >
                     <IoSettingsOutline className='mr-2 text-2xl' />{' '}
@@ -281,7 +296,7 @@ function Dashboard() {
         )}
         <ResizableHandle />
         {/* Navbar for small and medium devices */}
-        <nav className='lg:hidden    inset-x-0 fixed bottom-0 left-0 w-full border border-blue-500  bg-black bg-opacity-70 text-blue-200 flex justify-between px-4 py-4 z-50'>
+        <nav className={`lg:hidden inset-x-0 fixed bottom-0 left-0 w-full border-t-2 bg-white text-gray-700 flex justify-between px-4 py-4 z-50 transition-transform duration-300 ${scrollDirection === 'down' ? 'transform translate-y-full' : 'transform translate-y-0'}`}>
           <FiHome
             className='text-2xl cursor-pointer'
             onClick={() => setActiveComponent('home')}

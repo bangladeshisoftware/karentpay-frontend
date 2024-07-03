@@ -157,5 +157,18 @@
 }
 
 
+.transition-transform {
+  transition: transform 0.3s;
+}
+
+.transform {
+  transform: translateY(0);
+}
+
+.transform.translate-y-full {
+  transform: translateY(100%);
+}
+
+
 
 
