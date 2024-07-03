@@ -1,7 +1,12 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState,useEffect} from "react";
 import { FaPlus } from "react-icons/fa";
 import Datepicker from "react-tailwindcss-datepicker";
+import ApiRequest from "@/app/_lib/Api_request";
+import { format } from "date-fns";
+import {toast} from 'react-toastify';
+
+
 
 function Wtransactions() {
   const [showModal, setShowModal] = useState(false);
@@ -17,76 +22,28 @@ function Wtransactions() {
     console.log("newValue:", newValue);
     setDateRange(newValue);
   };
-  // Sample JSON data for transactions
-  const transactions = [
-    {
-      id: 1,
-      type: "Deposit",
-      currencyName: "USD",
-      network: "Bank Transfer",
-      depositAddress: "N/A",
-      trxid: "TRX123456",
-      debit: 1000,
-      date: "2024-02-01",
-      status: "Completed",
-    },
-    {
-      id: 2,
-      type: "Deposit",
-      currencyName: "USD",
-      network: "Bank Transfer",
-      depositAddress: "N/A",
-      trxid: "TRX123456",
-      debit: 1000,
-      date: "2024-03-01",
-      status: "Completed",
-    },
-    {
-      id: 3,
-      type: "Deposit",
-      currencyName: "USD",
-      network: "Bank Transfer",
-      depositAddress: "N/A",
-      trxid: "TRX123456",
-      debit: 1000,
-      date: "2024-04-01",
-      status: "Completed",
-    },
-    {
-      id: 4,
-      type: "Deposit",
-      currencyName: "USD",
-      network: "Bank Transfer",
-      depositAddress: "N/A",
-      trxid: "TRX123456",
-      debit: 1000,
-      date: "2024-05-01",
-      status: "Completed",
-    },
-    {
-      id: 5,
-      type: "Deposit",
-      currencyName: "USD",
-      network: "Bank Transfer",
-      depositAddress: "N/A",
-      trxid: "TRX123456",
-      debit: 1000,
-      date: "2024-06-01",
-      status: "Completed",
-    },
-    {
-      id: 6,
-      type: "Deposit",
-      currencyName: "USD",
-      network: "Bank Transfer",
-      depositAddress: "N/A",
-      trxid: "TRX123456",
-      debit: 1000,
-      date: "2024-07-01",
-      status: "Completed",
-    },
-    // Add more transaction objects here as needed
-  ];
+
+  const[transactions,setTransactions]=useState([]);
+  useEffect(()=>{
+    getWithdrw();
+  },[])
+
+  const getWithdrw=async()=>{
+   
+      const response = await ApiRequest({
+        url: "/withdraw_history",
+        method: "get",
+      });
+      console.log(response);
+      if (response.status === 200) {
+        setTransactions(response.data); 
+        
+      } else {
+        console.log(response);
+      }
+   
+  }
+ 
 
   // Filter transactions based on the selected date range
   const filteredTransactions = transactions.filter((transaction) => {
@@ -101,6 +58,24 @@ function Wtransactions() {
       (!endDateObj || transactionDate <= endDateObj)
     );
   });
+
+  const withdrawReq=async(formdata)=>{
+    const response = await ApiRequest({
+      url: "/withdrawal_request",
+      formdata:formdata,
+     
+    });
+    console.log(response);
+    if (response.status === 201) {
+      toast.success("Withdraw Request Success");      
+      getWithdrw();
+      closeModal();
+      
+    } else {
+      console.log(response);
+      toast.error(response.message);
+    }
+  }
 
   return (
     <div className="mt-10 ">
@@ -189,55 +164,55 @@ function Wtransactions() {
                         Sl
                       </th>
                       <th scope="col" className="px-4 py-3">
-                        Type
+                      Payment Method
                       </th>
                       <th scope="col" className="px-4 py-3">
-                        Currency Name
+                        Currency 
                       </th>
                       <th scope="col" className="px-4 py-3">
-                        Network
-                      </th>
+                        Amount
+                      </th>                    
                       <th scope="col" className="px-4 py-3">
-                        Deposit Address
+                        Withdraw Address
                       </th>
+                    
                       <th scope="col" className="px-4 py-3">
                         Trxid
                       </th>
                       <th scope="col" className="px-4 py-3">
-                        Debit
+                        Status
                       </th>
                       <th scope="col" className="px-4 py-3">
                         Date
                       </th>
-                      <th scope="col" className="px-4 py-3">
-                        Status
-                      </th>
+                     
                     </tr>
                   </thead>
                   <tbody>
-                    {filteredTransactions.map((transaction) => (
+                    {filteredTransactions.map((transaction,index) => (
                       <tr
-                        key={transaction.id}
+                        key={index}
                         className="border-b dark:border-gray-700"
                       >
                         <th
                           scope="row"
                           className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                         >
-                          {transaction.id}
+                          {index}
                         </th>
-                        <td className="px-4 py-3">{transaction.type}</td>
+                        <td className="px-4 py-3">{transaction.method}</td>
                         <td className="px-4 py-3">
-                          {transaction.currencyName}
+                          {transaction.currency}
                         </td>
-                        <td className="px-4 py-3">{transaction.network}</td>
+                        <td className="px-4 py-3">{transaction.amount}</td>
                         <td className="px-4 py-3">
-                          {transaction.depositAddress}
+                          {transaction.number}
                         </td>
-                        <td className="px-4 py-3">{transaction.trxid}</td>
-                        <td className="px-4 py-3">{transaction.debit}</td>
-                        <td className="px-4 py-3">{transaction.date}</td>
-                        <td className="px-4 py-3">{transaction.status}</td>
+                        <td className="px-4 py-3">{transaction.trxID}</td>
+                        <td className="px-4 py-3">{transaction.status?transaction.status:''}</td>
+                        <td className="px-4 py-3">
+                          {transaction?.created_at && format(transaction?.created_at, "dd MMMM yyyy")}
+                        </td>
                         {/* <td className="px-4 py-3 flex items-center justify-end"></td> */}
                       </tr>
                     ))}
@@ -375,36 +350,40 @@ function Wtransactions() {
                 </svg>
               </button>
             </div>
-            <div className="p-6">
-              <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700">
-                  Currency Balance
-                </label>
-                <input
-                  type="text"
-                  className="mt-1 block w-full pl-4 py-4 rounded-md border shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                />
-              </div>
+            <form action={withdrawReq}>             
+            <div className="p-6">                  
               <div className="mb-4">
                 <label className="block text-sm font-medium text-gray-700">
                   Currency Name
                 </label>
-                <select className="mt-1 block w-full pl-4 py-4 rounded-md border shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                  <option>--Select--</option>
-                  <option>Dollar</option>
-                  <option>Euro</option>
-                  <option>tk</option>
+                <select
+                name="currency"
+                required
+                 className="mt-1 block w-full pl-4 py-4 rounded-md border shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                  <option value=''>--Select--</option>
+                  <option value='BDT'>BDT</option>
+                  <option value='USD'>USD</option>
                 </select>
               </div>
               <div className="mb-4">
                 <label className="block text-sm font-medium text-gray-700">
                   Network
                 </label>
-                <select className="mt-1 block w-full pl-4 py-4 rounded-md border shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                  <option>--Select--</option>
-                  <option>Dollar</option>
-                  <option>Euro</option>
-                  <option>tk</option>
+                <select 
+                name="method"
+                required
+                className="mt-1 block w-full pl-4 py-4 rounded-md border shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                  <option value=''>--Select--</option>
+                  <option value='bkash'>Bkash</option>
+                  <option value='nagad'>Nagad</option>
+                  <option value='upay'>Upay</option>
+                  <option value='roket'>Roket</option>
+                  <option value='mycash'>MyCash</option>
+                  <option value='okwallet'>Ok Wallet</option>
+                  <option value='phonepay'>PhonePay</option>
+                  <option value='paytm'>PayTm</option>
+                  <option value='freecharge'>FreeCharge</option>
+                  <option value='airtelpaymentbank'>Airtel Payments Bank</option>
                 </select>
               </div>
               <div className="mb-4">
@@ -412,6 +391,8 @@ function Wtransactions() {
                   Deposit Address
                 </label>
                 <input
+                 name="account"
+                 required
                   type="text"
                   className="mt-1 block w-full pl-4 py-4 rounded-md border shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                 />
@@ -422,18 +403,21 @@ function Wtransactions() {
                 </label>
                 <input
                   type="text"
+                  name="amount"
+                  required
                   className="mt-1 block w-full pl-4 py-4 rounded-md border shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                 />
               </div>
               <div className="flex justify-around">
                 <button
-                  className="btn bg-gradient-2 text-white px-36  md:px-48 lg:px-72 py-2 rounded-md"
-                  onClick={closeModal}
-                >
+                 type="submit"
+                  className="btn bg-gradient-2 text-white px-36  md:px-48 lg:px-72 py-2 rounded-md">
                   Submit
                 </button>
               </div>
+              
             </div>
+            </form>
           </div>
         </div>
       ) : null}

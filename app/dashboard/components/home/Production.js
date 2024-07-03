@@ -96,7 +96,6 @@ export default function Production() {
     } else {
       console.log(response);
     }
-
   }
 
   return (
