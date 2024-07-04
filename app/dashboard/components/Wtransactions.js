@@ -24,40 +24,28 @@ function Wtransactions() {
   };
 
   const[transactions,setTransactions]=useState([]);
+ 
+
+
   useEffect(()=>{
     getWithdrw();
   },[])
 
-  const getWithdrw=async()=>{
-   
+  const getWithdrw=async()=>{   
       const response = await ApiRequest({
         url: "/withdraw_history",
         method: "get",
       });
       console.log(response);
       if (response.status === 200) {
-        setTransactions(response.data); 
-        
+        setTransactions(response.data);         
       } else {
         console.log(response);
-      }
-   
+      }   
   }
  
 
-  // Filter transactions based on the selected date range
-  const filteredTransactions = transactions.filter((transaction) => {
-    const transactionDate = new Date(transaction.date);
-    const startDateObj = dateRange.startDate
-      ? new Date(dateRange.startDate)
-      : null;
-    const endDateObj = dateRange.endDate ? new Date(dateRange.endDate) : null;
-
-    return (
-      (!startDateObj || transactionDate >= startDateObj) &&
-      (!endDateObj || transactionDate <= endDateObj)
-    );
-  });
+  
 
   const withdrawReq=async(formdata)=>{
     const response = await ApiRequest({
@@ -69,12 +57,35 @@ function Wtransactions() {
     if (response.status === 201) {
       toast.success("Withdraw Request Success");      
       getWithdrw();
-      closeModal();
-      
+      closeModal();      
     } else {
       console.log(response);
       toast.error(response.message);
     }
+  }
+
+
+
+
+  const[search,setSearch]=useState('');
+
+  useEffect(()=>{
+    if(search !=''&& search.length>0){
+    getWithdrwSearch();
+    }
+  },[search])
+  const getWithdrwSearch=async()=>{
+    const response = await ApiRequest({
+      url: "/withdrawal_request_search",
+      formdata:{search:search},
+     
+    });
+    if (response.status == 200) {
+      setTransactions(response.data);
+    } else {
+      console.log(response);
+    }
+    
   }
 
   return (
@@ -86,7 +97,7 @@ function Wtransactions() {
         <section className="shadow-md border rounded-md ml-0 lg:ml-5 mb-36 ">
           <div className="max-w-screen-xl">
             {/* <!-- Start coding here --> */}
-            <div className="bg-white dark:bg-gray-800  shadow-md sm:rounded-lg overflow-hidden">
+            <div className="bg-white dark:bg-gray-800  shadow-md sm:rounded-lg overflow-hidden min-h-[500px]">
               <div className="relative  flex flex-col md:flex-row items-center space-y-3 md:space-y-0 md:space-x-4 p-4 ">
                 <div className="w-full md:w-full">
                   <form className="flex items-center">
@@ -111,15 +122,17 @@ function Wtransactions() {
                       </div>
                       <div className="grid grid-flow-col w-[100%]">
                         <input
+                          value={search}
+                          onChange={(e)=>{
+                            setSearch(e.target.value)
+                          }}
                           type="text"
                           id="simple-search"
                           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                           placeholder="Search"
                           required=""
                         />
-                        <button className="btn bg-gradient-2 text-gray-200 px-14 rounded-md ml-2">
-                          Search
-                        </button>
+                       
                         <button
                           type="button"
                           className="btn bg-gradient-2 text-white justify-center rounded-md ml-2 mr-2 pr-2 flex items-center"
@@ -189,7 +202,7 @@ function Wtransactions() {
                     </tr>
                   </thead>
                   <tbody>
-                    {filteredTransactions.map((transaction,index) => (
+                    {transactions.map((transaction,index) => (
                       <tr
                         key={index}
                         className="border-b dark:border-gray-700"
@@ -208,7 +221,7 @@ function Wtransactions() {
                         <td className="px-4 py-3">
                           {transaction.number}
                         </td>
-                        <td className="px-4 py-3">{transaction.trxID}</td>
+                        <td className="px-4 py-3">{transaction.trxID?transaction.trxID:"None"}</td>
                         <td className="px-4 py-3">{transaction.status?transaction.status:''}</td>
                         <td className="px-4 py-3">
                           {transaction?.created_at && format(transaction?.created_at, "dd MMMM yyyy")}
@@ -221,7 +234,7 @@ function Wtransactions() {
               </div>
               {/* showing page number & table */}
               <nav
-                className="flex flex-col mt-24  md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0 p-10"
+                className="flex flex-col mt-24  md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0 p-0"
                 aria-label="Table navigation"
               >
                 <span className="text-sm font-normal text-gray-500 dark:text-gray-400">

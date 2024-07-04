@@ -16,14 +16,14 @@ export default function Production() {
   const [showText, setShowText] = useState(false);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
-  const[data,setData]=useState(null);
+  const[data,setData]=useState([]);
 
   useEffect(() => {
-    getTestKey();
+    getLiveKey();
     getMarchent();
-  }, []);
+  }, [isDrawerOpen]);
 
-  const getTestKey = async () => {
+  const getLiveKey = async () => {
     const response = await ApiRequest({
       url: "/production_key",
       method: "get",
@@ -91,8 +91,11 @@ export default function Production() {
     });
     console.log(response);
     if (response.status === 200) {
-      if(response.data.length>0){setData(response.data); }
-      
+      if(response.data.length>0){
+        setData(response.data); 
+      }else{
+        setData(null);
+      }      
     } else {
       console.log(response);
     }
