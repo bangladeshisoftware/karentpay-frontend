@@ -187,11 +187,7 @@ function Transactions() {
                           {index + 1}
                         </th>
                         <td className="px-4 py-3">
-                          {transaction.created_at &&
-                            format(
-                              transaction.created_at,
-                              "dd" + " " + "MMMM" + " " + "yyyy"
-                            )}
+                          {transaction.created_at && format( transaction.created_at,"dd" + " " + "MMMM" + " " + "yyyy")}
                         </td>
                         <td className="px-4 py-3">{transaction.reference}</td>
                         <td className="px-4 py-3">

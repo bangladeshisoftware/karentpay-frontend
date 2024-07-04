@@ -18,13 +18,8 @@ function Wtransactions() {
   const openModal = () => setShowModal(true);
   const closeModal = () => setShowModal(false);
 
-  const handleDateRangeChange = (newValue) => {
-    console.log("newValue:", newValue);
-    setDateRange(newValue);
-  };
 
   const[transactions,setTransactions]=useState([]);
- 
 
 
   useEffect(()=>{
@@ -88,6 +83,25 @@ function Wtransactions() {
     
   }
 
+  const handleDateRangeChange =async (newValue) => {
+    console.log("newValue:", newValue);
+    setDateRange(newValue);
+    const response = await ApiRequest({
+      url: "/withdraw_history_by_date",
+      formdata:{startDate:newValue.startDate,endDate:newValue.endDate},
+    });
+    console.log(response);
+    if (response.status === 200) {
+      setTransactions(response.data);         
+    } else {
+      console.log(response);
+    }  
+
+
+
+  };
+ 
+
   return (
     <div className="mt-10 ">
       <div className=" border shadow-lg mb-2 lg:mb-2 p-3 lg:p-3 mt-3 rounded-md text-center lg:text-left lg:hidden  ">
@@ -101,7 +115,7 @@ function Wtransactions() {
               <div className="relative  flex flex-col md:flex-row items-center space-y-3 md:space-y-0 md:space-x-4 p-4 ">
                 <div className="w-full md:w-full">
                   <form className="flex items-center">
-                    <label htmlFor="simple-search" className="sr-only">
+                    <label htmlFor="simple-search"  className="sr-only">
                       Search
                     </label>
                     <div className="relative w-full ">
@@ -169,7 +183,7 @@ function Wtransactions() {
                   </div>
                 </div>
               </div>
-              <div className="overflow-x-auto h-[60%]">
+              <div className="overflow-x-auto h-[100%]">
                 <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400 ">
                   <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
@@ -202,7 +216,7 @@ function Wtransactions() {
                     </tr>
                   </thead>
                   <tbody>
-                    {transactions.map((transaction,index) => (
+                    {transactions?.map((transaction,index) => (
                       <tr
                         key={index}
                         className="border-b dark:border-gray-700"
@@ -211,7 +225,7 @@ function Wtransactions() {
                           scope="row"
                           className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                         >
-                          {index}
+                          {index+1}
                         </th>
                         <td className="px-4 py-3">{transaction.method}</td>
                         <td className="px-4 py-3">
@@ -234,7 +248,7 @@ function Wtransactions() {
               </div>
               {/* showing page number & table */}
               <nav
-                className="flex flex-col mt-24  md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0 p-0"
+                className="flex flex-col mt-3  md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0 p-0"
                 aria-label="Table navigation"
               >
                 <span className="text-sm font-normal text-gray-500 dark:text-gray-400">
