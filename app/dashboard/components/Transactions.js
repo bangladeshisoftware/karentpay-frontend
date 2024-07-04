@@ -175,7 +175,7 @@ function Transactions() {
                     </tr>
                   </thead>
                   <tbody>
-                    {transactionsData.map((transaction, index) => (
+                    {transactionsData?.map((transaction, index) => (
                       <tr
                         className="border-b dark:border-gray-700"
                         key={transaction.id}
