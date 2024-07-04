@@ -19,6 +19,12 @@ import { PiHandWithdrawFill } from "react-icons/pi";
 import { FaRegFileWord } from "react-icons/fa6";
 import { toast } from 'react-toastify';
 import ApiRequest from '@/app/_lib/Api_request';
+import { FaSackDollar } from "react-icons/fa6";
+import { FaWordpress } from "react-icons/fa";
+import { MdDeveloperMode } from "react-icons/md";
+import { MdSpaceDashboard } from "react-icons/md";
+import { IoSettings } from "react-icons/io5";
+import { ImPaypal } from "react-icons/im";
 
 
 import {
@@ -217,7 +223,7 @@ function Dashboard() {
                       }`}
                     onClick={() => setActiveComponent('home')}
                   >
-                    <FiHome className='mr-2 text-2xl' />
+                    <MdSpaceDashboard className='mr-2 text-2xl' />
                     {windowWidth >= 1024 && 'Dashboard'}
                   </li>
                   <li
@@ -227,7 +233,7 @@ function Dashboard() {
                       }`}
                     onClick={() => setActiveComponent('balance')}
                   >
-                    <AiOutlineDollar className='mr-2 text-2xl' />{' '}
+                    <FaSackDollar className='mr-2 text-2xl' />
                     {windowWidth >= 1024 && 'Balance'}
                   </li>
                   <li
@@ -237,7 +243,7 @@ function Dashboard() {
                       }`}
                     onClick={() => setActiveComponent('transactions')}
                   >
-                    <PiHandWithdrawFill className='mr-2 text-2xl' />{' '}
+                    <SiConstruct3 className='mr-2 text-2xl' />
                     {windowWidth >= 1024 && 'Transactions'}
                   </li>
                   <li
@@ -247,7 +253,7 @@ function Dashboard() {
                       }`}
                     onClick={() => setActiveComponent('wtransactions')}
                   >
-                    <FaRegFileWord className='mr-2 text-2xl' />
+                    <FaWordpress  className='mr-2 text-2xl' />
                     {windowWidth >= 1024 && 'W Transactions'}
                   </li>
                   <li
@@ -257,7 +263,7 @@ function Dashboard() {
                       }`}
                     onClick={() => setActiveComponent('payments')}
                   >
-                    <MdOutlinePayment className='mr-2 text-2xl' />{' '}
+                    <ImPaypal className='mr-2 text-2xl' />
                     {windowWidth >= 1024 && 'Payments'}
                   </li>
                   <li
@@ -267,7 +273,7 @@ function Dashboard() {
                       }`}
                     onClick={() => setActiveComponent('developer')}
                   >
-                    <FaRegUser className='mr-2 text-2xl' />
+                    <MdDeveloperMode className='mr-2 text-2xl' />
                     {windowWidth >= 1024 && 'Developer'}
                   </li>
                   <li
@@ -277,7 +283,7 @@ function Dashboard() {
                       }`}
                     onClick={() => setActiveComponent('support')}
                   >
-                    <FaHandsHelping className='mr-2 text-2xl' />{' '}
+                    <FaHandsHelping className='mr-2 text-2xl' />
                     {windowWidth >= 1024 && 'Support'}
                   </li>
                   <li
@@ -287,7 +293,7 @@ function Dashboard() {
                       }`}
                     onClick={() => setActiveComponent('productCatalog')}
                   >
-                    <IoSettingsOutline className='mr-2 text-2xl' />{' '}
+                    <IoSettings className='mr-2 text-2xl' />
                     {windowWidth >= 1024 && 'Settings'}
                   </li>
                 </ul>
@@ -297,28 +303,28 @@ function Dashboard() {
         )}
         <ResizableHandle />
         {/* Navbar for small and medium devices */}
-        <nav className={`lg:hidden inset-x-0 fixed bottom-0 left-0 w-full border-t-2  bg-white text-gray-700 flex justify-between px-4 py-4 z-50 transition-transform duration-300 ${scrollDirection === 'down' ? 'transform translate-y-full' : 'transform translate-y-0'}`}>
-          <FiHome
+        <nav className={`lg:hidden inset-x-0 fixed bottom-0 left-0 w-full border-t-2  bg-white text-gray-700 flex justify-between px-4 py-4 z-50 transition-transform duration-75 ${scrollDirection === 'down' ? 'transform translate-y-full' : 'transform translate-y-0'}`}>
+          <MdSpaceDashboard
             className='text-2xl cursor-pointer'
             onClick={() => setActiveComponent('home')}
           />
-          <AiOutlineDollar
+          <FaSackDollar
             className='text-2xl cursor-pointer'
             onClick={() => setActiveComponent('balance')}
           />
-          <PiHandWithdrawFill
+          <SiConstruct3
             className='text-2xl cursor-pointer'
             onClick={() => setActiveComponent('transactions')}
           />
-          <FaRegFileWord
+          <FaWordpress 
             className='text-2xl cursor-pointer'
             onClick={() => setActiveComponent('wtransactions')}
           />
-          <MdOutlinePayment
+          <ImPaypal
             className='text-2xl cursor-pointer'
             onClick={() => setActiveComponent('payments')}
           />
-          <FaRegUser
+          <MdDeveloperMode
             className='text-2xl cursor-pointer'
             onClick={() => setActiveComponent('developer')}
           />
@@ -326,7 +332,7 @@ function Dashboard() {
             className='text-2xl cursor-pointer'
             onClick={() => setActiveComponent('support')}
           />
-          <IoSettingsOutline
+          <IoSettings
             className='text-2xl cursor-pointer'
             onClick={() => setActiveComponent('productCatalog')}
           />
