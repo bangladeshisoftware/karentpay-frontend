@@ -68,7 +68,7 @@ function Product_Catalog() {
       <div className=" border shadow-lg mb-4 lg:mb-2 p-3 lg:p-3 mt-3 rounded-md text-center lg:text-left lg:hidden  ">
         <h3 className="text-xl font-semibold">Settings</h3>
       </div>
-      <div className="nav bg-gradient-3 hidden lg:flex md:flex xl:flex lg:gap-4 border rounded-md shadow-md items-center h-fit  text-white lg:py-4">
+      <div className="nav bg-gradient-3 hidden lg:flex md:flex xl:flex lg:gap-4 border rounded-md shadow-md items-center h-fit  text-white py-2 lg:py-4">
         <h3
           className={`cursor-pointer rounded-md p-2 ml-3 ${
             selected == "profile"
@@ -152,7 +152,7 @@ function Product_Catalog() {
           Payment Settings
         </h3>
       </div>
-      <div className="nav bg-gradient-3 flex flex-col lg:hidden md:hidden xl:hidden lg:gap-4 border rounded-md shadow-md items-center h-fit mt-2 text-white lg:py-4">
+      <div className="nav bg-gradient-3 flex flex-col lg:hidden md:hidden xl:hidden lg:gap-4 border rounded-md shadow-md items-center h-fit mt-2 text-white py-2 lg:py-4">
         <h3
           className={`cursor-pointer rounded-md p-2 ml-3 ${
             selected == "profile"
@@ -237,7 +237,7 @@ function Product_Catalog() {
         </h3>
       </div>
 
-      <div className="container bg-white w-full h-fit border shadow-md rounded-sm mt-12 pb-8 lg:px-12 xs:px-12 px-4">
+      <div className="container bg-white w-full h-full border shadow-md rounded-sm mt-12  pb-8 lg:px-12 xs:px-12 px-4">
         {selected == "profile" && !updated && (
           <div className="lg:mx-24 xl:mx-24 md:mx-16 sm:mx-8 mx-0 font-normal">
             <div className="mt-8">

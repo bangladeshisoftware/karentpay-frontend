@@ -137,7 +137,7 @@ function Support() {
       <div className=" border shadow-lg mb-4 lg:mb-2 p-3 lg:p-3 mt-3 rounded-md text-center lg:text-left lg:hidden  ">
         <h3 className="text-xl font-semibold">Support</h3>
       </div>
-      <div className="grid lg:grid-cols-3 grid-cols-1 px-1 lg:px-0 justify-around gap-4 pb-5">
+      <div className="grid lg:grid-cols-3 grid-cols-1 px-1 lg:px-0 justify-around gap-2 pb-5">
         <div className="border shadow-lg rounded-md w-full h-60 flex items-center transition-all duration-300 hover:shadow-lg bg-white sm:h-60">
           <div className="flex-grow ml-8">
             <div>

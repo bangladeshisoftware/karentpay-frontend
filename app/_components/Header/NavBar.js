@@ -188,70 +188,31 @@
 
 
 
+
+
+
 // 'use client';
 // import Image from 'next/image';
 // import Link from 'next/link';
 // import { useState } from 'react';
-// import { Menu } from 'lucide-react';
+// import { Menu, ChevronDown, ChevronUp } from 'lucide-react';
 // import facebookIcon from '@/app/_assets/facebook.png';
 // import youtubeIcon from '@/app/_assets/youtube.png';
 // import Dropdown from '../Dropdown/Dropdown';
 // import Logo from '@/app/_assets/Mobile-Logo.png';
 // import { DrawerDialogDemo } from '@/app/_components/Header/BecomeMerchent/DrawerDialogDemo';
-// import Balance from '@/app/dashboard/components/Balance';
-// import Transactions from '@/app/dashboard/components/Transactions';
-// import Wtransactions from '@/app/dashboard/components/Wtransactions';
-// import PaymentCopy from '@/app/dashboard/components/PaymentCopy';
-// import Developer from '@/app/dashboard/components/Developer';
-// import Support from '@/app/dashboard/components/Support';
-// import Product_Catalog from '@/app/dashboard/components/Settings';
-// import Home from '@/app/dashboard/components/Home';
-
 
 // const NavBar = () => {
 //   const [isOpen, setIsOpen] = useState(false);
 //   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 //   const [mainMenuOpen, setMainMenuOpen] = useState(false);
-//   const [dashboardMenuOpen, setDashboardMenuOpen] = useState(false);
-//   const [activeComponent, setActiveComponent] = useState('home');
-//   const [isDashboardLayout, setIsDashboardLayout] = useState(false);
-//   const [isOn, setIsOn] = useState(true);
+//   const [dashboardMenuOpen, setDashboardMenuOpen] = useState(true); // Initially open
+//   const [pagesMenuOpen, setPagesMenuOpen] = useState(false); // Initially closed
 
 //   const handleOpenDrawer = (e) => {
 //     e.preventDefault();
 //     setIsDrawerOpen(true);
 //     setIsOpen(false); // Close the mobile menu when the drawer opens
-//   };
-
-//   const toggleSwitch = () => {
-//     setIsOn(!isOn);
-//   };
-
-//   const handleDashboardClick = (component) => {
-//     setActiveComponent(component);
-//     setIsDashboardLayout(true);
-//     setIsOpen(false);
-//   };
-
-//   const renderComponent = () => {
-//     switch (activeComponent) {
-//       case 'balance':
-//         return <Balance />;
-//       case 'transactions':
-//         return <Transactions />;
-//       case 'wtransactions':
-//         return <Wtransactions />;
-//       case 'payments':
-//         return <PaymentCopy />;
-//       case 'developer':
-//         return <Developer isTest={isOn} />;
-//       case 'support':
-//         return <Support />;
-//       case 'productCatalog':
-//         return <Product_Catalog />;
-//       default:
-//         return <Home />;
-//     }
 //   };
 
 //   const socialLinks = {
@@ -261,130 +222,165 @@
 //   };
 
 //   const dropdownItemsMainMenu = [
-//     { label: 'Home', href: '/', onClick: () => setIsDashboardLayout(false) },
-//     { label: 'Pricing', href: '/pricing', onClick: () => setIsDashboardLayout(false) },
-//     { label: 'Payment Gateway', href: '/payment-gateway', onClick: () => setIsDashboardLayout(false) },
-//     { label: 'Documentations', href: '/documentations', onClick: () => setIsDashboardLayout(false) },
-//     { label: 'News', href: '/news', onClick: () => setIsDashboardLayout(false) },
-//     { label: 'Contact', href: '/contact', onClick: () => setIsDashboardLayout(false) },
-//     { label: 'Pages', href: '#', submenu: [
-//       { label: 'About', href: '/about', onClick: () => setIsDashboardLayout(false) },
-//       { label: 'Privacy & Policy', href: '/privacy-policy', onClick: () => setIsDashboardLayout(false) },
-//       { label: 'Terms & Conditions', href: '/terms-and-conditions', onClick: () => setIsDashboardLayout(false) }
-//     ] },
-//     { label: 'Become a Merchant', href: '/become_merchant', onClick: handleOpenDrawer },
-//     { label: 'Merchant Login', href: '/auth/login', onClick: () => setIsDashboardLayout(false) }
+//     { label: 'Home', href: '/' },
+//     { label: 'Pricing', href: '/pricing' },
+//     { label: 'Payment Gateway', href: '/payment-gateway' },
+//     { label: 'Documentations', href: '/documentations' },
+//     { label: 'News', href: '/news' },
+//     { label: 'Customer Reviews', href: '/customer-reviews' },
+//     { label: 'Contact', href: '/contact' },
+//     {
+//       label: 'Pages', submenu: [
+//         { label: 'About', href: '/about' },
+//         { label: 'Privacy & Policy', href: '/privacy-policy' },
+//         { label: 'Terms & Conditions', href: '/terms-and-conditions' }
+//       ]
+//     }
 //   ];
 
 //   const dropdownItemsDashboard = [
-//     { label: 'Home', component: 'home' },
-//     { label: 'Balance', component: 'balance' },
-//     { label: 'Transactions', component: 'transactions' },
-//     { label: 'W Transactions', component: 'wtransactions' },
-//     { label: 'Payments', component: 'payments' },
-//     { label: 'Developer', component: 'developer' },
-//     { label: 'Support', component: 'support' },
-//     { label: 'Product Catalog', component: 'productCatalog' }
+//     { label: 'Home', href: '/dashboard/mobile/home' },
+//     { label: 'Balance', href: '/dashboard/mobile/balance' },
+//     { label: 'Transactions', href: '/dashboard/mobile/transactions' },
+//     { label: 'W Transactions', href: '/dashboard/mobile/wtransactions' },
+//     { label: 'Payment', href: '/dashboard/mobile/payment' },
+//     { label: 'Developer', href: '/dashboard/mobile/developer' },
+//     { label: 'Support', href: '/dashboard/mobile/support' },
+//     { label: 'Settings', href: '/dashboard/mobile/settings' }
 //   ];
 
 //   return (
-//     <>
-//       <nav className='bg-gradient-3 text-gray-200 py-2 sticky top-0 z-50'>
-//         {/* large screens */}
-//         <div className='container lg:flex wide-laptop:flex small-laptop:flex hidden items-center justify-between relative'>
-//           <div className='flex items-center gap-5 h-10'>
-//             {dropdownItemsMainMenu.slice(0, 6).map((item) => (
-//               <Link
-//                 key={item.href}
-//                 href={item.href}
-//                 className='rounded p-1 hover:text-white hover:bg-blue-800'
-//                 onClick={item.onClick}
+//     <nav className='bg-gradient-3 text-gray-200 py-2 sticky top-0 z-50'>
+//       {/* large screens */}
+//       <div className='container lg:flex wide-laptop:flex small-laptop:flex hidden items-center justify-between relative'>
+//         <div className='flex items-center gap-5 h-10'>
+//           {dropdownItemsMainMenu.slice(0, 7).map((item) => (
+//             <Link
+//               key={item.href}
+//               href={item.href}
+//               className='rounded p-1 hover:text-white hover:bg-blue-800'
+//             >
+//               {item.label}
+//             </Link>
+//           ))}
+//           <Dropdown label='Pages' items={dropdownItemsMainMenu.find(item => item.label === 'Pages').submenu} />
+//         </div>
+//         <div className='flex gap-4'>
+//           <Link href={socialLinks.facebookLink} target='_blank'>
+//             <Image src={facebookIcon} alt='facebook' className='w-8' />
+//           </Link>
+//           <Link href={socialLinks.youtubeLink} target='_blank'>
+//             <Image src={youtubeIcon} alt='youtube' className='w-8 rounded-md' />
+//           </Link>
+//         </div>
+//       </div>
+
+//       {/* small and medium screens */}
+//       <div className='container lg:hidden wide-laptop:hidden small-laptop:hidden flex items-center justify-between relative px-2'>
+//         <div className='flex items-center'>
+//           <button onClick={() => setIsOpen(!isOpen)} className='p-1 m-0 '>
+//             <Menu className='w-14 h-16 text-white' />
+//           </button>
+//           <Link href='/'>
+//             <Image src={Logo} alt='Logo' className='w-44 h-14 ml-6' />
+//           </Link>
+//         </div>
+//       </div>
+
+//       {isOpen && (
+//         <div className='lg:hidden wide-laptop:hidden small-laptop:hidden absolute top-full left-0 w-full bg-gradient-to-r from-blue-800 to-purple-950 text-gray-200 flex flex-col items-start p-4'>
+//           <button
+//             className='flex items-center justify-between rounded p-1 hover:text-white hover:bg-blue-800 w-full text-left'
+//             onClick={() => setMainMenuOpen(!mainMenuOpen)}
+//           >
+//             <span>Main Menu</span>
+//             {mainMenuOpen ? <ChevronUp className='ml-2' /> : <ChevronDown className='ml-2' />}
+//           </button>
+//           {mainMenuOpen && (
+//             <div className='flex flex-col ml-4'>
+//               {dropdownItemsMainMenu.slice(0, 7).map((item) => (
+//                 <Link
+//                   key={item.label}
+//                   href={item.href || '#'} // Default to '#' if href is not provided
+//                   className='rounded p-1 hover:text-white hover:bg-blue-800 w-full text-left'
+//                   onClick={() => setIsOpen(false)}
+//                 >
+//                   {item.label}
+//                 </Link>
+//               ))}
+//               <button
+//                 className='flex items-center justify-between rounded p-1 hover:text-white hover:bg-blue-800 w-full text-left'
+//                 onClick={() => setPagesMenuOpen(!pagesMenuOpen)}
 //               >
-//                 {item.label}
-//               </Link>
-//             ))}
-//             <Dropdown label='Pages' items={dropdownItemsMainMenu.find(item => item.label === 'Pages').submenu} />
-//           </div>
-//           <div className='flex gap-4'>
-//             <Link href={socialLinks.facebookLink} target='_blank'>
-//               <Image src={facebookIcon} alt='facebook' className='w-8' />
-//             </Link>
-//             <Link href={socialLinks.youtubeLink} target='_blank'>
-//               <Image src={youtubeIcon} alt='youtube' className='w-8 rounded-md' />
-//             </Link>
-//           </div>
+//                 <span>Pages</span>
+//                 {pagesMenuOpen ? <ChevronUp className='ml-2' /> : <ChevronDown className='ml-2' />}
+//               </button>
+//               {pagesMenuOpen && (
+//                 <div className='flex flex-col ml-4'>
+//                   {dropdownItemsMainMenu.find(item => item.label === 'Pages').submenu.map((subItem) => (
+//                     <Link
+//                       key={subItem.label}
+//                       href={subItem.href || '#'}
+//                       className='rounded p-1 hover:text-white hover:bg-blue-800 w-full text-left'
+//                       onClick={() => setIsOpen(false)}
+//                     >
+//                       {subItem.label}
+//                     </Link>
+//                   ))}
+//                 </div>
+//               )}
+//             </div>
+//           )}
+//           <button
+//             className='flex items-center justify-between rounded p-1 hover:text-white hover:bg-blue-800 w-full text-left mt-4'
+//             onClick={() => setDashboardMenuOpen(!dashboardMenuOpen)}
+//           >
+//             <span>Dashboard</span>
+//             {dashboardMenuOpen ? <ChevronUp className='ml-2' /> : <ChevronDown className='ml-2' />}
+//           </button>
+//           {dashboardMenuOpen && (
+//             <div className='flex flex-col ml-4'>
+//               {dropdownItemsDashboard.map((item) => (
+//                 <Link
+//                   key={item.label}
+//                   href={item.href || '#'} // Default to '#' if href is not provided
+//                   className='rounded p-1 hover:text-white hover:bg-blue-800 w-full text-left'
+//                   onClick={() => setIsOpen(false)}
+//                 >
+//                   {item.label}
+//                 </Link>
+//               ))}
+//             </div>
+//           )}
+//           {/* Additional links for small and medium screens */}
+//           <Link
+//             href='/become_merchant'
+//             className='rounded p-1 hover:text-white hover:bg-blue-800 w-full text-left mt-4'
+//             onClick={handleOpenDrawer}
+//           >
+//             Become a Merchant
+//           </Link>
+//           <Link
+//             href='/auth/login'
+//             className='rounded p-1 hover:text-white hover:bg-blue-800 w-full text-left'
+//             onClick={() => setIsOpen(false)}
+//           >
+//             Merchant Login
+//           </Link>
 //         </div>
-
-//         {/* small and medium screens */}
-//         <div className='container lg:hidden wide-laptop:hidden small-laptop:hidden flex items-center justify-between relative px-2'>
-//           <div className='flex items-center'>
-//             <button onClick={() => setIsOpen(!isOpen)} className='p-1 m-0 '>
-//               <Menu className='w-14 h-16 text-white' />
-//             </button>
-//             <Link href='/'>
-//               <Image src={Logo} alt='Logo' className='w-44 h-14 ml-6' />
-//             </Link>
-//           </div>
-//         </div>
-
-//         {isOpen && (
-//           <div className='lg:hidden wide-laptop:hidden small-laptop:hidden absolute top-full left-0 w-full bg-gradient-to-r from-blue-800 to-purple-950 text-gray-200 flex flex-col items-start p-4'>
-//             <button
-//               className='rounded p-1 hover:text-white hover:bg-blue-800 w-full text-left'
-//               onClick={() => setMainMenuOpen(!mainMenuOpen)}
-//             >
-//               Main Menu
-//             </button>
-//             {mainMenuOpen && (
-//               <div className='flex flex-col ml-4'>
-//                 {dropdownItemsMainMenu.map((item) => (
-//                   <Link
-//                     key={item.href}
-//                     href={item.href}
-//                     className='rounded p-1 hover:text-white hover:bg-blue-800 w-full text-left'
-//                     onClick={item.onClick || (() => setIsOpen(false))}
-//                   >
-//                     {item.label}
-//                   </Link>
-//                 ))}
-//               </div>
-//             )}
-//             <button
-//               className='rounded p-1 hover:text-white hover:bg-blue-800 w-full text-left'
-//               onClick={() => setDashboardMenuOpen(!dashboardMenuOpen)}
-//             >
-//               Dashboard
-//             </button>
-//             {dashboardMenuOpen && (
-//               <div className='flex flex-col ml-4'>
-//                 {dropdownItemsDashboard.map((item) => (
-//                   <button
-//                     key={item.label}
-//                     className='rounded p-1 hover:text-white hover:bg-blue-800 w-full text-left'
-//                     onClick={() => handleDashboardClick(item.component)}
-//                   >
-//                     {item.label}
-//                   </button>
-//                 ))}
-//               </div>
-//             )}
-//           </div>
-//         )}
-//         {/* Drawer Dialog */}
-//         <DrawerDialogDemo open={isDrawerOpen} setOpen={setIsDrawerOpen} />
-//       </nav>
-      
-//     </>
+//       )}
+//       {/* Drawer Dialog */}
+//       <DrawerDialogDemo open={isDrawerOpen} setOpen={setIsDrawerOpen} />
+//     </nav>
 //   );
 // };
 
 // export default NavBar;
 
-
 'use client';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Menu, ChevronDown, ChevronUp } from 'lucide-react';
 import facebookIcon from '@/app/_assets/facebook.png';
 import youtubeIcon from '@/app/_assets/youtube.png';
@@ -398,12 +394,31 @@ const NavBar = () => {
   const [mainMenuOpen, setMainMenuOpen] = useState(false);
   const [dashboardMenuOpen, setDashboardMenuOpen] = useState(true); // Initially open
   const [pagesMenuOpen, setPagesMenuOpen] = useState(false); // Initially closed
+  const menuRef = useRef(null); // Ref for the menu
+  const buttonRef = useRef(null); // Ref for the hamburger button
 
   const handleOpenDrawer = (e) => {
     e.preventDefault();
     setIsDrawerOpen(true);
     setIsOpen(false); // Close the mobile menu when the drawer opens
   };
+
+  const handleClickOutside = (event) => {
+    if (menuRef.current && !menuRef.current.contains(event.target) && buttonRef.current && !buttonRef.current.contains(event.target)) {
+      setIsOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    if (isOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    } else {
+      document.removeEventListener('mousedown', handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isOpen]);
 
   const socialLinks = {
     facebookLink: '',
@@ -444,7 +459,7 @@ const NavBar = () => {
       {/* large screens */}
       <div className='container lg:flex wide-laptop:flex small-laptop:flex hidden items-center justify-between relative'>
         <div className='flex items-center gap-5 h-10'>
-          {dropdownItemsMainMenu.slice(0, 6).map((item) => (
+          {dropdownItemsMainMenu.slice(0, 7).map((item) => (
             <Link
               key={item.href}
               href={item.href}
@@ -468,7 +483,7 @@ const NavBar = () => {
       {/* small and medium screens */}
       <div className='container lg:hidden wide-laptop:hidden small-laptop:hidden flex items-center justify-between relative px-2'>
         <div className='flex items-center'>
-          <button onClick={() => setIsOpen(!isOpen)} className='p-1 m-0 '>
+          <button ref={buttonRef} onClick={() => setIsOpen(!isOpen)} className='p-1 m-0 '>
             <Menu className='w-14 h-16 text-white' />
           </button>
           <Link href='/'>
@@ -478,7 +493,7 @@ const NavBar = () => {
       </div>
 
       {isOpen && (
-        <div className='lg:hidden wide-laptop:hidden small-laptop:hidden absolute top-full left-0 w-full bg-gradient-to-r from-blue-800 to-purple-950 text-gray-200 flex flex-col items-start p-4'>
+        <div ref={menuRef} className='lg:hidden wide-laptop:hidden small-laptop:hidden absolute top-full left-0 w-full bg-gradient-to-r from-blue-800 to-purple-950 text-gray-200 flex flex-col items-start p-4'>
           <button
             className='flex items-center justify-between rounded p-1 hover:text-white hover:bg-blue-800 w-full text-left'
             onClick={() => setMainMenuOpen(!mainMenuOpen)}
@@ -488,7 +503,7 @@ const NavBar = () => {
           </button>
           {mainMenuOpen && (
             <div className='flex flex-col ml-4'>
-              {dropdownItemsMainMenu.slice(0, 6).map((item) => (
+              {dropdownItemsMainMenu.slice(0, 7).map((item) => (
                 <Link
                   key={item.label}
                   href={item.href || '#'} // Default to '#' if href is not provided
@@ -566,6 +581,8 @@ const NavBar = () => {
 };
 
 export default NavBar;
+
+
  
 
 
