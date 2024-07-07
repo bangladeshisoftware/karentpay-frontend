@@ -27,7 +27,7 @@ function Balance() {
 
   return (
     <div className="rounded-md mt-10 ml-0 lg:ml-5">
-      <div className=" border shadow-lg mb-2 lg:mb-2 p-3 lg:p-3 mt-3 rounded-md text-center lg:text-left lg:hidden  ">
+      <div className=" border shadow-lg mb-4 lg:mb-2 p-3 lg:p-3 mt-3 rounded-md text-center lg:text-left lg:hidden  ">
         <h3 className="text-xl font-semibold">Balance</h3>
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-3 justify-around gap-4 px-1 lg:px-0 pb-5">
@@ -65,7 +65,7 @@ function Balance() {
           </div>
         </div>
 
-        <div className="border shadow-lg rounded-md w-full h-60 flex items-center transition-all duration-300 hover:shadow-lg bg-white sm:h-60">
+        <div className="border shadow-lg rounded-md w-full h-60 flex items-center transition-all duration-300 hover:shadow-lg bg-white sm:h-60 mb-4">
           <div className="flex-grow ml-8">
             <div>
               <p className="font-bold">Monthly Balance</p>

@@ -99,9 +99,11 @@ const News = () => {
           <div className="container mx-auto mt-20">
             <div className="mb-10">
               <h2 className="text-center text-[#443f35] text-3xl font-bold">
-                Epayget News
+                <span className='gradient-text'>
+                  Karentpay
+                </span> News
               </h2>
-              <p className="text-xl text-blue-500 text-center font-normal">
+              <p className="text-xl mt-4 text-center font-normal">
                 Find out more news and more services{" "}
               </p>
             </div>
@@ -140,11 +142,10 @@ const News = () => {
                 <button
                   key={index}
                   onClick={() => handlePageChange(index + 1)}
-                  className={`mx-1 px-3 py-1 rounded-md ${
-                    currentPage === index + 1
+                  className={`mx-1 px-3 py-1 rounded-md ${currentPage === index + 1
                       ? "bg-blue-600 text-white"
                       : "bg-gray-200 text-gray-700"
-                  }`}
+                    }`}
                 >
                   {index + 1}
                 </button>

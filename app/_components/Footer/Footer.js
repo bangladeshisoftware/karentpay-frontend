@@ -26,7 +26,7 @@ const Footer = () => {
               </Link>
             </div>
             <div className='lg:mx-auto text-left '>
-              <h4 className='text-lg font-bold mb-7'>Epayget</h4>
+              <h4 className='text-lg font-bold mb-7'>Karentpay</h4>
               <ul className='text-sm  transition-all duration-500'>
                 <li className='mb-6'>
                   <Link href='' className='hover:text-gray-200'>
@@ -129,7 +129,7 @@ const Footer = () => {
           <div className='py-10 border-t border-gray-200'>
             <div className='flex items-center justify-center flex-col lg:justify-between lg:flex-row'>
               <span className='text-sm'>
-                ©<Link href='https://pagedone.io/'>Epayget</Link> 2024, All
+                ©<Link href='https://pagedone.io/'>Karentpay</Link> 2024, All
                 rights reserved.
               </span>
               <div className='flex mt-4 space-x-4 sm:justify-center lg:mt-0 '>

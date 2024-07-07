@@ -24,12 +24,12 @@ const PriceCard2 = () => {
         </div>
         <div>
           <h1 className='text-xl text-center text-white font-bold pb-2'>
-            E-Payment SME Business
+            Karentpay SME Business
           </h1>
         </div>
         <div>
           <p className='text-base text-center mb-5 text-white px-4'>
-            E-Payment GateWay offers institutions competitive prices are as
+            Karentpay GateWay offers institutions competitive prices are as
             follows:
           </p>
         </div>

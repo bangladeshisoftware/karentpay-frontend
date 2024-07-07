@@ -8,7 +8,7 @@ import { GiShoppingBag } from "react-icons/gi";
 function Home() {
   return (
     <div className="rounded-md mt-10 ml-0 lg:ml-5 h-auto ">
-      <div className=" border shadow-lg mb-2 lg:mb-2 p-3 lg:p-3 mt-3 rounded-md text-center lg:text-left lg:hidden  ">
+      <div className=" border shadow-lg mb-4 lg:mb-2 p-3 lg:p-3 mt-3 rounded-md text-center lg:text-left lg:hidden  ">
         <h3 className="text-xl font-semibold">Dashboard</h3>
       </div>
       {/* card */}

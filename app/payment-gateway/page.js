@@ -77,7 +77,9 @@ const PaymentGateway = () => {
             A world-class payment solution for your business,
             <br /> powered by{" "}
             <Link href="/">
-              <span className="text-[#2964EC]">Epayget</span>
+              <span className='gradient-text'>
+                Karentpay
+              </span>
             </Link>
           </h2>
           <p className="mt-5 text-base">

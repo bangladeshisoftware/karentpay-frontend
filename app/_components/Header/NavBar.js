@@ -397,6 +397,7 @@ const NavBar = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [mainMenuOpen, setMainMenuOpen] = useState(false);
   const [dashboardMenuOpen, setDashboardMenuOpen] = useState(true); // Initially open
+  const [pagesMenuOpen, setPagesMenuOpen] = useState(false); // Initially closed
 
   const handleOpenDrawer = (e) => {
     e.preventDefault();
@@ -418,11 +419,13 @@ const NavBar = () => {
     { label: 'News', href: '/news' },
     { label: 'Customer Reviews', href: '/customer-reviews' },
     { label: 'Contact', href: '/contact' },
-    { label: 'Pages', submenu: [
-      { label: 'About', href: '/about' },
-      { label: 'Privacy & Policy', href: '/privacy-policy' },
-      { label: 'Terms & Conditions', href: '/terms-and-conditions' }
-    ] }
+    {
+      label: 'Pages', submenu: [
+        { label: 'About', href: '/about' },
+        { label: 'Privacy & Policy', href: '/privacy-policy' },
+        { label: 'Terms & Conditions', href: '/terms-and-conditions' }
+      ]
+    }
   ];
 
   const dropdownItemsDashboard = [
@@ -431,6 +434,7 @@ const NavBar = () => {
     { label: 'Transactions', href: '/dashboard/mobile/transactions' },
     { label: 'W Transactions', href: '/dashboard/mobile/wtransactions' },
     { label: 'Payment', href: '/dashboard/mobile/payment' },
+    { label: 'Developer', href: '/dashboard/mobile/developer' },
     { label: 'Support', href: '/dashboard/mobile/support' },
     { label: 'Settings', href: '/dashboard/mobile/settings' }
   ];
@@ -484,7 +488,7 @@ const NavBar = () => {
           </button>
           {mainMenuOpen && (
             <div className='flex flex-col ml-4'>
-              {dropdownItemsMainMenu.map((item) => (
+              {dropdownItemsMainMenu.slice(0, 6).map((item) => (
                 <Link
                   key={item.label}
                   href={item.href || '#'} // Default to '#' if href is not provided
@@ -494,11 +498,27 @@ const NavBar = () => {
                   {item.label}
                 </Link>
               ))}
-              <Dropdown
-                label='Pages'
-                items={dropdownItemsMainMenu.find(item => item.label === 'Pages').submenu}
-                onClick={() => setIsOpen(false)}
-              />
+              <button
+                className='flex items-center justify-between rounded p-1 hover:text-white hover:bg-blue-800 w-full text-left'
+                onClick={() => setPagesMenuOpen(!pagesMenuOpen)}
+              >
+                <span>Pages</span>
+                {pagesMenuOpen ? <ChevronUp className='ml-2' /> : <ChevronDown className='ml-2' />}
+              </button>
+              {pagesMenuOpen && (
+                <div className='flex flex-col ml-4'>
+                  {dropdownItemsMainMenu.find(item => item.label === 'Pages').submenu.map((subItem) => (
+                    <Link
+                      key={subItem.label}
+                      href={subItem.href || '#'}
+                      className='rounded p-1 hover:text-white hover:bg-blue-800 w-full text-left'
+                      onClick={() => setIsOpen(false)}
+                    >
+                      {subItem.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
             </div>
           )}
           <button
@@ -546,6 +566,7 @@ const NavBar = () => {
 };
 
 export default NavBar;
+ 
 
 
 

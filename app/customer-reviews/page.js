@@ -172,7 +172,7 @@ const CustomerReview = () => {
             <h2 className="text-center text-[#443f35] text-3xl font-bold">
               Customer Reviews
             </h2>
-            <p className="text-xl text-blue-500 text-center font-normal">
+            <p className="text-xl mt-4 text-center font-normal">
               See what people saying about us
             </p>
           </div>

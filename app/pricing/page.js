@@ -11,7 +11,7 @@ const pricing = () => {
       <div>
         <h1 className='   text-4xl font-bold mt-24 mb-28'>
           <span className='gradient-text'>
-            E-Payment GateWay
+            Karentpay
           </span>{' '}
           Pricing: Your Gateway to Value
         </h1>
@@ -56,7 +56,7 @@ const pricing = () => {
           <div className='space-y-2'>
             <div className='flex items-center'>
               <IoCheckmark className='text-blue-500 mr-2' />
-              <p>E-Payment GetWay Advanced</p>
+              <p>Karentpay GetWay Advanced</p>
             </div>
             <div className='flex items-center'>
               <IoCheckmark className='text-blue-500 mr-2' />

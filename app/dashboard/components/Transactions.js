@@ -75,7 +75,7 @@ function Transactions() {
 
   return (
     <div className="mt-10 ">
-      <div className=" border shadow-lg mb-2 lg:mb-2 p-3 lg:p-3 mt-3 rounded-md text-center lg:text-left lg:hidden  ">
+      <div className=" border shadow-lg mb-4 lg:mb-2 p-3 lg:p-3 mt-3 rounded-md text-center lg:text-left lg:hidden  ">
         <h3 className="text-xl font-semibold">Cash In Transaction</h3>
       </div>
       <div className="lg:px-0 px-1">
@@ -89,7 +89,7 @@ function Transactions() {
                     <label for="simple-search" class="sr-only">
                       Search
                     </label>
-                    <div class="relative w-full">
+                    <div class="relative w-full ">
                       <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                         <svg
                           aria-hidden="true"
@@ -118,7 +118,7 @@ function Transactions() {
                     </div>
                   </form>
                 </div>
-                <div className="w-fit md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
+                <div className="w-fit md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0 border border-blue-500 rounded-md">
                   <div className="flex items-center space-x-3 w-full md:w-auto">
                     <Datepicker
                       showShortcuts={true}

@@ -38,7 +38,7 @@ const GetMore = () => {
       <div className="container mx-auto">
         <div className="flex flex-col md:flex-row md:justify-between items-center md:items-start">
           <h2 className="text-2xl sm:text-3xl font-bold text-center md:text-left mb-4 md:mb-0">
-            Get more from Epayget
+            Get more from Karentpay
           </h2>
           <Link
             href="/news"
@@ -48,7 +48,7 @@ const GetMore = () => {
           </Link>
         </div>
         <p className="mt-6 text-lg md:text-xl text-center md:text-left">
-          Become a member of Epayget family and enjoy exclusive features and
+          Become a member of Karentpay family and enjoy exclusive features and
           offers that enlighten your business
         </p>
         <div className="flex flex-wrap gap-4 gap-y-10 justify-center md:justify-between  mt-10">

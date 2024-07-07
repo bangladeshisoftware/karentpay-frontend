@@ -70,8 +70,8 @@ function PaymentCopy() {
   };
   return (
     <div className="mt-10 ">
-      
-      <div className=" border shadow-lg mb-2 lg:mb-2 p-3 lg:p-3 mt-3 rounded-md text-center lg:text-left lg:hidden  ">
+
+      <div className=" border shadow-lg mb-4 lg:mb-2 p-3 lg:p-3 mt-3 rounded-md text-center lg:text-left lg:hidden  ">
         <h3 className="text-xl font-semibold">Payment</h3>
       </div>
       <div className="lg:px-0 px-1">
@@ -117,16 +117,15 @@ function PaymentCopy() {
                           {index + 1}
                         </td>
                         <td className="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white ">
-                          {process.env.NEXT_PUBLIC_PAYMENT_DOMAIN+'/pay/' + item.link}
+                          {process.env.NEXT_PUBLIC_PAYMENT_DOMAIN + '/pay/' + item.link}
                         </td>
                         <td className="px-4 py-2 flex-1 ">
                           <div className="flex items-center gap-2 relative">
                             <button
-                              className={`text-white text-xl w-fit ${
-                                copied ? "bg-green-500" : "bg-blue-500"
-                              } hover:bg-blue-800 font-medium rounded-[4px] px-3 py-1  flex items-center gap-1`}
+                              className={`text-white text-xl w-fit ${copied ? "bg-green-500" : "bg-blue-500"
+                                } hover:bg-blue-800 font-medium rounded-[4px] px-3 py-1  flex items-center gap-1`}
                               onClick={() => {
-                                handleCopy(process.env.NEXT_PUBLIC_PAYMENT_DOMAIN+'/pay/' + item.link);
+                                handleCopy(process.env.NEXT_PUBLIC_PAYMENT_DOMAIN + '/pay/' + item.link);
                                 toast.success("Successfully copied");
                               }}
                             >
@@ -200,22 +199,21 @@ function PaymentCopy() {
                   </div>
                 )}
               </div>
+              {/* pagination */}
               <nav
-                class="flex flex-col md:flex-row justify-between items-start md:items-center  p-5"
+                class="flex flex-col mt-24  md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0 p-16"
                 aria-label="Table navigation"
               >
-                <div className="border border-gray-300 py-1 px-3 rounded-lg">
-                  <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
-                    Showing
-                    <span class="font-semibold text-gray-900 dark:text-white">
-                      1-10
-                    </span>
-                    of
-                    <span class="font-semibold text-gray-900 dark:text-white">
-                      1000
-                    </span>
+                <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
+                  Showing
+                  <span class="font-semibold text-gray-900 dark:text-white">
+                    1-10
                   </span>
-                </div>
+                  of
+                  <span class="font-semibold text-gray-900 dark:text-white">
+                    1000
+                  </span>
+                </span>
                 <ul class="inline-flex items-stretch -space-x-px">
                   <li>
                     <a

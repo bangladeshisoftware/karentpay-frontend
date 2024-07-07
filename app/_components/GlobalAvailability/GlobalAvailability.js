@@ -18,8 +18,8 @@ const GlobalAvailability = async () => {
           Global availability of our payment system
         </h2>
         <p className='mt-3'>
-          Epayget is currently supported in {minifiedCountries.length}{' '}
-          countries, with more to come. Once Epayget is supported in your
+          Karentpay is currently supported in {minifiedCountries.length}{' '}
+          countries, with more to come. Once karentpay is supported in your
           country, you&apos;ll be able to sell to customers anywhere in the
           world.
         </p>

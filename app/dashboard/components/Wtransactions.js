@@ -104,7 +104,7 @@ function Wtransactions() {
 
   return (
     <div className="mt-10 ">
-      <div className=" border shadow-lg mb-2 lg:mb-2 p-3 lg:p-3 mt-3 rounded-md text-center lg:text-left lg:hidden  ">
+      <div className=" border shadow-lg mb-4 lg:mb-2 p-3 lg:p-3 mt-3 rounded-md text-center lg:text-left lg:hidden  ">
         <h3 className="text-xl font-semibold">Withdraw Transaction</h3>
       </div>
       <div className="px-1 lg:px-0 ">
@@ -159,7 +159,7 @@ function Wtransactions() {
                     </div>
                   </form>
                 </div>
-                <div className="w-fit md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0 ">
+                <div className="w-fit md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0 border border-blue-500 rounded-md">
                   <div className="flex items-center space-x-3 w-full md:w-auto">
                     <Datepicker
                       showShortcuts={true}
@@ -248,37 +248,37 @@ function Wtransactions() {
               </div>
               {/* showing page number & table */}
               <nav
-                className="flex flex-col mt-3  md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0 p-0"
+                class="flex flex-col mt-24  md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0 p-16"
                 aria-label="Table navigation"
               >
-                <span className="text-sm font-normal text-gray-500 dark:text-gray-400">
+                <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
                   Showing
-                  <span className="font-semibold text-gray-900 dark:text-white">
+                  <span class="font-semibold text-gray-900 dark:text-white">
                     1-10
                   </span>
                   of
-                  <span className="font-semibold text-gray-900 dark:text-white">
+                  <span class="font-semibold text-gray-900 dark:text-white">
                     1000
                   </span>
                 </span>
-                <ul className="inline-flex items-stretch -space-x-px">
+                <ul class="inline-flex items-stretch -space-x-px">
                   <li>
                     <a
                       href="#"
-                      className="flex items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                      class="flex items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                     >
-                      <span className="sr-only">Previous</span>
+                      <span class="sr-only">Previous</span>
                       <svg
-                        className="w-5 h-5"
+                        class="w-5 h-5"
                         aria-hidden="true"
                         fill="currentColor"
-                        viewBox="0 0 20 20"
+                        viewbox="0 0 20 20"
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
-                          fillRule="evenodd"
+                          fill-rule="evenodd"
                           d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-                          clipRule="evenodd"
+                          clip-rule="evenodd"
                         />
                       </svg>
                     </a>
@@ -286,7 +286,7 @@ function Wtransactions() {
                   <li>
                     <a
                       href="#"
-                      className="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                      class="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                     >
                       1
                     </a>
@@ -294,7 +294,7 @@ function Wtransactions() {
                   <li>
                     <a
                       href="#"
-                      className="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                      class="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                     >
                       2
                     </a>
@@ -303,7 +303,7 @@ function Wtransactions() {
                     <a
                       href="#"
                       aria-current="page"
-                      className="flex items-center justify-center text-sm z-10 py-2 px-3 leading-tight text-primary-600 bg-primary-50 border border-primary-300 hover:bg-primary-100 hover:text-primary-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white"
+                      class="flex items-center justify-center text-sm z-10 py-2 px-3 leading-tight text-primary-600 bg-primary-50 border border-primary-300 hover:bg-primary-100 hover:text-primary-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white"
                     >
                       3
                     </a>
@@ -311,7 +311,7 @@ function Wtransactions() {
                   <li>
                     <a
                       href="#"
-                      className="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                      class="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                     >
                       ...
                     </a>
@@ -319,7 +319,7 @@ function Wtransactions() {
                   <li>
                     <a
                       href="#"
-                      className="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                      class="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                     >
                       100
                     </a>
@@ -327,20 +327,20 @@ function Wtransactions() {
                   <li>
                     <a
                       href="#"
-                      className="flex items-center justify-center h-full py-1.5 px-3 leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                      class="flex items-center justify-center h-full py-1.5 px-3 leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                     >
-                      <span className="sr-only">Next</span>
+                      <span class="sr-only">Next</span>
                       <svg
-                        className="w-5 h-5"
+                        class="w-5 h-5"
                         aria-hidden="true"
                         fill="currentColor"
-                        viewBox="0 0 20 20"
+                        viewbox="0 0 20 20"
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
-                          fillRule="evenodd"
+                          fill-rule="evenodd"
                           d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                          clipRule="evenodd"
+                          clip-rule="evenodd"
                         />
                       </svg>
                     </a>
