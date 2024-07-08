@@ -446,7 +446,8 @@ const NavBar = () => {
   const dropdownItemsDashboard = [
     { label: 'Home', href: '/dashboard/mobile/home' },
     { label: 'Balance', href: '/dashboard/mobile/balance' },
-    { label: 'Transactions', href: '/dashboard/mobile/transactions' },
+    { label: 'Cash In', href: '/dashboard/mobile/transactions' },
+    { label: 'Payout', href: '/dashboard/mobile/payout' },
     { label: 'W Transactions', href: '/dashboard/mobile/wtransactions' },
     { label: 'Payment', href: '/dashboard/mobile/payment' },
     { label: 'Developer', href: '/dashboard/mobile/developer' },
@@ -503,7 +504,7 @@ const NavBar = () => {
           </button>
           {mainMenuOpen && (
             <div className='flex flex-col ml-4'>
-              {dropdownItemsMainMenu.slice(0, 7).map((item) => (
+              {dropdownItemsMainMenu.slice(0, 8).map((item) => (
                 <Link
                   key={item.label}
                   href={item.href || '#'} // Default to '#' if href is not provided
