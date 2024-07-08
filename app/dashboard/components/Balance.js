@@ -34,7 +34,7 @@ function Balance() {
         <div className="border shadow-lg rounded-md w-full h-60 flex items-center transition-all duration-300 hover:shadow-lg bg-white sm:h-60">
           <div className="flex-grow ml-8">
             <div>
-              <p className="font-bold">Daily Balance</p>
+              <p className="font-bold">Cash In  Balance</p>
             </div>
             <div>
               <h2 className="text-2xl font-bold my-2">{balance}</h2>
@@ -51,7 +51,7 @@ function Balance() {
         <div className="border shadow-lg rounded-md w-full h-60 flex items-center transition-all duration-300 hover:shadow-lg bg-white sm:h-60">
           <div className="flex-grow ml-8">
             <div>
-              <p className="font-bold">Weekly Balance</p>
+              <p className="font-bold">Payout Balance</p>
             </div>
             <div>
               <h2 className="text-2xl font-bold my-2">{balance}</h2>
@@ -68,7 +68,7 @@ function Balance() {
         <div className="border shadow-lg rounded-md w-full h-60 flex items-center transition-all duration-300 hover:shadow-lg bg-white sm:h-60 mb-4">
           <div className="flex-grow ml-8">
             <div>
-              <p className="font-bold">Monthly Balance</p>
+              <p className="font-bold">Wallet Balance</p>
             </div>
             <div>
               <h2 className="text-2xl font-bold my-2">{balance}</h2>

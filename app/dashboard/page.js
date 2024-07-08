@@ -15,6 +15,7 @@ import { TbSquareLetterW } from 'react-icons/tb';
 import { IoSettingsOutline } from 'react-icons/io5';
 import { MdOutlinePayment } from 'react-icons/md';
 import { FaHandsHelping } from 'react-icons/fa';
+import {  FaParking } from 'react-icons/fa';
 import { PiHandWithdrawFill } from "react-icons/pi";
 import { FaRegFileWord } from "react-icons/fa6";
 import { toast } from 'react-toastify';
@@ -25,6 +26,10 @@ import { MdDeveloperMode } from "react-icons/md";
 import { MdSpaceDashboard } from "react-icons/md";
 import { IoSettings } from "react-icons/io5";
 import { ImPaypal } from "react-icons/im";
+import { MdOutlineLocalParking } from "react-icons/md";
+import { SiPlausibleanalytics } from "react-icons/si";
+
+
 
 
 import {
@@ -37,6 +42,7 @@ import Wtransactions from '@/app/dashboard/components/Wtransactions';
 import Payment from '@/app/dashboard/components/payment';
 import Support from '@/app/dashboard/components/Support';
 import PaymentCopy from './components/PaymentCopy';
+import Payout from './components/Payout';
 
 function Dashboard() {
   const [activeComponent, setActiveComponent] = useState('home');
@@ -128,8 +134,10 @@ function Dashboard() {
     switch (activeComponent) {
       case 'balance':
         return <Balance />;
-      case 'transactions':
+      case 'cashin':
         return <Transactions />;
+      case 'payout':
+        return <Payout />;
       case 'wtransactions':
         return <Wtransactions />;
       case 'payments':
@@ -218,8 +226,8 @@ function Dashboard() {
                 <ul>
                   <li
                     className={`mb-4 cursor-pointer flex items-center p-2 rounded-md transition-all duration-300 ${activeComponent === 'home'
-                        ? 'bg-gradient-2 text-gray-200'
-                        : 'hover:bg-gradient-to-r from-blue-600 to-purple-400 text-gray-200'
+                      ? 'bg-gradient-2 text-gray-200'
+                      : 'hover:bg-gradient-to-r from-blue-600 to-purple-400 text-gray-200'
                       }`}
                     onClick={() => setActiveComponent('home')}
                   >
@@ -228,8 +236,8 @@ function Dashboard() {
                   </li>
                   <li
                     className={`mb-4 cursor-pointer flex items-center p-2 rounded-md transition-all duration-300 ${activeComponent === 'balance'
-                        ? 'bg-gradient-2 text-gray-200'
-                        : 'hover:bg-gradient-to-r from-blue-600 to-purple-400 text-gray-200'
+                      ? 'bg-gradient-2 text-gray-200'
+                      : 'hover:bg-gradient-to-r from-blue-600 to-purple-400 text-gray-200'
                       }`}
                     onClick={() => setActiveComponent('balance')}
                   >
@@ -237,39 +245,49 @@ function Dashboard() {
                     {windowWidth >= 1024 && 'Balance'}
                   </li>
                   <li
-                    className={`mb-4 cursor-pointer flex items-center p-2 rounded-md transition-all duration-300 ${activeComponent === 'transactions'
-                        ? 'bg-gradient-2 text-gray-200'
-                        : 'hover:bg-gradient-to-r from-blue-600 to-purple-400 text-gray-200'
+                    className={`mb-4 cursor-pointer flex items-center p-2 rounded-md transition-all duration-300 ${activeComponent === 'cashin'
+                      ? 'bg-gradient-2 text-gray-200'
+                      : 'hover:bg-gradient-to-r from-blue-600 to-purple-400 text-gray-200'
                       }`}
-                    onClick={() => setActiveComponent('transactions')}
+                    onClick={() => setActiveComponent('cashin')}
                   >
                     <SiConstruct3 className='mr-2 text-2xl' />
-                    {windowWidth >= 1024 && 'Transactions'}
+                    {windowWidth >= 1024 && 'Cash In'}
+                  </li>
+                  <li
+                    className={`mb-4 cursor-pointer flex items-center p-2 rounded-md transition-all duration-300 ${activeComponent === 'payout'
+                      ? 'bg-gradient-2 text-gray-200'
+                      : 'hover:bg-gradient-to-r from-blue-600 to-purple-400 text-gray-200'
+                      }`}
+                    onClick={() => setActiveComponent('payout')}
+                  >
+                    <SiPlausibleanalytics className='mr-2 text-2xl' />
+                    {windowWidth >= 1024 && 'Payout'}
                   </li>
                   <li
                     className={`mb-4 cursor-pointer flex items-center p-2 rounded-md transition-all duration-300 ${activeComponent === 'wtransactions'
-                        ? 'bg-gradient-2 text-gray-200'
-                        : 'hover:bg-gradient-to-r from-blue-600 to-purple-400 text-gray-200'
+                      ? 'bg-gradient-2 text-gray-200'
+                      : 'hover:bg-gradient-to-r from-blue-600 to-purple-400 text-gray-200'
                       }`}
                     onClick={() => setActiveComponent('wtransactions')}
                   >
-                    <FaWordpress  className='mr-2 text-2xl' />
+                    <FaWordpress className='mr-2 text-2xl' />
                     {windowWidth >= 1024 && 'W Transactions'}
                   </li>
                   <li
                     className={`mb-4 cursor-pointer flex items-center p-2 rounded-md transition-all duration-300 ${activeComponent === 'payments'
-                        ? 'bg-gradient-2 text-gray-200'
-                        : 'hover:bg-gradient-to-r from-blue-600 to-purple-400 text-gray-200'
+                      ? 'bg-gradient-2 text-gray-200'
+                      : 'hover:bg-gradient-to-r from-blue-600 to-purple-400 text-gray-200'
                       }`}
                     onClick={() => setActiveComponent('payments')}
                   >
-                    <ImPaypal className='mr-2 text-2xl' />
+                    <FaParking className='mr-2 text-2xl' />
                     {windowWidth >= 1024 && 'Payments'}
                   </li>
                   <li
                     className={`mb-4 cursor-pointer flex items-center p-2 rounded-md transition-all duration-300 ${activeComponent === 'developer'
-                        ? 'bg-gradient-2 text-gray-200'
-                        : 'hover:bg-gradient-to-r from-blue-600 to-purple-400 text-gray-200'
+                      ? 'bg-gradient-2 text-gray-200'
+                      : 'hover:bg-gradient-to-r from-blue-600 to-purple-400 text-gray-200'
                       }`}
                     onClick={() => setActiveComponent('developer')}
                   >
@@ -278,8 +296,8 @@ function Dashboard() {
                   </li>
                   <li
                     className={`mb-4 cursor-pointer flex items-center p-2 rounded-md transition-all duration-300 ${activeComponent === 'support'
-                        ? 'bg-gradient-2 text-gray-200'
-                        : 'hover:bg-gradient-to-r from-blue-600 to-purple-400 text-gray-200'
+                      ? 'bg-gradient-2 text-gray-200'
+                      : 'hover:bg-gradient-to-r from-blue-600 to-purple-400 text-gray-200'
                       }`}
                     onClick={() => setActiveComponent('support')}
                   >
@@ -288,8 +306,8 @@ function Dashboard() {
                   </li>
                   <li
                     className={`mb-4 cursor-pointer flex items-center p-2 rounded-md transition-all duration-300 ${activeComponent === 'productCatalog'
-                        ? 'bg-gradient-2 text-gray-200'
-                        : 'hover:bg-gradient-to-r from-blue-600 to-purple-400 text-gray-200'
+                      ? 'bg-gradient-2 text-gray-200'
+                      : 'hover:bg-gradient-to-r from-blue-600 to-purple-400 text-gray-200'
                       }`}
                     onClick={() => setActiveComponent('productCatalog')}
                   >
@@ -314,13 +332,17 @@ function Dashboard() {
           />
           <SiConstruct3
             className='text-2xl cursor-pointer'
-            onClick={() => setActiveComponent('transactions')}
+            onClick={() => setActiveComponent('cashin')}
           />
-          <FaWordpress 
+          <SiPlausibleanalytics
+            className='text-2xl cursor-pointer'
+            onClick={() => setActiveComponent('payout')}
+          />
+          <FaWordpress
             className='text-2xl cursor-pointer'
             onClick={() => setActiveComponent('wtransactions')}
           />
-          <ImPaypal
+          <FaParking
             className='text-2xl cursor-pointer'
             onClick={() => setActiveComponent('payments')}
           />

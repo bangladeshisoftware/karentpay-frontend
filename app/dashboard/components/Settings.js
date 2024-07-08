@@ -70,11 +70,10 @@ function Product_Catalog() {
       </div>
       <div className="nav bg-gradient-3 hidden lg:flex md:flex xl:flex lg:gap-4 border rounded-md shadow-md items-center h-fit  text-white py-2 lg:py-4">
         <h3
-          className={`cursor-pointer rounded-md p-2 ml-3 ${
-            selected == "profile"
-              ? "bg-gradient-2"
-              : "none"
-          }`}
+          className={`cursor-pointer rounded-md p-2 ml-3 ${selected == "profile"
+            ? "bg-gradient-2"
+            : "none"
+            }`}
         >
           {!updated ? (
             <span
@@ -89,11 +88,10 @@ function Product_Catalog() {
               onClick={() => {
                 handleSelect("update");
               }}
-              className={`cursor-pointer p-2 rounded-md ${
-                selected == "update"
-                  ? "bg-gradient-2"
-                  : "none"
-              }`}
+              className={`cursor-pointer p-2 rounded-md ${selected == "update"
+                ? "bg-gradient-2"
+                : "none"
+                }`}
             >
               Update Profile
             </span>
@@ -104,11 +102,10 @@ function Product_Catalog() {
           onClick={() => {
             handleSelect("verification");
           }}
-          className={`cursor-pointer p-2 rounded-md ${
-            selected == "verification"
-              ? "bg-gradient-2"
-              : "none"
-          }`}
+          className={`cursor-pointer p-2 rounded-md ${selected == "verification"
+            ? "bg-gradient-2"
+            : "none"
+            }`}
         >
           Verifications
         </h3>
@@ -117,11 +114,10 @@ function Product_Catalog() {
           onClick={() => {
             handleSelect("integration");
           }}
-          className={`cursor-pointer p-2 rounded-md ${
-            selected == "integration"
-              ? "bg-gradient-2"
-              : "none"
-          }`}
+          className={`cursor-pointer p-2 rounded-md ${selected == "integration"
+            ? "bg-gradient-2"
+            : "none"
+            }`}
         >
           Integrations
         </h3>
@@ -130,11 +126,10 @@ function Product_Catalog() {
           onClick={() => {
             handleSelect("passkey");
           }}
-          className={`cursor-pointer p-2 rounded-md ${
-            selected == "passkey"
-              ? "bg-gradient-2"
-              : "none"
-          }`}
+          className={`cursor-pointer p-2 rounded-md ${selected == "passkey"
+            ? "bg-gradient-2"
+            : "none"
+            }`}
         >
           PassKeys
         </h3>
@@ -143,22 +138,20 @@ function Product_Catalog() {
           onClick={() => {
             handleSelect("paymentSettings");
           }}
-          className={`cursor-pointer p-2 rounded-md ${
-            selected == "paymentSettings"
-              ? "bg-gradient-2"
-              : "none"
-          }`}
+          className={`cursor-pointer p-2 rounded-md ${selected == "paymentSettings"
+            ? "bg-gradient-2"
+            : "none"
+            }`}
         >
           Payment Settings
         </h3>
       </div>
       <div className="nav bg-gradient-3 flex flex-col lg:hidden md:hidden xl:hidden lg:gap-4 border rounded-md shadow-md items-center h-fit mt-2 text-white py-2 lg:py-4">
         <h3
-          className={`cursor-pointer rounded-md p-2 ml-3 ${
-            selected == "profile"
-              ? "bg-gradient-2"
-              : "none"
-          }`}
+          className={`cursor-pointer rounded-md p-2 ml-3 ${selected == "profile"
+            ? "bg-gradient-2"
+            : "none"
+            }`}
         >
           {!updated ? (
             <span
@@ -173,11 +166,10 @@ function Product_Catalog() {
               onClick={() => {
                 handleSelect("update");
               }}
-              className={`cursor-pointer p-2 rounded-md ${
-                selected == "update"
-                  ? "bg-gradient-2"
-                  : "none"
-              }`}
+              className={`cursor-pointer p-2 rounded-md ${selected == "update"
+                ? "bg-gradient-2"
+                : "none"
+                }`}
             >
               Update Profile
             </span>
@@ -188,11 +180,10 @@ function Product_Catalog() {
           onClick={() => {
             handleSelect("verification");
           }}
-          className={`cursor-pointer p-2 rounded-md ${
-            selected == "verification"
-              ? "bg-gradient-2"
-              : "none"
-          }`}
+          className={`cursor-pointer p-2 rounded-md ${selected == "verification"
+            ? "bg-gradient-2"
+            : "none"
+            }`}
         >
           Verifications
         </h3>
@@ -201,11 +192,10 @@ function Product_Catalog() {
           onClick={() => {
             handleSelect("integration");
           }}
-          className={`cursor-pointer p-2 rounded-md ${
-            selected == "integration"
-              ? "bg-gradient-2"
-              : "none"
-          }`}
+          className={`cursor-pointer p-2 rounded-md ${selected == "integration"
+            ? "bg-gradient-2"
+            : "none"
+            }`}
         >
           Integrations
         </h3>
@@ -214,11 +204,10 @@ function Product_Catalog() {
           onClick={() => {
             handleSelect("passkey");
           }}
-          className={`cursor-pointer p-2 rounded-md ${
-            selected == "passkey"
-              ? "bg-gradient-2"
-              : "none"
-          }`}
+          className={`cursor-pointer p-2 rounded-md ${selected == "passkey"
+            ? "bg-gradient-2"
+            : "none"
+            }`}
         >
           PassKeys
         </h3>
@@ -227,17 +216,16 @@ function Product_Catalog() {
           onClick={() => {
             handleSelect("paymentSettings");
           }}
-          className={`cursor-pointer p-2 rounded-md ${
-            selected == "paymentSettings"
-              ? "bg-gradient-2"
-              : "none"
-          }`}
+          className={`cursor-pointer p-2 rounded-md ${selected == "paymentSettings"
+            ? "bg-gradient-2"
+            : "none"
+            }`}
         >
           Payment Settings
         </h3>
       </div>
 
-      <div className="container bg-white w-full h-full border shadow-md rounded-sm mt-12  pb-8 lg:px-12 xs:px-12 px-4">
+      <div className=" bg-white  border shadow-md rounded-sm mt-12  pb-8  lg:px-12 xs:px-12 px-4">
         {selected == "profile" && !updated && (
           <div className="lg:mx-24 xl:mx-24 md:mx-16 sm:mx-8 mx-0 font-normal">
             <div className="mt-8">
@@ -317,7 +305,7 @@ function Product_Catalog() {
                   <div className="flex items-center justify-between rounded-md overflow-hidden">
                     <label
                       htmlFor="imgUpload1"
-                      className="px-4 py-2 lg:py-3 lg:px-6 text-center bg-black text-white cursor-pointer w-1/4"
+                      className="px-4 py-2 lg:py-1 lg:px-6 text-center bg-black text-white cursor-pointer w-1/4"
                     >
                       Choose file
                     </label>
@@ -331,7 +319,7 @@ function Product_Catalog() {
                 </div>
               </div>
               <div className="border-b">
-              <label className="mt-6 ">Support</label>
+                <label className="mt-6 ">Support</label>
                 <div className="border my-3 mx-auto lg:mx-0 bg-white focus-within:border-[#2F65EC] hover:border-[#2F65EC] rounded-md w-full lg:w-full">
                   <input
                     className="w-full px-2 py-2 lg:py-3 lg:px-3 bg-transparent rounded-md outline-none"
@@ -437,7 +425,7 @@ function Product_Catalog() {
                   </div>
                 </div> */}
               </div>
-              <div>
+              <div className="">
                 <h3 className="mt-6  ">Manage Your Payment Gateway</h3>
                 <button
                   onClick={() => {
