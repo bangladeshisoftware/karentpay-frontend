@@ -112,18 +112,19 @@ const Test = () => {
                 <td>
                   <div className="ml-3 font-semibold">Publishable key</div>
                 </td>
-                <td
-                  className="relative cursor-pointer truncate max-w-[100px] md:max-w-[200px]"
+                <td 
+                
+                  className=" relative cursor-pointer overflow-hidden"
                   onClick={() => handleCopy1(key?.public_key)}
                   onMouseEnter={() => setCopyMessage1("Click to copy")}
                   onMouseLeave={() => setCopyMessage1("")}
                 >
                   {copyMessage1 && (
-                    <div className="absolute -top-6 left-0 bg-gray-200 text-xs p-1 rounded">
+                    <div className=" absolute top-3 left-5 lg:top-9 lg:left-14 bg-blue-300 text-black text-xs p-1 rounded">
                       {copyMessage1}
                     </div>
                   )}
-                  <div className="overflow-hidden overflow-ellipsis">{key?.public_key}</div>
+                  <div className="relative break-words word-break-all overflow-hidden">{key?.public_key}</div>
                 </td>
                 <td>-</td>
                 <td>{key?.created_at && format(key?.created_at, 'dd MMMM yyyy')}</td>
@@ -132,7 +133,7 @@ const Test = () => {
                 <td>
                   <div className="ml-3 font-semibold">Secret key</div>
                 </td>
-                <td className="relative truncate max-w-[100px] md:max-w-[200px]">
+                <td className=" overflow-hidden">
                   <span
                     className={`relative cursor-pointer ${!showText ? "blur-lg" : ""}`}
                     onClick={() => handleCopy2(key?.privet_key)}
@@ -140,11 +141,11 @@ const Test = () => {
                     onMouseLeave={() => setCopyMessage2("")}
                   >
                     {copyMessage2 && (
-                      <div className="absolute -top-6 left-0 bg-gray-200 text-xs p-1 rounded">
+                      <div className="absolute top-3 left-5 lg:top-3 lg:left-14 bg-blue-300 text-black text-xs p-1 rounded">
                         {copyMessage2}
                       </div>
                     )}
-                    <div className="overflow-hidden overflow-ellipsis">{key?.privet_key}</div>
+                    <div className=" break-words word-break-all overflow-hidden">{key?.privet_key}</div>
                     {
                       console.log(key?.privet_key,'private key')
                     }

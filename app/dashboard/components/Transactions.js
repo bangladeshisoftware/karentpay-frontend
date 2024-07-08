@@ -14,6 +14,10 @@ function Transactions() {
     endDate: null,
   });
 
+  const [copiedReferenceId, setCopiedReferenceId] = useState(null);
+  const [hoveredReferenceId, setHoveredReferenceId] = useState(null);
+
+
   const handleDateRangeChange = async (newValue) => {
     console.log("newValue:", newValue);
     setDateRange(newValue);
@@ -71,6 +75,18 @@ function Transactions() {
     }
   };
 
+  const handleCopy = (id, text) => {
+    navigator.clipboard
+      .writeText(text)
+      .then(() => {
+        setCopiedReferenceId(id);
+        setTimeout(() => setCopiedReferenceId(null), 2000);
+      })
+      .catch((err) => {
+        console.error("Failed to copy: ", err);
+      });
+  };
+
   // Filter transactions based on the selected date range
 
   return (
@@ -79,7 +95,7 @@ function Transactions() {
         <h3 className="text-xl font-semibold">Cash In Transaction</h3>
       </div>
       <div className="lg:px-0 px-1">
-        <section class=" shadow-md border rounded-md ml-0 lg:ml-5 mb-36"> 
+        <section class=" shadow-md border rounded-md ml-0 lg:ml-5 mb-36">
           <div class=" max-w-screen-xl ">
             {/* <!-- Start coding here --> */}
             <div class="bg-white dark:bg-gray-800  shadow-md sm:rounded-lg overflow-hidden">
@@ -187,9 +203,24 @@ function Transactions() {
                           {index + 1}
                         </th>
                         <td className="px-4 py-3">
-                          {transaction.created_at && format( transaction.created_at,"dd" + " " + "MMMM" + " " + "yyyy")}
+                          {transaction.created_at && format(transaction.created_at, "dd" + " " + "MMMM" + " " + "yyyy")}
                         </td>
-                        <td className="px-4 py-3">{transaction.reference}</td>
+                        <td
+                          className="px-4 py-3 relative cursor-pointer break-words word-break-all overflow-hidden"
+                          onClick={() => handleCopy(transaction.id, transaction.reference)}
+                        >
+                          {copiedReferenceId === transaction.id ? (
+                            <div className="absolute top-3 left-5 lg:top-3 lg:left-14 bg-blue-300 text-black text-xs p-1 rounded">
+                              Copied!
+                            </div>
+                          ) : hoveredReferenceId === transaction.id ? (
+                            <div className="absolute top-3 left-5 lg:top-3 lg:left-14 bg-gray-300 text-black text-xs p-1 rounded">
+                              Copy to clipboard
+                            </div>
+                          ) : (
+                            transaction.reference
+                          )}
+                        </td>
                         <td className="px-4 py-3">
                           {transaction.payment_method}
                         </td>
@@ -208,7 +239,7 @@ function Transactions() {
               </div>
               {/* this is pagination */}
               <nav
-                class="flex flex-col mt-24  md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0 p-16"
+                class="flex flex-col mt-2  md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0 p-16"
                 aria-label="Table navigation"
               >
                 <span class="text-sm font-normal text-gray-500 dark:text-gray-400">

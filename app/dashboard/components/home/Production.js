@@ -193,8 +193,8 @@ export default function Production() {
 
       {keys?.map((key, index) => (
         <div key={key.id} className="mt-5 border rounded-md">
-          <div className="border-b lg:p-4 text-center lg:flex md:flex items-center  lg:justify-between md:justify-between">
-            <h3 className="text-xl font-semibold  ">{key?.business_name}</h3>
+          <div className="border-b lg:p-4 text-center flex p-4 justify-between lg:flex md:flex items-center  lg:justify-between md:justify-between">
+            <h3 className="text-sm lg:text-xl font-semibold  ">{key?.business_name}</h3>
             {/* <h3 className="text-xl font-semibold  ">Domain Name</h3> */}
             <div className="relative">
               <SlOptions onClick={handleDeleteBan} />
@@ -229,13 +229,13 @@ export default function Production() {
                     <div className="ml-3 font-semibold">Publishable key</div>
                   </td>
                   <td
-                    className="relative cursor-pointer break-words word-break-all overflow-hidden"
+                    className="relative cursor-pointer overflow-hidden"
                     onClick={() => handleCopy1(key?.public_key)}
                     onMouseEnter={() => setCopyMessage1("Click to copy")}
                     onMouseLeave={() => setCopyMessage1("")}
                   >
                     {copyMessage1 && (
-                      <div className="absolute -top-6 left-0 bg-gray-200 text-xs p-1 rounded">
+                      <div className="absolute top-3 left-5 lg:top-9 lg:left-14 bg-blue-300 text-black text-xs p-1 rounded">
                         {copyMessage1}
                       </div>
                     )}
@@ -253,7 +253,7 @@ export default function Production() {
                   <td>
                     <div className="ml-3 font-semibold">Secret key</div>
                   </td>
-                  <td className="relative break-words word-break-all overflow-hidden">
+                  <td className="relative  overflow-hidden">
                     <span
                       className={`relative cursor-pointer ${
                         !showText ? "blur-lg" : ""
@@ -263,7 +263,7 @@ export default function Production() {
                       onMouseLeave={() => setCopyMessage2("")}
                     >
                       {copyMessage2 && (
-                        <div className="absolute -top-6 left-0 bg-gray-200 text-xs p-1 rounded">
+                        <div className="absolute top-3 left-5 lg:top-3 lg:left-14 bg-blue-300 text-black text-xs p-1 rounded">
                           {copyMessage2}
                         </div>
                       )}
@@ -281,7 +281,7 @@ export default function Production() {
                       </button>
                     ) : (
                       <button
-                        className="bg-white border absolute top-4 left-20 rounded-md shadow-md p-1"
+                        className="bg-white border rounded-md shadow-md p-1 lg:ml-10 md:ml-10"
                         onClick={handleRevealText}
                       >
                         Reveal Token
