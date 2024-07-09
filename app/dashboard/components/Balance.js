@@ -570,7 +570,7 @@ function Balance() {
                   </select>
                 </div>
                 <div className="mt-2">
-                  <h3 className="text-md text-red-500 border border-red-500 rounded-md py-1 lg:py-1 lg:px-6">
+                  <h3 className="text-md text-red-500 border border-red-500 rounded-md py-1 px-3 lg:py-1 lg:px-6">
                     Charge  {getChargePercentage()}
                   </h3>
                 </div>
