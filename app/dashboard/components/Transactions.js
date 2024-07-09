@@ -203,7 +203,7 @@ function Transactions() {
                       <th scope="col" class="px-4 py-3 lg:w-[150px]">
                         Date
                       </th>
-                      <th scope="col" class="px-4 py-3">
+                      <th scope="col" class="px-4 py-3 lg:w-[200px] md:w-[300px] w-[150px]">
                         Reference
                       </th>
 
