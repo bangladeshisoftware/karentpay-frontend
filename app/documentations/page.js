@@ -7,26 +7,31 @@ import { toast } from "react-toastify";
 const Documentations = () => {
 const[data,setData]=useState([]);
   useEffect(() => {
-    fatchData();
+  
+    getData();
   }, []);
 
-  const fatchData = async () => {
+  const getData = async () => {
     const token = await GetCookies({ name: "auth_token" });
-    if (token) {
+   
       const response = await ApiRequest({
         url: "/get_documentation",
         method: "get",
       });
+      console.log(response);
       if (response.status == 200) {
-       console.log(response);
+        setData(response.data);
       } else {
         toast.error(response.message);
       }
-    }
+   
   };
 
   return (
-    <div className='container'>Documentations</div>
+    <div className='container'>
+     
+
+    </div>
   )
 }
 
