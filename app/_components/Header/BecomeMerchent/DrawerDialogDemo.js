@@ -206,7 +206,7 @@ function ProfileForm({ className, handleNext,handleData }) {
           className="py-8 rounded-md border !outline-none focus:!outline-none focus-within:!outline-none shadow-none "
         />
       </div>
-      <Button type="submit" className="bg-[#7073F3] mt-4">
+      <Button type="submit" className="bg-gradient-2 mt-4">
         Next
       </Button>
     </form>
@@ -285,7 +285,7 @@ function AdditionalInfoForm({ className, handleNext, handlePrevious,handleData }
         </Button>
         <Button
           type="submit"
-          className="bg-[#7073F3] w-1/2 justify-center"
+          className="bg-gradient-2 w-1/2 justify-center"
           // onClick={handleNext}
         >
           Next
@@ -356,7 +356,7 @@ function BusinessInfoForm({ className, handlePrevious,data,setOpen }) {
         >
           Previous
         </Button>
-        <Button type="submit" className="bg-[#7073F3] w-1/2 justify-center">
+        <Button type="submit" className="bg-gradient-2 w-1/2 justify-center">
           Send
         </Button>
       </div>

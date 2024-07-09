@@ -168,6 +168,29 @@ function Balance() {
     );
   };
 
+  // Pagination logic
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 4;
+  const totalItems = transactionsData.length;
+  const totalPages = Math.ceil(totalItems / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const visibleTransactions = transactionsData.slice(
+    startIndex,
+    startIndex + itemsPerPage
+  );
+
+  const handleNextPage = () => {
+    setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages));
+  };
+
+  const handlePreviousPage = () => {
+    setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
+  };
+
+  const handlePageClick = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
   return (
     <div className="rounded-md mt-10 ml-0 lg:ml-5">
       <div className=" border shadow-lg mb-4 lg:mb-2 p-3 lg:p-3 mt-3 rounded-md text-center lg:text-left lg:hidden  ">
@@ -384,7 +407,7 @@ function Balance() {
                     </tr>
                   </thead>
                   <tbody>
-                    {transactionsData?.map((transaction, index) => (
+                    {visibleTransactions?.map((transaction, index) => (
                       <tr
                         className="border-b dark:border-gray-700"
                         key={transaction.id}
@@ -393,7 +416,7 @@ function Balance() {
                           scope="row"
                           className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                         >
-                          {index + 1}
+                          {startIndex + index + 1}
                         </th>
                         <td className="px-4 py-3">
                           {/* {transaction.created_at && format(transaction.created_at, "dd" + " " + "MMMM" + " " + "yyyy")} */}
@@ -432,7 +455,7 @@ function Balance() {
                 </table>
               </div>
               {/* this is pagination */}
-              <nav
+              {/* <nav
                 class="flex flex-col mt-2  md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0 p-16"
                 aria-label="Table navigation"
               >
@@ -529,6 +552,75 @@ function Balance() {
                         />
                       </svg>
                     </a>
+                  </li>
+                </ul>
+              </nav> */}
+              <nav
+                className="flex flex-col mt-2 md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0 p-16"
+                aria-label="Table navigation"
+              >
+                <span className="text-sm font-normal text-gray-500 dark:text-gray-400">
+                  Showing {startIndex + 1} -{" "}
+                  {Math.min(startIndex + itemsPerPage, totalItems)} of{" "}
+                  {totalItems} Transactions
+                </span>
+                <ul className="inline-flex items-stretch -space-x-px">
+                  <li>
+                    <button
+                      onClick={handlePreviousPage}
+                      className="flex items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                      disabled={currentPage === 1}
+                    >
+                      <span className="sr-only">Previous</span>
+                      <svg
+                        className="w-5 h-5"
+                        aria-hidden="true"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    </button>
+                  </li>
+                  {Array.from({ length: totalPages }, (_, i) => (
+                    <li key={i}>
+                      <button
+                        onClick={() => handlePageClick(i + 1)}
+                        className={`flex items-center justify-center text-sm py-2 px-3 leading-tight ${currentPage === i + 1
+                            ? "text-primary-600 bg-primary-50 border border-primary-300"
+                            : "text-gray-500 bg-white border border-gray-300"
+                          } hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white`}
+                      >
+                        {i + 1}
+                      </button>
+                    </li>
+                  ))}
+                  <li>
+                    <button
+                      onClick={handleNextPage}
+                      className="flex items-center justify-center h-full py-1.5 px-3 leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                      disabled={currentPage === totalPages}
+                    >
+                      <span className="sr-only">Next</span>
+                      <svg
+                        className="w-5 h-5"
+                        aria-hidden="true"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    </button>
                   </li>
                 </ul>
               </nav>
