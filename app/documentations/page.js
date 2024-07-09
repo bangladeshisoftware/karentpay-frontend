@@ -28,13 +28,13 @@ const Documentations = () => {
   };
 
   return (
-    <div className='container'>
+    <div className=' scale-x-95 lg:scale-x-100 lg:container '>
 
-      <div>
+      <div className='my-2'>
       {data.map((item, index) => (
-        <div key={index} className='mb-4 '>
-          <h2 className='text-3xl my-2'>{item.title}</h2>
-          <p className='text-md'>{item.description}</p>
+        <div key={index} className='mb-4 bg-white rounded-md px-2 py-2 '>
+          <h2 className='text-3xl my-2 gradient-text'>{item.title}</h2>
+          <p className='text-lg text-gray-700'>{item.description}</p>
         </div>
       ))}
       </div>
