@@ -7,6 +7,7 @@ import Datepicker from "react-tailwindcss-datepicker";
 import { GetCookies } from "@/app/_lib/cookiesSetting";
 import { format } from "date-fns";
 
+
 function Balance() {
   const [balance, setbalance] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -154,6 +155,18 @@ function Balance() {
       return ' ';
     }
   }
+
+  const formatDateTime = (date) => {
+    if (!date) return '';
+    const formattedDate = format(new Date(date), 'dd MMMM yyyy');
+    const formattedTime = format(new Date(date), 'HH:mm:ss');
+    return (
+      <div>
+        <div>{formattedDate}</div>
+        <div>{formattedTime}</div>
+      </div>
+    );
+  };
 
   return (
     <div className="rounded-md mt-10 ml-0 lg:ml-5">
@@ -345,10 +358,10 @@ function Balance() {
                       <th scope="col" class="px-4 py-3">
                         Sl
                       </th>
-                      <th scope="col" class="px-4 py-3">
+                      <th scope="col" class="px-4 py-3 lg:w-[150px]">
                         Date
                       </th>
-                      <th scope="col" class="px-4 py-3">
+                      <th scope="col" class="px-4 py-3 lg:w-[200px] md:w-[300px] w-[150px]">
                         Reference
                       </th>
 
@@ -383,10 +396,11 @@ function Balance() {
                           {index + 1}
                         </th>
                         <td className="px-4 py-3">
-                          {transaction.created_at && format(transaction.created_at, "dd" + " " + "MMMM" + " " + "yyyy")}
+                          {/* {transaction.created_at && format(transaction.created_at, "dd" + " " + "MMMM" + " " + "yyyy")} */}
+                          {formatDateTime(transaction.created_at)}
                         </td>
                         <td
-                          className="px-4 py-3 relative cursor-pointer break-words word-break-all overflow-hidden"
+                          className="px-4 py-3 relative cursor-pointer break-words word-break-all overflow-hidden "
                           onClick={() => handleCopy(transaction.id, transaction.reference)}
                         >
                           {copiedReferenceId === transaction.id ? (

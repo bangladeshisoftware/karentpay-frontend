@@ -132,6 +132,8 @@ function Support() {
   // const startIndex = (currentPage - 1) * itemsPerPage;
   // const currentTickets = tickets.slice(startIndex, startIndex + itemsPerPage);
 
+  
+
   return (
     <div className="mt-10 ml-0 lg:ml-8">
       <div className=" border shadow-lg mb-4 lg:mb-2 p-3 lg:p-3 mt-3 rounded-md text-center lg:text-left lg:hidden  ">

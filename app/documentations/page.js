@@ -26,7 +26,7 @@ const[data,setData]=useState([]);
   };
 
   return (
-    <div>Documentations</div>
+    <div className='container'>Documentations</div>
   )
 }
 

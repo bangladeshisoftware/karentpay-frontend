@@ -100,6 +100,18 @@ function Wtransactions() {
 
 
   };
+
+  const formatDateTime = (date) => {
+    if (!date) return '';
+    const formattedDate = format(new Date(date), 'dd MMMM yyyy');
+    const formattedTime = format(new Date(date), 'HH:mm:ss');
+    return (
+      <div>
+        <div>{formattedDate}</div>
+        <div>{formattedTime}</div>
+      </div>
+    );
+  };
  
 
   return (
@@ -238,7 +250,8 @@ function Wtransactions() {
                         <td className="px-4 py-3">{transaction.trxID?transaction.trxID:"None"}</td>
                         <td className="px-4 py-3">{transaction.status?transaction.status:''}</td>
                         <td className="px-4 py-3">
-                          {transaction?.created_at && format(transaction?.created_at, "dd MMMM yyyy")}
+                          {/* {transaction?.created_at && format(transaction?.created_at, "dd MMMM yyyy")} */}
+                          {formatDateTime(transaction.created_at)}
                         </td>
                         {/* <td className="px-4 py-3 flex items-center justify-end"></td> */}
                       </tr>
