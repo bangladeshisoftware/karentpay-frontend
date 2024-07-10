@@ -24,7 +24,7 @@ const Slider = () => {
       ),
       firstButtonLink: '/auth/signup',
       firstButtonText: 'Become a Merchant',
-      secondButtonLink: '/',
+      secondButtonLink: '/contact',
       secondButtonText: 'Contact'
     },
     {
@@ -39,7 +39,7 @@ const Slider = () => {
       ),
       firstButtonLink: '/auth/signup',
       firstButtonText: 'Become a Merchant',
-      secondButtonLink: '/',
+      secondButtonLink: '/contact',
       secondButtonText: 'Contact '
     }
   ];
