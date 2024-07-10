@@ -189,10 +189,10 @@ const handleSubmit = async() => {
   // Pagination logic
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 4;
-  const totalItems = transactionsData.length;
+  const totalItems = transfer_history.length;
   const totalPages = Math.ceil(totalItems / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
-  const visibleTransactions = transactionsData.slice(
+  const visibleTransactions = transfer_history.slice(
     startIndex,
     startIndex + itemsPerPage
   );
@@ -407,7 +407,7 @@ const handleSubmit = async() => {
                     </tr>
                   </thead>
                   <tbody>
-                    {transfer_history?.map((transaction, index) => (
+                    {visibleTransactions?.map((transaction, index) => (
                       <tr
                         className="border-b dark:border-gray-700"
                         key={transaction.id}

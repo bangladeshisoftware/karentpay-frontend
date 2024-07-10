@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import BecomeMerchant from '@/app/_components/Header/BecomeMerchent/BecomeMerchant';
 import Link from 'next/link';
 import Image from 'next/image';
-import desktopLogo from '@/app/_assets/karentpaylogo-transparent.png';
+import desktopLogo from '@/app/_assets/updated-karentpay-logo.png';
 import { GetCookies,deleteCookies } from '@/app/_lib/cookiesSetting';
 import { toast } from 'react-toastify';
 import Dashboard from './../../dashboard/page';
