@@ -24,13 +24,12 @@ const PriceCard2 = () => {
         </div>
         <div>
           <h1 className='text-xl text-center text-white font-bold pb-2'>
-            Karentpay Education
+            Karentpay Cash In:<span className='text-xl font-bold'> 0% Charges</span>
           </h1>
         </div>
         <div>
           <p className='text-base text-center mb-5 text-white px-4'>
-            Karentpay GateWay offers institutions competitive prices are as
-            follows:
+            Karentpay GateWay offers competitive prices and Charges 
           </p>
         </div>
       </div>

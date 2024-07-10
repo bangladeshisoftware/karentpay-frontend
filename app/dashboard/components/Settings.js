@@ -280,6 +280,42 @@ function Product_Catalog() {
           )}
         </div>
         <div className="h-[60%]">
+          {selected == "verification" ? (
+            <form onSubmit={handlePaymentSetting} className="">
+              <div className="my-6">
+                <label className="mt-6 ">Work in Progress</label>
+              
+              </div>
+            </form>
+          ) : (
+            ""
+          )}
+        </div>
+        <div className="h-[60%]">
+          {selected == "integration" ? (
+            <form onSubmit={handlePaymentSetting} className="">
+              <div className="my-6">
+                <label className="mt-6 ">Work in Progress</label>
+              
+              </div>
+            </form>
+          ) : (
+            ""
+          )}
+        </div>
+        <div className="h-[60%]">
+          {selected == "passkey" ? (
+            <form onSubmit={handlePaymentSetting} className="">
+              <div className="my-6">
+                <label className="mt-6 ">Work in Progress</label>
+              
+              </div>
+            </form>
+          ) : (
+            ""
+          )}
+        </div>
+        <div className="h-[60%]">
           {selected == "paymentSettings" ? (
             <form onSubmit={handlePaymentSetting} className="">
               <div className="my-6">

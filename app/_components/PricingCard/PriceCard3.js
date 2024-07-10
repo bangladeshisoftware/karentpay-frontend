@@ -15,7 +15,7 @@ const PriceCard3 = () => {
         </div>
         <div>
           <h1 className='text-xl text-center text-white pb-2 font-bold'>
-            Karentpay SME Business
+            Karentpay Withdraw:<span className='text-xl font-bold'> 4% Charges</span>
           </h1>
         </div>
         <div>

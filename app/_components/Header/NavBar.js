@@ -421,9 +421,9 @@ const NavBar = () => {
   }, [isOpen]);
 
   const socialLinks = {
-    facebookLink: '',
+    facebookLink: 'https://www.facebook.com/karentpay',
     linkedInLink: '',
-    youtubeLink: ''
+    youtubeLink: 'https://www.youtube.com/@Karentpay'
   };
 
   const dropdownItemsMainMenu = [
@@ -438,7 +438,8 @@ const NavBar = () => {
       label: 'Pages', submenu: [
         { label: 'About', href: '/about' },
         { label: 'Privacy & Policy', href: '/privacy-policy' },
-        { label: 'Terms & Conditions', href: '/terms-and-conditions' }
+        { label: 'Terms & Conditions', href: '/terms-and-conditions' },
+        { label: 'No Refund', href: '' },
       ]
     }
   ];

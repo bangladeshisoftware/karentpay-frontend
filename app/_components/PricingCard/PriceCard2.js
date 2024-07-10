@@ -24,7 +24,7 @@ const PriceCard2 = () => {
         </div>
         <div>
           <h1 className='text-xl text-center text-white font-bold pb-2'>
-            Karentpay SME Business
+            Karentpay Payout:<span className='text-xl font-bold'> 2% Charges</span>
           </h1>
         </div>
         <div>

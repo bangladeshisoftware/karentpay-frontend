@@ -23,9 +23,9 @@ const Slider = () => {
         </>
       ),
       firstButtonLink: '/auth/signup',
-      firstButtonText: 'Free Appointment Book',
+      firstButtonText: 'Become a Merchant',
       secondButtonLink: '/',
-      secondButtonText: 'Contact Sales Team'
+      secondButtonText: 'Contact'
     },
     {
       id: 2,
@@ -38,9 +38,9 @@ const Slider = () => {
         </>
       ),
       firstButtonLink: '/auth/signup',
-      firstButtonText: 'Free Appointment Book',
+      firstButtonText: 'Become a Merchant',
       secondButtonLink: '/',
-      secondButtonText: 'Contact Sales Team'
+      secondButtonText: 'Contact '
     }
   ];
 
@@ -67,7 +67,7 @@ const Slider = () => {
                     </Button>
                   </Link>
                   <Link href={slider.secondButtonLink}>
-                    <Button className='bg-pink-600 px-2 py-1 text-xs sm:px-4 sm:py-2 sm:text-sm md:px-6 md:py-3 md:text-base lg:px-8 lg:py-4 lg:text-lg'>
+                    <Button className='bg-pink-600 px-16 py-1 text-xs sm:px-12 sm:py-2 sm:text-sm md:px-16 md:py-3 md:text-base lg:px-16 lg:py-4 lg:text-lg'>
                       {slider.secondButtonText}
                     </Button>
                   </Link>
@@ -90,7 +90,7 @@ const Slider = () => {
                 </Button>
               </Link>
               <Link href={sliders[0].secondButtonLink}>
-                <Button className='bg-pink-600 px-4 py-2 text-sm w-full'>
+                <Button className='bg-pink-600 px-12 py-2 text-sm w-full'>
                   {sliders[0].secondButtonText}
                 </Button>
               </Link>

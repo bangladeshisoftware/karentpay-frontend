@@ -13,166 +13,34 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 
 const TermsCondition = () => {
-  var settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-  };
-  useEffect(() => {
-    AOS.init({
-      duration: 800,
-      once: false,
-    });
-  }, []);
+ 
   return (
     <div>
-      <section className="container mx-auto mt-[70px]">
-        <div
-          data-aos="fade-right"
-          className="flex flex-col lg:flex-row items-center lg:justify-center lg:gap-10 md:gap-10 gap-4"
-        >
-          <div>
-            <Image className="" src={img1} height={500} width={500} alt="" />
-          </div>
-          <div className="w-fit">
-            <div className="border-b w-full">
-              <h2 className="text-3xl font-bold mt-10">About Us</h2>
-              <p className="mt-5 mb-5">
-                Automatic Payment Gateway Solution Instant Withdraw
-              </p>
-            </div>
-            <p className="mt-5 max-w-full md:max-w-2xl">
-              An all-in-one payment gateway system where you can make secured
-              payments anywhere and anytime.” Epayget is not just a payment
-              solution; it’s a revolution in the digital transaction space.
-              Designed to empower merchants with the ability to grow their
-              online presence, it offers customers a flexible and highly secure
-              platform for purchasing products. Accepting a wide range of
-              payment methods, including both local and international debit and
-              credit cards, Epayget is synonymous with reliability and ease
-            </p>
-          </div>
-        </div>
-      </section>
+      <section className="container mx-auto mt-[70px] bg-white ">
 
-      <section className="container mx-auto mt-[70px]">
-        <div
-          data-aos="fade-left"
-          className="flex flex-col-reverse lg:flex-row items-center lg:justify-center gap-10"
-        >
-          <div className="w-fit">
-            <div className=" w-full">
-              <h2 className="text-3xl font-bold mt-24">
-                Revolutionizing E-Commerce with Epayget
-              </h2>
-            </div>
-            <p className="mt-5 max-w-full md:max-w-2xl">
-              Epayget is redefining the way online payments are handled. It
-              stands as a pillar in the digital economy, making it easier than
-              ever for businesses to process transactions and manage their
-              online storefronts. Its intuitive design and powerful features are
-              tailored to meet the evolving demands of the digital market.
-            </p>
-          </div>
-          <div className="mt-10">
-            <Image src={img2} height={400} width={500} alt="" />
-          </div>
-        </div>
-      </section>
+        <div className="bg-white py-3">
+          <div className="mb-4"><h2 className="text-xl mb-2">TERMS AND CONDITIONS</h2>
+          <p>Last updated: 20-09-2020</p></div>
 
-      <section className="container mx-auto mt-[70px]">
-        <div
-          data-aos="fade-right"
-          className="flex flex-col lg:flex-row items-center lg:justify-center  gap-10"
-        >
-          <div>
-            <Image src={img1} height={500} width={500} alt="" />
+          <div className="mb-4">
+          <h2 className="text-xl mb-2">1. Introduction</h2>
+          <p>These Terms of Service (“Terms”, “Terms of Service”) govern your use of our website located at https://www.bangladeshisoftware.com (together or individually “Service”) operated by Bangladeshi Software.Our Privacy Policy also governs your use of our Service and explains how we collect, safeguard and disclose information that results from your use of our web pages.Your agreement with us includes these Terms and our Privacy Policy (“Agreements”). You acknowledge that you have read and understood Agreements, and agree to be bound of them.If you do not agree with (or cannot comply with) Agreements, then you may not use the Service, but please let us know by emailing at admin@bangladeshisoftware.com so we can try to find a solution. These Terms apply to all visitors, users and others who wish to access or use Service.</p>
           </div>
-          <div className="w-fit">
-            <div className=" w-full">
-              <h2 className="text-3xl font-bold mt-20">
-                Cutting-edge technology Tailored for All
-              </h2>
-            </div>
-            <p className="mt-5 max-w-full md:max-w-2xl">
-              At the core of Epayget is a commitment to technological
-              excellence. Built to serve developers, entrepreneurs, and
-              consumers alike, Epayget maintains the highest international
-              standards of safety. Its user-friendly interface ensures
-              transactions are completed with minimal steps, yet with maximum
-              efficiency. As the first platform in the region to offer a
-              developer-friendly API, Epayget simplifies integration, enabling
-              merchants to seamlessly connect and utilize its advanced features
-            </p>
-          </div>
-        </div>
-      </section>
 
-      <section className="container mx-auto mt-48px]">
-        <div
-          data-aos="fade-left"
-          className="flex flex-col-reverse lg:flex-row items-center lg:justify-center  gap-10 mt-10 lg:mt-0 md:mt-0"
-        >
-          <div className="w-fit">
-            <div className=" w-full">
-              <h2 className="text-3xl font-bold mt-24">
-                Why You Choose Epayget
-              </h2>
-              <ul className="flex flex-col gap-3 mt-5">
-                <li className="flex items-center">
-                  <IoCheckmarkOutline
-                    className="text-green-700"
-                    fontSize={20}
-                  />{" "}
-                  High experienced FinTech company
-                </li>
-                <li className="flex items-center">
-                  <IoCheckmarkOutline
-                    className="text-green-700"
-                    fontSize={20}
-                  />
-                  Expert and well skilled team members
-                </li>
-                <li className="flex items-center">
-                  <IoCheckmarkOutline
-                    className="text-green-700"
-                    fontSize={20}
-                  />
-                  Passionate free dedicated support
-                </li>
-                <li className="flex items-center">
-                  <IoCheckmarkOutline
-                    className="text-green-700"
-                    fontSize={20}
-                  />
-                  24/7 Dedicated support
-                </li>
-                <li className="flex items-center">
-                  <IoCheckmarkOutline
-                    className="text-green-700"
-                    fontSize={20}
-                  />
-                  Innovative FinTech Features
-                </li>
-              </ul>
-            </div>
+          <div className="mb-4">
+          <h2 className="text-xl mb-2">2. Communications</h2>
+          <p>By using our Service, you agree to subscribe to newsletters, marketing or promotional materials and other information we may send. However, you may opt out of receiving any, or all, of these communications from us by following the unsubscribe link or by emailing at admin@bangladeshisoftware.com.</p>
           </div>
-          <div className="mt-10">
-            <Image className="" src={img2} height={400} width={500} alt="" />
-          </div>
-        </div>
-      </section>
 
-      {/* <section className="w-full mt-[70px]">
-        <div className=" w-full text-3xl font-bold text-center ">
-          <h2>Know more about </h2>
-          <Link href="/">
-            <span>The Epayget</span>
-          </Link>
+          <div className="mb-4">
+          <h2 className="text-xl mb-2">3. Purchases</h2>
+          <p>If you wish to purchase any product or service made available through Service (“Purchase”), you may be asked to supply certain information relevant to your Purchase including but not limited to, your credit or debit card number, the expiration date of your card, your billing address, and your shipping information.You represent and warrant that: (i) you have the legal right to use any card(s) or other payment method(s) in connection with any Purchase; and that (ii) the information you supply to us is true, correct and complete.We may employ the use of third party services for the purpose of facilitating payment and the completion of Purchases. By submitting your information, you grant us the right to provide the information to these third parties subject to our Privacy Policy.We reserve the right to refuse or cancel your order at any time for reasons including but not limited to: product or service availability, errors in the description or price of the product or service, error in your order or other reasons.We reserve the right to refuse or cancel your order if fraud or an unauthorized or illegal transaction is suspected.</p>
+          </div>
+
+
         </div>
-      </section> */}
+        
+      </section>
     </div>
   );
 };

@@ -2,8 +2,11 @@ import PriceCard2 from '@/app/_components/PricingCard/PriceCard2';
 import PriceCard3 from '@/app/_components/PricingCard/PriceCard3';
 import PricingCard from '@/app/_components/PricingCard/PricingCard';
 import { Button } from '@/components/ui/button';
+import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
 import { IoCheckmark } from 'react-icons/io5';
+import desktopLogo from '@/app/_assets/kpay.png';
 
 const pricing = () => {
   return (
@@ -40,18 +43,31 @@ const pricing = () => {
           Start your Gold plan trial today
         </div>
         <div className='bg-white flex flex-col md:flex-row justify-around w-full items-center border rounded-md shadow-md p-4 sm:p-6 md:p-8 mb-24 transition-all duration-300 hover:border-blue-500'>
-          <div className='mb-4 md:mb-0 md:mr-8'>
-            <div className='text-2xl text-[#7073F3]'>
-              Per transaction we cut BDT 10.00TK
-            </div>
-            <div className='text-xl text-[#7073F3] line-through'>
-              BDT 20.00/Per Transaction
+          <div className='mb-4 md:mb-0 md:mr-8 flex gap-x-8 items-center'>
+            <div>
+              <Link href='/'>
+                <Image
+                  src={desktopLogo}
+                  alt='logo'
+                  className='w-auto h-28 '
+                  priority
+                />
+              </Link>
             </div>
             <div>
-              <Button className='bg-gradient-2 transition-transform duration-300 hover:scale-105 px-6 py-3 sm:px-8 sm:py-4 mt-4'>
-                Get Offer
-              </Button>
+              <div className='text-2xl text-[#7073F3]'>
+                Per transaction we cut BDT 10.00TK
+              </div>
+              <div className='text-xl text-[#7073F3] line-through'>
+                BDT 20.00/Per Transaction
+              </div>
+              <div>
+                <Button className='bg-gradient-2 transition-transform duration-300 hover:scale-105 px-6 py-3 sm:px-8 sm:py-4 mt-4'>
+                  Get Offer
+                </Button>
+              </div>
             </div>
+
           </div>
           <div className='space-y-2'>
             <div className='flex items-center'>

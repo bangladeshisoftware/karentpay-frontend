@@ -81,14 +81,14 @@ const TopBar = () => {
 
 
   return (
-    <section className='container flex justify-between items-center my-4 hidden lg:flex wide-laptop:flex small-laptop:flex'>
+    <section className='container flex justify-between items-center my-2 hidden lg:flex wide-laptop:flex small-laptop:flex'>
       {/* large screens */}
       <div className='flex items-center justify-between w-full'>
         <Link href='/'>
           <Image
             src={desktopLogo}
             alt='logo'
-            className='w-auto h-auto'
+            className='w-auto h-16'
             priority
           />
         </Link>
