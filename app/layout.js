@@ -13,6 +13,7 @@ export const metadata = {
   description: 'A smart payment gateway for your daily need'
 };
 
+
 export default function RootLayout({ children }) {
   return (
     <html lang='en'>

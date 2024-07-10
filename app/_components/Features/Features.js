@@ -20,7 +20,7 @@ const Features = () => {
         '<a href="https://www.freepik.com/icon/watchmaking_1459336#fromView=search&page=1&position=21&uuid=7c6e299c-8cfc-46f5-9ea8-5a05df83b75e">Icon by Flat-icons-com</a>',
       title: "Flexibility",
       description:
-        "Moneybag accepts, verifies, and processes a variety of transactions. Payments may be made via: Credit/Debit Cards...",
+        "Our payment gateway supports multiple payment methods, including credit cards, debit cards, digital wallets, and more. This flexibility allows you to cater to a wide range of customers, enhancing their payment experience and boosting your conversion rates.",
     },
     {
       id: 2,

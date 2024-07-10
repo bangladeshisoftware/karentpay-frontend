@@ -209,7 +209,7 @@ export default function Production() {
                   <th className="w-[200px] text-xs font-medium">
                     <div className="ml-4">NAME</div>
                   </th>
-                  <th className="lg:w-[200px] md:w-[300px] w-[150px] font-medium text-xs ">
+                  <th className="lg:w-[150px] md:w-[200px] w-[150px] font-medium text-xs">
                     TOKEN
                   </th>
                   <th className="lg:w-[200px] md:w-[300px] w-[150px] font-medium text-xs">

@@ -29,48 +29,29 @@ const Footer = () => {
               <h4 className='text-lg font-bold mb-7'>Karentpay</h4>
               <ul className='text-sm  transition-all duration-500'>
                 <li className='mb-6'>
-                  <Link href='' className='hover:text-gray-200'>
+                  <Link href='/' className='hover:text-gray-200'>
                     Home
                   </Link>
                 </li>
                 <li className='mb-6'>
-                  <Link href='' className=' hover:text-gray-200'>
-                    About
+                  <Link href='/contact' className=' hover:text-gray-200'>
+                    Contact
                   </Link>
                 </li>
-                <li className='mb-6'>
-                  <Link href='' className='hover:text-gray-200'>
-                    Pricing
-                  </Link>
-                </li>
-                <li>
-                  <Link href='' className='hover:text-gray-200'>
-                    Features
-                  </Link>
-                </li>
+
               </ul>
             </div>
             <div className='lg:mx-auto text-left '>
               <h4 className='text-lg font-bold mb-7'>Products</h4>
               <ul className='text-sm  transition-all duration-500'>
                 <li className='mb-6'>
-                  <Link href='' className='hover:text-gray-200'>
-                    Figma UI System
+                  <Link href='/pricing' className='hover:text-gray-200'>
+                    Pricing
                   </Link>
                 </li>
                 <li className='mb-6'>
-                  <Link href='' className='hover:text-gray-200'>
-                    Icons Assets
-                  </Link>
-                </li>
-                <li className='mb-6'>
-                  <Link href='' className='hover:text-gray-200'>
-                    Responsive Blocks
-                  </Link>
-                </li>
-                <li>
-                  <Link href='' className='hover:text-gray-200'>
-                    Components Library
+                  <Link href='/payment-gateway' className=' hover:text-gray-200'>
+                    Payment Gateway
                   </Link>
                 </li>
               </ul>
@@ -79,50 +60,32 @@ const Footer = () => {
               <h4 className='text-lg font-bold mb-7'>Resources</h4>
               <ul className='text-sm  transition-all duration-500'>
                 <li className='mb-6'>
-                  <Link href='' className='hover:text-gray-200'>
-                    FAQs
-                  </Link>
-                </li>
-                <li className='mb-6'>
-                  <Link href='' className='hover:text-gray-200'>
-                    Quick Start
-                  </Link>
-                </li>
-                <li className='mb-6'>
-                  <Link href='' className='hover:text-gray-200'>
+                  <Link href='/documentations' className='hover:text-gray-200'>
                     Documentation
                   </Link>
                 </li>
-                <li>
-                  <Link href='' className='hover:text-gray-200'>
-                    User Guide
+                <li className='mb-6'>
+                  <Link href='/about' className='hover:text-gray-200'>
+                    About
                   </Link>
                 </li>
+                
               </ul>
             </div>
             <div className='lg:mx-auto text-left'>
               <h4 className='text-lg font-bold mb-7'>Blogs</h4>
               <ul className='text-sm  transition-all duration-500'>
                 <li className='mb-6'>
-                  <Link href='' className='hover:text-gray-200'>
+                  <Link href='/news' className='hover:text-gray-200'>
                     News
                   </Link>
                 </li>
                 <li className='mb-6'>
-                  <Link href='' className='hover:text-gray-200'>
-                    Tips & Tricks
+                  <Link href='/customer-reviews' className='hover:text-gray-200'>
+                    Customer Review
                   </Link>
                 </li>
-                <li className='mb-6'>
-                  <Link href='' className='hover:text-gray-200'>
-                    New Updates
-                  </Link>
-                </li>
-                <li>
-                  <Link href='' className='hover:text-gray-200'>
-                    Events
-                  </Link>
-                </li>
+                
               </ul>
             </div>
           </div>
@@ -133,7 +96,7 @@ const Footer = () => {
                 rights reserved.
               </span>
               <div className='flex mt-4 space-x-4 sm:justify-center lg:mt-0 '>
-                <Link
+                {/* <Link
                   href=''
                   className='w-9 h-9 rounded-full bg-black flex justify-center items-center hover:bg-slate-800'
                 >
@@ -168,25 +131,15 @@ const Footer = () => {
                       fill='currentColor'
                     />
                   </svg>
-                </Link>
+                </Link> */}
                 <Link
-                  href=''
+                  href='https://www.facebook.com/bangladeshisoftware'
                   className='w-9 h-9 rounded-full bg-blue-600 flex justify-center items-center hover:bg-blue-700'
                 >
-                  <svg
-                    className='w-[1rem] h-[1rem] text-white'
-                    viewBox='0 0 13 12'
-                    fill='none'
-                    xmlns='http://www.w3.org/2000/svg'
-                  >
-                    <path
-                      d='M2.8794 11.5527V3.86835H0.318893V11.5527H2.87967H2.8794ZM1.59968 2.81936C2.4924 2.81936 3.04817 2.2293 3.04817 1.49188C3.03146 0.737661 2.4924 0.164062 1.61666 0.164062C0.74032 0.164062 0.167969 0.737661 0.167969 1.49181C0.167969 2.22923 0.723543 2.8193 1.5829 2.8193H1.59948L1.59968 2.81936ZM4.29668 11.5527H6.85698V7.26187C6.85698 7.03251 6.87369 6.80255 6.94134 6.63873C7.12635 6.17968 7.54764 5.70449 8.25514 5.70449C9.18141 5.70449 9.55217 6.4091 9.55217 7.44222V11.5527H12.1124V7.14672C12.1124 4.78652 10.8494 3.68819 9.16483 3.68819C7.78372 3.68819 7.17715 4.45822 6.84014 4.98267H6.85718V3.86862H4.29681C4.33023 4.5895 4.29661 11.553 4.29661 11.553L4.29668 11.5527Z'
-                      fill='currentColor'
-                    />
-                  </svg>
+                 <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="facebook" className="svg-inline--fa fa-facebook " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"></path></svg>
                 </Link>
                 <Link
-                  href=''
+                  href='https://www.youtube.com/@bangladeshisoftware'
                   className='w-9 h-9 rounded-full bg-red-600 flex justify-center items-center hover:bg-red-700'
                 >
                   <svg

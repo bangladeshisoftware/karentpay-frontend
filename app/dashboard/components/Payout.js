@@ -103,7 +103,7 @@ function Payout() {
 
   // Pagination logic
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 4;
+  const itemsPerPage = 3;
   const totalItems = transactionsData.length;
   const totalPages = Math.ceil(totalItems / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
@@ -204,7 +204,7 @@ function Payout() {
                       <th scope="col" class="px-4 py-3 lg:w-[150px]">
                         Date
                       </th>
-                      <th scope="col" class="px-4 py-3">
+                      <th scope="col" class="px-4 py-3 lg:w-[150px]">
                         Reference
                       </th>
 

@@ -6,6 +6,7 @@ import ApiRequest from "@/app/_lib/Api_request";
 import Datepicker from "react-tailwindcss-datepicker";
 import { GetCookies } from "@/app/_lib/cookiesSetting";
 import { format } from "date-fns";
+import { FaPlus } from "react-icons/fa";
 
 
 function Balance() {
@@ -157,7 +158,26 @@ const handleSubmit = async() => {
     }
   };
 
+  const [search, setSearch] = useState('');
 
+  // useEffect(() => {
+  //   if (search != '' && search.length > 0) {
+  //     getWithdrwSearch();
+  //   }
+  // }, [search])
+  // const getWithdrwSearch = async () => {
+  //   const response = await ApiRequest({
+  //     url: "/withdrawal_request_search",
+  //     formdata: { search: search },
+
+  //   });
+  //   if (response.status == 200) {
+  //     setTransactions(response.data);
+  //   } else {
+  //     console.log(response);
+  //   }
+
+  // }
 
 
 
@@ -214,7 +234,7 @@ const handleSubmit = async() => {
       <div className=" border shadow-lg mb-4 lg:mb-2 p-3 lg:p-3 mt-3 rounded-md text-center lg:text-left lg:hidden  ">
         <h3 className="text-xl font-semibold">Balance</h3>
       </div>
-      <div className=" flex justify-center lg:justify-end  ">
+      {/* <div className=" flex justify-center lg:justify-end  ">
         <button
           type="button"
           className="btn bg-gradient-2 text-white justify-center rounded-md  flex items-center px-8 py-3 mb-2 "
@@ -222,7 +242,7 @@ const handleSubmit = async() => {
         >
           Transfer Balance
         </button>
-      </div>
+      </div> */}
       <div className="grid grid-cols-1 lg:grid-cols-3 justify-around gap-2 px-1 lg:px-0 ">
         <div className="border shadow-lg rounded-md w-full h-40 flex items-center transition-all duration-300 hover:shadow-lg bg-white sm:h-40">
           <div className="flex-grow ml-8">
@@ -321,37 +341,49 @@ const handleSubmit = async() => {
           <div class=" max-w-screen-xl ">
             {/* <!-- Start coding here --> */}
             <div class="bg-white dark:bg-gray-800  shadow-md sm:rounded-lg overflow-hidden">
-              <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
-                <div class="w-full md:w-1/2">
-                  <form class="flex items-center">
-                    <label for="simple-search" class="sr-only">
+            <div className="relative  flex flex-col md:flex-row items-center space-y-3 md:space-y-0 md:space-x-4 p-4 ">
+                <div className="w-full md:w-full">
+                  <form className="flex items-center">
+                    <label htmlFor="simple-search" className="sr-only">
                       Search
                     </label>
-                    <div class="relative w-full ">
-                      <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                    <div className="relative w-full ">
+                      <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                         <svg
                           aria-hidden="true"
-                          class="w-5 h-5 text-gray-500 dark:text-gray-400"
+                          className="w-5 h-5 text-gray-500 dark:text-gray-400"
                           fill="currentColor"
-                          viewbox="0 0 20 20"
+                          viewBox="0 0 20 20"
                           xmlns="http://www.w3.org/2000/svg"
                         >
                           <path
-                            fill-rule="evenodd"
+                            fillRule="evenodd"
                             d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                            clip-rule="evenodd"
+                            clipRule="evenodd"
                           />
                         </svg>
                       </div>
-                      <div className="flex">
+                      <div className="grid grid-flow-col w-[100%]">
                         <input
-                        
+                          value={search}
+                          onChange={(e) => {
+                            setSearch(e.target.value)
+                          }}
                           type="text"
                           id="simple-search"
-                          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                           placeholder="Search"
                           required=""
                         />
+
+                        <button
+                          type="button"
+                          className="btn bg-gradient-2 text-white justify-center rounded-md ml-2 mr-2 pr-2 flex items-center"
+                          onClick={handleCreateTicket}
+                        >
+                          {/* <FaPlus className=" ml-2 mr-2 " /> */}
+                          Transfer Balance
+                        </button>
                       </div>
                     </div>
                   </form>
