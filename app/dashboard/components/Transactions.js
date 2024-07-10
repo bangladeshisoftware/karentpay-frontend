@@ -14,27 +14,10 @@ function Transactions() {
     endDate: null,
   });
 
-  const [copiedReferenceId, setCopiedReferenceId] = useState(null);
-  const [hoveredReferenceId, setHoveredReferenceId] = useState(null);
 
 
   const handleDateRangeChange = async (newValue) => {
-    console.log("newValue:", newValue);
-    setDateRange(newValue);
-    const token = await GetCookies({ name: "auth_token" });
-    if (token) {
-      const response = await ApiRequest({
-        url: "/transactionsByDate",
-        formdata: { startDate: newValue.startDate, endDate: newValue.endDate },
-      });
-
-      if (response.status == 200) {
-        settransactionsData(response.data);
-        console.log(response.data);
-      } else {
-        toast.error(response.message);
-      }
-    }
+  console.log("daterange")
   };
 
   useEffect(() => {
@@ -45,7 +28,7 @@ function Transactions() {
     const token = await GetCookies({ name: "auth_token" });
     if (token) {
       const response = await ApiRequest({
-        url: "/transactions",
+        url: "/payout_history",
         method: "get",
       });
       if (response.status == 200) {
@@ -57,35 +40,7 @@ function Transactions() {
     }
   };
 
-  const searchData = async (data) => {
-    if (data.length > 1) {
-      const token = await GetCookies({ name: "auth_token" });
-      if (token) {
-        const response = await ApiRequest({
-          url: "/transactions",
-          formdata: { search: data },
-        });
-        if (response.status == 200) {
-          settransactionsData(response.data);
-          // console.log(response.data);
-        } else {
-          toast.error(response.message);
-        }
-      }
-    }
-  };
 
-  const handleCopy = (id, text) => {
-    navigator.clipboard
-      .writeText(text)
-      .then(() => {
-        setCopiedReferenceId(id);
-        setTimeout(() => setCopiedReferenceId(null), 2000);
-      })
-      .catch((err) => {
-        console.error("Failed to copy: ", err);
-      });
-  };
 
   const formatDateTime = (date) => {
     if (!date) return '';
@@ -127,7 +82,7 @@ function Transactions() {
   return (
     <div className="mt-10 ">
       <div className=" border shadow-lg mb-4 lg:mb-2 p-3 lg:p-3 mt-3 rounded-md text-center lg:text-left lg:hidden  ">
-        <h3 className="text-xl font-semibold">Cash In Transaction</h3>
+        <h3 className="text-xl font-semibold">Cash In Transaction </h3>
       </div>
       <div className="lg:px-0 px-1">
         <section class=" shadow-md border rounded-md ml-0 lg:ml-5 mb-36">
@@ -158,7 +113,7 @@ function Transactions() {
                       </div>
                       <div className="flex">
                         <input
-                          onChange={(e) => searchData(e.target.value)}
+                       
                           type="text"
                           id="simple-search"
                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
@@ -198,25 +153,25 @@ function Transactions() {
                   <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
                       <th scope="col" class="px-4 py-3">
-                        Sl
+                        Sl 
                       </th>
                       <th scope="col" class="px-4 py-3 lg:w-[150px]">
                         Date
                       </th>
-                      <th scope="col" class="px-4 py-3 lg:w-[200px] md:w-[300px] w-[150px]">
-                        Reference
-                      </th>
-
                       <th scope="col" class="px-4 py-3">
                         Method
                       </th>
+                     
                       <th scope="col" class="px-4 py-3">
                         Amount
                       </th>
+                      {/* <th scope="col" class="px-4 py-3">
+                        Reference
+                      </th> */}
+                  
                       <th scope="col" class="px-4 py-3">
                         TrxId
                       </th>
-
                       <th scope="col" class="px-4 py-3">
                         customerMsisdn
                       </th>
@@ -226,7 +181,7 @@ function Transactions() {
                     </tr>
                   </thead>
                   <tbody>
-                    {visibleTransactions?.map((transaction, index) => (
+                    {transactionsData?.map((transaction, index) => (
                       <tr
                         className="border-b dark:border-gray-700"
                         key={transaction.id}
@@ -240,23 +195,7 @@ function Transactions() {
                         <td className="px-4 py-3">
                           {/* {transaction.created_at && format(transaction.created_at, "dd" + " " + "MMMM" + " " + "yyyy")} */}
                           {formatDateTime(transaction.created_at)}
-                        </td>
-                        <td
-                          className="px-4 py-3 relative cursor-pointer break-words word-break-all overflow-hidden"
-                          onClick={() => handleCopy(transaction.id, transaction.reference)}
-                        >
-                          {copiedReferenceId === transaction.id ? (
-                            <div className="absolute top-3 left-5 lg:top-3 lg:left-14 bg-blue-300 text-black text-xs p-1 rounded">
-                              Copied!
-                            </div>
-                          ) : hoveredReferenceId === transaction.id ? (
-                            <div className="absolute top-3 left-5 lg:top-3 lg:left-14 bg-gray-300 text-black text-xs p-1 rounded">
-                              Copy to clipboard
-                            </div>
-                          ) : (
-                            transaction.reference
-                          )}
-                        </td>
+                        </td>                      
                         <td className="px-4 py-3">
                           {transaction.payment_method}
                         </td>

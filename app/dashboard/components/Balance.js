@@ -11,18 +11,93 @@ import { format } from "date-fns";
 function Balance() {
   const [balance, setbalance] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [subject, setSubject] = useState("");
-  const [message, setMessage] = useState("");
-
-
   const [selectedBalance, setSelectedBalance] = useState('Select Balance');
+
+
+  const[allbalance,setAllbalance]=useState(null);
+
+
+  const[ricived,setRicived]=useState(0);
+  const[charge,setCharge]=useState(0);
+
+const[select,setselect]=useState(0);
+const[inputBalance,setInputBalance]=useState('');
+
+useEffect(() => {
+  
+    if(select==1){      
+      setCharge(allbalance?.payment_withdraw_percent)     
+      var cutAmount = (allbalance?.payment_withdraw_percent / 100) * inputBalance;
+      setRicived(inputBalance - cutAmount);
+     
+    }else if(select==2){      
+      setCharge(allbalance?.withdraw_percent)      
+      var cutAmount = (allbalance?.withdraw_percent / 100) * inputBalance;
+      setRicived(inputBalance - cutAmount);
+      
+    }else{
+      setCharge(0)
+      setRicived(0);
+    }
+
+ 
+}, [select,inputBalance]);
+
+
+const handleSubmit = async() => {
+  let ojb={
+    amount:inputBalance,
+    select:select
+  }
+
+  const response=await ApiRequest({
+    url:"/marchent_balance_transfer",
+    formdata:ojb,
+  });
+  if(response.status==200){
+    handlePayment();
+    getallBalance();
+    getTransection();
+    setIsModalOpen(false);
+  }else{
+    toast.error(response.message);
+  }
+  
+};
+
+
 
 
 
 
   useEffect(() => {
     handlePayment();
+    getallBalance();
+    getTransection();
   }, []);
+
+  const[transfer_history,setTransfer_history]=useState([]);
+  const getTransection=async()=>{
+    const response=await ApiRequest({
+      url:"/transfer_history",
+      method:"get",
+    });
+    if(response.status==200){
+      setTransfer_history(response.data)
+    }
+  }
+
+
+  const getallBalance=async()=>{
+    const response=await ApiRequest({
+      url:"/marchent_balance",
+      method:"get",
+    });
+    if(response.status==200){
+      setAllbalance(response.data)
+    }
+    console.log(response);
+  }
 
   const handlePayment = async () => {
     const response = await ApiRequest({
@@ -44,12 +119,7 @@ function Balance() {
     setIsModalOpen(false);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Subject:", subject);
-    console.log("Message:", message);
-    setIsModalOpen(false);
-  };
+ 
 
   const [transactions, setTransactions] = useState([]);
   const [transactionsData, settransactionsData] = useState([]);
@@ -58,27 +128,13 @@ function Balance() {
     endDate: null,
   });
 
-  const [copiedReferenceId, setCopiedReferenceId] = useState(null);
-  const [hoveredReferenceId, setHoveredReferenceId] = useState(null);
+ 
 
 
   const handleDateRangeChange = async (newValue) => {
     console.log("newValue:", newValue);
-    setDateRange(newValue);
-    const token = await GetCookies({ name: "auth_token" });
-    if (token) {
-      const response = await ApiRequest({
-        url: "/transactionsByDate",
-        formdata: { startDate: newValue.startDate, endDate: newValue.endDate },
-      });
-
-      if (response.status == 200) {
-        settransactionsData(response.data);
-        console.log(response.data);
-      } else {
-        toast.error(response.message);
-      }
-    }
+   
+    
   };
 
   useEffect(() => {
@@ -101,50 +157,12 @@ function Balance() {
     }
   };
 
-  const searchData = async (data) => {
-    if (data.length > 1) {
-      const token = await GetCookies({ name: "auth_token" });
-      if (token) {
-        const response = await ApiRequest({
-          url: "/transactions",
-          formdata: { search: data },
-        });
-        if (response.status == 200) {
-          settransactionsData(response.data);
-          // console.log(response.data);
-        } else {
-          toast.error(response.message);
-        }
-      }
-    }
-  };
-
-  const handleCopy = (id, text) => {
-    navigator.clipboard
-      .writeText(text)
-      .then(() => {
-        setCopiedReferenceId(id);
-        setTimeout(() => setCopiedReferenceId(null), 2000);
-      })
-      .catch((err) => {
-        console.error("Failed to copy: ", err);
-      });
-  };
 
 
-  const handleBalanceChange = (e) => {
-    setSelectedBalance(e.target.value);
-  };
 
-  const getChargePercentage = () => {
-    if (selectedBalance === 'Withdraw Balance') {
-      return '5%';
-    } else if (selectedBalance === 'Robotics Balance') {
-      return '7%';
-    } else {
-      return '';
-    }
-  };
+
+
+
 
   const getPlaceholderText = () => {
     if (selectedBalance === 'Withdraw Balance') {
@@ -206,51 +224,45 @@ function Balance() {
         </button>
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-3 justify-around gap-2 px-1 lg:px-0 ">
-        <div className="border shadow-lg rounded-md w-full h-60 flex items-center transition-all duration-300 hover:shadow-lg bg-white sm:h-60">
+        <div className="border shadow-lg rounded-md w-full h-40 flex items-center transition-all duration-300 hover:shadow-lg bg-white sm:h-40">
           <div className="flex-grow ml-8">
             <div>
               <p className="font-bold">Main Balance</p>
             </div>
             <div>
-              <h2 className="text-2xl font-bold my-2">{balance}</h2>
+              <h2 className="text-2xl font-bold my-2">{allbalance?.wallet}</h2>
             </div>
-            <div>
-              <p>Jan-March 2024</p>
-            </div>
+           
           </div>
           <div className="mr-8 text-5xl text-black p-3 ">
             <HiOutlineCurrencyDollar className="text-red-500 text-opacity-80" />
           </div>
         </div>
 
-        <div className="border shadow-lg rounded-md w-full h-60 flex items-center transition-all duration-300 hover:shadow-lg bg-white sm:h-60">
+        <div className="border shadow-lg rounded-md w-full h-40 flex items-center transition-all duration-300 hover:shadow-lg bg-white sm:h-40">
           <div className="flex-grow ml-8">
             <div>
               <p className="font-bold">Robotic Balance</p>
             </div>
             <div>
-              <h2 className="text-2xl font-bold my-2">{balance}</h2>
+              <h2 className="text-2xl font-bold my-2">{allbalance?.automation_wallet}</h2>
             </div>
-            <div>
-              <p>Jan-March 2024</p>
-            </div>
+           
           </div>
           <div className="mr-8 text-5xl text-black p-3 ">
             <HiOutlineCurrencyDollar className="text-green-700 text-opacity-80" />
           </div>
         </div>
 
-        <div className="border shadow-lg rounded-md w-full h-60 flex items-center transition-all duration-300 hover:shadow-lg bg-white sm:h-60 mb-2">
+        <div className="border shadow-lg rounded-md w-full h-40 flex items-center transition-all duration-300 hover:shadow-lg bg-white sm:h-40 mb-2">
           <div className="flex-grow ml-8">
             <div>
               <p className="font-bold">Withdraw Balance</p>
             </div>
             <div>
-              <h2 className="text-2xl font-bold my-2">{balance}</h2>
+              <h2 className="text-2xl font-bold my-2">{allbalance?.withdrawal_wallet}</h2>
             </div>
-            <div>
-              <p>Jan-March 2024</p>
-            </div>
+           
           </div>
           <div className="mr-8 text-5xl text-black p-3 ">
             <HiOutlineCurrencyDollar className="text-blue-700 text-opacity-80" />
@@ -258,51 +270,45 @@ function Balance() {
         </div>
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-3 justify-around gap-2 px-1 lg:px-0 pb-2">
-        <div className="border shadow-lg rounded-md w-full h-60 flex items-center transition-all duration-300 hover:shadow-lg bg-white sm:h-60">
+        <div className="border shadow-lg rounded-md w-full h-40 flex items-center transition-all duration-300 hover:shadow-lg bg-white sm:h-40">
           <div className="flex-grow ml-8">
             <div>
-              <p className="font-bold">Cash In  Balance</p>
+              <p className="font-bold">Total Cash In </p>
             </div>
             <div>
-              <h2 className="text-2xl font-bold my-2">{balance}</h2>
+              <h2 className="text-2xl font-bold my-2">{allbalance?.total_cashin}</h2>
             </div>
-            <div>
-              <p>Jan-March 2024</p>
-            </div>
+           
           </div>
           <div className="mr-8 text-5xl text-black p-3 ">
             <HiOutlineCurrencyDollar className="text-violet-800 text-opacity-80" />
           </div>
         </div>
 
-        <div className="border shadow-lg rounded-md w-full h-60 flex items-center transition-all duration-300 hover:shadow-lg bg-white sm:h-60">
+        <div className="border shadow-lg rounded-md w-full h-40 flex items-center transition-all duration-300 hover:shadow-lg bg-white sm:h-40">
           <div className="flex-grow ml-8">
             <div>
-              <p className="font-bold">Payout Balance</p>
+              <p className="font-bold">Total Payout </p>
             </div>
             <div>
-              <h2 className="text-2xl font-bold my-2">{balance}</h2>
+              <h2 className="text-2xl font-bold my-2">{allbalance?.total_withdraw}</h2>
             </div>
-            <div>
-              <p>Jan-March 2024</p>
-            </div>
+           
           </div>
           <div className="mr-8 text-5xl text-black p-3 ">
             <HiOutlineCurrencyDollar className="text-pink-700 text-opacity-80" />
           </div>
         </div>
 
-        <div className="border shadow-lg rounded-md w-full h-60 flex items-center transition-all duration-300 hover:shadow-lg bg-white sm:h-60 mb-4">
+        <div className="border shadow-lg rounded-md w-full h-40 flex items-center transition-all duration-300 hover:shadow-lg bg-white sm:h-40 mb-4">
           <div className="flex-grow ml-8">
             <div>
-              <p className="font-bold">Wallet Balance</p>
+              <p className="font-bold">Total Transection </p>
             </div>
             <div>
-              <h2 className="text-2xl font-bold my-2">{balance}</h2>
+              <h2 className="text-2xl font-bold my-2">{allbalance?.total_transfer}</h2>
             </div>
-            <div>
-              <p>Jan-March 2024</p>
-            </div>
+          
           </div>
           <div className="mr-8 text-5xl text-black p-3 ">
             <HiOutlineCurrencyDollar className="text-yellow-500 text-opacity-80" />
@@ -339,7 +345,7 @@ function Balance() {
                       </div>
                       <div className="flex">
                         <input
-                          onChange={(e) => searchData(e.target.value)}
+                        
                           type="text"
                           id="simple-search"
                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
@@ -385,29 +391,23 @@ function Balance() {
                         Date
                       </th>
                       <th scope="col" class="px-4 py-3 lg:w-[200px] md:w-[300px] w-[150px]">
-                        Reference
+                        Amount
                       </th>
 
                       <th scope="col" class="px-4 py-3">
                         Method
                       </th>
                       <th scope="col" class="px-4 py-3">
-                        Amount
+                        Charge
                       </th>
-                      <th scope="col" class="px-4 py-3">
-                        TrxId
-                      </th>
-
-                      <th scope="col" class="px-4 py-3">
-                        customerMsisdn
-                      </th>
+                     
                       <th scope="col" class="px-4 py-3">
                         Status
                       </th>
                     </tr>
                   </thead>
                   <tbody>
-                    {visibleTransactions?.map((transaction, index) => (
+                    {transfer_history?.map((transaction, index) => (
                       <tr
                         className="border-b dark:border-gray-700"
                         key={transaction.id}
@@ -422,32 +422,16 @@ function Balance() {
                           {/* {transaction.created_at && format(transaction.created_at, "dd" + " " + "MMMM" + " " + "yyyy")} */}
                           {formatDateTime(transaction.created_at)}
                         </td>
-                        <td
-                          className="px-4 py-3 relative cursor-pointer break-words word-break-all overflow-hidden "
-                          onClick={() => handleCopy(transaction.id, transaction.reference)}
-                        >
-                          {copiedReferenceId === transaction.id ? (
-                            <div className="absolute top-3 left-5 lg:top-3 lg:left-14 bg-blue-300 text-black text-xs p-1 rounded">
-                              Copied!
-                            </div>
-                          ) : hoveredReferenceId === transaction.id ? (
-                            <div className="absolute top-3 left-5 lg:top-3 lg:left-14 bg-gray-300 text-black text-xs p-1 rounded">
-                              Copy to clipboard
-                            </div>
-                          ) : (
-                            transaction.reference
-                          )}
+                       
+                        <td className="px-4 py-3">
+                          {transaction.total_amount}
+                        </td>
+                        <td className="px-4 py-3">{transaction.method}</td>
+                        <td className="px-4 py-3">
+                          {transaction.charge}{' '}%
                         </td>
                         <td className="px-4 py-3">
-                          {transaction.payment_method}
-                        </td>
-                        <td className="px-4 py-3">{transaction.amount}</td>
-                        <td className="px-4 py-3">{transaction.trxID}</td>
-                        <td className="px-4 py-3">
-                          {transaction.customerMsisdn}
-                        </td>
-                        <td className="px-4 py-3">
-                          {transaction.transactionStatus}
+                          {transaction.status}
                         </td>
                       </tr>
                     ))}
@@ -639,13 +623,13 @@ function Balance() {
               <div className="flex justify-evenly mt-2 items-center">
                 <div className="mt-2 mb-10">
                   <h3 className="text-2xl">
-                    Main Balance = <span>19,999</span>
+                    Main Balance = <span>{allbalance?.wallet}</span>
                   </h3>
 
-                  <h3 className="text-xl text-green-500">
-                    Received Balance = <span>999</span>
+                  <h3 className={`text-xl  ${allbalance?.wallet<inputBalance?"text-red-500":"text-green-500"} `}>
+                    Received Balance = <span>{allbalance?.wallet<inputBalance?"Not Enough Balance":ricived}</span>
                   </h3>
-
+                  
                 </div>
               </div>
               <div className="flex justify-around  gap-x-1 lg:gap-x-5 mt-2 items-center ">
@@ -653,29 +637,38 @@ function Balance() {
                 <div className="mt-2">
                   <select
                     className="border border-blue-500 rounded-md  px-2 py-2   lg:py-2 lg:px-16"
-                    value={selectedBalance}
-                    onChange={handleBalanceChange}
+                    value={select}
+                    onChange={(e)=>{
+                      setselect(e.target.value);
+                    }}
                   >
-                    <option value="Select Balance">Select Balance</option>
-                    <option value="Robotics Balance">Robotics Balance</option>
-                    <option value="Withdraw Balance">Withdraw Balance</option>
+                    <option value={0}>Select Balance</option>
+                    <option value={1}>Robotics Balance</option>
+                    <option value={2}>Withdraw Balance</option>
                   </select>
                 </div>
                 <div className="mt-2">
                   <h3 className="text-md text-red-500 border border-red-500 rounded-md py-1 px-3 lg:py-1 lg:px-6">
-                    Charge  {getChargePercentage()}
+                    Charge  {charge}
                   </h3>
                 </div>
               </div>
-              <form onSubmit={handleSubmit}>
+              <form action={handleSubmit}>
                 <div className="mt-2 px-7 py-3">
                   <label className="flex justify-start my-2">{getPlaceholderText()}</label>
                   <input
-                    type="text"
+                    type="number"
                     className="w-full px-4 py-2 border rounded-md border-blue-500"
                     placeholder={getPlaceholderText()}
-                    value={subject}
-                    onChange={(e) => setSubject(e.target.value)}
+                    value={inputBalance}
+                    onChange ={(e) =>{   
+                      if(e.target.value>0) {
+                        setInputBalance(Math.floor(e.target.value))    
+                      } else{
+                        setInputBalance('')    
+                      }                             
+                                       
+                     }}
                     required
                   />
                 </div>
