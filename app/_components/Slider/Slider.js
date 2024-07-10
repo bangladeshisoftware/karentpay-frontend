@@ -22,7 +22,7 @@ const Slider = () => {
           Instant Withdraw
         </>
       ),
-      firstButtonLink: '/auth/signup',
+      firstButtonLink: '/auth/login',
       firstButtonText: 'Become a Merchant',
       secondButtonLink: '/contact',
       secondButtonText: 'Contact'
@@ -37,7 +37,7 @@ const Slider = () => {
           Instant Withdraw
         </>
       ),
-      firstButtonLink: '/auth/signup',
+      firstButtonLink: '/auth/login',
       firstButtonText: 'Become a Merchant',
       secondButtonLink: '/contact',
       secondButtonText: 'Contact '
