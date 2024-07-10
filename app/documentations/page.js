@@ -4,6 +4,7 @@ import ApiRequest from "@/app/_lib/Api_request";
 import { GetCookies } from "@/app/_lib/cookiesSetting";
 import { toast } from "react-toastify";
 const { convert } = require('html-to-text');
+import parse from 'html-react-parser';
 
 const Documentations = () => {
 
@@ -28,11 +29,8 @@ const Documentations = () => {
       });
 
       if (response.status === 200) {
-        const formattedData = response.data.map(item => ({
-          ...item,
-          description: htmlToText(item.description) // Convert HTML to plain text
-        }));
-        setData(formattedData);
+      
+        setData(response.data);
       } else {
         toast.error(response.message);
       }
@@ -44,10 +42,6 @@ const Documentations = () => {
   };
 
   // Function to convert HTML to plain text
-  const htmlToText = (html) => {
-    let doc = new DOMParser().parseFromString(html, 'text/html');
-    return doc.body.textContent || "";
-  };
 
   // if (loading) return <p>Loading...</p>; // Render loading indicator while fetching data
 
@@ -59,7 +53,7 @@ const Documentations = () => {
         {data.map((item, index) => (
           <div key={index} className='mb-4 bg-white rounded-md px-2 py-2'>
             <h2 className='text-2xl my-2 gradient-text'>{item.title}</h2>
-            <p className='text-lg  text-gray-700'>{convert(item.description, options).replace(/"/g, "")}</p>
+            <p className='text-lg  text-gray-700'>{parse(item.description)}</p>
           </div>
         ))}
       </div>
