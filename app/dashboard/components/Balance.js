@@ -303,7 +303,7 @@ const handleSubmit = async() => {
         <div className="border shadow-lg rounded-md w-full h-40 flex items-center transition-all duration-300 hover:shadow-lg bg-white sm:h-40 mb-4">
           <div className="flex-grow ml-8">
             <div>
-              <p className="font-bold">Total Transection </p>
+              <p className="font-bold">Total Transaction Balance</p>
             </div>
             <div>
               <h2 className="text-2xl font-bold my-2">{allbalance?.total_transfer}</h2>
@@ -380,7 +380,7 @@ const handleSubmit = async() => {
                   </div>
                 </div>
               </div>
-              <div class="overflow-x-auto h-[60%]">
+              <div class="overflow-x-auto h-[100%]">
                 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                   <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>

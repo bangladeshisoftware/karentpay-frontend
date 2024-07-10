@@ -9,6 +9,7 @@ const Header = () => {
  
   return (
     <header>
+      
       <TopBar />
       <NavBar />
     </header>

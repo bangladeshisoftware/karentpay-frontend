@@ -43,9 +43,9 @@ const Documentations = () => {
     return doc.body.textContent || "";
   };
 
-  if (loading) return <p>Loading...</p>; // Render loading indicator while fetching data
+  // if (loading) return <p>Loading...</p>; // Render loading indicator while fetching data
 
-  if (error) return <p>Error: {error}</p>; // Render error message if request fails
+  // if (error) return <p>Error: {error}</p>; // Render error message if request fails
 
   return (
     <div className='scale-x-95 lg:scale-x-100 lg:container'>
