@@ -380,7 +380,7 @@ const handleSubmit = async() => {
                   </div>
                 </div>
               </div>
-              <div class="overflow-x-auto h-[100%]">
+              <div class="overflow-x-auto h-96">
                 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                   <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
@@ -540,7 +540,7 @@ const handleSubmit = async() => {
                 </ul>
               </nav> */}
               <nav
-                className="flex flex-col mt-2 md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0 p-16"
+                className="flex flex-col mt-2 md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0 p-16 "
                 aria-label="Table navigation"
               >
                 <span className="text-sm font-normal text-gray-500 dark:text-gray-400">
