@@ -1,10 +1,10 @@
 "use client";
-import React, { useState,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { FaPlus } from "react-icons/fa";
 import Datepicker from "react-tailwindcss-datepicker";
 import ApiRequest from "@/app/_lib/Api_request";
 import { format } from "date-fns";
-import {toast} from 'react-toastify';
+import { toast } from 'react-toastify';
 
 
 
@@ -19,40 +19,40 @@ function Wtransactions() {
   const closeModal = () => setShowModal(false);
 
 
-  const[transactions,setTransactions]=useState([]);
+  const [transactions, setTransactions] = useState([]);
 
 
-  useEffect(()=>{
+  useEffect(() => {
     getWithdrw();
-  },[])
+  }, [])
 
-  const getWithdrw=async()=>{   
-      const response = await ApiRequest({
-        url: "/withdraw_history",
-        method: "get",
-      });
+  const getWithdrw = async () => {
+    const response = await ApiRequest({
+      url: "/withdraw_history",
+      method: "get",
+    });
+    console.log(response);
+    if (response.status === 200) {
+      setTransactions(response.data);
+    } else {
       console.log(response);
-      if (response.status === 200) {
-        setTransactions(response.data);         
-      } else {
-        console.log(response);
-      }   
+    }
   }
- 
 
-  
 
-  const withdrawReq=async(formdata)=>{
+
+
+  const withdrawReq = async (formdata) => {
     const response = await ApiRequest({
       url: "/withdrawal_request",
-      formdata:formdata,
-     
+      formdata: formdata,
+
     });
     console.log(response);
     if (response.status === 201) {
-      toast.success("Withdraw Request Success");      
+      toast.success("Withdraw Request Success");
       getWithdrw();
-      closeModal();      
+      closeModal();
     } else {
       console.log(response);
       toast.error(response.message);
@@ -62,40 +62,40 @@ function Wtransactions() {
 
 
 
-  const[search,setSearch]=useState('');
+  const [search, setSearch] = useState('');
 
-  useEffect(()=>{
-    if(search !=''&& search.length>0){
-    getWithdrwSearch();
+  useEffect(() => {
+    if (search != '' && search.length > 0) {
+      getWithdrwSearch();
     }
-  },[search])
-  const getWithdrwSearch=async()=>{
+  }, [search])
+  const getWithdrwSearch = async () => {
     const response = await ApiRequest({
       url: "/withdrawal_request_search",
-      formdata:{search:search},
-     
+      formdata: { search: search },
+
     });
     if (response.status == 200) {
       setTransactions(response.data);
     } else {
       console.log(response);
     }
-    
+
   }
 
-  const handleDateRangeChange =async (newValue) => {
+  const handleDateRangeChange = async (newValue) => {
     console.log("newValue:", newValue);
     setDateRange(newValue);
     const response = await ApiRequest({
       url: "/withdraw_history_by_date",
-      formdata:{startDate:newValue.startDate,endDate:newValue.endDate},
+      formdata: { startDate: newValue.startDate, endDate: newValue.endDate },
     });
     console.log(response);
     if (response.status === 200) {
-      setTransactions(response.data);         
+      setTransactions(response.data);
     } else {
       console.log(response);
-    }  
+    }
 
 
 
@@ -113,8 +113,31 @@ function Wtransactions() {
     );
   };
 
-  
- 
+  // Pagination logic
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 4;
+  const totalItems = transactions.length;
+  const totalPages = Math.ceil(totalItems / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const visibleTransactions = transactions.slice(
+    startIndex,
+    startIndex + itemsPerPage
+  );
+
+  const handleNextPage = () => {
+    setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages));
+  };
+
+  const handlePreviousPage = () => {
+    setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
+  };
+
+  const handlePageClick = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+
+
 
   return (
     <div className="mt-10 ">
@@ -129,7 +152,7 @@ function Wtransactions() {
               <div className="relative  flex flex-col md:flex-row items-center space-y-3 md:space-y-0 md:space-x-4 p-4 ">
                 <div className="w-full md:w-full">
                   <form className="flex items-center">
-                    <label htmlFor="simple-search"  className="sr-only">
+                    <label htmlFor="simple-search" className="sr-only">
                       Search
                     </label>
                     <div className="relative w-full ">
@@ -151,7 +174,7 @@ function Wtransactions() {
                       <div className="grid grid-flow-col w-[100%]">
                         <input
                           value={search}
-                          onChange={(e)=>{
+                          onChange={(e) => {
                             setSearch(e.target.value)
                           }}
                           type="text"
@@ -160,7 +183,7 @@ function Wtransactions() {
                           placeholder="Search"
                           required=""
                         />
-                       
+
                         <button
                           type="button"
                           className="btn bg-gradient-2 text-white justify-center rounded-md ml-2 mr-2 pr-2 flex items-center"
@@ -205,18 +228,18 @@ function Wtransactions() {
                         Sl
                       </th>
                       <th scope="col" className="px-4 py-3">
-                      Payment Method
+                        Payment Method
                       </th>
                       <th scope="col" className="px-4 py-3">
-                        Currency 
+                        Currency
                       </th>
                       <th scope="col" className="px-4 py-3">
                         Amount
-                      </th>                    
+                      </th>
                       <th scope="col" className="px-4 py-3">
                         Withdraw Address
                       </th>
-                    
+
                       <th scope="col" className="px-4 py-3">
                         Trxid
                       </th>
@@ -226,11 +249,11 @@ function Wtransactions() {
                       <th scope="col" className="px-4 py-3">
                         Date
                       </th>
-                     
+
                     </tr>
                   </thead>
                   <tbody>
-                    {transactions?.map((transaction,index) => (
+                    {visibleTransactions?.map((transaction, index) => (
                       <tr
                         key={index}
                         className="border-b dark:border-gray-700"
@@ -239,7 +262,7 @@ function Wtransactions() {
                           scope="row"
                           className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                         >
-                          {index+1}
+                          {startIndex + index + 1}
                         </th>
                         <td className="px-4 py-3">{transaction.method}</td>
                         <td className="px-4 py-3">
@@ -249,8 +272,8 @@ function Wtransactions() {
                         <td className="px-4 py-3">
                           {transaction.number}
                         </td>
-                        <td className="px-4 py-3">{transaction.trxID?transaction.trxID:"None"}</td>
-                        <td className="px-4 py-3">{transaction.status?transaction.status:''}</td>
+                        <td className="px-4 py-3">{transaction.trxID ? transaction.trxID : "None"}</td>
+                        <td className="px-4 py-3">{transaction.status ? transaction.status : ''}</td>
                         <td className="px-4 py-3">
                           {/* {transaction?.created_at && format(transaction?.created_at, "dd MMMM yyyy")} */}
                           {formatDateTime(transaction.created_at)}
@@ -262,7 +285,7 @@ function Wtransactions() {
                 </table>
               </div>
               {/* showing page number & table */}
-              <nav
+              {/* <nav
                 class="flex flex-col mt-24  md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0 p-16"
                 aria-label="Table navigation"
               >
@@ -361,6 +384,75 @@ function Wtransactions() {
                     </a>
                   </li>
                 </ul>
+              </nav> */}
+              <nav
+                className="flex flex-col mt-2 md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0 p-16 "
+                aria-label="Table navigation"
+              >
+                <span className="text-sm font-normal text-gray-500 dark:text-gray-400">
+                  Showing {startIndex + 1} -{" "}
+                  {Math.min(startIndex + itemsPerPage, totalItems)} of{" "}
+                  {totalItems} Transactions
+                </span>
+                <ul className="inline-flex items-stretch -space-x-px">
+                  <li>
+                    <button
+                      onClick={handlePreviousPage}
+                      className="flex items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                      disabled={currentPage === 1}
+                    >
+                      <span className="sr-only">Previous</span>
+                      <svg
+                        className="w-5 h-5"
+                        aria-hidden="true"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    </button>
+                  </li>
+                  {Array.from({ length: totalPages }, (_, i) => (
+                    <li key={i}>
+                      <button
+                        onClick={() => handlePageClick(i + 1)}
+                        className={`flex items-center justify-center text-sm py-2 px-3 leading-tight ${currentPage === i + 1
+                          ? "text-primary-600 bg-primary-50 border border-primary-300"
+                          : "text-gray-500 bg-white border border-gray-300"
+                          } hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white`}
+                      >
+                        {i + 1}
+                      </button>
+                    </li>
+                  ))}
+                  <li>
+                    <button
+                      onClick={handleNextPage}
+                      className="flex items-center justify-center h-full py-1.5 px-3 leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                      disabled={currentPage === totalPages}
+                    >
+                      <span className="sr-only">Next</span>
+                      <svg
+                        className="w-5 h-5"
+                        aria-hidden="true"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    </button>
+                  </li>
+                </ul>
               </nav>
             </div>
           </div>
@@ -392,73 +484,73 @@ function Wtransactions() {
                 </svg>
               </button>
             </div>
-            <form action={withdrawReq}>             
-            <div className="p-6">                  
-              <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700">
-                  Currency Name
-                </label>
-                <select
-                name="currency"
-                required
-                 className="mt-1 block w-full pl-4 py-4 rounded-md border shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                  <option value=''>--Select--</option>
-                  <option value='BDT'>BDT</option>
-                  <option value='USD'>USD</option>
-                </select>
+            <form action={withdrawReq}>
+              <div className="p-6">
+                <div className="mb-4">
+                  <label className="block text-sm font-medium text-gray-700">
+                    Currency Name
+                  </label>
+                  <select
+                    name="currency"
+                    required
+                    className="mt-1 block w-full pl-4 py-4 rounded-md border shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                    <option value=''>--Select--</option>
+                    <option value='BDT'>BDT</option>
+                    <option value='USD'>USD</option>
+                  </select>
+                </div>
+                <div className="mb-4">
+                  <label className="block text-sm font-medium text-gray-700">
+                    Network
+                  </label>
+                  <select
+                    name="method"
+                    required
+                    className="mt-1 block w-full pl-4 py-4 rounded-md border shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                    <option value=''>--Select--</option>
+                    <option value='bkash'>Bkash</option>
+                    <option value='nagad'>Nagad</option>
+                    <option value='upay'>Upay</option>
+                    <option value='roket'>Roket</option>
+                    <option value='mycash'>MyCash</option>
+                    <option value='okwallet'>Ok Wallet</option>
+                    <option value='phonepay'>PhonePay</option>
+                    <option value='paytm'>PayTm</option>
+                    <option value='freecharge'>FreeCharge</option>
+                    <option value='airtelpaymentbank'>Airtel Payments Bank</option>
+                  </select>
+                </div>
+                <div className="mb-4">
+                  <label className="block text-sm font-medium text-gray-700">
+                    Deposit Address
+                  </label>
+                  <input
+                    name="account"
+                    required
+                    type="text"
+                    className="mt-1 block w-full pl-4 py-4 rounded-md border shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                  />
+                </div>
+                <div className="mb-4">
+                  <label className="block text-sm font-medium text-gray-700">
+                    Amount
+                  </label>
+                  <input
+                    type="text"
+                    name="amount"
+                    required
+                    className="mt-1 block w-full pl-4 py-4 rounded-md border shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                  />
+                </div>
+                <div className="flex justify-around">
+                  <button
+                    type="submit"
+                    className="btn bg-gradient-2 text-white px-36  md:px-48 lg:px-72 py-2 rounded-md">
+                    Submit
+                  </button>
+                </div>
+
               </div>
-              <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700">
-                  Network
-                </label>
-                <select 
-                name="method"
-                required
-                className="mt-1 block w-full pl-4 py-4 rounded-md border shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                  <option value=''>--Select--</option>
-                  <option value='bkash'>Bkash</option>
-                  <option value='nagad'>Nagad</option>
-                  <option value='upay'>Upay</option>
-                  <option value='roket'>Roket</option>
-                  <option value='mycash'>MyCash</option>
-                  <option value='okwallet'>Ok Wallet</option>
-                  <option value='phonepay'>PhonePay</option>
-                  <option value='paytm'>PayTm</option>
-                  <option value='freecharge'>FreeCharge</option>
-                  <option value='airtelpaymentbank'>Airtel Payments Bank</option>
-                </select>
-              </div>
-              <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700">
-                  Deposit Address
-                </label>
-                <input
-                 name="account"
-                 required
-                  type="text"
-                  className="mt-1 block w-full pl-4 py-4 rounded-md border shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                />
-              </div>
-              <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700">
-                  Amount
-                </label>
-                <input
-                  type="text"
-                  name="amount"
-                  required
-                  className="mt-1 block w-full pl-4 py-4 rounded-md border shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                />
-              </div>
-              <div className="flex justify-around">
-                <button
-                 type="submit"
-                  className="btn bg-gradient-2 text-white px-36  md:px-48 lg:px-72 py-2 rounded-md">
-                  Submit
-                </button>
-              </div>
-              
-            </div>
             </form>
           </div>
         </div>
