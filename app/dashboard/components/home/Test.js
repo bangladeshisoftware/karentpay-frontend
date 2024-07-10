@@ -77,9 +77,9 @@ const Test = () => {
     <div className="mx-auto mt-5">
       <div className="w-full border p-3 mt-3 rounded-md lg:flex items-center justify-between">
         <h3 className="text-xl font-semibold">API keys</h3>
-        <Link className="" href="#">
+        <Link className="" href="/documentations">
           <span className="text-sm text-[#2F65EC] font-medium flex items-center">
-            Learn more about API Authentication{" "}
+             API Documentation{" "}
             <IoIosArrowRoundForward fontSize={20} />
           </span>
         </Link>

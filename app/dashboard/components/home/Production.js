@@ -105,9 +105,9 @@ export default function Production() {
     <div className=" mt-5">
       <div className="w-full border lg:p-3 mt-3 rounded-md lg:flex  lg:items-center lg:justify-between ">
         <h3 className="text-xl font-semibold"> API keys</h3>
-        <Link className="" target="_blank" href="#">
+        <Link className="" href="/documentations">
           <span className="text-sm text-[#2F65EC] font-medium flex items-center">
-            Learn more about API Authentication{" "}
+             API Documentation{" "}
             <IoIosArrowRoundForward fontSize={20} />
           </span>
         </Link>
