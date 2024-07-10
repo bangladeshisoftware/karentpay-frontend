@@ -11,7 +11,7 @@ const PriceCard3 = () => {
           <div className='mt-1  text-xl'>
             <CiBookmarkCheck />
           </div>
-          <div className='ml-1  text-xl'>Diamond</div>
+          <div className='ml-1  text-xl'>Withdraw</div>
         </div>
         <div>
           <h1 className='text-xl text-center text-white pb-2 font-bold'>

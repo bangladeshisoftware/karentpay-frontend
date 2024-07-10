@@ -20,7 +20,7 @@ const PriceCard2 = () => {
           <div className='mt-1  text-xl'>
             <CiBookmarkCheck />
           </div>
-          <div className='ml-1 text-xl'>Gold</div>
+          <div className='ml-1 text-xl'>Payout</div>
         </div>
         <div>
           <h1 className='text-xl text-center text-white font-bold pb-2'>
