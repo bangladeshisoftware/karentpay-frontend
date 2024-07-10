@@ -14,50 +14,71 @@ const Question = () => {
   const faqs = [
     {
       id: 1,
-      question: 'What is included in Google One AI Premium plan?',
+      question: 'What payment methods does Karentpay support?',
       answer:
-        'Next.js is a React framework that enables several extra features, including server-side rendering and generating static websites.'
+      'Karentpay supports a wide range of payment methods including credit cards, debit cards, digital wallets (such as Apple Pay and Google Wallet), and bank transfers. This flexibility allows you to cater to a broad customer base and enhance their payment experience.'
     },
     {
       id: 2,
-      question: 'What is Gemini Advanced?',
+      question: "How secure is Karentpay's payment gateway?",
       answer:
-        'You can create a new page in Next.js by adding a new file in the `pages` directory. The file name will determine the route path.'
+        'Security is our top priority at Karentpay. We use advanced encryption, tokenization, and fraud detection technologies to protect sensitive payment data. Our system complies with global security standards such as PCI-DSS, ensuring that every transaction is secure.'
     },
     {
       id: 3,
       question:
-        'Can I share the AI benefits included in the Google One AI Premium plan',
+        'How can I integrate Karentpay with my website or app?',
       answer:
-        'You can create a new page in Next.js by adding a new file in the `pages` directory. The file name will determine the route path.'
+        'Integrating Karentpay is easy with our comprehensive API and detailed documentation. We provide step-by-step guides and support for various platforms, making the integration process smooth and straightforward. If you encounter any issues, our support team is always ready to assist'
     },
     {
       id: 4,
       question:
-        'I am a Google Workspace customer, can I sign up for the AI Premium plan?',
+        'What currencies does Karentpay support?',
       answer:
-        'You can create a new page in Next.js by adding a new file in the `pages` directory. The file name will determine the route path.'
+        'Karentpay supports multiple currencies, allowing you to accept payments from customers around the world. This feature is particularly beneficial for businesses looking to expand their global reach.'
     },
     {
       id: 5,
       question:
-        'I am a Google Workspace customer, can I sign up for the AI Premium plan?',
+        'Can I receive real-time payment notifications?',
       answer:
-        'You can create a new page in Next.js by adding a new file in the `pages` directory. The file name will determine the route path.'
+        'Yes, Karentpay provides real-time payment notifications. You can receive instant updates on payment statuses via email, SMS, or through our API, enabling you to manage transactions efficiently and provide timely responses to your customers.'
     },
     {
       id: 6,
       question:
-        'I am a Google Workspace customer, can I sign up for the AI Premium plan?',
+        'What are the fees associated with using Karentpay?',
       answer:
-        'You can create a new page in Next.js by adding a new file in the `pages` directory. The file name will determine the route path.'
+        'Karentpay offers competitive and transparent pricing. Our fees vary depending on the payment methods and transaction volumes. For detailed pricing information, please visit our pricing page or contact our sales team.'
     },
     {
       id: 7,
       question:
-        'I am a Google Workspace customer, can I sign up for the AI Premium plan?',
+        'How do I get support if I encounter any issues?',
       answer:
-        'You can create a new page in Next.js by adding a new file in the `pages` directory. The file name will determine the route path.'
+        'Our dedicated support team is available 24/7 to assist you with any issues or questions. You can reach out to us via email, phone, or live chat. Additionally, our extensive knowledge base and community forum are great resources for finding quick solutions.'
+    },
+    {
+      id: 8,
+      question:
+        'Can I access detailed reports and analytics?',
+      answer:
+        'Yes, Karentpay provides a comprehensive analytics dashboard. You can track transaction trends, customer behavior, revenue growth, and more. These insights help you make informed decisions and optimize your business strategy.'
+    },
+    {
+      id: 9,
+      question:
+        'Does Karentpay support recurring payments and subscriptions?',
+      answer:
+        'Absolutely! Karentpay offers robust support for recurring payments and subscription billing. This feature is perfect for businesses that offer subscription-based services, ensuring a seamless and automated billing process for your customers.'
+    },
+    {
+      id: 10,
+      question:
+        'How do I get started with Karentpay?',
+      answer:
+        'Getting started with Karentpay is simple. Sign up on our website to create an account, complete the verification process, and integrate our payment gateway with your platform. If you need any assistance during the setup, our support team is here to help every step of the way.'
     }
   ];
   return (
@@ -90,4 +111,4 @@ const Question = () => {
   );
 };
 
-export default Question;
+export default Question

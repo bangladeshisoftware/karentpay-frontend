@@ -1,6 +1,9 @@
 import flexibilityImage from "@/app/_assets/yay.png";
 import secureApiImage from "@/app/_assets/secure.png";
 import notificationImage from "@/app/_assets/notification.png";
+import global from "@/app/_assets/targeting.png"
+import easyIntegration from "@/app/_assets/data-integration.png"
+import customerSupport from "@/app/_assets/customer-agent.png"
 import {
   Card,
   CardContent,
@@ -29,7 +32,7 @@ const Features = () => {
         '<a href="https://www.freepik.com/icon/shield_1161388#fromView=search&page=1&position=1&uuid=2e3a143b-b064-4569-915d-127d3d9fc968">Icon by Freepik</a>',
       title: "Secure API",
       description:
-        "Moneybag connects merchants via a secure payment pages, forms or payment APIs. Moneybag also has the ability to...",
+        "Security is our top priority. Our API is built with robust security protocols to protect sensitive payment data. With end-to-end encryption and compliance with global security standards, you can be confident that every transaction is safe and secure.",
     },
     {
       id: 3,
@@ -38,34 +41,34 @@ const Features = () => {
         '<a href="https://www.freepik.com/icon/notification_8763138#fromView=search&page=1&position=1&uuid=22891ff7-4e59-4c35-bbdf-6844396e220c">Icon by Freepik</a>',
       title: "Payment Notification",
       description:
-        "Moneybag provides instant Payment Notifications, In-App Notifications, SMS Notifications, and Email Notifications...",
+        "Stay informed with real-time payment notifications. Our system provides instant updates on payment statuses, enabling you to manage transactions efficiently and provide timely responses to your customers",
     },
     {
-      id: 3,
-      image: notificationImage,
+      id: 4,
+      image: global,
       imageAltText:
-        '<a href="https://www.freepik.com/icon/notification_8763138#fromView=search&page=1&position=1&uuid=22891ff7-4e59-4c35-bbdf-6844396e220c">Icon by Freepik</a>',
-      title: "Payment Notification",
+        '<a href="https://www.flaticon.com/free-icons/reach" title="reach icons">Reach icons created by smashingstocks - Flaticon</a>',
+      title: "Global Reach",
       description:
-        "Moneybag provides instant Payment Notifications, In-App Notifications, SMS Notifications, and Email Notifications...",
+        "Expand your business globally with our payment gateway that supports multiple currencies and international transactions, allowing you to reach customers around the world effortlessly.",
     },
     {
-      id: 3,
-      image: notificationImage,
+      id: 5,
+      image: easyIntegration,
       imageAltText:
         '<a href="https://www.freepik.com/icon/notification_8763138#fromView=search&page=1&position=1&uuid=22891ff7-4e59-4c35-bbdf-6844396e220c">Icon by Freepik</a>',
-      title: "Payment Notification",
+      title: "Easy Integration",
       description:
-        "Moneybag provides instant Payment Notifications, In-App Notifications, SMS Notifications, and Email Notifications...",
+        "Our platform offers easy integration with various e-commerce platforms, shopping carts, and mobile applications. Our detailed documentation and support team ensure a hassle-free setup process.",
     },
     {
-      id: 3,
-      image: notificationImage,
+      id: 6,
+      image: customerSupport,
       imageAltText:
         '<a href="https://www.freepik.com/icon/notification_8763138#fromView=search&page=1&position=1&uuid=22891ff7-4e59-4c35-bbdf-6844396e220c">Icon by Freepik</a>',
-      title: "Payment Notification",
+      title: "Customer Support",
       description:
-        "Moneybag provides instant Payment Notifications, In-App Notifications, SMS Notifications, and Email Notifications...",
+        "We provide round-the-clock customer support to assist you with any issues or queries. Our dedicated team is always ready to help you ensure your payment processes run smoothly.",
     },
   ];
 
@@ -87,7 +90,7 @@ const Features = () => {
                 className="w-20 mb-2"
               />
               <CardTitle>{feature.title}</CardTitle>
-              <CardDescription>{feature.description}</CardDescription>
+              <CardDescription className="text-justify text-sm">{feature.description}</CardDescription>
             </CardHeader>
           </Card>
         ))}

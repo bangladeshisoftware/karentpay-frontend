@@ -11,24 +11,24 @@ const GetMore = () => {
       id: 1,
       image: img1,
       description:
-        "Edison bulb retro cloud bread echo park, helvetica stumptown taiyaki taxidermy 90's cronut +1 .",
-      title: "ALPER KAMU",
+        "Effortlessly integrate Karentpay with your existing systems and platforms. Our user-friendly API and detailed documentation make the setup process quick and straightforward, allowing you to start processing payments without any delays.",
+      title: "Seamless Integration",
       link: "UI Developer",
     },
     {
       id: 2,
       image: img2,
       description:
-        "Edison bulb retro cloud bread echo park, helvetica stumptown taiyaki taxidermy 90's cronut +1 kinfolk ",
-      title: "David Kameron",
+        "Protect your transactions with Karentpay's advanced security features. We employ cutting-edge encryption and fraud detection technologies to ensure your data and your customers' data remain safe and secure, gi ",
+      title: "Enhanced Security",
       link: "Frontend Developer",
     },
     {
       id: 3,
       image: img3,
       description:
-        "Edison bulb retro cloud bread echo park, helvetica stumptown taiyaki taxidermy 90's cronut +1",
-      title: "Lomer Smith",
+        "Join the Karentpay family and benefit from our exceptional customer support. Our dedicated team is available 24/7 to assist you with any issues or questions, ensuring you have the support you need to keep your business running smoothly",
+      title: "Dedicated Support",
       link: "Businessman",
     },
   ];
@@ -68,7 +68,7 @@ const GetMore = () => {
                 />
                 <div className="px-4 pb-10">
                   <h2 className="font-bold text-lg">{m.title}</h2>
-                  <p className="">{m.description}</p>
+                  <p className="text-justify">{m.description}</p>
                   <Link
                     href={m.link}
                     className="block w-fit mt-3 px-6 py-2 rounded bg-blue-600 text-white text-sm"
