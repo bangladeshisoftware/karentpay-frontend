@@ -16,13 +16,13 @@ function Home() {
         <div className="border shadow-lg rounded-md w-full h-60 flex items-center transition-all duration-300 hover:shadow-lg bg-white sm:h-60">
           <div className="flex-grow ml-8">
             <div>
-              <p className="font-bold">New User</p>
+              <p className="font-bold">Main Balance</p>
             </div>
             <div>
-              <h2 className="text-2xl font-bold my-2">8,235</h2>
+              <h2 className="text-2xl font-bold my-2">0</h2>
             </div>
             <div>
-              <p>Jan-March 2024</p>
+              <p>Working Progress</p>
             </div>
           </div>
           <div className="mr-8 text-5xl text-black p-3 ">
@@ -35,13 +35,13 @@ function Home() {
         <div className="border shadow-lg rounded-md w-full h-60 flex items-center transition-all duration-300 hover:shadow-lg bg-white sm:h-60">
           <div className="flex-grow ml-8">
             <div>
-              <p className="font-bold">Total Order</p>
+              <p className="font-bold">All Robotic Balance</p>
             </div>
             <div>
-              <h2 className="text-2xl font-bold my-2">200,235</h2>
+              <h2 className="text-2xl font-bold my-2">0</h2>
             </div>
             <div>
-              <p>Jan-March 2024</p>
+              <p>Working Progress</p>
             </div>
           </div>
           <div className="mr-8 text-5xl text-black p-3">
@@ -51,13 +51,13 @@ function Home() {
         <div className=" md:col-span-2 lg:col-span-1 border shadow-lg rounded-md w-full h-60 flex items-center transition-all duration-300 hover:shadow-lg bg-white">
           <div className="flex-grow ml-8">
             <div>
-              <p className="font-bold">Available Product</p>
+              <p className="font-bold">All Withdraw Balance</p>
             </div>
             <div>
-              <h2 className="text-2xl font-bold my-2">221,235</h2>
+              <h2 className="text-2xl font-bold my-2">0</h2>
             </div>
             <div>
-              <p>Jan-March 2024</p>
+              <p>Working Progress</p>
             </div>
           </div>
           <div className="mr-8 text-5xl text-black p-3">
@@ -70,13 +70,13 @@ function Home() {
         <div className=" md:col-span-1 lg:col-span-2 border shadow-lg rounded-md w-full h-60 flex items-center transition-all duration-300 hover:shadow-lg bg-white">
           <div className="flex-grow ml-8">
             <div>
-              <p className="font-bold">New User</p>
+              <p className="font-bold">All Cash in Balance</p>
             </div>
             <div>
-              <h2 className="text-2xl font-bold my-2">8,235</h2>
+              <h2 className="text-2xl font-bold my-2">0</h2>
             </div>
             <div>
-              <p>Jan-March 2024</p>
+              <p>Working Progress</p>
             </div>
           </div>
           <div className="mr-8 text-5xl text-black p-3">
@@ -86,13 +86,13 @@ function Home() {
         <div className="border shadow-lg rounded-md w-full h-60 flex items-center transition-all duration-300 hover:shadow-lg bg-white sm:h-60">
           <div className="flex-grow ml-8">
             <div>
-              <p className="font-bold">Total Order</p>
+              <p className="font-bold">All Payout Balance</p>
             </div>
             <div>
-              <h2 className="text-2xl font-bold my-2">200,235</h2>
+              <h2 className="text-2xl font-bold my-2">0</h2>
             </div>
             <div>
-              <p>Jan-March 2024</p>
+              <p>Working Progress</p>
             </div>
           </div>
           <div className="mr-8 text-5xl text-black p-3">
@@ -105,13 +105,13 @@ function Home() {
         <div className="border shadow-lg col-span-3 md:col-span-3 lg:col-span-3 rounded-md w-full h-60   text-black flex items-center transition-all duration-300 hover:shadow-lg bg-white sm:h-60">
           <div className="flex-grow ml-8">
             <div>
-              <p className="font-bold">Available Product</p>
+              <p className="font-bold">All Transaction Balance</p>
             </div>
             <div>
-              <h2 className="text-2xl font-bold my-2">221,235</h2>
+              <h2 className="text-2xl font-bold my-2">0</h2>
             </div>
             <div>
-              <p>Jan-March 2024</p>
+              <p>Working Progress</p>
             </div>
           </div>
           <div className="mr-8 text-5xl text-black p-3">
