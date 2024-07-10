@@ -159,13 +159,13 @@ function Support() {
         <div className="border shadow-lg rounded-md w-full h-60 flex items-center transition-all duration-300 hover:shadow-lg bg-white sm:h-60">
           <div className="flex-grow ml-8">
             <div>
-              <p className="font-bold">Total Ticket</p>
+              <p className="font-bold">All Ticket</p>
             </div>
             <div>
-              <h2 className="text-2xl font-bold my-2">200</h2>
+              <h2 className="text-2xl font-bold my-2">0</h2>
             </div>
             <div>
-              <p>Jan-March 2024</p>
+              <p>Work in progress</p>
             </div>
           </div>
           <div className="mr-8 text-5xl text-black p-3 ">
@@ -176,34 +176,34 @@ function Support() {
         <div className="border shadow-lg rounded-md w-full h-60 flex items-center transition-all duration-300 hover:shadow-lg bg-white sm:h-60">
           <div className="flex-grow ml-8">
             <div>
-              <p className="font-bold">Booked Ticket</p>
+              <p className="font-bold">Open Ticket</p>
             </div>
             <div>
-              <h2 className="text-2xl font-bold my-2">75</h2>
+              <h2 className="text-2xl font-bold my-2">0</h2>
             </div>
             <div>
-              <p>Jan-March 2024</p>
+              <p>Work in progress</p>
             </div>
           </div>
           <div className="mr-8 text-5xl text-black p-3 ">
-            <MdAirplaneTicket className="text-green-700 text-opacity-80" />
+            <MdOutlineAirplaneTicket className="text-green-700 text-opacity-80" />
           </div>
         </div>
 
         <div className="border shadow-lg rounded-md w-full h-60 flex items-center transition-all duration-300 hover:shadow-lg bg-white sm:h-60">
           <div className="flex-grow ml-8">
             <div>
-              <p className="font-bold">Available Ticket</p>
+              <p className="font-bold">Closed Ticket</p>
             </div>
             <div>
-              <h2 className="text-2xl font-bold my-2">175</h2>
+              <h2 className="text-2xl font-bold my-2">0</h2>
             </div>
             <div>
-              <p>Jan-March 2024</p>
+              <p>Work in progress</p>
             </div>
           </div>
           <div className="mr-8 text-5xl text-black p-3 ">
-            <MdOutlineAirplaneTicket className="text-blue-700 text-opacity-80" />
+            <MdAirplaneTicket className="text-blue-700 text-opacity-80" />
           </div>
         </div>
 
