@@ -140,20 +140,25 @@ function Wtransactions() {
 
   useEffect(()=>{
     getPayment();
-  })
+  },[])
   const getPayment=async()=>{
     const response = await ApiRequest({
-      url: "/payment_history",
+      url: "/get_withdraw_type",
       method: "get",
     });
     console.log(response);
     if (response.status === 200) {
-      setTransactions(response.data);
+      setMaindata(response.data);
     } else {
       console.log(response);
     }
   }
 
+
+  const changeType = (name)=>{
+    let filteredData  = maindata.filter((data) =>  data.method === name);
+    setData(filteredData)
+  }
 
   return (
     <div className="mt-10 ">
@@ -296,7 +301,7 @@ function Wtransactions() {
                         </td>
                         {/* <td className="px-4 py-3 flex items-center justify-end"></td> */}
                       </tr>
-                    ))}
+                    ))}shamimlem@yahoo.com
                   </tbody>
                 </table>
               </div>
@@ -507,6 +512,9 @@ function Wtransactions() {
                     Currency Name
                   </label>
                   <select
+                    onChange={(e)=>{
+                      changeType(e.target.value);
+                    }}
                     name="currency"
                     required
                     className="mt-1 block w-full pl-4 py-4 rounded-md border shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
@@ -524,16 +532,10 @@ function Wtransactions() {
                     required
                     className="mt-1 block w-full pl-4 py-4 rounded-md border shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                     <option value=''>--Select--</option>
-                    <option value='bkash'>Bkash</option>
-                    <option value='nagad'>Nagad</option>
-                    <option value='upay'>Upay</option>
-                    <option value='roket'>Roket</option>
-                    <option value='mycash'>MyCash</option>
-                    <option value='okwallet'>Ok Wallet</option>
-                    <option value='phonepay'>PhonePay</option>
-                    <option value='paytm'>PayTm</option>
-                    <option value='freecharge'>FreeCharge</option>
-                    <option value='airtelpaymentbank'>Airtel Payments Bank</option>
+                    {data?.map((item,index) => (
+                      <option key={index} value={item.network}>{item.network}</option>
+                    ))}
+                 
                   </select>
                 </div>
                 <div className="mb-4">

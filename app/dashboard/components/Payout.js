@@ -50,6 +50,7 @@ function Payout() {
         url: "/transactions",
         method: "get",
       });
+      console.log("all transaction",response.data);
       if (response.status == 200) {
         settransactionsData(response.data);
         // console.log(response.data);
@@ -67,6 +68,7 @@ function Payout() {
           url: "/transactions",
           formdata: { search: data },
         });
+       
         if (response.status == 200) {
           settransactionsData(response.data);
           // console.log(response.data);
@@ -239,35 +241,23 @@ function Payout() {
                          {startIndex + index + 1}
                         </td>
                         <td className="px-4 py-3">
-                          {/* {transaction.created_at && format(transaction.created_at, "dd" + " " + "MMMM" + " " + "yyyy")} */}
+                        
                           {formatDateTime(transaction.created_at)}
                         </td>
                         <td
                           className="px-4 py-3 relative cursor-pointer break-words word-break-all overflow-hidden"
                           onClick={() => handleCopy(transaction.id, transaction.reference)}
-                        >
-                          {copiedReferenceId === transaction.id ? (
-                            <div className="absolute top-3 left-5 lg:top-3 lg:left-14 bg-blue-300 text-black text-xs p-1 rounded">
-                              Copied!
-                            </div>
-                          ) : hoveredReferenceId === transaction.id ? (
-                            <div className="absolute top-3 left-5 lg:top-3 lg:left-14 bg-gray-300 text-black text-xs p-1 rounded">
-                              Copy to clipboard
-                            </div>
-                          ) : (
-                            transaction.reference
-                          )}
-                        </td>
+                        >{transaction.reference}</td>
                         <td className="px-4 py-3">
                           {transaction.payment_method}
                         </td>
                         <td className="px-4 py-3">{transaction.amount}</td>
-                        <td className="px-4 py-3">{transaction.trxID}</td>
+                        <td className="px-4 py-3">{transaction.trxID?transaction.trxID:"--"}</td>
                         <td className="px-4 py-3">
-                          {transaction.customerMsisdn}
+                          {transaction.withdraw_number}
                         </td>
                         <td className="px-4 py-3">
-                          {transaction.transactionStatus}
+                          {transaction.status}
                         </td>
                       </tr>
                     ))}
