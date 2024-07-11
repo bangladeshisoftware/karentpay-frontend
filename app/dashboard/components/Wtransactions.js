@@ -97,8 +97,6 @@ function Wtransactions() {
       console.log(response);
     }
 
-
-
   };
 
   const formatDateTime = (date) => {
@@ -136,7 +134,25 @@ function Wtransactions() {
     setCurrentPage(pageNumber);
   };
 
+  const[maindata,setMaindata]=useState([])
+  const[data,setData]=useState([])
 
+
+  useEffect(()=>{
+    getPayment();
+  })
+  const getPayment=async()=>{
+    const response = await ApiRequest({
+      url: "/payment_history",
+      method: "get",
+    });
+    console.log(response);
+    if (response.status === 200) {
+      setTransactions(response.data);
+    } else {
+      console.log(response);
+    }
+  }
 
 
   return (
