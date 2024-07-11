@@ -388,6 +388,8 @@ import Dropdown from '../Dropdown/Dropdown';
 import Logo from '@/app/_assets/Mobile-Logo.png';
 import { DrawerDialogDemo } from '@/app/_components/Header/BecomeMerchent/DrawerDialogDemo';
 import MobileLogo from '@/app/_assets/updated-karentpay-logo222.png';
+import { GetCookies,deleteCookies } from '@/app/_lib/cookiesSetting';
+import { toast } from 'react-toastify';
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -397,6 +399,20 @@ const NavBar = () => {
   const [pagesMenuOpen, setPagesMenuOpen] = useState(false); // Initially closed
   const menuRef = useRef(null); // Ref for the menu
   const buttonRef = useRef(null); // Ref for the hamburger button
+
+
+  const logOut =async () => {
+    if(localStorage.getItem('secret_key')){
+      localStorage.removeItem('secret_key');
+    }
+   const deleteToken=await deleteCookies({ name: 'auth_token' });
+   if(deleteToken) {
+    location.reload(true);
+    toast.success("Successfully Logged Out");
+   }else{
+    console.log( deleteToken);
+   }
+  }
 
   const handleOpenDrawer = (e) => {
     e.preventDefault();
@@ -440,7 +456,7 @@ const NavBar = () => {
         { label: 'About', href: '/about' },
         { label: 'Privacy & Policy', href: '/privacy-policy' },
         { label: 'Terms & Conditions', href: '/terms-and-conditions' },
-        { label: 'No Refund', href: '' },
+        { label: 'No Refund', href: '/refund' },
       ]
     }
   ];
@@ -575,6 +591,13 @@ const NavBar = () => {
             onClick={() => setIsOpen(false)}
           >
             Merchant Login
+          </Link>
+          <Link
+            href='/auth/login'
+            className='rounded p-1 hover:text-white hover:bg-blue-800 w-full text-left'
+            onClick={() => logOut()}
+          >
+             Sign out
           </Link>
         </div>
       )}

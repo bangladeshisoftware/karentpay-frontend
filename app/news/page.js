@@ -33,7 +33,7 @@ const News = () => {
     },
     {
       id: 4,
-      image: img3,
+      image: img1,
       description:
         "Edison bulb retro cloud bread echo park, helvetica stumptown taiyaki taxidermy 90's cronut +1",
       title: "Lomer Smith",
@@ -41,7 +41,7 @@ const News = () => {
     },
     {
       id: 5,
-      image: img3,
+      image: img2,
       description:
         "Edison bulb retro cloud bread echo park, helvetica stumptown taiyaki taxidermy 90's cronut +1",
       title: "Lomer Smith",
@@ -57,7 +57,7 @@ const News = () => {
     },
     {
       id: 7,
-      image: img3,
+      image: img1,
       description:
         "Edison bulb retro cloud bread echo park, helvetica stumptown taiyaki taxidermy 90's cronut +1",
       title: "Lomer Smith",
@@ -65,7 +65,7 @@ const News = () => {
     },
     {
       id: 8,
-      image: img3,
+      image: img2,
       description:
         "Edison bulb retro cloud bread echo park, helvetica stumptown taiyaki taxidermy 90's cronut +1",
       title: "Lomer Smith",

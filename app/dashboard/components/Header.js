@@ -16,7 +16,7 @@ function Header({ isOn, toggleSwitch }) {
   //   setIsOn(!isOn);
   // };
   return (
-    <div className="w-full   py-4 mt-3">
+    <div className="w-full pt-1 pb-3 mt-0  lg:py-4 lg:mt-3">
       <div className=" border shadow-lg mb-4 lg:mb-2 p-3 lg:p-3 mt-3 rounded-md text-center lg:text-left lg:hidden  ">
         <h3 className="text-xl font-semibold">Developer</h3>
       </div>

@@ -49,22 +49,22 @@ const pricing = () => {
                 <Image
                   src={desktopLogo}
                   alt='logo'
-                  className='w-auto h-28 '
+                  className='w-auto h-24 '
                   priority
                 />
               </Link>
             </div>
-            <div>
-              <div className='text-2xl text-[#7073F3]'>
-              Automatic Payment Gateway 
-              Solution Instant Withdraw
+            <div className='pb-4' >
+              <div className='text-2xl text-[#7073F3] pb-4'>
+              Automatic Payout & Withdraw 
+              Solution Instant 
               </div>
-              <div className='text-xl text-[#7073F3] line-through'>
+              {/* <div className='text-xl text-[#7073F3] line-through'>
                 BDT 5% charges Transaction
-              </div>
-              <div className='mt-4'>
-                <Link href='/auth/register' className='bg-gradient-2 transition-transform duration-300 hover:scale-105 px-6 py-0.5 text-sm rounded-md text-white sm:px-8 sm:py-4 '>
-                  Get Offer
+              </div> */}
+              <div className='mt-2'>
+                <Link href='/auth/register' className='bg-gradient-2 transition-transform duration-300 hover:scale-105 px-8 py-3 text-sm rounded-md text-white '>
+                  Sign up
                 </Link>
               </div>
             </div>

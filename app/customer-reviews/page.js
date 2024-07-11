@@ -33,7 +33,7 @@ const CustomerReview = () => {
     },
     {
       id: 4,
-      image: img3,
+      image: img1,
       description:
         "Karentpay has made managing our online payments a breeze. The flexibility to accept various payment methods has improved our customer satisfaction, and the real-time payment notifications keep our team updated on every transaction. The support team is always friendly and quick to resolve any issues. We couldn't be happier with Karentpay!",
       name: "Emily Davis, E-commerce Manager at Fashion Forward",
@@ -41,7 +41,7 @@ const CustomerReview = () => {
     },
     {
       id: 5,
-      image: img3,
+      image: img2,
       description:
         "Switching to Karentpay was one of the best decisions we've made for our company. The enhanced security features ensure our transactions are safe, and the comprehensive analytics help us track our performance effectively. The easy integration process saved us a lot of time and effort. Karentpay's service and features are truly outstanding.",
       name: "David Martinez, COO of Healthy Living Co.",
@@ -57,7 +57,7 @@ const CustomerReview = () => {
     },
     {
       id: 7,
-      image: img3,
+      image: img1,
       description:
         "Using Karentpay has significantly improved our checkout process. The integration was seamless, and the platform's flexibility allows us to offer various payment methods. We also appreciate the real-time notifications, which keep us updated on every transaction. Karentpay is a reliable partner.",
       name: "Lucas Thompson, Owner of Tech Hub",
@@ -65,7 +65,7 @@ const CustomerReview = () => {
     },
     {
       id: 8,
-      image: img3,
+      image: img2,
       description:
         "Edison bulb retro cloud bread echo park, helvetica stumptown taiyaki taxidermy 90's cronut +1 kinfolk Single-origin coffee ennui shaman taiyaki vape DIY tote bag drinking vinegar cronut adaptogen squid fanny pack vaporware.",
       name: "Lomer Smith",
@@ -81,7 +81,7 @@ const CustomerReview = () => {
     },
     {
       id: 10,
-      image: img3,
+      image: img1,
       description:
        "We've been extremely satisfied with Karentpay. The secure API and advanced fraud detection ensure our transactions are safe, and the detailed reports help us track our sales effectively. The support team is always available to assist, making Karentpay a reliable choice for our payment processing needs.",
       name: "William Martinez, Co-Founder of Green Earth Supplies",
@@ -89,7 +89,7 @@ const CustomerReview = () => {
     },
     {
       id: 11,
-      image: img3,
+      image: img2,
       description:
         "Karentpay's real-time payment notifications have improved our transaction management significantly. The platform is user-friendly and secure, and the integration process was quick and hassle-free. We highly recommend Karentpay to other businesses looking for a reliable payment gateway.",
       name: "Sophia Clark, General Manager at Urban Outfitters",
@@ -105,7 +105,7 @@ const CustomerReview = () => {
     },
     {
       id: 13,
-      image: img3,
+      image: img1,
       description:
        "Since switching to Karentpay, our transaction processing has been seamless and secure. The flexibility to accept multiple payment methods has been beneficial for our business, and the real-time notifications keep us informed about every payment. Karentpay has been a great partner for us.",
       name: "Mia Anderson, Sales Director at Home Essentials",
@@ -113,7 +113,7 @@ const CustomerReview = () => {
     },
     {
       id: 14,
-      image: img3,
+      image: img2,
       description:
         "Karentpay's advanced security features and easy integration have made a significant difference in our business operations. The platform is reliable, and the 24/7 customer support ensures we always have help when we need it. We're very happy with Karentpay's service.",
       name: "Ethan King, CEO of Digital Ventures",
@@ -129,7 +129,7 @@ const CustomerReview = () => {
     },
     {
       id: 16,
-      image: img3,
+      image: img1,
       description:
         "Karentpay has been an excellent choice for our payment processing needs. The secure API and real-time notifications help us manage transactions efficiently, and the comprehensive analytics provide valuable insights. The integration was smooth, and the support team is always helpful. Highly recommended!",
       name: "Alexander Young, Operations Manager at Gadget World",

@@ -2,6 +2,7 @@ import { Button } from '@/components/ui/button';
 import React from 'react';
 import { GoCheckCircleFill } from 'react-icons/go';
 import { CiBookmarkCheck } from 'react-icons/ci';
+import Link from 'next/link';
 
 const PriceCard3 = () => {
   return (
@@ -20,23 +21,23 @@ const PriceCard3 = () => {
         </div>
         <div>
           <p className='text-base text-center mb-5 text-white px-4'>
-          Karentpay GateWay offers competitive prices and Charges
+          
           </p>
         </div>
       </div>
       {[
-        'No Fee for onboarding / No annual charge',
+        'No annual charge',
         'No Monthly Fee: Enjoy Cost Savings with No Recurring Charges',
-        'EMI and Discount Offer Facility',
-        'Invoice Generator',
+        'Default Payment Link',
+        'Create payment link facilities',
         'QR Payment Facility',
-        'Payment Link',
-        'Transaction Alerts',
-        'Statement Access',
-        'Comprehensive Support',
-        'Dedicated Key Account Manager',
-        'All Payment Methods Included by Default',
-        'No Additional Payment Method Fees'
+        'Instant Account Active',
+        'Easy To Use System',
+        'Support ticket system ',
+        'Emergency call support ',
+        'Emergency Google Meet support ',
+        'Free API Integration Support ',
+        'Instant Withdraw'
       ].map((text, index, array) => (
         <div
           key={index}
@@ -52,10 +53,10 @@ const PriceCard3 = () => {
           </div>
         </div>
       ))}
-      <div className='text-center py-4 bg-white'>
-        <Button className='bg-gradient-2 transition-transform duration-300 hover:scale-105 px-12 py-6 mb-6'>
+      <div className='text-center py-10  bg-white'>
+        <Link href='/auth/register' className='bg-gradient-2 transition-transform duration-300 hover:scale-105 text-white px-12 py-3 mb-6 rounded-md'>
           Choose Plan
-        </Button>
+        </Link>
       </div>
     </div>
   );

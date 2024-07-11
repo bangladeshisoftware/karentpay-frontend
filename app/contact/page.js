@@ -6,8 +6,8 @@ import IframeMap from '@/app/_components/ContactForm/IframeMap';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import Image from 'next/image';
-import headquarter from '@/app/_assets/headquater.jpg';
-import local from '@/app/_assets/local.jpg';
+import headquarter from '@/app/_assets/mainHQ.jpg';
+import local from '@/app/_assets/localBranch.jpg';
 
 const Contact = () => {
   return (
@@ -29,9 +29,9 @@ const Contact = () => {
           <div className='text-lg sm:text-xl text-gray-700 mb-10'>
             Have questions or need to report an issue with a Karentpay
             <br className='hidden lg:block' />
-             product or service? We &apos;ve got you covered.
+            product or service? We &apos;ve got you covered.
             <br className='hidden lg:block' />
-            
+
           </div>
           <div>
             <Link href='/dashboard' className='bg-gradient-2 text-white rounded px-4 py-2 sm:px-6 sm:py-3 text-sm sm:text-base'>
@@ -61,11 +61,11 @@ const Contact = () => {
               Karentpay HQ
             </h2>
             <p className='transition duration-300 hover:text-blue-500'>
-              1600 Amphitheatre Parkway <br /> Mountain View, CA 94043, USA
+              W 44th St Time Square <br /> NY 94043, USA
             </p>
             <Link href='/'>
               <p className='text-blue-500 underline transition duration-300 hover:text-blue-700'>
-                Phone: +(650) 253-0000
+                Phone: +(732) 497-2266
               </p>
             </Link>
           </div>
@@ -77,19 +77,20 @@ const Contact = () => {
               className='inline-block object-cover object-center  lg:mt-4 rounded-md'
               src={local}
               width={200}
-              height={200}
+              height={220}
+              style={{ height: '125px' }}
             />
           </div>
           <div className='py-4 lg:py-16 mx-4 text-center lg:text-left'>
             <h2 className='text-xl sm:text-2xl lg:text-3xl mb-2 transition duration-300 hover:text-blue-500'>
-              Local Branch Karentpay
+              Regional Karentpay Office 
             </h2>
             <p className='transition duration-300 hover:text-blue-500'>
-              1600 Amphitheatre Parkway <br /> Mountain View, CA 94043, USA
+              1491 E St Williams, <br />  California 94043, USA
             </p>
             <Link href='/'>
               <p className='text-blue-500 underline transition duration-300 hover:text-blue-700'>
-                Phone: +(650) 253-0000
+                Phone: +(732) 497-2266
               </p>
             </Link>
           </div>
