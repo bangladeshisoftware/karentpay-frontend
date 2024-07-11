@@ -388,8 +388,9 @@ import Dropdown from '../Dropdown/Dropdown';
 import Logo from '@/app/_assets/Mobile-Logo.png';
 import { DrawerDialogDemo } from '@/app/_components/Header/BecomeMerchent/DrawerDialogDemo';
 import MobileLogo from '@/app/_assets/updated-karentpay-logo222.png';
-import { GetCookies,deleteCookies } from '@/app/_lib/cookiesSetting';
+import { GetCookies, deleteCookies } from '@/app/_lib/cookiesSetting';
 import { toast } from 'react-toastify';
+import ApiRequest from '@/app/_lib/Api_request';
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -401,17 +402,43 @@ const NavBar = () => {
   const buttonRef = useRef(null); // Ref for the hamburger button
 
 
-  const logOut =async () => {
-    if(localStorage.getItem('secret_key')){
+
+  // get user
+  const [user, setUser] = useState("")
+  useEffect(() => {
+    const getUser = async () => {
+      const token = await GetCookies({ name: 'auth_token' });
+      // console.log("token 411", token);
+
+      if (token) {
+        const response = await ApiRequest({
+          url: '/user',
+          method: 'get',
+        });
+        if (response.status == 200) {
+          setUser(response.data.user)
+
+        } else {
+          toast.error(response.message)
+        }
+      }
+    }
+
+    getUser()
+  }, [])
+
+
+  const logOut = async () => {
+    if (localStorage.getItem('secret_key')) {
       localStorage.removeItem('secret_key');
     }
-   const deleteToken=await deleteCookies({ name: 'auth_token' });
-   if(deleteToken) {
-    location.reload(true);
-    toast.success("Successfully Logged Out");
-   }else{
-    console.log( deleteToken);
-   }
+    const deleteToken = await deleteCookies({ name: 'auth_token' });
+    if (deleteToken) {
+      location.reload(true);
+      toast.success("Successfully Logged Out");
+    } else {
+      console.log(deleteToken);
+    }
   }
 
   const handleOpenDrawer = (e) => {
@@ -585,20 +612,24 @@ const NavBar = () => {
           >
             Become a Merchant
           </Link>
-          <Link
-            href='/auth/login'
-            className='rounded p-1 hover:text-white hover:bg-blue-800 w-full text-left'
-            onClick={() => setIsOpen(false)}
-          >
-            Merchant Login
-          </Link>
-          <Link
-            href='/auth/login'
-            className='rounded p-1 hover:text-white hover:bg-blue-800 w-full text-left'
-            onClick={() => logOut()}
-          >
-             Sign out
-          </Link>
+
+          {
+            user ? <><Link
+              href='/auth/login'
+              className='rounded p-1 hover:text-white hover:bg-blue-800 w-full text-left'
+              onClick={() => logOut()}
+            >
+              Sign out
+            </Link></> : <><Link
+              href='/auth/login'
+              className='rounded p-1 hover:text-white hover:bg-blue-800 w-full text-left'
+              onClick={() => setIsOpen(false)}
+            >
+              Merchant Login
+            </Link></>
+          }
+
+
         </div>
       )}
       {/* Drawer Dialog */}
