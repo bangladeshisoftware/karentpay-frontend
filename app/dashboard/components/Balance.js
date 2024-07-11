@@ -681,7 +681,7 @@ const handleSubmit = async() => {
                 </div>
                 <div className="mt-2">
                   <h3 className="text-md text-red-500 border border-red-500 rounded-md py-1 px-3 lg:py-1 lg:px-6">
-                    Charge  {charge}
+                    Charge  {charge} %
                   </h3>
                 </div>
               </div>
