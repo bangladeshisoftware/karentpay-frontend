@@ -46,7 +46,7 @@ const Documentations = () => {
     <div className='scale-x-95 lg:scale-x-100 lg:container'>
       <div className='my-2'>
         {data.map((item, index) => (
-          <div key={index} className='mb-4 bg-white rounded-md px-2 py-2'>
+          <div key={index} className='mb-4 bg-white rounded-md  px-5 py-4 lg:px-10 lg:py-5 text-justify'>
             <h2 className='text-2xl my-2 gradient-text'>{item.title}</h2>
             <p className='text-lg  text-gray-700'>{parse(item.description)}</p>
           </div>
