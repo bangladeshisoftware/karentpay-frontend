@@ -24,7 +24,7 @@ const PriceCard2 = () => {
         </div>
         <div>
           <h1 className='text-xl text-center text-white font-bold pb-2'>
-            Karentpay Cash In:<span className='text-xl font-bold'> 0% Charges</span>
+            Karentpay Cash In:<span className='text-2xl font-bold'> 4.5% </span>Charges
           </h1>
         </div>
         <div>

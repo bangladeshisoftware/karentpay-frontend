@@ -319,6 +319,7 @@ function Product_Catalog() {
           {selected == "paymentSettings" ? (
             <form onSubmit={handlePaymentSetting} className="">
               <div className="my-6">
+                <h2 className="text-center">Work in Progress</h2>
                 <label className="mt-6 ">Payment Title</label>
                 <div className="border my-3 mx-auto lg:mx-0 bg-white focus-within:border-[#2F65EC] hover:border-[#2F65EC] rounded-md w-full lg:w-full">
                   <input

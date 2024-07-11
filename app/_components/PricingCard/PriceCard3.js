@@ -15,13 +15,12 @@ const PriceCard3 = () => {
         </div>
         <div>
           <h1 className='text-xl text-center text-white pb-2 font-bold'>
-            Karentpay Withdraw:<span className='text-xl font-bold'> 4% Charges</span>
+            Karentpay Withdraw:<span className='text-2xl font-bold'> 0.0% </span>Charges
           </h1>
         </div>
         <div>
           <p className='text-base text-center mb-5 text-white px-4'>
-            Karentpay GateWay offers institutions competitive prices are as
-            follows:
+          Karentpay GateWay offers competitive prices and Charges
           </p>
         </div>
       </div>

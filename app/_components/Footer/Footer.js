@@ -19,7 +19,7 @@ const Footer = () => {
                 The future of Money is here
               </p>
               <Link
-                href=''
+                href='/contact'
                 className='py-2.5 px-5 block w-fit bg-gradient-2 rounded shadow-sm text-sm text-white mx-auto hover:bg-blue-700 lg:mx-0'
               >
                 Contact us

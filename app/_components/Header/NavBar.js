@@ -387,6 +387,7 @@ import youtubeIcon from '@/app/_assets/youtube.png';
 import Dropdown from '../Dropdown/Dropdown';
 import Logo from '@/app/_assets/Mobile-Logo.png';
 import { DrawerDialogDemo } from '@/app/_components/Header/BecomeMerchent/DrawerDialogDemo';
+import MobileLogo from '@/app/_assets/updated-karentpay-logo222.png';
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -489,7 +490,7 @@ const NavBar = () => {
             <Menu className='w-14 h-16 text-white' />
           </button>
           <Link href='/'>
-            <Image src={Logo} alt='Logo' className='w-44 h-14 ml-6' />
+            <Image src={MobileLogo} alt='Logo' className='w-44 h-10 bg-white rounded px-2 py-1 ml-6' />
           </Link>
         </div>
       </div>
@@ -505,7 +506,7 @@ const NavBar = () => {
           </button>
           {mainMenuOpen && (
             <div className='flex flex-col ml-4'>
-              {dropdownItemsMainMenu.slice(0, 8).map((item) => (
+              {dropdownItemsMainMenu.slice(0, 7).map((item) => (
                 <Link
                   key={item.label}
                   href={item.href || '#'} // Default to '#' if href is not provided
@@ -515,6 +516,7 @@ const NavBar = () => {
                   {item.label}
                 </Link>
               ))}
+              {/* Adjusted the code to render "Pages" submenu under the "Main Menu" */}
               <button
                 className='flex items-center justify-between rounded p-1 hover:text-white hover:bg-blue-800 w-full text-left'
                 onClick={() => setPagesMenuOpen(!pagesMenuOpen)}
@@ -583,15 +585,6 @@ const NavBar = () => {
 };
 
 export default NavBar;
-
-
- 
-
-
-
-
-
-
 
 
 

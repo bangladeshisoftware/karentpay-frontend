@@ -16,7 +16,7 @@ const pricing = () => {
           <span className='gradient-text'>
             Karentpay
           </span>{' '}
-          Pricing: Your Gateway to Value
+          : Automatic Payment Gateway Pricing Value
         </h1>
       </div>
       {/* <div>
@@ -40,7 +40,7 @@ const pricing = () => {
       {/* add Block  */}
       <div>
         <div className='text-3xl text-center font-bold py-4 mb-10'>
-          Start your Gold plan trial today
+          Start your withdraw plan trial today
         </div>
         <div className='bg-white flex flex-col md:flex-row justify-around w-full items-center border rounded-md shadow-md p-4 sm:p-6 md:p-8 mb-24 transition-all duration-300 hover:border-blue-500'>
           <div className='mb-4 md:mb-0 md:mr-8 flex gap-x-8 items-center'>
@@ -56,15 +56,16 @@ const pricing = () => {
             </div>
             <div>
               <div className='text-2xl text-[#7073F3]'>
-                Per transaction we cut BDT 10.00TK
+              Automatic Payment Gateway 
+              Solution Instant Withdraw
               </div>
               <div className='text-xl text-[#7073F3] line-through'>
-                BDT 20.00/Per Transaction
+                BDT 5% charges Transaction
               </div>
-              <div>
-                <Button className='bg-gradient-2 transition-transform duration-300 hover:scale-105 px-6 py-3 sm:px-8 sm:py-4 mt-4'>
+              <div className='mt-4'>
+                <Link href='/auth/register' className='bg-gradient-2 transition-transform duration-300 hover:scale-105 px-6 py-0.5 text-sm rounded-md text-white sm:px-8 sm:py-4 '>
                   Get Offer
-                </Button>
+                </Link>
               </div>
             </div>
 

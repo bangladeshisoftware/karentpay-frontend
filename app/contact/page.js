@@ -27,16 +27,16 @@ const Contact = () => {
             </h2>
           </div>
           <div className='text-lg sm:text-xl text-gray-700 mb-10'>
-            Have questions or need to report an issue{' '}
+            Have questions or need to report an issue with a Karentpay
             <br className='hidden lg:block' />
-            with a Bangladeshi Software product or service?{' '}
+             product or service? We &apos;ve got you covered.
             <br className='hidden lg:block' />
-            We &apos;ve got you covered.
+            
           </div>
           <div>
-            <Button className='bg-gradient-2 px-4 py-2 sm:px-6 sm:py-3 text-sm sm:text-base'>
+            <Link href='/dashboard' className='bg-gradient-2 text-white rounded px-4 py-2 sm:px-6 sm:py-3 text-sm sm:text-base'>
               Get Support
-            </Button>
+            </Link>
           </div>
         </div>
         {/* Contact form */}
@@ -58,7 +58,7 @@ const Contact = () => {
           </div>
           <div className='py-4 lg:py-16 mx-4 text-center lg:text-left'>
             <h2 className='text-xl sm:text-2xl lg:text-3xl mb-4 transition duration-300 hover:text-blue-500'>
-              Bangladeshi Software HQ
+              Karentpay HQ
             </h2>
             <p className='transition duration-300 hover:text-blue-500'>
               1600 Amphitheatre Parkway <br /> Mountain View, CA 94043, USA
@@ -82,7 +82,7 @@ const Contact = () => {
           </div>
           <div className='py-4 lg:py-16 mx-4 text-center lg:text-left'>
             <h2 className='text-xl sm:text-2xl lg:text-3xl mb-2 transition duration-300 hover:text-blue-500'>
-              Local Branch Bangladeshi Software
+              Local Branch Karentpay
             </h2>
             <p className='transition duration-300 hover:text-blue-500'>
               1600 Amphitheatre Parkway <br /> Mountain View, CA 94043, USA

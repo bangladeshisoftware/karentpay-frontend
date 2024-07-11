@@ -88,7 +88,7 @@ const TopBar = () => {
           <Image
             src={desktopLogo}
             alt='logo'
-            className='w-auto h-16'
+            className='w-auto h-14'
             priority
           />
         </Link>
