@@ -496,7 +496,7 @@ const NavBar = () => {
       </div>
 
       {isOpen && (
-        <div ref={menuRef} className='lg:hidden wide-laptop:hidden small-laptop:hidden absolute top-full left-0 w-full bg-gradient-to-r from-blue-800 to-purple-950 text-gray-200 flex flex-col items-start p-4'>
+        <div ref={menuRef} className='lg:hidden wide-laptop:hidden small-laptop:hidden absolute top-full left-0 w-full bg-gradient-2 text-gray-200 flex flex-col items-start p-4'>
           <button
             className='flex items-center justify-between rounded p-1 hover:text-white hover:bg-blue-800 w-full text-left'
             onClick={() => setMainMenuOpen(!mainMenuOpen)}
