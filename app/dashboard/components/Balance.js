@@ -20,9 +20,11 @@ function Balance() {
 
   const[ricived,setRicived]=useState(0);
   const[charge,setCharge]=useState(0);
-
 const[select,setselect]=useState(0);
+
 const[inputBalance,setInputBalance]=useState('');
+
+
 
 useEffect(() => {
   
@@ -65,10 +67,6 @@ const handleSubmit = async() => {
   }
   
 };
-
-
-
-
 
 
   useEffect(() => {
@@ -323,10 +321,10 @@ const handleSubmit = async() => {
         <div className="border shadow-lg rounded-md w-full h-40 flex items-center transition-all duration-300 hover:shadow-lg bg-white sm:h-40 mb-4">
           <div className="flex-grow ml-8">
             <div>
-              <p className="font-bold">Total Transaction Balance</p>
+              <p className="font-bold">Total Received From Link</p>
             </div>
             <div>
-              <h2 className="text-2xl font-bold my-2">{allbalance?.total_transfer}</h2>
+              <h2 className="text-2xl font-bold my-2">{allbalance?.link_wallet}</h2>
             </div>
           
           </div>
