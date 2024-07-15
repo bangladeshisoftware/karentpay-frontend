@@ -78,7 +78,7 @@ To get started with this project, follow these steps:
 
 1. **Clone the Repository:**
    ```bash
-   git clone https://github.com/bangladeshisoftware/karentpay-admin
+   git clone https://github.com/bangladeshisoftware/karentpay-frontend
    cd Team-client-project
    ```
 2. **Package install:**
@@ -93,7 +93,8 @@ To get started with this project, follow these steps:
    To run this project, you will need to add the following environment variables to your .env file <br>
 
    ```bash
-   VITE_API_HOST
+   NEXT_PUBLIC_GOOGLE_MAPS_API_KEY
+   NEXT_PUBLIC_BASE_URL
 
    ```
 
