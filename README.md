@@ -3,10 +3,6 @@ Layout Page Design
 ![Layout Page](https://i.ibb.co/QYWPG8W/karentpay-com.png)
 
 
-Dashboard Page Design
-
-![Layout Page](https://i.ibb.co/vXdRDZ1/Screenshot-25.png)
-
 # Karent pay
 
 Redefining Payment Management
