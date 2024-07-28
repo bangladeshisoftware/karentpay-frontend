@@ -12,36 +12,37 @@ const CustomerReview = () => {
 
 
   useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      try {
-        const token = Cookies.get("auth_token");
-        if (token) {
-          const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/admin/reviews`, {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          });
-          setReviews(response.data);
-        } else {
-          console.warn("No auth token found");
-          setReviews([]); // Use static data if no token is available
-        }
-      } catch (err) {
-        console.error("Error fetching reviews:", err);
-        setReviews([]); // Fallback to static data on error
-      } finally {
-        setLoading(false);
-      }
-    };
-
     fetchData();
   }, []);
+
+  const fetchData = async () => {
+    setLoading(true);
+    try {
+      const token = Cookies.get("auth_token");
+      if (token) {
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/admin/reviews`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setReviews(response.data);
+      } else {
+        console.warn("No auth token found");
+        setReviews([]); // Use static data if no token is available
+      }
+    } catch (err) {
+      console.error("Error fetching reviews:", err);
+      setReviews([]); // Fallback to static data on error
+    } finally {
+      setLoading(false);
+    }
+  };
 
   if (loading) {
     return <div>Loading...</div>;
   }
 
+  console.log(reviews);
 
   const itemsPerPage = 6;
 
@@ -87,6 +88,9 @@ const CustomerReview = () => {
                     <span className="inline-block h-1 w-10 rounded bg-blue-600 mt-6 mb-4"></span>
                     <h2 className="text-gray-900 font-bold title-font tracking-wider text-sm">
                       {review.user_name}
+                    </h2>
+                    <h2 className="text-gray-900 font-bold title-font tracking-wider text-sm">
+                      {review.position}
                     </h2>
                     <p className="text-gray-500">{review.user_email}</p>
                   </div>
