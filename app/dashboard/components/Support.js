@@ -1,14 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { MdUploadFile } from "react-icons/md";
 import { GiTicket } from "react-icons/gi";
 import { MdAirplaneTicket } from "react-icons/md";
 import { MdOutlineAirplaneTicket } from "react-icons/md";
 import Datepicker from "react-tailwindcss-datepicker";
+import axios from "axios";
+import Cookies from "js-cookie";
+import useFetchData from "@/lib/useFetchData";
 
 function Support() {
+  const { data, loading, error } = useFetchData("/admin/tickets");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
+  const [Image, setImage] = useState("");
 
   const [dateRange, setDateRange] = useState({
     startDate: null,
@@ -19,6 +24,8 @@ function Support() {
     console.log("newValue:", newValue);
     setDateRange(newValue);
   };
+
+  console.log(data)
 
   const transactions = [
     {
@@ -104,8 +111,6 @@ function Support() {
     );
   });
 
-  
-
   const handleCreateTicket = () => {
     setIsModalOpen(true);
   };
@@ -116,11 +121,85 @@ function Support() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    const formData = new FormData();
+    formData.append("user_id", 488);
+    formData.append("date", " 2024-06-26");
+    formData.append("time", " 22:00");
+    formData.append("track_id", 4346);
+    formData.append("type", "Payment Gateway");
+    formData.append("status", "open");
+
+    formData.append("subject", subject);
+    formData.append("message", message);
+    formData.append("image", Image);
+
+    const token = Cookies.get("auth_token");
+
+    axios
+      .post( process.env.NEXT_PUBLIC_DATA_API + "/admin/tickets", formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then((response) => {
+        console.log("Response:", response.data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+
     console.log("Subject:", subject);
     console.log("Message:", message);
+    console.log("images:", Image);
+    console.log("token:", token);
     setIsModalOpen(false);
   };
 
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+
+  //   const formData = new FormData();
+  //   formData.append("user_id", Math.random().toString());
+  //   formData.append("date", Date.now().toString());
+  //   formData.append("time", new Date().toLocaleTimeString());
+  //   formData.append("track_id", Math.random().toString());
+  //   formData.append("type", "test");
+  //   formData.append("status", "open");
+
+  //   formData.append("subject", subject);
+  //   formData.append("message", message);
+  //   formData.append("image", Image);
+
+  //   const token = Cookies.get("auth_token");
+
+  //   try {
+  //     const response = await fetch("http://karentpay-api.test/api/admin/tickets", {
+  //       method: 'POST',
+  //       headers: {
+  //         'Authorization': `Bearer ${token}`,
+  //       },
+  //       body: formData,
+  //       credentials: 'include',
+  //     });
+
+  //     if (!response.ok) {
+  //       throw new Error('Network response was not ok ' + response.statusText);
+  //     }
+
+  //     const data = await response.json();
+  //     console.log("Response:", data);
+  //   } catch (error) {
+  //     console.error("Error:", error);
+  //   }
+
+  //   console.log("Subject:", subject);
+  //   console.log("Message:", message);
+  //   console.log("images:", Image);
+  //   console.log("token:", token);
+  //   setIsModalOpen(false);
+  // };
   // Pagination logic
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 4;
@@ -143,12 +222,6 @@ function Support() {
   const handlePageClick = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
-
-  
-
-  
-
-  
 
   return (
     <div className="mt-4 lg:mt-10 ml-0 lg:ml-8">
@@ -206,10 +279,7 @@ function Support() {
             <MdAirplaneTicket className="text-blue-700 text-opacity-80" />
           </div>
         </div>
-
-
       </div>
-      
 
       <div className=" lg:px-0 ">
         <section className="shadow-md border rounded-md   mb-36 ">
@@ -293,46 +363,35 @@ function Support() {
                         Sl
                       </th>
                       <th scope="col" className="px-4 py-3">
-                        Ticket Name
-                      </th>
-                      
-                      <th scope="col" className="px-4 py-3">
-                        Date
+                      Track Id
                       </th>
                       <th scope="col" className="px-4 py-3">
-                        Price
+                      Date
+                      </th>
+
+                      <th scope="col" className="px-4 py-3">
+                        Subject
                       </th>
                       <th scope="col" className="px-4 py-3">
-                        Edit
+                        Status
+                      </th>
+                      <th scope="col" className="px-4 py-3">
+                        Action
                       </th>
                     </tr>
                   </thead>
                   <tbody>
-                    { visibleTransactions.map((transaction) => (
+                    {visibleTransactions.map((transaction) => (
                       <tr
                         key={transaction.id}
-                        className="border-b dark:border-gray-700"
+                        className="border-b dark:border-gray-700 "
                       >
-                        <th
-                          scope="row"
-                          className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                        >
-                          {transaction.id}
-                        </th>
-                        {/* <td className="px-4 py-3">{transaction.type}</td> */}
-                        <td className="px-4 py-3">
-                          {transaction.currencyName}
-                        </td>
-                        {/* <td className="px-4 py-3">{transaction.network}</td> */}
-                        {/* <td className="px-4 py-3">
-                          {transaction.depositAddress}
-                        </td> */}
-                        {/* <td className="px-4 py-3">{transaction.trxid}</td>
-                        <td className="px-4 py-3">{transaction.debit}</td> */}
-                        <td className="px-4 py-3">{transaction.date}</td>
-                        <td className="px-4 py-3">${transaction.debit}</td>
-                        <td className="px-4 py-3">{transaction.status}</td>
-                        {/* <td className="px-4 py-3 flex items-center justify-end"></td> */}
+                        <td className='pl-5'>01</td>
+                        <td>47545</td>
+                        <td>2024-06-26</td>
+                        <td>Supered Error</td>
+                        <td>Open</td>
+                        <td>Edit</td>
                       </tr>
                     ))}
                   </tbody>
@@ -439,7 +498,7 @@ function Support() {
                   </li>
                 </ul>
               </nav> */}
-                            <nav
+              <nav
                 className="flex flex-col mt-2 md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0 p-16 "
                 aria-label="Table navigation"
               >
@@ -475,10 +534,11 @@ function Support() {
                     <li key={i}>
                       <button
                         onClick={() => handlePageClick(i + 1)}
-                        className={`flex items-center justify-center text-sm py-2 px-3 leading-tight ${currentPage === i + 1
-                          ? "text-primary-600 bg-primary-50 border border-primary-300"
-                          : "text-gray-500 bg-white border border-gray-300"
-                          } hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white`}
+                        className={`flex items-center justify-center text-sm py-2 px-3 leading-tight ${
+                          currentPage === i + 1
+                            ? "text-primary-600 bg-primary-50 border border-primary-300"
+                            : "text-gray-500 bg-white border border-gray-300"
+                        } hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white`}
                       >
                         {i + 1}
                       </button>
@@ -520,6 +580,7 @@ function Support() {
               <h3 className="text-lg leading-6 font-medium text-gray-900">
                 Create Ticket
               </h3>
+
               <form onSubmit={handleSubmit}>
                 <div className="mt-2 px-7 py-3">
                   <input
@@ -531,7 +592,8 @@ function Support() {
                     required
                   />
                   <textarea
-                    className="w-full mt-4 px-4 py-16 border rounded-md"
+                  rows="5"
+                    className="w-full p-2 mt-3 border rounded-md"
                     placeholder="Message"
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
@@ -539,6 +601,7 @@ function Support() {
                   <div className="w-full border rounded-md p-2 mt-3 flex items-center bg-gradient-2">
                     <MdUploadFile fontSize={30} className="text-white" />
                     <input
+                      onChange={(e) => setImage(e.target.files[0])}
                       className="w-full bg-transparent text-white file:bg-transparent file:border-0 file:text-white file:font-semibold file:cursor-pointer"
                       type="file"
                       required
@@ -567,5 +630,3 @@ function Support() {
 }
 
 export default Support;
-
-
