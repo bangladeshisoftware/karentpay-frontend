@@ -1,37 +1,42 @@
-import Image from "next/image";
+"use client";
+
 import img1 from "@/app/_assets/more1.jpg";
 import img2 from "@/app/_assets/more2.jpg";
 import img3 from "@/app/_assets/more3.jpg";
-import Link from "next/link";
+import axios from "axios";
 import { ArrowRight } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import React, { useEffect } from "react";
 
 const GetMore = () => {
-  const more = [
-    {
-      id: 1,
-      image: img1,
-      description:
-        "Effortlessly integrate Karentpay with your existing systems and platforms. Our user-friendly API and detailed documentation make the setup process quick and straightforward, allowing you to start processing payments without any delays.",
-      title: "Seamless Integration",
-      link: "UI Developer",
-    },
-    {
-      id: 2,
-      image: img2,
-      description:
-        "Protect your transactions with Karentpay's advanced security features. We employ cutting-edge encryption and fraud detection technologies to ensure your data and your customers' data remain safe and secure, gi ",
-      title: "Enhanced Security",
-      link: "Frontend Developer",
-    },
-    {
-      id: 3,
-      image: img3,
-      description:
-        "Join the Karentpay family and benefit from our exceptional customer support. Our dedicated team is available 24/7 to assist you with any issues or questions, ensuring you have the support you need to keep your business running smoothly",
-      title: "Dedicated Support",
-      link: "Businessman",
-    },
-  ];
+  const [newses, setNewses] = React.useState([]);
+  const [loading, setLoading] = React.useState(false);
+
+  const fetchData = async () => {
+    setLoading(true);
+    try {
+      const newsData = await axios.get(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/front/news/articles`
+      );
+
+      setNewses(newsData?.data);
+      setLoading(false);
+    } catch (error) {
+      // console.error("Error fetching reviews:", error);
+      setNewses([]);
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
 
   return (
     <section className="mt-[70px]">
@@ -52,25 +57,29 @@ const GetMore = () => {
           offers that enlighten your business
         </p>
         <div className="flex flex-wrap gap-4 gap-y-10 justify-center md:justify-between  mt-10">
-          {more.map((m) => (
+          {newses?.map((news) => (
             <div
               className="w-full scale-110 lg:scale-100 md:scale-100  md:w-[48%] lg:w-[32.5%]  mb-6 border rounded-lg shadow-lg"
-              key={m.id}
+              key={news?.id}
             >
               <div className="h-full bg-white rounded-md">
                 <Image
                   alt="testimonial"
                   className="w-full h-auto mb-8 object-cover object-center inline-block rounded-t-lg"
-                  src={m.image}
+                  src={
+                    news?.featured_image
+                      ? `${process.env.NEXT_PUBLIC_BASE_URL}/public/${news?.featured_image}`
+                      : ""
+                  }
                   width={400}
                   height={300}
                   priority
                 />
                 <div className="px-4 pb-10">
-                  <h2 className="font-bold text-lg">{m.title}</h2>
-                  <p className="text-justify">{m.description}</p>
+                  <h2 className="font-bold text-lg">{news?.title}</h2>
+                  <p className="text-justify">{news?.content}</p>
                   <Link
-                    href={m.link}
+                    href={`/news/${news?.id}`}
                     className="block w-fit mt-3 px-6 py-2 rounded bg-blue-600 text-white text-sm"
                   >
                     View Details
