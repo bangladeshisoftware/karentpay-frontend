@@ -1,3 +1,4 @@
+"use client";
 
 import {
   Accordion,
@@ -5,15 +6,13 @@ import {
   AccordionItem,
   AccordionTrigger
 } from '@/components/ui/accordion';
-
-export async function getServerSideProps() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}//front/faqs`);
-  const data = await res.json();
-
-  console.log(data);
-}
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 
 const Question = () => {
+  const [loading, setLoading] = useState(false);
+  const [data, setFaqs] = useState([]);
+  
   const faqs = [
     {
       id: 1,
@@ -84,7 +83,26 @@ const Question = () => {
         'Getting started with Karentpay is simple. Sign up on our website to create an account, complete the verification process, and integrate our payment gateway with your platform. If you need any assistance during the setup, our support team is here to help every step of the way.'
     }
   ];
-  getServerSideProps()
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/front/faqs`);
+        setFaqs(response.data);
+      } catch (err) {
+        console.error("Error fetching reviews:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
+
+  if (loading) {
+    return console.log(loading);;
+  }
+  console.log(data);
   return (
     <section className='mt-[90px] '>
       <div className='container mx-auto py-14 text-white '>
@@ -92,7 +110,7 @@ const Question = () => {
           Frequently Asked Question
         </h2>
         <div className='mt-16'>
-          {faqs.map((faq, index) => (
+          {data?.map((faq, index) => (
             <div
               className='shadow-xl scale-105 lg:scale-100 md:scale-100 lg:w-full md:w-full  rounded-lg p-5 bg-gradient-to-r from-blue-600  to-purple-400 my-4 '
               key={index}
