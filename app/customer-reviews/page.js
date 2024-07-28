@@ -7,7 +7,7 @@ const CustomerReview = () => {
 
 
   const [loading, setLoading] = useState(false)
-  const [reviews, setReviews] = useState([])
+  const [data, setReviews] = useState([])
   const [currentPage, setCurrentPage] = useState(1);
 
 
@@ -39,10 +39,12 @@ const CustomerReview = () => {
   };
 
   if (loading) {
-    return <div>Loading...</div>;
+    return console.log(loading);
   }
 
-  console.log(reviews);
+
+  const reviews = data.filter(data => data.status ==="approved" )
+  console.log( reviews);
 
   const itemsPerPage = 6;
 

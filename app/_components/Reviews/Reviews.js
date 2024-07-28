@@ -11,7 +11,7 @@ import Cookies from "js-cookie";
 
 const Reviews = () => {
   const [loading, setLoading] = useState(true);
-  const [reviews, setReviews] = useState([]);
+  const [data, setReviews] = useState([]);
 
 
   useEffect(() => {
@@ -42,9 +42,11 @@ const Reviews = () => {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return console.log(loading);
   }
 
+  const reviews = data.filter(data => data.status ==="approved" )
+  console.log( reviews);
   return (
     <section className="mt-[70px]">
       <div className="container mx-auto">

@@ -1,15 +1,18 @@
-import React from 'react';
-import { CgArrowsScrollV } from 'react-icons/cg';
-import { RiArrowDownSLine } from 'react-icons/ri';
-import { BsFillQuestionOctagonFill } from 'react-icons/bs';
-import logo from '@/app/_assets/Faq_logo.svg';
+
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger
 } from '@/components/ui/accordion';
-import Image from 'next/image';
+
+export async function getServerSideProps() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}//front/faqs`);
+  const data = await res.json();
+
+  console.log(data);
+}
+
 const Question = () => {
   const faqs = [
     {
@@ -81,6 +84,7 @@ const Question = () => {
         'Getting started with Karentpay is simple. Sign up on our website to create an account, complete the verification process, and integrate our payment gateway with your platform. If you need any assistance during the setup, our support team is here to help every step of the way.'
     }
   ];
+  getServerSideProps()
   return (
     <section className='mt-[90px] '>
       <div className='container mx-auto py-14 text-white '>
