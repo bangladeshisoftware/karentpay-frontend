@@ -14,6 +14,11 @@ const nextConfig = {
         hostname: "dummyimage.com",
         pathname: "**",
       },
+      {
+      
+        hostname: "karentpay-api.test",
+        pathname: "**",
+      },
     ],
   },
   reactStrictMode: false,
