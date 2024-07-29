@@ -1,8 +1,10 @@
-export default function DynamicPage({ params }) {
+import DynamicPage from "../_components/DynamicPage/DynamicPage";
+
+export default function Page({ params }) {
   return (
     <div className="container">
       <div className="px-3 mt-[70px] bg-white text-justify ">
-        <div className="py-3">My page: {params.page}</div>
+        <DynamicPage page={params.page} />
       </div>
     </div>
   );
