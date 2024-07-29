@@ -41,7 +41,6 @@ const Documentations = () => {
     }
   };
 
-
   return (
     <div className="flex justify-center">
       <div className="scale-x-95 lg:scale-x-100 w-[98%] lg:w-[60%]">
