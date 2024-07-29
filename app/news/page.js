@@ -4,90 +4,11 @@ import img1 from "@/app/_assets/more1.jpg";
 import img2 from "@/app/_assets/more2.jpg";
 import img3 from "@/app/_assets/more3.jpg";
 import { htmlToTextConverter } from "@/lib/htmlToTextConverter";
-import axios from "axios";
+import useFetchingData from "@/lib/useFetchingData";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 const News = () => {
-  const more = [
-    {
-      id: 1,
-      image: img1,
-      description:
-        "Edison bulb retro cloud bread echo park, helvetica stumptown taiyaki taxidermy 90's cronut +1 .",
-      title: "ALPER KAMU",
-      link: "UI Developer",
-    },
-    {
-      id: 2,
-      image: img2,
-      description:
-        "Edison bulb retro cloud bread echo park, helvetica stumptown taiyaki taxidermy 90's cronut +1 kinfolk ",
-      title: "David Kameron",
-      link: "Frontend Developer",
-    },
-    {
-      id: 3,
-      image: img3,
-      description:
-        "Edison bulb retro cloud bread echo park, helvetica stumptown taiyaki taxidermy 90's cronut +1",
-      title: "Lomer Smith",
-      link: "Businessman",
-    },
-    {
-      id: 4,
-      image: img1,
-      description:
-        "Edison bulb retro cloud bread echo park, helvetica stumptown taiyaki taxidermy 90's cronut +1",
-      title: "Lomer Smith",
-      link: "Businessman",
-    },
-    {
-      id: 5,
-      image: img2,
-      description:
-        "Edison bulb retro cloud bread echo park, helvetica stumptown taiyaki taxidermy 90's cronut +1",
-      title: "Lomer Smith",
-      link: "Businessman",
-    },
-    {
-      id: 6,
-      image: img3,
-      description:
-        "Edison bulb retro cloud bread echo park, helvetica stumptown taiyaki taxidermy 90's cronut +1",
-      title: "Lomer Smith",
-      link: "Businessman",
-    },
-    {
-      id: 7,
-      image: img1,
-      description:
-        "Edison bulb retro cloud bread echo park, helvetica stumptown taiyaki taxidermy 90's cronut +1",
-      title: "Lomer Smith",
-      link: "Businessman",
-    },
-    {
-      id: 8,
-      image: img2,
-      description:
-        "Edison bulb retro cloud bread echo park, helvetica stumptown taiyaki taxidermy 90's cronut +1",
-      title: "Lomer Smith",
-      link: "Businessman",
-    },
-    {
-      id: 9,
-      image: img3,
-      description:
-        "Edison bulb retro cloud bread echo park, helvetica stumptown taiyaki taxidermy 90's cronut +1",
-      title: "Lomer Smith",
-      link: "Businessman",
-    },
-  ];
-
-  const [newses, setNewses] = useState([]);
-  const [loading, setLoading] = useState(false);
-
-  const minifiedReviews = more?.slice(0, 18);
 
   const itemsPerPage = 6;
   const [currentPage, setCurrentPage] = useState(1);
@@ -96,35 +17,11 @@ const News = () => {
     setCurrentPage(page);
   };
 
-  const totalPages = Math.ceil(more.length / itemsPerPage);
+  const { fetchData } = useFetchingData("/api/front/news/articles");
+
+  const totalPages = Math.ceil(fetchData.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
-  const currentReviews = more.slice(startIndex, startIndex + itemsPerPage);
-
-  const fetchData = async () => {
-    setLoading(true);
-    try {
-      const newsData = await axios.get(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/api/front/news/articles`
-      );
-
-      setNewses(newsData?.data);
-      setLoading(false);
-    } catch (error) {
-      console.error("Error fetching reviews:", error);
-      setNewses([]);
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  console.log(newses);
+  const currentPost = fetchData.slice(startIndex, startIndex + itemsPerPage);
 
   return (
     <div>
@@ -141,7 +38,7 @@ const News = () => {
             </div>
             <div className="border-b"></div>
             <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1  gap-8 justify-center mt-20">
-              {newses?.map((news) => (
+              {currentPost?.map((news) => (
                 <div
                   className="bg-white w-full scale-110 lg:scale-100 md:scale-100 lg:w-full md:w-full sm:w-full lg:mb-0 mb-6 p-4 border rounded-md shadow-lg transition-transform duration-300 hover:scale-110 hover:rotate-x-15 hover:rotate-y-15"
                   key={news?.id}
@@ -149,12 +46,8 @@ const News = () => {
                   <div className="h-full">
                     <Image
                       alt="testimonial"
-                      className="w-full h-auto mb-8 object-cover object-center inline-block rounded-t-lg"
-                      src={
-                        news?.featured_image
-                          ? `${process.env.NEXT_PUBLIC_BASE_URL}/public/${news?.featured_image}`
-                          : ""
-                      }
+                      className="w-full h-56 mb-8 object-cover object-center inline-block rounded-t-lg"
+                      src={news?.featured_image ? news?.featured_image : ""}
                       width={200}
                       height={100}
                       priority
