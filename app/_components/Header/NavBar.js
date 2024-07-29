@@ -470,9 +470,7 @@ const NavBar = () => {
     youtubeLink: "https://www.youtube.com/@Karentpay",
   };
 
-  const [submenuItems, setSubmenuItems] = useState([
-    { label: "About", href: "/about" },
-  ]);
+  const [submenuItems, setSubmenuItems] = useState([]);
 
   useEffect(() => {
     const getSubmenuItems = async () => {

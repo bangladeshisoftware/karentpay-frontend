@@ -85,12 +85,12 @@ const TopBar = () => {
 
 
   return (
-    <section className="container flex justify-between items-center my-2 hidden lg:flex wide-laptop:flex small-laptop:flex">
+    <section className="container justify-between items-center my-2 hidden lg:flex wide-laptop:flex small-laptop:flex">
       {/* large screens */}
       <div className="flex items-center justify-between w-full">
         <Link href="/">
           <Image
-            src={data?.settings?.logoImage}
+            src={data?.settings?.logoImage ? data.settings.logoImage : "/app/_assets/epayget-white-logo.png"}
             quality={100}
             width='1000'
             height="100"

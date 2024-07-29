@@ -28,7 +28,7 @@ const Dropdown = ({ label, items }) => {
         {label}
       </button>
       {isOpen && (
-        <div className="absolute mt-2 bg-white text-black rounded-lg shadow-lg z-50 transition duration-300 ease-in-out transform origin-top-right scale-95">
+        <div className="absolute mt-2 bg-white text-black rounded-lg shadow-lg z-50 transition duration-300 ease-in-out transform origin-top-right scale-95 w-48">
           {items.map((item, index) => (
             <Link
               onClick={() => {
