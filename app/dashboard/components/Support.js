@@ -6,14 +6,36 @@ import { MdOutlineAirplaneTicket } from "react-icons/md";
 import Datepicker from "react-tailwindcss-datepicker";
 import axios from "axios";
 import Cookies from "js-cookie";
-import useFetchData from "@/lib/useFetchData";
+import { toast } from "react-toastify";
 
 function Support() {
-  const { data, loading, error } = useFetchData("/admin/tickets");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
   const [Image, setImage] = useState("");
+  const [url, seturl] = useState("/admin/tickets/user?page=1&per_page=7");
+  const [tecket, settecket] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const token = Cookies.get("auth_token");
+        const response = await axios.get(
+          process.env.NEXT_PUBLIC_DATA_API + url,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        settecket(response.data);
+      } catch (error) {}
+    };
+
+    fetchData();
+  }, [url]);
+
+  console.log(tecket);
 
   const [dateRange, setDateRange] = useState({
     startDate: null,
@@ -24,8 +46,6 @@ function Support() {
     console.log("newValue:", newValue);
     setDateRange(newValue);
   };
-
-  console.log(data)
 
   const transactions = [
     {
@@ -137,7 +157,7 @@ function Support() {
     const token = Cookies.get("auth_token");
 
     axios
-      .post( process.env.NEXT_PUBLIC_DATA_API + "/admin/tickets", formData, {
+      .post(process.env.NEXT_PUBLIC_DATA_API + "/admin/tickets", formData, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "multipart/form-data",
@@ -145,9 +165,11 @@ function Support() {
       })
       .then((response) => {
         console.log("Response:", response.data);
+        toast.success("Tecket Added Successfully");
       })
       .catch((error) => {
         console.error("Error:", error);
+        toast.success("Failed to Add Tecket");
       });
 
     console.log("Subject:", subject);
@@ -363,10 +385,10 @@ function Support() {
                         Sl
                       </th>
                       <th scope="col" className="px-4 py-3">
-                      Track Id
+                        Ticket ID
                       </th>
                       <th scope="col" className="px-4 py-3">
-                      Date
+                        Date
                       </th>
 
                       <th scope="col" className="px-4 py-3">
@@ -381,17 +403,21 @@ function Support() {
                     </tr>
                   </thead>
                   <tbody>
-                    {visibleTransactions.map((transaction) => (
+                    {tecket?.data?.map((item) => (
                       <tr
-                        key={transaction.id}
+                        key={item?.id}
                         className="border-b dark:border-gray-700 "
                       >
-                        <td className='pl-5'>01</td>
-                        <td>47545</td>
-                        <td>2024-06-26</td>
-                        <td>Supered Error</td>
-                        <td>Open</td>
-                        <td>Edit</td>
+                        <td className="pl-5">{item?.id}</td>
+                        <td className="pl-5">{item?.track_id}</td>
+                        <td>{item?.date}</td>
+                        <td className="pl-5">{item?.subject}</td>
+                        <td className="pl-5">{item?.status}</td>
+                        <td>
+                          <button className="p-1 px-6 rounded-lg bg-blue-500 text-white flex my-2">
+                            Edit
+                          </button>
+                        </td>
                       </tr>
                     ))}
                   </tbody>
@@ -592,7 +618,7 @@ function Support() {
                     required
                   />
                   <textarea
-                  rows="5"
+                    rows="5"
                     className="w-full p-2 mt-3 border rounded-md"
                     placeholder="Message"
                     value={message}
