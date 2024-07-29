@@ -1,5 +1,4 @@
 "use client";
-
 import { useEffect, useState } from "react";
 import Head from "next/head";
 import axios from "axios";
@@ -26,27 +25,30 @@ export default function RootLayout({ children }) {
       try {
         const token = Cookies.get("auth_token");
         const response = await axios.get(
-          process.env.NEXT_PUBLIC_DATA_API + "/admin/setting/logo-identity",
+          `${process.env.NEXT_PUBLIC_DATA_API}/admin/setting/logo-identity`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
             },
           }
         );
-        console.log(response);
-        setSiteData({
-          title: response?.data?.settings?.siteName,
-          description: response?.data?.settings?.siteDescription,
-          favicon: response?.data?.settings?.faviconImage,
-          keywords: response?.data?.settings?.siteKeyword,
-        });
+        console.log("API Response:", response);
+        if (response.data && response.data.settings) {
+          setSiteData({
+            title: response.data.settings.siteName,
+            description: response.data.settings.siteDescription,
+            favicon: response.data.settings.faviconImage,
+            keywords: response.data.settings.siteKeyword,
+          });
+        }
       } catch (error) {
         console.error("Error fetching site data:", error);
       }
     };
     fetchSiteData();
   }, []);
-  console.log(siteData);
+
+  console.log("Site Data:", siteData);
 
   return (
     <html lang="en">
@@ -54,7 +56,7 @@ export default function RootLayout({ children }) {
         <title>{siteData.title}</title>
         <meta name="description" content={siteData.description} />
         <meta name="keywords" content={siteData.keywords} />
-        <link rel="icon" href={siteData.favicon} />
+        <link rel="icon" href={siteData.favicon}/>
         <link
           rel="icon"
           type="image/png"

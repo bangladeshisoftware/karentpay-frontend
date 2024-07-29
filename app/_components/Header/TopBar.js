@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 import Dashboard from "./../../dashboard/page";
 import ApiRequest from "@/app/_lib/Api_request";
 import useFetchData from "@/lib/useFetchData";
+import useFetchingData from "@/lib/useFetchingData";
 
 const TopBar = () => {
   const [dropdownDefaultButton, setDropdownDefaultButton] = useState(false);
@@ -72,16 +73,15 @@ const TopBar = () => {
         url: "/user",
         method: "get",
       });
-      if (response.status == 200) {
-        setuser(response.data.user);
+      if (response?.status == 200) {
+        setuser(response?.data.user);
       } else {
-        toast.error(response.message);
+        toast.error(response?.message);
       }
     }
   };
 
-  const { data } = useFetchData("/admin/setting/logo-identity");
-  console.log(data.settings?.faviconImage)
+  const { fetchData } = useFetchingData("/api/front/setting/header-setting");
 
 
   return (
@@ -90,7 +90,7 @@ const TopBar = () => {
       <div className="flex items-center justify-between w-full">
         <Link href="/">
           <Image
-            src={data?.settings?.logoImage}
+            src={fetchData?.settings?.HeaderBanner}
             quality={100}
             width='1000'
             height="100"
