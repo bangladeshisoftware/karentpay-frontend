@@ -378,6 +378,7 @@ import youtubeIcon from "@/app/_assets/youtube.png";
 import { DrawerDialogDemo } from "@/app/_components/Header/BecomeMerchent/DrawerDialogDemo";
 import ApiRequest from "@/app/_lib/Api_request";
 import { GetCookies, deleteCookies } from "@/app/_lib/cookiesSetting";
+import useFetchingData from "@/lib/useFetchingData";
 import axios from "axios";
 import { ChevronDown, ChevronUp, Menu } from "lucide-react";
 import Image from "next/image";
@@ -394,8 +395,8 @@ const NavBar = () => {
   const [pagesMenuOpen, setPagesMenuOpen] = useState(false); // Initially closed
   const menuRef = useRef(null); // Ref for the menu
   const buttonRef = useRef(null); // Ref for the hamburger button
-  const [pages, setPages] = useState([]);
-  const [loading, setLoading] = useState(false);
+
+  const { fetchData } = useFetchingData("/api/front/pages");
 
   // get user
   const [user, setUser] = useState("");
@@ -417,25 +418,10 @@ const NavBar = () => {
       }
     };
 
-    const fetchData = async () => {
-      setLoading(true);
-      try {
-        const pagesData = await axios.get(
-          `${process.env.NEXT_PUBLIC_BASE_URL}/api/front/pages`
-        );
-
-        setPages(pagesData?.data);
-        setLoading(false);
-      } catch (error) {
-        setPages([]);
-        setLoading(false);
-      }
-    };
-
     getUser();
-    fetchData();
   }, []);
-  console.log(pages);
+
+  console.log(fetchData);
 
   const logOut = async () => {
     if (localStorage.getItem("secret_key")) {
@@ -446,7 +432,7 @@ const NavBar = () => {
       location.reload(true);
       toast.success("Successfully Logged Out");
     } else {
-      console.log(deleteToken);
+      // console.log(deleteToken);
     }
   };
 
@@ -484,6 +470,26 @@ const NavBar = () => {
     youtubeLink: "https://www.youtube.com/@Karentpay",
   };
 
+  const [submenuItems, setSubmenuItems] = useState([
+    { label: "About", href: "/about" },
+  ]);
+
+  useEffect(() => {
+    const getSubmenuItems = async () => {
+      try {
+        const mappedSubmenuItems = fetchData.map((item) => ({
+          label: item.page_name,
+          href: `/${item.slug}`,
+        }));
+        setSubmenuItems((prevItems) => [...prevItems, ...mappedSubmenuItems]);
+      } catch (error) {
+        console.error("Error fetching submenu items:", error);
+      }
+    };
+
+    getSubmenuItems();
+  }, [fetchData]);
+
   const dropdownItemsMainMenu = [
     { label: "Home", href: "/" },
     { label: "Pricing", href: "/pricing" },
@@ -494,12 +500,13 @@ const NavBar = () => {
     { label: "Contact", href: "/contact" },
     {
       label: "Pages",
-      submenu: [
-        { label: "About", href: "/about" },
-        { label: "Privacy & Policy", href: "/privacy-policy" },
-        { label: "Terms & Conditions", href: "/terms-and-conditions" },
-        { label: "No Refund", href: "/refund" },
-      ],
+      // submenu: [
+      //   { label: "About", href: "/about" },
+      //   { label: "Privacy & Policy", href: "/privacy-policy" },
+      //   { label: "Terms & Conditions", href: "/terms-and-conditions" },
+      //   { label: "No Refund", href: "/refund" },
+      // ],
+      submenu: submenuItems,
     },
   ];
 

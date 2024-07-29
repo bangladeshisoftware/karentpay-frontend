@@ -1,11 +1,12 @@
 "use client";
+import { htmlToTextConverter } from "@/lib/htmlToTextConverter";
 import useFetchingData from "@/lib/useFetchingData";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
 const GetMore = () => {
-  const { fetchData } = useFetchingData('/api/front/news/articles')
+  const { fetchData } = useFetchingData("/api/front/news/articles");
 
   return (
     <section className="mt-[70px]">
@@ -34,15 +35,20 @@ const GetMore = () => {
               <div className="h-full bg-white rounded-md">
                 <Image
                   alt="testimonial"
-                  className="w-full h-auto mb-8 object-cover object-center inline-block rounded-t-lg"
-                  src={process.env.NEXT_PUBLIC_BASE_URL + news?.featured_image}
+                  className="w-full h-56 mb-8 object-cover object-center inline-block rounded-t-lg"
+                  src={news?.featured_image ? news?.featured_image : ""}
                   width={400}
                   height={300}
                   priority
                 />
                 <div className="px-4 pb-10">
                   <h2 className="font-bold text-lg">{news?.title}</h2>
-                  <p className="text-justify">{news?.content}</p>
+                  <p className="text-justify">
+                    {news?.content
+                      ? htmlToTextConverter(news?.content?.slice(0, 300)) +
+                        "..."
+                      : ""}
+                  </p>
                   <Link
                     href={`/news/${news?.id}`}
                     className="block w-fit mt-3 px-6 py-2 rounded bg-blue-600 text-white text-sm"
