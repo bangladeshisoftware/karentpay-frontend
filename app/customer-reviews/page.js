@@ -5,7 +5,7 @@ import useFetchingData from "@/lib/useFetchingData";
 const CustomerReview = () => {
   
   const [currentPage, setCurrentPage] = useState(1);
-  const  { fetchData,loading } = useFetchingData('/api/front/reviews')
+  const  { fetchData } = useFetchingData('/api/front/reviews')
 
   
   const reviews = fetchData.filter(data => data.status ==="approved" )
@@ -24,8 +24,6 @@ const CustomerReview = () => {
 
   return (
     <section >
-      {
-        loading ? <div>Loading...</div> :
           <div className="container mx-auto mt-20">
             <div className="mb-10">
               <h2 className="text-center text-[#443f35] text-3xl font-bold">
@@ -79,7 +77,6 @@ const CustomerReview = () => {
               ))}
             </div>
           </div>
-      }
     </section>
   );
 };
