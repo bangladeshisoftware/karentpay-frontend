@@ -6,12 +6,9 @@ import {
   AccordionItem,
   AccordionTrigger
 } from '@/components/ui/accordion';
-import axios from 'axios';
-import { useEffect, useState } from 'react';
+import useFetchingData from '@/lib/useFetchingData';
 
 const Question = () => {
-  const [loading, setLoading] = useState(false);
-  const [data, setFaqs] = useState([]);
   
   const faqs = [
     {
@@ -84,25 +81,7 @@ const Question = () => {
     }
   ];
 
-  useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      try {
-        const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/front/faqs`);
-        setFaqs(response.data);
-      } catch (err) {
-        console.error("Error fetching reviews:", err);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchData();
-  }, []);
-
-  if (loading) {
-    return console.log(loading);;
-  }
-  console.log(data);
+  const  { fetchData, loading } = useFetchingData('/api/front/faqs')
   return (
     <section className='mt-[90px] '>
       <div className='container mx-auto py-14 text-white '>
@@ -110,7 +89,7 @@ const Question = () => {
           Frequently Asked Question
         </h2>
         <div className='mt-16'>
-          {data?.map((faq, index) => (
+          {fetchData?.map((faq, index) => (
             <div
               className='shadow-xl scale-105 lg:scale-100 md:scale-100 lg:w-full md:w-full  rounded-lg p-5 bg-gradient-to-r from-blue-600  to-purple-400 my-4 '
               key={index}

@@ -1,50 +1,15 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import Image from "next/image";
-import axios from "axios";
-import Cookies from "js-cookie";
+import useFetchingData from "@/lib/useFetchingData";
 const CustomerReview = () => {
-
-
-  const [loading, setLoading] = useState(false)
-  const [data, setReviews] = useState([])
+  
   const [currentPage, setCurrentPage] = useState(1);
+  const  { fetchData,loading } = useFetchingData('/api/front/reviews')
 
+  
+  const reviews = fetchData.filter(data => data.status ==="approved" )
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  const fetchData = async () => {
-    setLoading(true);
-    try {
-      const token = Cookies.get("auth_token");
-      if (token) {
-        const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/admin/reviews`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        setReviews(response.data);
-      } else {
-        console.warn("No auth token found");
-        setReviews([]); // Use static data if no token is available
-      }
-    } catch (err) {
-      console.error("Error fetching reviews:", err);
-      setReviews([]); // Fallback to static data on error
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  if (loading) {
-    return console.log(loading);
-  }
-
-
-  const reviews = data.filter(data => data.status ==="approved" )
-  console.log( reviews);
 
   const itemsPerPage = 6;
 

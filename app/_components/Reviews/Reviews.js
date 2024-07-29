@@ -1,52 +1,15 @@
 "use client";
 import Image from "next/image";
-import img1 from "@/app/_assets/r1.jpg";
-import img2 from "@/app/_assets/r2.jpg";
-import img3 from "@/app/_assets/r3.jpg";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { useEffect, useState } from "react";
-import axios from "axios";
-import Cookies from "js-cookie";
+import useFetchingData from "@/lib/useFetchingData";
 
 const Reviews = () => {
-  const [loading, setLoading] = useState(true);
-  const [data, setReviews] = useState([]);
+
+  const  { fetchData } = useFetchingData('/api/front/reviews')
+  const reviews = fetchData.filter(data => data.status ==="approved" )
 
 
-  useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      try {
-        const token = Cookies.get("auth_token");
-        if (token) {
-          const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/admin/reviews`, {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          });
-          setReviews(response.data);
-        } else {
-          console.warn("No auth token found");
-          setReviews([]); // Use static data if no token is available
-        }
-      } catch (err) {
-        console.error("Error fetching reviews:", err);
-        setReviews([]); // Fallback to static data on error
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  if (loading) {
-    return console.log(loading);
-  }
-
-  const reviews = data.filter(data => data.status ==="approved" )
-  console.log( reviews);
   return (
     <section className="mt-[70px]">
       <div className="container mx-auto">
@@ -62,7 +25,7 @@ const Reviews = () => {
           </Link>
         </div>
         <div className="flex flex-wrap gap-4  justify-center mt-10 ">
-          {reviews.map((review) => (
+          {reviews.slice(0, 3).map((review) => (
             <div
               className=" w-full  md:w-[48%] lg:w-[32.5%] scale-110 lg:scale-100 md:scale-100  p-4 border rounded-lg shadow-lg bg-white"
               key={review.id}
