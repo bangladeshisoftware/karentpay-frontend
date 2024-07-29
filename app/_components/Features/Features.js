@@ -1,3 +1,4 @@
+"use client"
 import flexibilityImage from "@/app/_assets/yay.png";
 import secureApiImage from "@/app/_assets/secure.png";
 import notificationImage from "@/app/_assets/notification.png";
@@ -13,6 +14,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import Image from "next/image";
+import useFetchingData from "@/lib/useFetchingData";
 
 const Features = () => {
   const features = [
@@ -72,21 +74,26 @@ const Features = () => {
     },
   ];
 
+  const { fetchData } = useFetchingData('/api/front/payment-feature-showcases')
+  console.log(fetchData)
+
   return (
     <section className="container mx-auto mt-[60px] ">
       <h2 className="text-3xl font-bold flex text-center">
         Why choose our payment system
       </h2>
       <div className="grid lg:grid-cols-3  grid-cols-1 gap-x-4 gap-y-10 mt-12  justify-center mx-auto">
-        {features.map((feature) => (
+        {fetchData?.map((feature) => (
           <Card
             className="w-full scale-110 lg:scale-100 md:scale-100 lg:w-full md:w-full  mx-auto shadow-lg"
             key={feature.id}
           >
             <CardHeader>
               <Image
-                src={feature.image}
-                alt={feature.imageAltText}
+                src={process.env.NEXT_PUBLIC_BASE_URL+feature.image}
+                alt={feature.image}
+                width={100}
+                height={100}
                 className="w-20 mb-2"
               />
               <CardTitle>{feature.title}</CardTitle>

@@ -19,6 +19,11 @@ const nextConfig = {
         hostname: "karentpay-api.test",
         pathname: "**",
       },
+      {
+      
+        hostname: "karentpay-api.testhttp",
+        pathname: "**",
+      },
     ],
   },
   reactStrictMode: false,
