@@ -1,102 +1,134 @@
+"use client";
+
 // import footerLogo from '@/app/_assets/Footer-Logo.png';
-import Image from 'next/image';
-import Link from 'next/link';
-import Logo from '@/app/_assets/Logo.png';
+import Logo from "@/app/_assets/Logo.png";
+import axios from "axios";
+import Image from "next/image";
+import Link from "next/link";
+import React, { useEffect } from "react";
 
 const Footer = () => {
-  
+  const [footerSettings, setFooterSettings] = React.useState([]);
+
+  const fetchData = async () => {
+    try {
+      const footerData = await axios.get(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/front/setting/footer-setting`
+      );
+
+      setFooterSettings(footerData?.data?.settings);
+    } catch (error) {
+      // console.error("Error fetching reviews:", error);
+      setFooterSettings([]);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
-    <section className='bg-gradient-3 text-white mt-[70px]'>
-      <footer className='w-full container py-10'>
-        <div className='mx-auto'>
-          <div className='grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-3 md:gap-8 py-10 max-sm:max-w-sm max-sm:mx-auto gap-y-8'>
-            <div className='col-span-full mb-10 lg:col-span-2 lg:mb-0'>
-              <Link href='/' className='flex justify-center lg:justify-start'>
-                <Image src={Logo} alt='logo' className=' py-2 px-5 rounded-md bg-white' priority />
+    <section className="bg-gradient-3 text-white mt-[70px]">
+      <footer className="w-full container py-10">
+        <div className="mx-auto">
+          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-3 md:gap-8 py-10 max-sm:max-w-sm max-sm:mx-auto gap-y-8">
+            <div className="col-span-full mb-10 lg:col-span-2 lg:mb-0">
+              <Link href="/" className="flex justify-center lg:justify-start">
+                <Image
+                  src={footerSettings?.FooterLogo || Logo}
+                  alt="logo"
+                  className=" py-2 px-5 rounded-md bg-white"
+                  priority
+                  width={200}
+                  height={50}
+                />
               </Link>
-              <p className='py-8 text-sm lg:max-w-xs text-center lg:text-left'>
+              <p className="py-8 text-sm lg:max-w-xs text-center lg:text-left">
                 We Make Banking Easy For You <br />
                 Always easy to pay <br />
                 The future of Money is here
               </p>
               <Link
-                href='/contact'
-                className='py-2.5 px-5 block w-fit bg-gradient-2 rounded shadow-sm text-sm text-white mx-auto hover:bg-blue-700 lg:mx-0'
+                href="/contact"
+                className="py-2.5 px-5 block w-fit bg-gradient-2 rounded shadow-sm text-sm text-white mx-auto hover:bg-blue-700 lg:mx-0"
               >
                 Contact us
               </Link>
             </div>
-            <div className='lg:mx-auto text-left '>
-              <h4 className='text-lg font-bold mb-7'>Karentpay</h4>
-              <ul className='text-sm  transition-all duration-500'>
-                <li className='mb-6'>
-                  <Link href='/' className='hover:text-gray-200'>
+            <div className="lg:mx-auto text-left ">
+              <h4 className="text-lg font-bold mb-7">Karentpay</h4>
+              <ul className="text-sm  transition-all duration-500">
+                <li className="mb-6">
+                  <Link href="/" className="hover:text-gray-200">
                     Home
                   </Link>
                 </li>
-                <li className='mb-6'>
-                  <Link href='/contact' className=' hover:text-gray-200'>
+                <li className="mb-6">
+                  <Link href="/contact" className=" hover:text-gray-200">
                     Contact
                   </Link>
                 </li>
-
               </ul>
             </div>
-            <div className='lg:mx-auto text-left '>
-              <h4 className='text-lg font-bold mb-7'>Products</h4>
-              <ul className='text-sm  transition-all duration-500'>
-                <li className='mb-6'>
-                  <Link href='/pricing' className='hover:text-gray-200'>
+            <div className="lg:mx-auto text-left ">
+              <h4 className="text-lg font-bold mb-7">Products</h4>
+              <ul className="text-sm  transition-all duration-500">
+                <li className="mb-6">
+                  <Link href="/pricing" className="hover:text-gray-200">
                     Pricing
                   </Link>
                 </li>
-                <li className='mb-6'>
-                  <Link href='/payment-gateway' className=' hover:text-gray-200'>
+                <li className="mb-6">
+                  <Link
+                    href="/payment-gateway"
+                    className=" hover:text-gray-200"
+                  >
                     Payment Gateway
                   </Link>
                 </li>
               </ul>
             </div>
-            <div className='lg:mx-auto text-left'>
-              <h4 className='text-lg font-bold mb-7'>Resources</h4>
-              <ul className='text-sm  transition-all duration-500'>
-                <li className='mb-6'>
-                  <Link href='/documentations' className='hover:text-gray-200'>
+            <div className="lg:mx-auto text-left">
+              <h4 className="text-lg font-bold mb-7">Resources</h4>
+              <ul className="text-sm  transition-all duration-500">
+                <li className="mb-6">
+                  <Link href="/documentations" className="hover:text-gray-200">
                     Documentation
                   </Link>
                 </li>
-                <li className='mb-6'>
-                  <Link href='/about' className='hover:text-gray-200'>
+                <li className="mb-6">
+                  <Link href="/about" className="hover:text-gray-200">
                     About
                   </Link>
                 </li>
-                
               </ul>
             </div>
-            <div className='lg:mx-auto text-left'>
-              <h4 className='text-lg font-bold mb-7'>Blogs</h4>
-              <ul className='text-sm  transition-all duration-500'>
-                <li className='mb-6'>
-                  <Link href='/news' className='hover:text-gray-200'>
+            <div className="lg:mx-auto text-left">
+              <h4 className="text-lg font-bold mb-7">Blogs</h4>
+              <ul className="text-sm  transition-all duration-500">
+                <li className="mb-6">
+                  <Link href="/news" className="hover:text-gray-200">
                     News
                   </Link>
                 </li>
-                <li className='mb-6'>
-                  <Link href='/customer-reviews' className='hover:text-gray-200'>
+                <li className="mb-6">
+                  <Link
+                    href="/customer-reviews"
+                    className="hover:text-gray-200"
+                  >
                     Customer Review
                   </Link>
                 </li>
-                
               </ul>
             </div>
           </div>
-          <div className='py-10 border-t border-gray-200'>
-            <div className='flex items-center justify-center flex-col lg:justify-between lg:flex-row'>
-              <span className='text-sm'>
-                ©<Link href='https://pagedone.io/'>Karentpay</Link> 2024, All
+          <div className="py-10 border-t border-gray-200">
+            <div className="flex items-center justify-center flex-col lg:justify-between lg:flex-row">
+              <span className="text-sm">
+                ©<Link href="https://pagedone.io/">Karentpay</Link> 2024, All
                 rights reserved.
               </span>
-              <div className='flex mt-4 space-x-4 sm:justify-center lg:mt-0 '>
+              <div className="flex mt-4 space-x-4 sm:justify-center lg:mt-0 ">
                 {/* <Link
                   href=''
                   className='w-9 h-9 rounded-full bg-black flex justify-center items-center hover:bg-slate-800'
@@ -134,26 +166,50 @@ const Footer = () => {
                   </svg>
                 </Link> */}
                 <Link
-                  href='https://www.facebook.com/karentpay' target='_blank'
-                  className='w-9 h-9 rounded-full bg-blue-600 flex justify-center items-center hover:bg-blue-700'
-                >
-                 <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="facebook" className="svg-inline--fa fa-facebook " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"></path></svg>
-                </Link>
-                <Link
-                  href='https://www.youtube.com/@Karentpay' target='_blank'
-                  className='w-9 h-9 rounded-full bg-red-600 flex justify-center items-center hover:bg-red-700'
+                  href={
+                    footerSettings?.FacebookUrl
+                      ? `${footerSettings?.FacebookUrl}`
+                      : "https://www.facebook.com/Karentpay"
+                  }
+                  target="_blank"
+                  className="w-9 h-9 rounded-full bg-blue-600 flex justify-center items-center hover:bg-blue-700"
                 >
                   <svg
-                    className='w-[1.25rem] h-[0.875rem] text-white'
-                    viewBox='0 0 16 12'
-                    fill='none'
-                    xmlns='http://www.w3.org/2000/svg'
+                    aria-hidden="true"
+                    focusable="false"
+                    data-prefix="fab"
+                    data-icon="facebook"
+                    className="svg-inline--fa fa-facebook "
+                    role="img"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 512 512"
                   >
                     <path
-                      fillRule='evenodd'
-                      clipRule='evenodd'
-                      d='M13.9346 1.13529C14.5684 1.30645 15.0665 1.80588 15.2349 2.43896C15.5413 3.58788 15.5413 5.98654 15.5413 5.98654C15.5413 5.98654 15.5413 8.3852 15.2349 9.53412C15.0642 10.1695 14.5661 10.669 13.9346 10.8378C12.7886 11.1449 8.19058 11.1449 8.19058 11.1449C8.19058 11.1449 3.59491 11.1449 2.44657 10.8378C1.81277 10.6666 1.31461 10.1672 1.14622 9.53412C0.839844 8.3852 0.839844 5.98654 0.839844 5.98654C0.839844 5.98654 0.839844 3.58788 1.14622 2.43896C1.31695 1.80353 1.81511 1.30411 2.44657 1.13529C3.59491 0.828125 8.19058 0.828125 8.19058 0.828125C8.19058 0.828125 12.7886 0.828125 13.9346 1.13529ZM10.541 5.98654L6.72178 8.19762V3.77545L10.541 5.98654Z'
-                      fill='currentColor'
+                      fill="currentColor"
+                      d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"
+                    ></path>
+                  </svg>
+                </Link>
+                <Link
+                  href={
+                    footerSettings?.YoutubeUrl
+                      ? `${footerSettings?.YoutubeUrl}`
+                      : "https://www.youtube.com/@Karentpay"
+                  }
+                  target="_blank"
+                  className="w-9 h-9 rounded-full bg-red-600 flex justify-center items-center hover:bg-red-700"
+                >
+                  <svg
+                    className="w-[1.25rem] h-[0.875rem] text-white"
+                    viewBox="0 0 16 12"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      clipRule="evenodd"
+                      d="M13.9346 1.13529C14.5684 1.30645 15.0665 1.80588 15.2349 2.43896C15.5413 3.58788 15.5413 5.98654 15.5413 5.98654C15.5413 5.98654 15.5413 8.3852 15.2349 9.53412C15.0642 10.1695 14.5661 10.669 13.9346 10.8378C12.7886 11.1449 8.19058 11.1449 8.19058 11.1449C8.19058 11.1449 3.59491 11.1449 2.44657 10.8378C1.81277 10.6666 1.31461 10.1672 1.14622 9.53412C0.839844 8.3852 0.839844 5.98654 0.839844 5.98654C0.839844 5.98654 0.839844 3.58788 1.14622 2.43896C1.31695 1.80353 1.81511 1.30411 2.44657 1.13529C3.59491 0.828125 8.19058 0.828125 8.19058 0.828125C8.19058 0.828125 12.7886 0.828125 13.9346 1.13529ZM10.541 5.98654L6.72178 8.19762V3.77545L10.541 5.98654Z"
+                      fill="currentColor"
                     />
                   </svg>
                 </Link>

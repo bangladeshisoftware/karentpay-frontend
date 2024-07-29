@@ -37,7 +37,6 @@ const GetMore = () => {
     return <div>Loading...</div>;
   }
 
-
   return (
     <section className="mt-[70px]">
       <div className="container mx-auto">
