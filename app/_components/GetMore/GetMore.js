@@ -1,41 +1,11 @@
 "use client";
-
-import img1 from "@/app/_assets/more1.jpg";
-import img2 from "@/app/_assets/more2.jpg";
-import img3 from "@/app/_assets/more3.jpg";
-import axios from "axios";
+import useFetchingData from "@/lib/useFetchingData";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect } from "react";
 
 const GetMore = () => {
-  const [newses, setNewses] = React.useState([]);
-  const [loading, setLoading] = React.useState(false);
-
-  const fetchData = async () => {
-    setLoading(true);
-    try {
-      const newsData = await axios.get(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/api/front/news/articles`
-      );
-
-      setNewses(newsData?.data);
-      setLoading(false);
-    } catch (error) {
-      // console.error("Error fetching reviews:", error);
-      setNewses([]);
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+  const { fetchData } = useFetchingData('/api/front/news/articles')
 
   return (
     <section className="mt-[70px]">
@@ -56,7 +26,7 @@ const GetMore = () => {
           offers that enlighten your business
         </p>
         <div className="flex flex-wrap gap-4 gap-y-10 justify-center md:justify-between  mt-10">
-          {newses?.map((news) => (
+          {fetchData?.map((news) => (
             <div
               className="w-full scale-110 lg:scale-100 md:scale-100  md:w-[48%] lg:w-[32.5%]  mb-6 border rounded-lg shadow-lg"
               key={news?.id}
@@ -65,11 +35,7 @@ const GetMore = () => {
                 <Image
                   alt="testimonial"
                   className="w-full h-auto mb-8 object-cover object-center inline-block rounded-t-lg"
-                  src={
-                    news?.featured_image
-                      ? `${process.env.NEXT_PUBLIC_BASE_URL}/public/${news?.featured_image}`
-                      : ""
-                  }
+                  src={process.env.NEXT_PUBLIC_BASE_URL + news?.featured_image}
                   width={400}
                   height={300}
                   priority

@@ -81,7 +81,7 @@ const Question = () => {
     }
   ];
 
-  const  { fetchData, loading } = useFetchingData('/api/front/faqs')
+  const  { fetchData } = useFetchingData('/api/front/faqs')
   return (
     <section className='mt-[90px] '>
       <div className='container mx-auto py-14 text-white '>
