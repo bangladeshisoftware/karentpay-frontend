@@ -44,9 +44,15 @@ const Footer = () => {
                 />
               </Link>
               <p className="py-8 text-sm lg:max-w-xs text-center lg:text-left">
-                We Make Banking Easy For You <br />
-                Always easy to pay <br />
-                The future of Money is here
+                {footerSettings?.Description ? (
+                  footerSettings?.Description
+                ) : (
+                  <span>
+                    We Make Banking Easy For You <br />
+                    Always easy to pay <br />
+                    The future of Money is here
+                  </span>
+                )}
               </p>
               <Link
                 href="/contact"
@@ -125,8 +131,8 @@ const Footer = () => {
           <div className="py-10 border-t border-gray-200">
             <div className="flex items-center justify-center flex-col lg:justify-between lg:flex-row">
               <span className="text-sm">
-                ©<Link href="https://pagedone.io/">Karentpay</Link> 2024, All
-                rights reserved.
+                {footerSettings?.Copyright ||
+                  `© ${new Date().getFullYear()} Karentpay. All rights reserved.`}
               </span>
               <div className="flex mt-4 space-x-4 sm:justify-center lg:mt-0 ">
                 {/* <Link
