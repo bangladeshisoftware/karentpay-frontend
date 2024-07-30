@@ -36,7 +36,7 @@ const News = () => {
                 </span>{" "}
                 News
               </h2>
-              <p className="text-xl mt-4 text-center font-normal">
+              <p className="text-xl mt-4 text-center font-semibold">
                 Find out more news and more services{" "}
               </p>
             </div>

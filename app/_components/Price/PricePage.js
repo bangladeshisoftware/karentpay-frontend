@@ -23,7 +23,7 @@ const PricePage = () => {
             {settingsData?.settings?.siteName}
           </span>
         </h1>
-        <p className="text-xl mt-4 text-center font-normal">
+        <p className="text-xl mt-4 text-center font-semibold">
           Automatic Payment Gateway Pricing Value
         </p>
       </div>

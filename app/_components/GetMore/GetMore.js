@@ -7,13 +7,20 @@ import Link from "next/link";
 
 const GetMore = () => {
   const { fetchData } = useFetchingData("/api/front/news/articles");
+  const { fetchData: settingsData } = useFetchingData(
+    "/api/front/setting/logo-identity"
+  );
 
   return (
     <section className="mt-[70px]">
       <div className="container mx-auto">
         <div className="flex flex-col md:flex-row md:justify-between items-center md:items-start">
           <h2 className="text-2xl sm:text-3xl font-bold text-center md:text-left mb-4 md:mb-0">
-            Get more from Karentpay
+            Get more from{" "}
+            <span className=" gradient-text">
+              {" "}
+              {settingsData?.settings?.siteName}
+            </span>
           </h2>
           <Link
             href="/news"
