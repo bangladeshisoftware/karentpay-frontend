@@ -40,7 +40,7 @@ const CustomerReview = () => {
                   className="bg-white w-full scale-110 lg:scale-100 md:scale-100 lg:w-full md:w-full lg:mb-0 mb-6 p-4 border rounded-lg shadow-lg transition-transform duration-300 hover:scale-110 hover:rotate-x-15 hover:rotate-y-15"
                   key={index}
                 >
-                  <div className="h-full text-center">
+                  <div className="h-full text-center mt-8">
                     <Image
                       alt="testimonial"
                       className="w-32 h-32 mb-8 object-cover object-center rounded-full inline-block border-2 border-gray-200 bg-gray-100"
