@@ -5,48 +5,33 @@ import { CiBookmarkCheck } from "react-icons/ci";
 import { GoCheckCircleFill } from "react-icons/go";
 import { RxCrossCircled } from "react-icons/rx";
 
-const PriceCard = () => {
+const PriceCard = ({ item }) => {
   const crossItems = [
-    // 'Statement Access',
-    // 'Comprehensive Support',
-    // 'Dedicated Key Account Manager',
     "All Payment Methods Included by Default",
     "No Additional Payment Method Fees",
   ];
 
   return (
-    <div className="border shadow-md rounded-md w-full transition-transform duration-300 hover:scale-105 hover:shadow-lg">
-      <div className="bg-gradient-2 rounded-md py-10 ">
+    <div className="border shadow-md rounded-md transition-transform duration-300 hover:scale-105 hover:shadow-lg">
+      <div className="bg-gradient-2 rounded-md py-10">
         <div className="border rounded-full flex justify-center mx-auto text-white mt-2 mb-10 w-32">
-          <div className="mt-1  text-xl">
+          <div className="mt-1 text-xl">
             <CiBookmarkCheck />
           </div>
-          <div className="ml-1 text-xl">Payout</div>
+          <div className="ml-1 text-xl">{item?.name}</div>
         </div>
-        <div>
-          <h1 className="text-xl text-center text-white font-bold pb-2">
-            Karentpay Payout:<span className="text-2xl font-bold"> 2% </span>
+        <div className="px-4 break-words">
+          <h1 className="text-xl text-center text-white font-bold pb-2 break-words">
+            {item?.description}
+            <span className="text-2xl font-bold block sm:inline break-words">
+              {" "}
+              {item?.charge_percentage}%{" "}
+            </span>
             Charges
           </h1>
         </div>
-        <div>
-          <p className="text-base text-center mb-5 text-white px-4"></p>
-        </div>
       </div>
-      {[
-        "No annual charge",
-        "No Monthly Fee: Enjoy Cost Savings with No Recurring Charges",
-        "Default Payment Link",
-        "Create payment link facilities",
-        "QR Payment Facility",
-        "Instant Account Active",
-        "Easy To Use System",
-        "Support ticket system ",
-        "Emergency call support ",
-        "Emergency Google Meet support ",
-        "Free API Integration Support ",
-        "Instant Payout",
-      ].map((text, index, array) => (
+      {item?.features?.map((feature, index, array) => (
         <div
           key={index}
           className={`flex pl-4 py-4 bg-white transition-colors duration-300 hover:bg-gray-100 ${
@@ -55,21 +40,23 @@ const PriceCard = () => {
         >
           <div
             className={`pt-1 pr-2 ${
-              crossItems.includes(text) ? "text-red-500" : "text-[#7073F3]"
+              crossItems.includes(feature.name)
+                ? "text-red-500"
+                : "text-[#7073F3]"
             }`}
           >
-            {crossItems.includes(text) ? (
+            {crossItems.includes(feature.name) ? (
               <RxCrossCircled />
             ) : (
               <GoCheckCircleFill />
             )}
           </div>
           <div>
-            <p>{text}</p>
+            <p>{feature.name}</p>
           </div>
         </div>
       ))}
-      <div className="text-center py-10  bg-white">
+      <div className="text-center py-10 bg-white">
         <Link
           href="/auth/register"
           className="bg-gradient-2 transition-transform duration-300 hover:scale-105 text-white px-12 py-3 mb-6 rounded-md"

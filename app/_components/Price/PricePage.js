@@ -10,7 +10,6 @@ import PriceCard from "../PricingCard/PriceCard";
 
 const PricePage = () => {
   const { fetchData } = useFetchingData("/api/front/pricing-items");
-  console.log(fetchData);
 
   return (
     <div className="container">
@@ -27,11 +26,11 @@ const PricePage = () => {
           <br /> bang for your buck every time
         </p>
       </div> */}
-      <div className="flex flex-col md:flex-row sm:flex-cols-2 md:mb-4 gap-16 justify-evenly items-center container mb-24 px-0">
+      <div className=" mb-24 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5">
         {fetchData?.map((item, index) => (
           <div
             key={index}
-            className="w-full scale-100 lg:scale-100 md:scale-98 md:w-[30%]"
+            className="w-full scale-100 lg:scale-100 md:scale-98"
           >
             <PriceCard item={item} />
           </div>
