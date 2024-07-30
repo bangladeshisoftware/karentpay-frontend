@@ -28,7 +28,8 @@ const GetMore = () => {
         </p>
         <div className="flex flex-wrap gap-4 gap-y-10 justify-center md:justify-between  mt-10">
           {fetchData?.map((news) => (
-            <div
+            <Link
+              href={`/news/${news?.id}`}
               className="w-full scale-110 lg:scale-100 md:scale-100  md:w-[48%] lg:w-[32.5%]  mb-6 border rounded-lg shadow-lg"
               key={news?.id}
             >
@@ -41,23 +42,17 @@ const GetMore = () => {
                   height={300}
                   priority
                 />
-                <div className="px-4 pb-10">
+                <div className="px-4 pb-5">
                   <h2 className="font-bold text-lg">{news?.title}</h2>
                   <p className="text-justify">
                     {news?.content
-                      ? htmlToTextConverter(news?.content?.slice(0, 300)) +
+                      ? htmlToTextConverter(news?.content?.slice(0, 150)) +
                         "..."
                       : ""}
                   </p>
-                  <Link
-                    href={`/news/${news?.id}`}
-                    className="block w-fit mt-3 px-6 py-2 rounded bg-blue-600 text-white text-sm"
-                  >
-                    View Details
-                  </Link>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

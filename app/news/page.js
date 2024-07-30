@@ -39,7 +39,8 @@ const News = () => {
             <div className="border-b"></div>
             <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1  gap-8 justify-center mt-20">
               {currentPost?.map((news) => (
-                <div
+                <Link
+                  href={`/news/${news?.id}`}
                   className="bg-white w-full scale-110 lg:scale-100 md:scale-100 lg:w-full md:w-full sm:w-full lg:mb-0 mb-6 p-4 border rounded-md shadow-lg transition-transform duration-300 hover:scale-110 hover:rotate-x-15 hover:rotate-y-15"
                   key={news?.id}
                 >
@@ -52,23 +53,18 @@ const News = () => {
                       height={100}
                       priority
                     />
-                    <div className="px-4 pb-10">
+
+                    <div className="px-4 pb-5">
                       <h2 className="font-bold text-lg">{news?.title}</h2>
-                      <p className="">
+                      <p className="text-justify">
                         {news?.content
-                          ? htmlToTextConverter(news?.content?.slice(0, 300)) +
+                          ? htmlToTextConverter(news?.content?.slice(0, 150)) +
                             "..."
                           : ""}
                       </p>
-                      <Link
-                        href={`/news/${news?.id}`}
-                        className="block w-fit mt-3 px-6 py-2 rounded bg-blue-600 text-white"
-                      >
-                        View Details
-                      </Link>
                     </div>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
             <div className="flex justify-center mt-8">

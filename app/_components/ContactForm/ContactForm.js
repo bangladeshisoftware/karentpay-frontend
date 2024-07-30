@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 import axios from "axios";
 import { useState } from "react";
 import { toast } from "react-toastify";
@@ -20,6 +21,7 @@ export default function CardWithForm() {
     email: "",
     phone: "",
     address: "",
+    message: "",
   });
 
   const handleChange = (e) => {
@@ -29,11 +31,11 @@ export default function CardWithForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!formData.email || !formData.phone || !formData.name) {
-      return toast.error("Email, Phone and Name are required.");
+    if (!formData.email || !formData.phone || !formData.message) {
+      return toast.error("Please fill in all required fields.");
     }
 
-    console.log(formData);
+    // console.log(formData);
 
     try {
       const response = await axios.post(
@@ -42,7 +44,7 @@ export default function CardWithForm() {
       );
       toast.success("Form submitted successfully!");
       // console.log(response.data);
-      setFormData({ name: "", email: "", phone: "", address: "" });
+      setFormData({ name: "", email: "", phone: "", address: "", message: "" });
     } catch (error) {
       toast.error("Failed to submit form.");
       // console.error(error);
@@ -104,6 +106,19 @@ export default function CardWithForm() {
                 value={formData.address}
                 onChange={handleChange}
                 placeholder="Specific Address"
+              />
+            </div>
+
+            {/* message */}
+            <div className="flex flex-col space-y-1.5">
+              <Label htmlFor="message">
+                Message <span className="text-red-500 ">*</span>
+              </Label>
+              <Textarea
+                id="message"
+                value={formData.message}
+                onChange={handleChange}
+                placeholder="Your Message"
               />
             </div>
           </div>
