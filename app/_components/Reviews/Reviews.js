@@ -33,17 +33,17 @@ const Reviews = () => {
               <div className="h-full text-center relative">
                 <Image
                   alt="testimonial"
-                  className="w-32 h-32 mb-8 object-cover object-center rounded-full inline-block border-2 border-gray-200 bg-gray-100"
+                  className="w-32 h-32 mb-8 object-cover object-center rounded-full inline-block border-2 border-gray-200 mt-8 bg-gray-100"
                   src={process.env.NEXT_PUBLIC_BASE_URL + review.user_image}
                   width={200}
                   height={200}
                   priority
                 />
-                <p className="leading-relaxed text-sm sm:text-base md:text-sm lg:text-base text-justify pb-32">
+                <p className="leading-relaxed text-sm sm:text-base md:text-sm lg:text-base text-justify pb-20">
                   {review.review_details.length>200? review.review_details.slice(0, 200)+"...": review.review_details}
                 </p>
-                <div className="absolute left-0 bottom-0 w-full flex justify-center">
-                  <div>
+                <div className="absolute left-0 bottom-0 w-full flex justify-center ">
+                  <div className="mb-8">
 
                     <span className="inline-block h-1 w-10 rounded bg-blue-600 mt-6 mb-4"></span>
                     <h2 className="text-gray-900 font-bold title-font tracking-wider text-sm">

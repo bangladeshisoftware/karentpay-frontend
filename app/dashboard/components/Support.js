@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { MdUploadFile } from "react-icons/md";
-import { GiTicket } from "react-icons/gi";
-import { MdAirplaneTicket } from "react-icons/md";
-import { MdOutlineAirplaneTicket } from "react-icons/md";
+import { FaEye } from "react-icons/fa";
 import Datepicker from "react-tailwindcss-datepicker";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { toast } from "react-toastify";
+import Link from "next/link";
+//  import time formate package
+import moment from "moment";
+moment().format();
 
 function Support() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -21,7 +23,7 @@ function Support() {
       try {
         const token = Cookies.get("auth_token");
         const response = await axios.get(
-          process.env.NEXT_PUBLIC_DATA_API + url,
+          `${process.env.NEXT_PUBLIC_DATA_API}/admin/tickets/user?page=1&per_page=7`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -29,7 +31,7 @@ function Support() {
           }
         );
         settecket(response.data);
-      } catch (error) {}
+      } catch (error) { }
     };
 
     fetchData();
@@ -250,8 +252,10 @@ function Support() {
       <div className=" border shadow-lg mb-4 lg:mb-2 p-3 lg:p-3 mt-3 rounded-md text-center lg:text-left lg:hidden  ">
         <h3 className="text-xl font-semibold">Support</h3>
       </div>
-      <div className="grid lg:grid-cols-3 grid-cols-1 px-1 lg:px-0 justify-around gap-2 pb-5">
-        <div className="border shadow-lg rounded-md w-full h-60 flex items-center transition-all duration-300 hover:shadow-lg bg-white sm:h-60">
+
+      {/* <div className="grid lg:grid-cols-3 grid-cols-1 px-1 lg:px-0 justify-around gap-2 pb-5">
+
+        <div className="border shadow-lg rounded-md w-full flex items-center transition-all duration-300 hover:shadow-lg bg-white py-4">
           <div className="flex-grow ml-8">
             <div>
               <p className="font-bold">All Ticket</p>
@@ -268,7 +272,7 @@ function Support() {
           </div>
         </div>
 
-        <div className="border shadow-lg rounded-md w-full h-60 flex items-center transition-all duration-300 hover:shadow-lg bg-white sm:h-60">
+        <div className="border shadow-lg rounded-md w-full flex items-center transition-all duration-300 hover:shadow-lg bg-white py-4">
           <div className="flex-grow ml-8">
             <div>
               <p className="font-bold">Open Ticket</p>
@@ -285,7 +289,7 @@ function Support() {
           </div>
         </div>
 
-        <div className="border shadow-lg rounded-md w-full h-60 flex items-center transition-all duration-300 hover:shadow-lg bg-white sm:h-60">
+        <div className="border shadow-lg rounded-md w-full flex items-center transition-all duration-300 hover:shadow-lg bg-white py-4">
           <div className="flex-grow ml-8">
             <div>
               <p className="font-bold">Closed Ticket</p>
@@ -293,7 +297,7 @@ function Support() {
             <div>
               <h2 className="text-2xl font-bold my-2">0</h2>
             </div>
-            <div>
+             <div>
               <p>Work in progress</p>
             </div>
           </div>
@@ -301,7 +305,7 @@ function Support() {
             <MdAirplaneTicket className="text-blue-700 text-opacity-80" />
           </div>
         </div>
-      </div>
+      </div> */}
 
       <div className=" lg:px-0 ">
         <section className="shadow-md border rounded-md   mb-36 ">
@@ -377,7 +381,8 @@ function Support() {
                   </div>
                 </div>
               </div>
-              <div className="overflow-x-auto h-96">
+
+              {/* <div className="overflow-x-auto h-96">
                 <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400 ">
                   <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
@@ -397,133 +402,107 @@ function Support() {
                       <th scope="col" className="px-4 py-3">
                         Status
                       </th>
-                      <th scope="col" className="px-4 py-3">
+                      <th scope="col" className="px-4 py-3 flex-1">
                         Action
                       </th>
                     </tr>
                   </thead>
                   <tbody>
-                    {tecket?.data?.map((item) => (
+                    {tecket?.data?.map((item, index) => (
                       <tr
-                        key={item?.id}
+                        key={index}
                         className="border-b dark:border-gray-700 "
                       >
-                        <td className="pl-5">{item?.id}</td>
-                        <td className="pl-5">{item?.track_id}</td>
-                        <td>{item?.date}</td>
-                        <td className="pl-5">{item?.subject}</td>
-                        <td className="pl-5">{item?.status}</td>
+                        <td className="pl-5">
+                          {item?.id}</td>
+                        <td className="pl-5">
+                          {item?.track_id}</td>
                         <td>
-                          <button className="p-1 px-6 rounded-lg bg-blue-500 text-white flex my-2">
-                            Edit
+                          {item?.date}</td>
+                        <td className="pl-5">
+                          {item?.subject}</td>
+                        <td className="pl-5">
+                          {item?.status}</td>
+                        <td className="flex-1">
+                          <button className="p-1 px-2 rounded-[4px] bg-blue-500 text-white  my-2">
+                          <FaEye/>
                           </button>
                         </td>
                       </tr>
                     ))}
                   </tbody>
                 </table>
+              </div> */}
+
+              <div className="overflow-x-auto mt-2">
+                <table className="w-full text-size text-left text-black dark:text-white">
+                  <thead className="text-xs uppercase bg-gray-50 dark:bg-gray-700">
+                    <tr>
+                      <th scope="col" className="px-4 py-3">
+                        Sl
+                      </th>
+                      <th scope="col" className="px-4 py-3">
+                        Ticket ID
+                      </th>
+                      <th scope="col" className="px-4 py-3">
+                        Date
+                      </th>
+
+                      <th scope="col" className="px-4 py-3">
+                        Subject
+                      </th>
+                      <th scope="col" className="px-4 py-3">
+                        Status
+                      </th>
+                      <th scope="col" className="px-4 py-3 flex-1">
+                        Action
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {tecket?.data?.map((item, index) => (
+                      <tr
+                        key={index}
+                        className="border-b dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700"
+                      >
+                        <td className="px-4 py-2 whitespace-nowrap">
+                          {index + 1}
+                        </td>
+                        <td className="px-4 py-2 ">
+                          <h2 className="flex items-center">{item?.track_id}</h2>
+                        </td>
+                        <td className="px-4 py-2 whitespace-nowrap">
+                          <h2>
+                            {item.date
+                              ? moment(item.date).format("Do MMM YYYY")
+                              : "--"}
+                          </h2>
+                          <h2 className="opacity-80">
+                            {item.time
+                              ? moment(item.date).format("h:mm a")
+                              : "--"}
+                          </h2>
+                        </td>
+                        <td className="px-4 py-2 ">
+                          <h2 className="flex items-center">{item?.subject}</h2>
+                        </td>
+                        <td className="px-4 py-2 ">
+                          <h2 className="flex items-center">{item?.status}</h2>
+                        </td>
+                        <td className="px-4 py-2 ">
+                          <div className="flex items-center gap-2">
+                            <Link href='/kdjgkdl'
+                              className=" text-xl w-fit text-white bg-blue-500 hover:bg-blue-800 rounded-[4px]  p-2 dark:bg-blue-600 dark:hover:bg-blue-500 flex items-center gap-1">
+                              <FaEye />
+                            </Link>
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+
+                  </tbody>
+                </table>
               </div>
-              {/* showing page number & table */}
-              {/* <nav
-                class="flex flex-col mt-24  md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0 p-16"
-                aria-label="Table navigation"
-              >
-                <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
-                  Showing
-                  <span class="font-semibold text-gray-900 dark:text-white">
-                    1-10
-                  </span>
-                  of
-                  <span class="font-semibold text-gray-900 dark:text-white">
-                    1000
-                  </span>
-                </span>
-                <ul class="inline-flex items-stretch -space-x-px">
-                  <li>
-                    <a
-                      href="#"
-                      class="flex items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                    >
-                      <span class="sr-only">Previous</span>
-                      <svg
-                        class="w-5 h-5"
-                        aria-hidden="true"
-                        fill="currentColor"
-                        viewbox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-                          clip-rule="evenodd"
-                        />
-                      </svg>
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      class="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                    >
-                      1
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      class="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                    >
-                      2
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      aria-current="page"
-                      class="flex items-center justify-center text-sm z-10 py-2 px-3 leading-tight text-primary-600 bg-primary-50 border border-primary-300 hover:bg-primary-100 hover:text-primary-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white"
-                    >
-                      3
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      class="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                    >
-                      ...
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      class="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                    >
-                      100
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      class="flex items-center justify-center h-full py-1.5 px-3 leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                    >
-                      <span class="sr-only">Next</span>
-                      <svg
-                        class="w-5 h-5"
-                        aria-hidden="true"
-                        fill="currentColor"
-                        viewbox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                          clip-rule="evenodd"
-                        />
-                      </svg>
-                    </a>
-                  </li>
-                </ul>
-              </nav> */}
               <nav
                 className="flex flex-col mt-2 md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0 p-16 "
                 aria-label="Table navigation"
@@ -560,11 +539,10 @@ function Support() {
                     <li key={i}>
                       <button
                         onClick={() => handlePageClick(i + 1)}
-                        className={`flex items-center justify-center text-sm py-2 px-3 leading-tight ${
-                          currentPage === i + 1
-                            ? "text-primary-600 bg-primary-50 border border-primary-300"
-                            : "text-gray-500 bg-white border border-gray-300"
-                        } hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white`}
+                        className={`flex items-center justify-center text-sm py-2 px-3 leading-tight ${currentPage === i + 1
+                          ? "text-primary-600 bg-primary-50 border border-primary-300"
+                          : "text-gray-500 bg-white border border-gray-300"
+                          } hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white`}
                       >
                         {i + 1}
                       </button>
