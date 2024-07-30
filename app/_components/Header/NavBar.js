@@ -421,7 +421,7 @@ const NavBar = () => {
     getUser();
   }, []);
 
-  console.log(fetchData);
+  // console.log(fetchData);
 
   const logOut = async () => {
     if (localStorage.getItem("secret_key")) {
