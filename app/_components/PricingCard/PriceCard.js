@@ -14,7 +14,7 @@ const PriceCard = ({ item }) => {
   return (
     <div className="border shadow-md rounded-md transition-transform duration-300 hover:scale-105 hover:shadow-lg">
       <div className="bg-gradient-2 rounded-md py-10">
-        <div className="border rounded-full flex justify-center mx-auto text-white mt-2 mb-10 w-32">
+        <div className="border rounded-full flex justify-center mx-auto text-white mt-2 mb-10 w-1/2 p-3">
           <div className="mt-1 text-xl">
             <CiBookmarkCheck />
           </div>
