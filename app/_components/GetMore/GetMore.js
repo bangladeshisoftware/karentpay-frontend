@@ -26,11 +26,11 @@ const GetMore = () => {
           Become a member of Karentpay family and enjoy exclusive features and
           offers that enlighten your business
         </p>
-        <div className="flex flex-wrap gap-4 gap-y-10 justify-center md:justify-between  mt-10">
+        <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1  gap-8 justify-center  mt-10">
           {fetchData?.map((news) => (
             <Link
               href={`/news/${news?.id}`}
-              className="w-full scale-110 lg:scale-100 md:scale-100  md:w-[48%] lg:w-[32.5%]  mb-6 border rounded-lg shadow-lg"
+              className="w-full scale-110 lg:scale-100 md:scale-100  mb-6 border rounded-lg shadow-lg"
               key={news?.id}
             >
               <div className="h-full bg-white rounded-md">

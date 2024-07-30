@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import React from "react";
 import bkash from "@/app/_assets/bkash.png";
@@ -11,6 +13,7 @@ import paytm from "@/app/_assets/paytm.png";
 import FreeCharge from "@/app/_assets/FreeCharge_Logo.png";
 import apb from "@/app/_assets/Airtel_Payments_Bank_logo.svg.png";
 import Link from "next/link";
+import useFetchingData from "@/lib/useFetchingData";
 
 const PaymentGateway = () => {
   const bdExchangers = [
@@ -69,6 +72,8 @@ const PaymentGateway = () => {
     },
   ];
 
+   const { fetchData } = useFetchingData("/api/front/setting/logo-identity");
+
   return (
     <div className="mt-[70px]">
       <div className="container text-center">
@@ -77,9 +82,7 @@ const PaymentGateway = () => {
             A world-class payment solution for your business,
             <br /> powered by{" "}
             <Link href="/">
-              <span className='gradient-text'>
-                Karentpay
-              </span>
+              <span className="gradient-text">{fetchData?.settings?.siteName}</span>
             </Link>
           </h2>
           <p className="mt-5 text-base">

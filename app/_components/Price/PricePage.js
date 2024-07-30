@@ -10,14 +10,22 @@ import PriceCard from "../PricingCard/PriceCard";
 
 const PricePage = () => {
   const { fetchData } = useFetchingData("/api/front/pricing-items");
+  const { fetchData: settingsData } = useFetchingData(
+    "/api/front/setting/logo-identity"
+  );
 
   return (
     <div className="container">
-      <div>
-        <h1 className=" text-center  text-4xl font-bold mt-24 mb-28">
-          <span className="gradient-text">Karentpay</span> : Automatic Payment
-          Gateway Pricing Value
+      <div className="mt-24 mb-28">
+        <h1 className=" text-center text-3xl font-bold ">
+          <span className=" gradient-text">
+            {" "}
+            {settingsData?.settings?.siteName}
+          </span>
         </h1>
+        <p className="text-xl mt-4 text-center font-normal">
+          Automatic Payment Gateway Pricing Value
+        </p>
       </div>
       {/* <div>
         <p className='text-base text-center mt-14 mb-24'>
@@ -73,7 +81,7 @@ const PricePage = () => {
           <div className="space-y-2">
             <div className="flex items-center">
               <IoCheckmark className="text-blue-500 mr-2" />
-              <p>Karentpay GetWay Advanced</p>
+              <p>GetWay Advanced</p>
             </div>
             <div className="flex items-center">
               <IoCheckmark className="text-blue-500 mr-2" />
