@@ -1,4 +1,4 @@
-// pages/contact.js
+
 
 import React from 'react';
 import CardWithForm from '@/app/_components/ContactForm/ContactForm';
