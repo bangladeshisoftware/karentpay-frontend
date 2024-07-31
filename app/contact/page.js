@@ -13,7 +13,7 @@ import useFetchingData from '@/lib/useFetchingData';
 const Contact = () => {
 
   const { fetchData } = useFetchingData("/api/front/contact-page-locations");
-  console.log(fetchData.BranchOfficePhone2 == "null")
+  // console.log(fetchData[0]?.id)
 
   return (
     <div className='container mx-auto px-4 sm:px-6 lg:px-8'>
@@ -50,58 +50,61 @@ const Contact = () => {
         </div>
       </div>
       {/* Location */}
-      <div className='bg-white px-10 py-36 grid grid-cols-1 md:grid-cols-2 gap-3 justify-between border shadow-md rounded-md transition duration-300 hover:shadow-lg hover:border-blue-500 sm:py-4 md:py-4'>
-        {
-          fetchData.map(({ BranchOfficeName, BranchOfficeAddress1, BranchOfficeAddress2, BranchOfficePhone1, BranchOfficePhone2, BranchOfficePhone3, BranchOfficeImage, i }) => (
-            <div key={i} className='flex items-center flex-col lg:flex-row'>
-              <div className='mt-4 lg:mt-0 '>
-                <Image
-                  alt='headquarter'
-                  className=' h-36 w-60  lg:mt-4 rounded F-md'
-                  src={BranchOfficeImage}
-                  width={200}
-                  height={100}
-                />
-              </div>
-              <div className='py-4 lg:py-16 mx-4 text-center lg:text-left'>
-                <h2 className='text-xl sm:text-2xl lg:text-3xl mb-2 transition duration-300 hover:text-blue-500'>
-                  {BranchOfficeName}
-                </h2>
-                <p className='transition duration-300 hover:text-blue-500'>
-                  {BranchOfficeAddress1}
-                </p>
-                <p className='transition duration-300 hover:text-blue-500'>
-                  {BranchOfficeAddress2}
-                </p>
-                {
-                  BranchOfficePhone1 != null && <Link href={"tel:" + BranchOfficePhone1}>
-                    <p className='text-blue-500 underline transition duration-300 hover:text-blue-700'>
-                      {'Phone: ' + BranchOfficePhone1}
+      {
+        fetchData[0]?.id &&
+          <div className='bg-white px-10 py-36 grid grid-cols-1 md:grid-cols-2 gap-3 justify-between border shadow-md rounded-md transition duration-300 hover:shadow-lg hover:border-blue-500 sm:py-4 md:py-4'>
+            {
+              fetchData.map(({ BranchOfficeName, BranchOfficeAddress1, BranchOfficeAddress2, BranchOfficePhone1, BranchOfficePhone2, BranchOfficePhone3, BranchOfficeImage, i }) => (
+                <div key={i} className='flex items-center flex-col lg:flex-row'>
+                  <div className='mt-4 lg:mt-0 '>
+                    <Image
+                      alt='headquarter'
+                      className=' h-36 w-60  lg:mt-4 rounded F-md'
+                      src={BranchOfficeImage}
+                      width={200}
+                      height={100}
+                    />
+                  </div>
+                  <div className='py-4 lg:py-16 mx-4 text-center lg:text-left'>
+                    <h2 className='text-xl sm:text-2xl lg:text-3xl mb-2 transition duration-300 hover:text-blue-500'>
+                      {BranchOfficeName}
+                    </h2>
+                    <p className='transition duration-300 hover:text-blue-500'>
+                      {BranchOfficeAddress1}
                     </p>
-                  </Link>
-
-                }
-                {
-                  BranchOfficePhone2 != null && <Link href={"tel:" + BranchOfficePhone2}>
-                    <p className='text-blue-500 underline transition duration-300 hover:text-blue-700'>
-                      {'Phone: ' + BranchOfficePhone2}
+                    <p className='transition duration-300 hover:text-blue-500'>
+                      {BranchOfficeAddress2}
                     </p>
-                  </Link>
+                    {
+                      BranchOfficePhone1 != null && <Link href={"tel:" + BranchOfficePhone1}>
+                        <p className='text-blue-500 underline transition duration-300 hover:text-blue-700'>
+                          {'Phone: ' + BranchOfficePhone1}
+                        </p>
+                      </Link>
 
-                }
-                {
-                  BranchOfficePhone3 != null && <Link href={"tel:" + BranchOfficePhone3}>
-                    <p className='text-blue-500 underline transition duration-300 hover:text-blue-700'>
-                      {'Phone: ' + BranchOfficePhone3}
-                    </p>
-                  </Link>
+                    }
+                    {
+                      BranchOfficePhone2 != null && <Link href={"tel:" + BranchOfficePhone2}>
+                        <p className='text-blue-500 underline transition duration-300 hover:text-blue-700'>
+                          {'Phone: ' + BranchOfficePhone2}
+                        </p>
+                      </Link>
 
-                }
-              </div>
-            </div>
-          ))
-        }
-      </div >
+                    }
+                    {
+                      BranchOfficePhone3 != null && <Link href={"tel:" + BranchOfficePhone3}>
+                        <p className='text-blue-500 underline transition duration-300 hover:text-blue-700'>
+                          {'Phone: ' + BranchOfficePhone3}
+                        </p>
+                      </Link>
+
+                    }
+                  </div>
+                </div>
+              ))
+            }
+          </div >
+      }
       <div>
         <h2 className='text-2xl sm:text-3xl lg:text-4xl font-bold text-center py-4 mt-10'>
           Our Offices
