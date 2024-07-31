@@ -75,7 +75,6 @@ const Features = () => {
   ];
 
   const { fetchData } = useFetchingData('/api/front/payment-feature-showcases')
-  console.log(fetchData)
 
   return (
     <section className="container mx-auto mt-[60px] ">
