@@ -1,9 +1,10 @@
 import Features from "@/app/_components/Features/Features";
 import Slider from "@/app/_components/Slider/Slider";
 
-import Reviews from "@/app/_components/Reviews/Reviews";
-import GlobalAvailability from "@/app/_components/GlobalAvailability/GlobalAvailability";
 import GetMore from "@/app/_components/GetMore/GetMore";
+import GlobalAvailability from "@/app/_components/GlobalAvailability/GlobalAvailability";
+import Reviews from "@/app/_components/Reviews/Reviews";
+import PaymentGatewayComponent from "./_components/PaymentGatewayComponent/PaymentGatewayComponent";
 import Question from "./_components/Question/Question";
 
 export default function Home() {
@@ -11,10 +12,11 @@ export default function Home() {
     <section className="pb-4">
       <Slider />
       <Features />
-      <GlobalAvailability />
+      <PaymentGatewayComponent />
       <GetMore />
       <Reviews />
       <Question />
+      <GlobalAvailability />
     </section>
   );
 }

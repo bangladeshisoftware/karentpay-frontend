@@ -8,7 +8,6 @@ const Header = async () => {
     "front/setting/header-setting"
   );
 
-  console.log(topbarGradientColors);
   return (
     <header>
       <TopBar topbarGradientColors={topbarGradientColors} />
