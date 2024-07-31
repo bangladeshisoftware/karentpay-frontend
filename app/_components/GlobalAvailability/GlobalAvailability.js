@@ -9,10 +9,10 @@ const GlobalAvailability = async () => {
   );
   const result = await response.json();
   const countries = result?.data ?? [];
-  const minifiedCountries = countries?.slice(0, 52);
+  const minifiedCountries = countries?.slice(0, 32);
 
   return (
-    <section className="bg-gradient-2 py-[70px] mt-[90px] text-white">
+    <section className="bg-gradient-2 py-[70px] mt-[90px] mb-[40px] text-white">
       <div className="container mx-auto">
         <h2 className="text-4xl font-bold text-center">
           All payment systems will be available in the future.
