@@ -46,8 +46,8 @@ const NewsDetails = ({ id }) => {
             alt="testimonial"
             className="w-full h-auto mb-8 object-cover object-center inline-block rounded-t-lg"
             src={newsDetails?.featured_image ? newsDetails?.featured_image : ""}
-            width={200}
-            height={100}
+            width={800}
+            height={600}
             priority
           />
 

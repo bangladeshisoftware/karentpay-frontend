@@ -77,21 +77,6 @@ const PaymentGatewayComponent = () => {
   return (
     <div className="mt-[70px]">
       <div className="container text-center">
-        <div>
-          <h2 className="text-3xl font-bold text-center leading-relaxed">
-            A world-class payment solution for your business,
-            <br /> powered by{" "}
-            <Link href="/">
-              <span className="gradient-text">
-                {fetchData?.settings?.siteName}
-              </span>
-            </Link>
-          </h2>
-          <p className="mt-5 text-base">
-            Seamless payments across all of your devices begin with a few quick
-            steps.
-          </p>
-        </div>
         <div className="mt-20">
           <h2 className="text-3xl font-bold lg:text-left md:text-left text-center">
             Bangladesh Payment Gateway Support

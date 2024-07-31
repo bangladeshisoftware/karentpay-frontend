@@ -14,7 +14,7 @@ export default async function RootLayout({ children }) {
       cache: "no-store",
     }
   ).then((res) => res.json());
-  console.log(data?.settings?.HeaderBackground);
+  // console.log(data?.settings?.HeaderBackground);
 
   const backgroundImageStyle = {
     backgroundImage: `url(${data?.settings?.HeaderBackground})`,
