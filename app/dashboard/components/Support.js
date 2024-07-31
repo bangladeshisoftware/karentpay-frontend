@@ -609,7 +609,6 @@ function Support() {
                       onChange={(e) => setImage(e.target.files[0])}
                       className="w-full bg-transparent text-white file:bg-transparent file:border-0 file:text-white file:font-semibold file:cursor-pointer"
                       type="file"
-                      required
                     />
                   </div>
                 </div>
