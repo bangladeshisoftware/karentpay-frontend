@@ -25,12 +25,12 @@ const Reviews = () => {
           </Link>
         </div>
         <div className="flex flex-wrap gap-4  justify-center mt-10 ">
-          {reviews.slice(0, 3).map((review) => (
+          {reviews.reverse().slice(0, 3).map((review) => (
             <div
               className=" w-full  md:w-[48%] lg:w-[32.5%] scale-110 lg:scale-100 md:scale-100  p-4 border rounded-lg shadow-lg bg-white"
               key={review.id}
             >
-              <div className="h-full text-center relative">
+              <div className="h-full text-center">
                 <Image
                   alt="testimonial"
                   className="w-32 h-32 mb-8 object-cover object-center rounded-full inline-block border-2 border-gray-200 mt-8 bg-gray-100"
@@ -42,7 +42,6 @@ const Reviews = () => {
                 <p className="leading-relaxed text-sm sm:text-base md:text-sm lg:text-base text-justify pb-20">
                   {review.review_details.length>200? review.review_details.slice(0, 200)+"...": review.review_details}
                 </p>
-                <div className="absolute left-0 bottom-0 w-full flex justify-center ">
                   <div className="mb-8">
 
                     <span className="inline-block h-1 w-10 rounded bg-blue-600 mt-6 mb-4"></span>
@@ -54,7 +53,6 @@ const Reviews = () => {
                     </h2>
                     <p className="text-gray-500">{review.user_email}</p>
                   </div>
-                </div>
               </div>
             </div>
           ))}
