@@ -7,23 +7,23 @@ import "./globals.css";
 
 const rubik = Rubik({ subsets: ["latin"] });
 
-export  default async function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
   const data = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/front/setting/header-setting`,
     {
       cache: "no-store",
     }
   ).then((res) => res.json());
-  console.log(data?.settings?.HeaderBackground)
+  // console.log(data?.settings?.HeaderBackground);
 
   const backgroundImageStyle = {
     backgroundImage: `url(${data?.settings?.HeaderBackground})`,
-    backgroundSize: 'cover', // This will ensure the background covers the entire element
-    backgroundPosition: 'center', 
-    backgroundRepeat: 'no-repeat',
-    backgroundAttachment: 'fixed', 
-    width: '100%', // Set the width as required
-    height: '100vh' // Set the height as required
+    backgroundSize: "cover", // This will ensure the background covers the entire element
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+    backgroundAttachment: "fixed",
+    width: "100%", // Set the width as required
+    height: "100vh", // Set the height as required
   };
 
   return (
@@ -60,7 +60,10 @@ export async function generateMetadata() {
       .map((keyword) => keyword.trim());
 
     return {
-      title: data?.settings?.siteName,
+      title: {
+        template: `${data?.settings?.siteName} | %s`,
+        default: data?.settings?.siteName,
+      },
       description: data?.settings?.siteDescription,
       keywords: keywordsArray,
       icons: {

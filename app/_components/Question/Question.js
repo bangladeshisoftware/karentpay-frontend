@@ -84,7 +84,7 @@ const Question = () => {
   const  { fetchData } = useFetchingData('/api/front/faqs')
   return (
     <section className='mt-[90px] '>
-      <div className='container mx-auto py-14 text-white '>
+      <div className='container mx-auto pt-14 text-white '>
         <h2 className='text-3xl font-bold text-black text-center'>
           Frequently Asked Question
         </h2>

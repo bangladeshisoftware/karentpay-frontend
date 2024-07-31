@@ -1,15 +1,20 @@
-import {SetCookies,GetCookies,deleteCookies} from "@/app/_lib/cookiesSetting";
+import {
+  GetCookies,
+  SetCookies,
+  deleteCookies,
+} from "@/app/_lib/cookiesSetting";
 import { redirect } from "next/navigation";
 
-export default async function LoginLayout({ children }) {    
+export const metadata = {
+  title: "Login",
+};
 
-const token=await GetCookies({name:'auth_token'});
+export default async function LoginLayout({ children }) {
+  const token = await GetCookies({ name: "auth_token" });
 
-if (token) {
-  redirect('/dashboard');  
-}
+  if (token) {
+    redirect("/dashboard");
+  }
 
-  return (
-   <section>{children}</section>
-  );
+  return <section>{children}</section>;
 }
