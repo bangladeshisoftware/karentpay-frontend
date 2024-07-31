@@ -1,14 +1,14 @@
 "use client";
-import React, { useState, useEffect, useRef } from "react";
 import BecomeMerchant from "@/app/_components/Header/BecomeMerchent/BecomeMerchant";
-import Link from "next/link";
-import Image from "next/image";
-import { GetCookies, deleteCookies } from "@/app/_lib/cookiesSetting";
-import { toast } from "react-toastify";
-import Dashboard from "./../../dashboard/page";
 import ApiRequest from "@/app/_lib/Api_request";
+import { GetCookies, deleteCookies } from "@/app/_lib/cookiesSetting";
 import useFetchData from "@/lib/useFetchData";
 import useFetchingData from "@/lib/useFetchingData";
+import Image from "next/image";
+import Link from "next/link";
+import React, { useEffect, useRef, useState } from "react";
+import { toast } from "react-toastify";
+import Dashboard from "./../../dashboard/page";
 
 const TopBar = () => {
   const [dropdownDefaultButton, setDropdownDefaultButton] = useState(false);
@@ -83,22 +83,24 @@ const TopBar = () => {
 
   const { fetchData } = useFetchingData("/api/front/setting/header-setting");
 
-
   return (
     <section className="container justify-between items-center my-2 hidden lg:flex wide-laptop:flex small-laptop:flex">
       {/* large screens */}
       <div className="flex items-center justify-between w-full">
         <Link href="/">
-          <Image
-            src={fetchData?.settings?.HeaderBanner}
-            quality={100}
-            width='1000'
-            height="100"
-            alt="logo"
-            className="w-auto h-14"
-            priority
-          />
+          {fetchData?.settings?.HeaderBanner && (
+            <Image
+              src={fetchData?.settings?.HeaderBanner}
+              quality={100}
+              width="1000"
+              height="100"
+              alt="logo"
+              className="w-auto h-14"
+              priority
+            />
+          )}
         </Link>
+
         <div className="flex items-center gap-3">
           <BecomeMerchant />
 
