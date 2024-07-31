@@ -1,5 +1,5 @@
 
-
+'use client'
 import React from 'react';
 import CardWithForm from '@/app/_components/ContactForm/ContactForm';
 import IframeMap from '@/app/_components/ContactForm/IframeMap';
@@ -8,8 +8,13 @@ import Link from 'next/link';
 import Image from 'next/image';
 import headquarter from '@/app/_assets/mainHQ.jpg';
 import local from '@/app/_assets/localBranch.jpg';
+import useFetchingData from '@/lib/useFetchingData';
 
 const Contact = () => {
+
+  const { fetchData } = useFetchingData("/api/front/contact-page-locations");
+
+
   return (
     <div className='container mx-auto px-4 sm:px-6 lg:px-8'>
       {/* Header div */}
@@ -45,57 +50,49 @@ const Contact = () => {
         </div>
       </div>
       {/* Location */}
-      <div className='bg-white flex flex-col lg:flex-row justify-between border shadow-md rounded-md transition duration-300 hover:shadow-lg hover:border-blue-500 sm:py-4 md:py-4 '>
-        <div className='flex flex-col lg:flex-row items-center justify-center lg:mb-10 lg:w-1/2 '>
-          <div className='mt-4 lg:mt-0'>
-            <Image
-              alt='headquarter'
-              className='inline-block object-cover object-center  lg:mt-4 rounded-md'
-              src={headquarter}
-              width={200}
-              height={200}
-            />
-          </div>
-          <div className='py-4 lg:py-16 mx-4 text-center lg:text-left'>
-            <h2 className='text-xl sm:text-2xl lg:text-3xl mb-4 transition duration-300 hover:text-blue-500'>
-              Karentpay HQ
-            </h2>
-            <p className='transition duration-300 hover:text-blue-500'>
-              W 44th St Time Square <br /> NY 94043, USA
-            </p>
-            <Link href='/'>
-              <p className='text-blue-500 underline transition duration-300 hover:text-blue-700'>
-                Phone: +(732) 497-2266
-              </p>
-            </Link>
-          </div>
-        </div>
-        <div className='flex flex-col lg:flex-row items-center justify-center lg:mb-10 lg:w-1/2'>
-          <div className='mt-4 lg:mt-0'>
-            <Image
-              alt='local'
-              className='inline-block object-cover object-center  lg:mt-4 rounded-md'
-              src={local}
-              width={200}
-              height={220}
-              style={{ height: '125px' }}
-            />
-          </div>
-          <div className='py-4 lg:py-16 mx-4 text-center lg:text-left'>
-            <h2 className='text-xl sm:text-2xl lg:text-3xl mb-2 transition duration-300 hover:text-blue-500'>
-              Regional Karentpay Office 
-            </h2>
-            <p className='transition duration-300 hover:text-blue-500'>
-              1491 E St Williams, <br />  California 94043, USA
-            </p>
-            <Link href='/'>
-              <p className='text-blue-500 underline transition duration-300 hover:text-blue-700'>
-                Phone: +(732) 497-2266
-              </p>
-            </Link>
-          </div>
-        </div>
-      </div>
+      <div className='bg-white flex flex-wrap flex-col lg:flex-row justify-between border shadow-md rounded-md transition duration-300 hover:shadow-lg hover:border-blue-500 sm:py-4 md:py-4 '>
+        {
+          fetchData.map(({ BranchOfficeName, BranchOfficeAddress1, BranchOfficeAddress2, BranchOfficePhone1, BranchOfficePhone2, BranchOfficePhone3, BranchOfficeImage, }) => (
+            <div className='flex flex-col lg:flex-row items-center justify-center lg:mb-10 lg:w-1/2 '>
+              <div className='mt-4 lg:mt-0'>
+                <Image
+                  alt='headquarter'
+                  className='inline-block object-cover object-center  lg:mt-4 rounded F-md'
+                  src={BranchOfficeImage}
+                  width={200}
+                  height={200}
+                />
+              </div>
+              <div className='py-4 lg:py-16 mx-4 text-center lg:text-left'>
+                <h2 className='text-xl sm:text-2xl lg:text-3xl mb-4 transition duration-300 hover:text-blue-500'>
+                  {BranchOfficeName}
+                </h2>
+                <p className='transition duration-300 hover:text-blue-500'>
+                  {BranchOfficeAddress1}
+                </p>
+                <p className='transition duration-300 hover:text-blue-500'>
+                  {BranchOfficeAddress2}
+                </p>
+                <Link href={"tel:" + BranchOfficePhone1}>
+                  <p className='text-blue-500 underline transition duration-300 hover:text-blue-700'>
+                    {BranchOfficePhone1}
+                  </p>
+                </Link>
+                <Link href={"tel:" + BranchOfficePhone2}>
+                  <p className='text-blue-500 underline transition duration-300 hover:text-blue-700'>
+                    {BranchOfficePhone2}
+                  </p>
+                </Link>
+                <Link href={"tel:" + BranchOfficePhone3}>
+                  <p className='text-blue-500 underline transition duration-300 hover:text-blue-700'>
+                    {BranchOfficePhone3}
+                  </p>
+                </Link>
+              </div>
+            </div>
+          ))
+        }
+      </div >
       <div>
         <h2 className='text-2xl sm:text-3xl lg:text-4xl font-bold text-center py-4 mt-10'>
           Our Offices
@@ -105,7 +102,7 @@ const Contact = () => {
       <div className='py-8 px-6 border shadow-md rounded-md mt-6 transition duration-300 hover:shadow-lg hover:border-blue-500 bg-white'>
         <IframeMap />
       </div>
-    </div>
+    </div >
   );
 };
 

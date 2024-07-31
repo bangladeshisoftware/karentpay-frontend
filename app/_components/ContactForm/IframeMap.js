@@ -1,9 +1,13 @@
 // components/IframeMap.js
 'use client';
 
+import useFetchingData from '@/lib/useFetchingData';
 import React from 'react';
 
 const IframeMap = () => {
+  const { fetchData } = useFetchingData("/api/front/contact-page-locations");
+
+
   return (
     <div style={{ width: '100%', height: '450px' }}>
       {/* <iframe

@@ -6,8 +6,9 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import { toast } from "react-toastify";
 import Link from "next/link";
-//  import time formate package
 import moment from "moment";
+//  import time formate package
+
 moment().format();
 
 function Support() {
