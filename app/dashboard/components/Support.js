@@ -7,38 +7,70 @@ import Cookies from "js-cookie";
 import { toast } from "react-toastify";
 import Link from "next/link";
 import moment from "moment";
+import { GetCookies } from "@/app/_lib/cookiesSetting";
+import ApiRequest from "@/app/_lib/Api_request";
+import SupportView from "./SupportView";
 //  import time formate package
 
 moment().format();
 
 function Support() {
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
   const [Image, setImage] = useState("");
-  const [url, seturl] = useState("/admin/tickets/user?page=1&per_page=7");
+  const [supportReplyMessage, setSupportReplyMessage] = useState(null);
+
+    // user data fetch function 
+    const [user, setUser] = useState("");
+    useEffect(() => {
+      const getUser = async () => {
+        const token = await GetCookies({ name: "auth_token" });
+        // console.log("token 411", token);
+  
+        if (token) {
+          const response = await ApiRequest({
+            url: "/user",
+            method: "get",
+          });
+          if (response.status == 200) {
+            setUser(response.data.user);
+          } else {
+            toast.error(response.message);
+          }
+        }
+      };
+  
+      getUser();
+    }, []);
+
+
   const [tecket, settecket] = useState([]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const token = Cookies.get("auth_token");
-        const response = await axios.get(
-          `${process.env.NEXT_PUBLIC_DATA_API}/admin/tickets/user?page=1&per_page=7`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-        settecket(response.data);
-      } catch (error) { }
-    };
-
     fetchData();
-  }, [url]);
+  }, [user, isModalOpen]);
 
-  console.log(tecket);
+
+
+  const fetchData = async () => {
+    try {
+      const token = Cookies.get("auth_token");
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_DATA_API}/admin/tickets/user`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      ); 
+      if(response.status === 200){
+        settecket(response.data);
+      }
+    } catch (error) { }
+  };
+
 
   const [dateRange, setDateRange] = useState({
     startDate: null,
@@ -142,14 +174,13 @@ function Support() {
     setIsModalOpen(false);
   };
 
+
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const formData = new FormData();
-    formData.append("user_id", 488);
-    formData.append("date", " 2024-06-26");
-    formData.append("time", " 22:00");
-    formData.append("track_id", 4346);
+    formData.append("user_id", user?.id);
     formData.append("type", "Payment Gateway");
     formData.append("status", "open");
 
@@ -167,71 +198,24 @@ function Support() {
         },
       })
       .then((response) => {
-        console.log("Response:", response.data);
-        toast.success("Tecket Added Successfully");
+        if(response.status === "201"){
+          toast.success("Tecket Added Successfully");
+
+        }
       })
       .catch((error) => {
         console.error("Error:", error);
         toast.success("Failed to Add Tecket");
       });
-
-    console.log("Subject:", subject);
-    console.log("Message:", message);
-    console.log("images:", Image);
-    console.log("token:", token);
     setIsModalOpen(false);
   };
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-
-  //   const formData = new FormData();
-  //   formData.append("user_id", Math.random().toString());
-  //   formData.append("date", Date.now().toString());
-  //   formData.append("time", new Date().toLocaleTimeString());
-  //   formData.append("track_id", Math.random().toString());
-  //   formData.append("type", "test");
-  //   formData.append("status", "open");
-
-  //   formData.append("subject", subject);
-  //   formData.append("message", message);
-  //   formData.append("image", Image);
-
-  //   const token = Cookies.get("auth_token");
-
-  //   try {
-  //     const response = await fetch("http://karentpay-api.test/api/admin/tickets", {
-  //       method: 'POST',
-  //       headers: {
-  //         'Authorization': `Bearer ${token}`,
-  //       },
-  //       body: formData,
-  //       credentials: 'include',
-  //     });
-
-  //     if (!response.ok) {
-  //       throw new Error('Network response was not ok ' + response.statusText);
-  //     }
-
-  //     const data = await response.json();
-  //     console.log("Response:", data);
-  //   } catch (error) {
-  //     console.error("Error:", error);
-  //   }
-
-  //   console.log("Subject:", subject);
-  //   console.log("Message:", message);
-  //   console.log("images:", Image);
-  //   console.log("token:", token);
-  //   setIsModalOpen(false);
-  // };
-  // Pagination logic
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 4;
-  const totalItems = filteredTransactions.length;
+  const itemsPerPage = 6;
+  const totalItems = tecket.length;
   const totalPages = Math.ceil(totalItems / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
-  const visibleTransactions = filteredTransactions.slice(
+  const visibleTransactions = tecket.slice(
     startIndex,
     startIndex + itemsPerPage
   );
@@ -253,60 +237,6 @@ function Support() {
       <div className=" border shadow-lg mb-4 lg:mb-2 p-3 lg:p-3 mt-3 rounded-md text-center lg:text-left lg:hidden  ">
         <h3 className="text-xl font-semibold">Support</h3>
       </div>
-
-      {/* <div className="grid lg:grid-cols-3 grid-cols-1 px-1 lg:px-0 justify-around gap-2 pb-5">
-
-        <div className="border shadow-lg rounded-md w-full flex items-center transition-all duration-300 hover:shadow-lg bg-white py-4">
-          <div className="flex-grow ml-8">
-            <div>
-              <p className="font-bold">All Ticket</p>
-            </div>
-            <div>
-              <h2 className="text-2xl font-bold my-2">0</h2>
-            </div>
-            <div>
-              <p>Work in progress</p>
-            </div>
-          </div>
-          <div className="mr-8 text-5xl text-black p-3 ">
-            <GiTicket className="text-red-500 text-opacity-80" />
-          </div>
-        </div>
-
-        <div className="border shadow-lg rounded-md w-full flex items-center transition-all duration-300 hover:shadow-lg bg-white py-4">
-          <div className="flex-grow ml-8">
-            <div>
-              <p className="font-bold">Open Ticket</p>
-            </div>
-            <div>
-              <h2 className="text-2xl font-bold my-2">0</h2>
-            </div>
-            <div>
-              <p>Work in progress</p>
-            </div>
-          </div>
-          <div className="mr-8 text-5xl text-black p-3 ">
-            <MdOutlineAirplaneTicket className="text-green-700 text-opacity-80" />
-          </div>
-        </div>
-
-        <div className="border shadow-lg rounded-md w-full flex items-center transition-all duration-300 hover:shadow-lg bg-white py-4">
-          <div className="flex-grow ml-8">
-            <div>
-              <p className="font-bold">Closed Ticket</p>
-            </div>
-            <div>
-              <h2 className="text-2xl font-bold my-2">0</h2>
-            </div>
-             <div>
-              <p>Work in progress</p>
-            </div>
-          </div>
-          <div className="mr-8 text-5xl text-black p-3 ">
-            <MdAirplaneTicket className="text-blue-700 text-opacity-80" />
-          </div>
-        </div>
-      </div> */}
 
       <div className=" lg:px-0 ">
         <section className="shadow-md border rounded-md   mb-36 ">
@@ -383,57 +313,6 @@ function Support() {
                 </div>
               </div>
 
-              {/* <div className="overflow-x-auto h-96">
-                <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400 ">
-                  <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                    <tr>
-                      <th scope="col" className="px-4 py-3">
-                        Sl
-                      </th>
-                      <th scope="col" className="px-4 py-3">
-                        Ticket ID
-                      </th>
-                      <th scope="col" className="px-4 py-3">
-                        Date
-                      </th>
-
-                      <th scope="col" className="px-4 py-3">
-                        Subject
-                      </th>
-                      <th scope="col" className="px-4 py-3">
-                        Status
-                      </th>
-                      <th scope="col" className="px-4 py-3 flex-1">
-                        Action
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {tecket?.data?.map((item, index) => (
-                      <tr
-                        key={index}
-                        className="border-b dark:border-gray-700 "
-                      >
-                        <td className="pl-5">
-                          {item?.id}</td>
-                        <td className="pl-5">
-                          {item?.track_id}</td>
-                        <td>
-                          {item?.date}</td>
-                        <td className="pl-5">
-                          {item?.subject}</td>
-                        <td className="pl-5">
-                          {item?.status}</td>
-                        <td className="flex-1">
-                          <button className="p-1 px-2 rounded-[4px] bg-blue-500 text-white  my-2">
-                          <FaEye/>
-                          </button>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div> */}
 
               <div className="overflow-x-auto mt-2">
                 <table className="w-full text-size text-left text-black dark:text-white">
@@ -461,7 +340,7 @@ function Support() {
                     </tr>
                   </thead>
                   <tbody>
-                    {tecket?.data?.map((item, index) => (
+                    {visibleTransactions?.map((item, index) => (
                       <tr
                         key={index}
                         className="border-b dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700"
@@ -492,11 +371,12 @@ function Support() {
                         </td>
                         <td className="px-4 py-2 ">
                           <div className="flex items-center gap-2">
-                            <Link href={'/view-tecket/'+item.track_id}
+                            <button onClick={()=> setSupportReplyMessage(item.track_id)}
                               className=" text-xl w-fit text-white bg-blue-500 hover:bg-blue-800 rounded-[4px]  p-2 dark:bg-blue-600 dark:hover:bg-blue-500 flex items-center gap-1">
                               <FaEye />
-                            </Link>
+                            </button>
                           </div>
+                          <SupportView supportReplyMessage={supportReplyMessage} setSupportReplyMessage={setSupportReplyMessage} item={item}/>
                         </td>
                       </tr>
                     ))}
