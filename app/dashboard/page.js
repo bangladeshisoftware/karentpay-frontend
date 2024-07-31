@@ -39,7 +39,7 @@ import PaymentCopy from "./components/PaymentCopy";
 import Payout from "./components/Payout";
 
 function Dashboard() {
-  const [activeComponent, setActiveComponent] = useState("home");
+  const [activeComponent, setActiveComponent] = useState("balance");
   const [isOn, setIsOn] = useState(true);
   const [windowWidth, setWindowWidth] = useState(1024); // Default to 1024, update after mounting
 
@@ -234,7 +234,7 @@ function Dashboard() {
                 }`}
               >
                 <ul>
-                  <li
+                  {/* <li
                     className={`mb-4 cursor-pointer flex items-center p-2 rounded-md transition-all duration-300 ${
                       activeComponent === "home"
                         ? "bg-gradient-2 text-gray-200"
@@ -244,7 +244,7 @@ function Dashboard() {
                   >
                     <MdSpaceDashboard className="mr-2 text-2xl" />
                     {windowWidth >= 1024 && "Dashboard"}
-                  </li>
+                  </li> */}
                   <li
                     className={`mb-4 cursor-pointer flex items-center p-2 rounded-md transition-all duration-300 ${
                       activeComponent === "balance"
@@ -254,7 +254,7 @@ function Dashboard() {
                     onClick={() => setActiveComponent("balance")}
                   >
                     <FaSackDollar className="mr-2 text-2xl" />
-                    {windowWidth >= 1024 && "Balance"}
+                    {windowWidth >= 1024 && "Dashboard"}
                   </li>
                   <li
                     className={`mb-4 cursor-pointer flex items-center p-2 rounded-md transition-all duration-300 ${
@@ -349,12 +349,12 @@ function Dashboard() {
         >
           <MdSpaceDashboard
             className="text-2xl cursor-pointer"
-            onClick={() => setActiveComponent("home")}
-          />
-          <FaSackDollar
-            className="text-2xl cursor-pointer"
             onClick={() => setActiveComponent("balance")}
           />
+          {/* <FaSackDollar
+            className="text-2xl cursor-pointer"
+            onClick={() => setActiveComponent("balance")}
+          /> */}
           <SiConstruct3
             className="text-2xl cursor-pointer"
             onClick={() => setActiveComponent("cashin")}

@@ -1,11 +1,12 @@
 "use client";
-import React, { useState, useEffect } from "react";
-import { FaRegEdit } from "react-icons/fa";
-import EditProfile from "./Edit-Profile/EditProfile";
 import ApiRequest from "@/app/_lib/Api_request";
 import { GetCookies } from "@/app/_lib/cookiesSetting";
+import useFetchingData from "@/lib/useFetchingData";
+import React, { useEffect, useState } from "react";
+import { FaRegEdit } from "react-icons/fa";
 import { toast } from "react-toastify";
 import BankingDrawer from "./BankingDrawer/BankingDrawer";
+import EditProfile from "./Edit-Profile/EditProfile";
 import ToggleButton from "./Toggle/ToggleButton";
 
 function Product_Catalog() {
@@ -63,17 +64,36 @@ function Product_Catalog() {
     }));
   };
 
+  const [color1, setColor1] = useState("");
+  const [color2, setColor2] = useState("");
+
+  const { fetchData } = useFetchingData("/api/front/setting/color-setting");
+
+  useEffect(() => {
+    if (
+      fetchData?.settings?.GradientColor1 &&
+      fetchData?.settings?.GradientColor2
+    ) {
+      setColor1(fetchData.settings.GradientColor1);
+      setColor2(fetchData.settings.GradientColor2);
+    }
+  }, [fetchData]);
+
   return (
     <div className=" mt-0 lg:mt-10 z-10 ml-0 lg:ml-8 px-0 lg:px-0 flex flex-col">
       <div className=" border shadow-lg mb-4 lg:mb-2 p-3 lg:p-3 mt-3 rounded-md text-center lg:text-left lg:hidden  ">
         <h3 className="text-xl font-semibold">Settings</h3>
       </div>
-      <div className="nav bg-gradient-3 hidden lg:flex md:flex xl:flex lg:gap-4 border rounded-md shadow-md items-center h-fit  text-white py-2 lg:py-4">
+      <div
+        className="nav  hidden lg:flex md:flex xl:flex lg:gap-4 border rounded-md shadow-md items-center h-fit  text-white py-2 lg:py-4"
+        style={{
+          background: `linear-gradient(to right, ${color1}, ${color2})`,
+        }}
+      >
         <h3
-          className={`cursor-pointer rounded-md p-2 ml-3 ${selected == "profile"
-              ? "bg-gradient-2"
-              : "none"
-            }`}
+          className={`cursor-pointer rounded-md p-2 ml-3 ${
+            selected == "profile" ? "bg-gradient-2" : "none"
+          }`}
         >
           {!updated ? (
             <span
@@ -88,17 +108,16 @@ function Product_Catalog() {
               onClick={() => {
                 handleSelect("update");
               }}
-              className={`cursor-pointer p-2 rounded-md ${selected == "update"
-                  ? "bg-gradient-2"
-                  : "none"
-                }`}
+              className={`cursor-pointer p-2 rounded-md ${
+                selected == "update" ? "bg-gradient-2" : "none"
+              }`}
             >
               Update Profile
             </span>
           )}
         </h3>
 
-        <h3
+        {/* <h3
           onClick={() => {
             handleSelect("verification");
           }}
@@ -132,26 +151,29 @@ function Product_Catalog() {
             }`}
         >
           PassKeys
-        </h3>
+        </h3> */}
 
         <h3
           onClick={() => {
             handleSelect("paymentSettings");
           }}
-          className={`cursor-pointer p-2 rounded-md ${selected == "paymentSettings"
-              ? "bg-gradient-2"
-              : "none"
-            }`}
+          className={`cursor-pointer p-2 rounded-md ${
+            selected == "paymentSettings" ? "bg-gradient-2" : "none"
+          }`}
         >
           Payment Settings
         </h3>
       </div>
-      <div className="nav bg-gradient-3 flex flex-col lg:hidden md:hidden xl:hidden lg:gap-4 border rounded-md shadow-md items-center h-fit mt-2 text-white py-2 lg:py-4">
+      <div
+        className="nav  flex flex-col lg:hidden md:hidden xl:hidden lg:gap-4 border rounded-md shadow-md items-center h-fit mt-2 text-white py-2 lg:py-4"
+        style={{
+          background: `linear-gradient(to right, ${color1}, ${color2})`,
+        }}
+      >
         <h3
-          className={`cursor-pointer rounded-md p-2 ml-3 ${selected == "profile"
-              ? "bg-gradient-2"
-              : "none"
-            }`}
+          className={`cursor-pointer rounded-md p-2 ml-3 ${
+            selected == "profile" ? "bg-gradient-2" : "none"
+          }`}
         >
           {!updated ? (
             <span
@@ -166,17 +188,16 @@ function Product_Catalog() {
               onClick={() => {
                 handleSelect("update");
               }}
-              className={`cursor-pointer p-2 rounded-md ${selected == "update"
-                  ? "bg-gradient-2"
-                  : "none"
-                }`}
+              className={`cursor-pointer p-2 rounded-md ${
+                selected == "update" ? "bg-gradient-2" : "none"
+              }`}
             >
               Update Profile
             </span>
           )}
         </h3>
 
-        <h3
+        {/* <h3
           onClick={() => {
             handleSelect("verification");
           }}
@@ -210,23 +231,24 @@ function Product_Catalog() {
             }`}
         >
           PassKeys
-        </h3>
+        </h3> */}
 
         <h3
           onClick={() => {
             handleSelect("paymentSettings");
           }}
-          className={`cursor-pointer p-2 rounded-md ${selected == "paymentSettings"
-              ? "bg-gradient-2"
-              : "none"
-            }`}
+          className={`cursor-pointer p-2 rounded-md ${
+            selected == "paymentSettings" ? "bg-gradient-2" : "none"
+          }`}
         >
           Payment Settings
         </h3>
       </div>
 
-      <div className="container bg-white w-full h-full
-       border shadow-md rounded-sm mt-12  pb-8 lg:px-12 xs:px-12 px-4">
+      <div
+        className="container bg-white w-full h-full
+       border shadow-md rounded-sm mt-12  pb-8 lg:px-12 xs:px-12 px-4"
+      >
         {selected == "profile" && !updated && (
           <div className="lg:mx-24 xl:mx-24 md:mx-16 sm:mx-8 mx-0 font-normal">
             <div className="mt-8">
@@ -284,7 +306,6 @@ function Product_Catalog() {
             <form onSubmit={handlePaymentSetting} className="">
               <div className="my-6">
                 <label className="mt-6 ">Work in Progress</label>
-              
               </div>
             </form>
           ) : (
@@ -296,7 +317,6 @@ function Product_Catalog() {
             <form onSubmit={handlePaymentSetting} className="">
               <div className="my-6">
                 <label className="mt-6 ">Work in Progress</label>
-              
               </div>
             </form>
           ) : (
@@ -308,7 +328,6 @@ function Product_Catalog() {
             <form onSubmit={handlePaymentSetting} className="">
               <div className="my-6">
                 <label className="mt-6 ">Work in Progress</label>
-              
               </div>
             </form>
           ) : (
