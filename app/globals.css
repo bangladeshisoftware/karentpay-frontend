@@ -170,6 +170,22 @@
   transform: translateY(100%);
 }
 
+.input-file{
+  font-size: 16px;
+  margin-top: 3px;
+  background: white;
+  border-radius: 5px;
+  width: 100%;
+  outline: none;
+}
+
+::-webkit-file-upload-button{
+  color: black;
+  background: #bfc5cf;
+  padding: 10px;
+  border: none;
+  border-radius: 5px 5px 30px;
+}
 
 
 
