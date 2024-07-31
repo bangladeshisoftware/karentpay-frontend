@@ -15,7 +15,7 @@ import { useEffect, useRef, useState } from "react";
 import { toast } from "react-toastify";
 import Dropdown from "../Dropdown/Dropdown";
 
-const NavBar = () => {
+const NavBar = ({ gradientColors }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [mainMenuOpen, setMainMenuOpen] = useState(false);
@@ -23,6 +23,8 @@ const NavBar = () => {
   const [pagesMenuOpen, setPagesMenuOpen] = useState(false); // Initially closed
   const menuRef = useRef(null); // Ref for the menu
   const buttonRef = useRef(null); // Ref for the hamburger button
+  const [color1, setColor1] = useState("");
+  const [color2, setColor2] = useState("");
 
   const { fetchData } = useFetchingData("/api/front/pages");
 
@@ -148,8 +150,20 @@ const NavBar = () => {
     { label: "Settings", href: "/dashboard/mobile/settings" },
   ];
 
+  useEffect(() => {
+    if (gradientColors.GradientColor1 && gradientColors.GradientColor2) {
+      setColor1(gradientColors.GradientColor1);
+      setColor2(gradientColors.GradientColor2);
+    }
+  }, [gradientColors]);
+
   return (
-    <nav className="bg-gradient-3 text-gray-200 py-2 sticky top-0 z-50">
+    <nav
+      className="text-gray-200 py-2 sticky top-0 z-50"
+      style={{
+        background: `linear-gradient(to right, ${color1}, ${color2})`,
+      }}
+    >
       {/* large screens */}
       <div className="container lg:flex wide-laptop:flex small-laptop:flex hidden items-center justify-between relative">
         <div className="flex items-center gap-5 h-10">

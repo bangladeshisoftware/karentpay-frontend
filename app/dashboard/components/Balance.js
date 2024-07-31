@@ -92,7 +92,7 @@ const handleSubmit = async() => {
       url:"/marchent_balance",
       method:"get",
     });
-    if(response.status==200){
+    if(response?.status==200){
       setAllbalance(response.data)
     }
     console.log(response);
