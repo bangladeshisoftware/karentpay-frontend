@@ -492,7 +492,7 @@ function Support() {
                         </td>
                         <td className="px-4 py-2 ">
                           <div className="flex items-center gap-2">
-                            <Link href='/kdjgkdl'
+                            <Link href={'/view-tecket/'+item.track_id}
                               className=" text-xl w-fit text-white bg-blue-500 hover:bg-blue-800 rounded-[4px]  p-2 dark:bg-blue-600 dark:hover:bg-blue-500 flex items-center gap-1">
                               <FaEye />
                             </Link>

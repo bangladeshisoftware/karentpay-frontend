@@ -13,7 +13,7 @@ import useFetchingData from '@/lib/useFetchingData';
 const Contact = () => {
 
   const { fetchData } = useFetchingData("/api/front/contact-page-locations");
-
+  console.log(fetchData.BranchOfficePhone2 == "null")
 
   return (
     <div className='container mx-auto px-4 sm:px-6 lg:px-8'>
@@ -50,21 +50,21 @@ const Contact = () => {
         </div>
       </div>
       {/* Location */}
-      <div className='bg-white flex flex-wrap flex-col lg:flex-row justify-between border shadow-md rounded-md transition duration-300 hover:shadow-lg hover:border-blue-500 sm:py-4 md:py-4 '>
+      <div className='bg-white px-10 py-36 grid grid-cols-1 md:grid-cols-2 gap-3 justify-between border shadow-md rounded-md transition duration-300 hover:shadow-lg hover:border-blue-500 sm:py-4 md:py-4'>
         {
-          fetchData.map(({ BranchOfficeName, BranchOfficeAddress1, BranchOfficeAddress2, BranchOfficePhone1, BranchOfficePhone2, BranchOfficePhone3, BranchOfficeImage, }) => (
-            <div className='flex flex-col lg:flex-row items-center justify-center lg:mb-10 lg:w-1/2 '>
-              <div className='mt-4 lg:mt-0'>
+          fetchData.map(({ BranchOfficeName, BranchOfficeAddress1, BranchOfficeAddress2, BranchOfficePhone1, BranchOfficePhone2, BranchOfficePhone3, BranchOfficeImage, i }) => (
+            <div key={i} className='flex items-center flex-col lg:flex-row'>
+              <div className='mt-4 lg:mt-0 '>
                 <Image
                   alt='headquarter'
-                  className='inline-block object-cover object-center  lg:mt-4 rounded F-md'
+                  className=' h-36 w-60  lg:mt-4 rounded F-md'
                   src={BranchOfficeImage}
                   width={200}
-                  height={200}
+                  height={100}
                 />
               </div>
               <div className='py-4 lg:py-16 mx-4 text-center lg:text-left'>
-                <h2 className='text-xl sm:text-2xl lg:text-3xl mb-4 transition duration-300 hover:text-blue-500'>
+                <h2 className='text-xl sm:text-2xl lg:text-3xl mb-2 transition duration-300 hover:text-blue-500'>
                   {BranchOfficeName}
                 </h2>
                 <p className='transition duration-300 hover:text-blue-500'>
@@ -73,21 +73,30 @@ const Contact = () => {
                 <p className='transition duration-300 hover:text-blue-500'>
                   {BranchOfficeAddress2}
                 </p>
-                <Link href={"tel:" + BranchOfficePhone1}>
-                  <p className='text-blue-500 underline transition duration-300 hover:text-blue-700'>
-                    {BranchOfficePhone1}
-                  </p>
-                </Link>
-                <Link href={"tel:" + BranchOfficePhone2}>
-                  <p className='text-blue-500 underline transition duration-300 hover:text-blue-700'>
-                    {BranchOfficePhone2}
-                  </p>
-                </Link>
-                <Link href={"tel:" + BranchOfficePhone3}>
-                  <p className='text-blue-500 underline transition duration-300 hover:text-blue-700'>
-                    {BranchOfficePhone3}
-                  </p>
-                </Link>
+                {
+                  BranchOfficePhone1 != null && <Link href={"tel:" + BranchOfficePhone1}>
+                    <p className='text-blue-500 underline transition duration-300 hover:text-blue-700'>
+                      {'Phone: ' + BranchOfficePhone1}
+                    </p>
+                  </Link>
+
+                }
+                {
+                  BranchOfficePhone2 != null && <Link href={"tel:" + BranchOfficePhone2}>
+                    <p className='text-blue-500 underline transition duration-300 hover:text-blue-700'>
+                      {'Phone: ' + BranchOfficePhone2}
+                    </p>
+                  </Link>
+
+                }
+                {
+                  BranchOfficePhone3 != null && <Link href={"tel:" + BranchOfficePhone3}>
+                    <p className='text-blue-500 underline transition duration-300 hover:text-blue-700'>
+                      {'Phone: ' + BranchOfficePhone3}
+                    </p>
+                  </Link>
+
+                }
               </div>
             </div>
           ))
