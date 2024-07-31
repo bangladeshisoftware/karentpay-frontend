@@ -335,10 +335,10 @@ const handleSubmit = async() => {
       </div>
 
       <div className="lg:px-0 px-1">
-        <section class=" shadow-md border rounded-md ml-0 mb-36">
-          <div class=" max-w-screen-xl ">
+        <section className=" shadow-md border rounded-md ml-0 mb-36">
+          <div className=" max-w-screen-xl ">
             {/* <!-- Start coding here --> */}
-            <div class="bg-white dark:bg-gray-800  shadow-md sm:rounded-lg overflow-hidden">
+            <div className="bg-white dark:bg-gray-800  shadow-md sm:rounded-lg overflow-hidden">
             <div className="relative  flex flex-col md:flex-row items-center space-y-3 md:space-y-0 md:space-x-4 p-4 ">
                 <div className="w-full md:w-full">
                   <form className="flex items-center">
@@ -410,28 +410,28 @@ const handleSubmit = async() => {
                   </div>
                 </div>
               </div>
-              <div class="overflow-x-auto h-96">
-                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                  <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+              <div className="overflow-x-auto h-96">
+                <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                  <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
-                      <th scope="col" class="px-4 py-3">
+                      <th scope="col" className="px-4 py-3">
                         Sl
                       </th>
-                      <th scope="col" class="px-4 py-3 lg:w-[150px]">
+                      <th scope="col" className="px-4 py-3 lg:w-[150px]">
                         Date
                       </th>
-                      <th scope="col" class="px-4 py-3 lg:w-[200px] md:w-[300px] w-[150px]">
+                      <th scope="col" className="px-4 py-3 lg:w-[200px] md:w-[300px] w-[150px]">
                         Amount
                       </th>
 
-                      <th scope="col" class="px-4 py-3">
+                      <th scope="col" className="px-4 py-3">
                         Method
                       </th>
-                      <th scope="col" class="px-4 py-3">
+                      <th scope="col" className="px-4 py-3">
                         Charge
                       </th>
                      
-                      <th scope="col" class="px-4 py-3">
+                      <th scope="col" className="px-4 py-3">
                         Status
                       </th>
                     </tr>
@@ -470,28 +470,28 @@ const handleSubmit = async() => {
               </div>
               {/* this is pagination */}
               {/* <nav
-                class="flex flex-col mt-2  md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0 p-16"
+                className="flex flex-col mt-2  md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0 p-16"
                 aria-label="Table navigation"
               >
-                <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
+                <span className="text-sm font-normal text-gray-500 dark:text-gray-400">
                   Showing
-                  <span class="font-semibold text-gray-900 dark:text-white">
+                  <span className="font-semibold text-gray-900 dark:text-white">
                     1-10
                   </span>
                   of
-                  <span class="font-semibold text-gray-900 dark:text-white">
+                  <span className="font-semibold text-gray-900 dark:text-white">
                     1000
                   </span>
                 </span>
-                <ul class="inline-flex items-stretch -space-x-px">
+                <ul className="inline-flex items-stretch -space-x-px">
                   <li>
                     <a
                       href="#"
-                      class="flex items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                      className="flex items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                     >
-                      <span class="sr-only">Previous</span>
+                      <span className="sr-only">Previous</span>
                       <svg
-                        class="w-5 h-5"
+                        className="w-5 h-5"
                         aria-hidden="true"
                         fill="currentColor"
                         viewbox="0 0 20 20"
@@ -508,7 +508,7 @@ const handleSubmit = async() => {
                   <li>
                     <a
                       href="#"
-                      class="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                      className="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                     >
                       1
                     </a>
@@ -516,7 +516,7 @@ const handleSubmit = async() => {
                   <li>
                     <a
                       href="#"
-                      class="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                      className="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                     >
                       2
                     </a>
@@ -525,7 +525,7 @@ const handleSubmit = async() => {
                     <a
                       href="#"
                       aria-current="page"
-                      class="flex items-center justify-center text-sm z-10 py-2 px-3 leading-tight text-primary-600 bg-primary-50 border border-primary-300 hover:bg-primary-100 hover:text-primary-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white"
+                      className="flex items-center justify-center text-sm z-10 py-2 px-3 leading-tight text-primary-600 bg-primary-50 border border-primary-300 hover:bg-primary-100 hover:text-primary-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white"
                     >
                       3
                     </a>
@@ -533,7 +533,7 @@ const handleSubmit = async() => {
                   <li>
                     <a
                       href="#"
-                      class="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                      className="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                     >
                       ...
                     </a>
@@ -541,7 +541,7 @@ const handleSubmit = async() => {
                   <li>
                     <a
                       href="#"
-                      class="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                      className="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                     >
                       100
                     </a>
@@ -549,11 +549,11 @@ const handleSubmit = async() => {
                   <li>
                     <a
                       href="#"
-                      class="flex items-center justify-center h-full py-1.5 px-3 leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                      className="flex items-center justify-center h-full py-1.5 px-3 leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                     >
-                      <span class="sr-only">Next</span>
+                      <span className="sr-only">Next</span>
                       <svg
-                        class="w-5 h-5"
+                        className="w-5 h-5"
                         aria-hidden="true"
                         fill="currentColor"
                         viewbox="0 0 20 20"

@@ -78,7 +78,6 @@ function Support() {
   });
 
   const handleDateRangeChange = (newValue) => {
-    console.log("newValue:", newValue);
     setDateRange(newValue);
   };
 

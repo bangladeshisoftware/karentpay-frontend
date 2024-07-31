@@ -133,21 +133,21 @@ function Payout() {
         <h3 className="text-xl font-semibold">Payout Transaction</h3>
       </div>
       <div className="lg:px-0 px-1">
-        <section class=" shadow-md border rounded-md ml-0 lg:ml-5 mb-36">
-          <div class=" max-w-screen-xl ">
+        <section className=" shadow-md border rounded-md ml-0 lg:ml-5 mb-36">
+          <div className=" max-w-screen-xl ">
             {/* <!-- Start coding here --> */}
-            <div class="bg-white dark:bg-gray-800  shadow-md sm:rounded-lg overflow-hidden">
-              <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
-                <div class="w-full md:w-1/2">
-                  <form class="flex items-center">
-                    <label for="simple-search" class="sr-only">
+            <div className="bg-white dark:bg-gray-800  shadow-md sm:rounded-lg overflow-hidden">
+              <div className="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
+                <div className="w-full md:w-1/2">
+                  <form className="flex items-center">
+                    <label for="simple-search" className="sr-only">
                       Search
                     </label>
-                    <div class="relative w-full ">
-                      <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                    <div className="relative w-full ">
+                      <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                         <svg
                           aria-hidden="true"
-                          class="w-5 h-5 text-gray-500 dark:text-gray-400"
+                          className="w-5 h-5 text-gray-500 dark:text-gray-400"
                           fill="currentColor"
                           viewbox="0 0 20 20"
                           xmlns="http://www.w3.org/2000/svg"
@@ -164,7 +164,7 @@ function Payout() {
                           onChange={(e) => searchData(e.target.value)}
                           type="text"
                           id="simple-search"
-                          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                           placeholder="Search"
                           required=""
                         />
@@ -196,34 +196,34 @@ function Payout() {
                   </div>
                 </div>
               </div>
-              <div class="overflow-x-auto h-96">
-                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                  <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+              <div className="overflow-x-auto h-96">
+                <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                  <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
-                      <th scope="col" class="px-4 py-3">
+                      <th scope="col" className="px-4 py-3">
                         Sl
                       </th>
-                      <th scope="col" class="px-4 py-3 lg:w-[150px]">
+                      <th scope="col" className="px-4 py-3 lg:w-[150px]">
                         Date
                       </th>
-                      <th scope="col" class="px-4 py-3 lg:w-[150px]">
+                      <th scope="col" className="px-4 py-3 lg:w-[150px]">
                         Reference
                       </th>
 
-                      <th scope="col" class="px-4 py-3">
+                      <th scope="col" className="px-4 py-3">
                         Method
                       </th>
-                      <th scope="col" class="px-4 py-3">
+                      <th scope="col" className="px-4 py-3">
                         Amount
                       </th>
-                      <th scope="col" class="px-4 py-3">
+                      <th scope="col" className="px-4 py-3">
                         TrxId
                       </th>
 
-                      <th scope="col" class="px-4 py-3">
+                      <th scope="col" className="px-4 py-3">
                         customerMsisdn
                       </th>
-                      <th scope="col" class="px-4 py-3">
+                      <th scope="col" className="px-4 py-3">
                         Status
                       </th>
                     </tr>
@@ -266,28 +266,28 @@ function Payout() {
               </div>
               {/* this is pagination */}
               {/* <nav
-                class="flex flex-col mt-2  md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0 p-16"
+                className="flex flex-col mt-2  md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0 p-16"
                 aria-label="Table navigation"
               >
-                <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
+                <span className="text-sm font-normal text-gray-500 dark:text-gray-400">
                   Showing
-                  <span class="font-semibold text-gray-900 dark:text-white">
+                  <span className="font-semibold text-gray-900 dark:text-white">
                     1-10
                   </span>
                   of
-                  <span class="font-semibold text-gray-900 dark:text-white">
+                  <span className="font-semibold text-gray-900 dark:text-white">
                     1000
                   </span>
                 </span>
-                <ul class="inline-flex items-stretch -space-x-px">
+                <ul className="inline-flex items-stretch -space-x-px">
                   <li>
                     <a
                       href="#"
-                      class="flex items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                      className="flex items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                     >
-                      <span class="sr-only">Previous</span>
+                      <span className="sr-only">Previous</span>
                       <svg
-                        class="w-5 h-5"
+                        className="w-5 h-5"
                         aria-hidden="true"
                         fill="currentColor"
                         viewbox="0 0 20 20"
@@ -304,7 +304,7 @@ function Payout() {
                   <li>
                     <a
                       href="#"
-                      class="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                      className="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                     >
                       1
                     </a>
@@ -312,7 +312,7 @@ function Payout() {
                   <li>
                     <a
                       href="#"
-                      class="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                      className="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                     >
                       2
                     </a>
@@ -321,7 +321,7 @@ function Payout() {
                     <a
                       href="#"
                       aria-current="page"
-                      class="flex items-center justify-center text-sm z-10 py-2 px-3 leading-tight text-primary-600 bg-primary-50 border border-primary-300 hover:bg-primary-100 hover:text-primary-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white"
+                      className="flex items-center justify-center text-sm z-10 py-2 px-3 leading-tight text-primary-600 bg-primary-50 border border-primary-300 hover:bg-primary-100 hover:text-primary-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white"
                     >
                       3
                     </a>
@@ -329,7 +329,7 @@ function Payout() {
                   <li>
                     <a
                       href="#"
-                      class="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                      className="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                     >
                       ...
                     </a>
@@ -337,7 +337,7 @@ function Payout() {
                   <li>
                     <a
                       href="#"
-                      class="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                      className="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                     >
                       100
                     </a>
@@ -345,11 +345,11 @@ function Payout() {
                   <li>
                     <a
                       href="#"
-                      class="flex items-center justify-center h-full py-1.5 px-3 leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                      className="flex items-center justify-center h-full py-1.5 px-3 leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                     >
-                      <span class="sr-only">Next</span>
+                      <span className="sr-only">Next</span>
                       <svg
-                        class="w-5 h-5"
+                        className="w-5 h-5"
                         aria-hidden="true"
                         fill="currentColor"
                         viewbox="0 0 20 20"
