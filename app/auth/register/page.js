@@ -7,14 +7,14 @@ import Link from "next/link";
 import ApiRequest from "@/app/_lib/Api_request";
 import { toast } from 'react-toastify';
 import { useRouter } from "next/navigation";
-import {SetCookies,GetCookies} from "@/app/_lib/cookiesSetting";  
+import { SetCookies, GetCookies } from "@/app/_lib/cookiesSetting";
+import { IoMdClose } from "react-icons/io";
 
 export default function Register() {
   const router = useRouter();
   const [countries, setCountries] = useState([]);
   const [showCountryList, setShowCountryList] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedCountry, setSelectedCountry] = useState("");
 
   const [countryId, setCountryId] = useState(0);
   const [phoneCode, setPhoneCode] = useState("+00");
@@ -26,17 +26,17 @@ export default function Register() {
         // const response = await fetch(
         //   "https://countriesnow.space/api/v0.1/countries/flag/images"
         // );
-        const response=await ApiRequest({
-          url:'/country',
-          method:'Get'
+        const response = await ApiRequest({
+          url: '/country',
+          method: 'Get'
         });
-      
-        if(response.status==200){
+
+        if (response.status == 200) {
           setCountries(response.data);
-        }else{
+        } else {
           toast.error(response.message)
         }
-    
+
       } catch (error) {
         console.error("Error fetching country data:", error);
       }
@@ -46,57 +46,57 @@ export default function Register() {
   }, []);
 
   const handleCountryClick = (country) => {
-    setSelectedCountry(country.name);
+    setSearchTerm(country.name);
     setCountryId(country.id);
     setPhoneCode(country.phone_code);
     setShowCountryList(false);
   };
-  const minifiedCountries = countries.slice(0, 220);  
+  const minifiedCountries = countries.slice(0, 220);
   const filteredCountries = minifiedCountries.filter((country) =>
     country.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
 
-  const handleSignUp = async(formdata) => {
- formdata.append('country',countryId);
+  const handleSignUp = async (formdata) => {
+    formdata.append('country', countryId);
 
-    const response=await ApiRequest({
-      url:'/register',
-      formdata:formdata
+    const response = await ApiRequest({
+      url: '/register',
+      formdata: formdata
     });
-  
-    if(response.status==201){
-      const token=await SetCookies({name:"auth_token",value:response.data.trim()}); 
-      if(token){
+
+    if (response.status == 201) {
+      const token = await SetCookies({ name: "auth_token", value: response.data.trim() });
+      if (token) {
         toast.success("Successfully Registered");
         location.reload();
-      }else{
+      } else {
         toast.error("Something went wrong");
       }
 
-    }else if (response.status==400){ 
-      var err=JSON.parse(response.message);
+    } else if (response.status == 400) {
+      var err = JSON.parse(response.message);
       console.log(err);
-      if(err.name){
+      if (err.name) {
         toast.error(err.name[0]);
-      }else if(err.email){
+      } else if (err.email) {
         toast.error(err.email[0]);
-      }else if(err.phone){
+      } else if (err.phone) {
         toast.error(err.phone[0]);
-      }else if(err.country){
+      } else if (err.country) {
         toast.error(err.country[0]);
-      }else if(err.password){
+      } else if (err.password) {
         toast.error(err.password[0]);
       }
-     
-    }else{
-      toast.error(response.message);      
+
+    } else {
+      toast.error(response.message);
     }
-   
+
   };
 
 
-  
+
 
   return (
     <div className="bg-white h-full flex flex-row items-center py-10 my-auto">
@@ -124,45 +124,62 @@ export default function Register() {
                 required
               />
             </div>
-            <div className="relative border my-6 mx-auto lg:mx-0 bg-white focus-within:border-[#2F65EC] hover:border-[#2F65EC] rounded-md w-full lg:w-full">
-              <div
-                className="w-full px-2 py-2 lg:py-3 lg:px-3 bg-transparent rounded-md outline-none cursor-pointer"
-                onClick={() => setShowCountryList(!showCountryList)}
-              >
-                {selectedCountry ? selectedCountry : "Select your country"}
+
+
+            <div
+              id="showMerchantList"
+              onClick={() => setShowCountryList(!showCountryList)}
+              className="relative rounded-[4px]  my-2 md:my-0"
+            >
+              <div className="flex items-center">
+                <input
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className={`border  text-gray-900 text-size   ${showCountryList ? "rounded-t-[4px] " : "rounded-[4px] "
+                    }  block w-full p-2.5 bg-gray-50  dark:bg-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white  ${searchTerm
+                      ? " focus:border-green-500 border-green-500"
+                      : "border-gray-300 "
+                    } outline-none`}
+                  placeholder="Select your country..."
+                  value={searchTerm}
+                />
+                <div className="absolute top-5 right-2">
+                  <svg
+                    className={`w-2.5 h-2.5 ms-3 text-gray-400 transition-transform transform ${showCountryList ? "rotate-180" : ""
+                      }`}
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 10 6"
+                  >
+                    <path
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="m1 1 4 4 4-4"
+                    />
+                  </svg>
+                </div>
               </div>
               {showCountryList && (
-                <div className="absolute top-full left-0 right-0 bg-white border rounded-md z-10 max-h-60 overflow-y-auto">
-                  <input
-                    className="w-full px-2 py-2 lg:py-3 lg:px-3 bg-transparent rounded-md outline-none border-b"
-                    type="text"
-                    name="search"
-                    placeholder="Search country..."
-                    value={searchTerm}
-                    onChange={(e) =>setSearchTerm(e.target.value)}
-                  />
+                <div
+                  id="showMerchantList"
+                  className="absolute top-full left-0 right-0 bg-white rounded-b-md z-10 max-h-[300px] overflow-y-auto dark:bg-[#374151]"
+                >
                   {filteredCountries.map((country, index) => (
                     <div
                       key={index}
-                      className="flex items-center px-2 py-2 lg:py-3 lg:px-3 cursor-pointer hover:bg-gray-200 w-full justify-between"
+                      className="px-2 py-2 lg:py-2 lg:px-3 text-black dark:text-white text-size cursor-pointer hover:bg-gradient-to-r from-blue-500 to-purple-600 mx-auto hover:text-white w-full justify-between flex items-center "
                       onClick={() => handleCountryClick(country)}
                     >
-                      <span className='flex items-center'>
-                      {/* <Image
-                        src={country.flag}
-                        alt={country.name}
-                        width={20}
-                        height={15}
-                        className="mr-2"
-                      />                     */}
                       {country.name}
-                      </span>
-                       <span className="text-right"> {country.phone_code}</span>
+                      <span> {country.phone_code}</span>
                     </div>
                   ))}
                 </div>
               )}
             </div>
+
             <div className="border my-6 mx-auto lg:mx-0 bg-white focus-within:border-[#2F65EC] hover:border-[#2F65EC] rounded-md w-full lg:w-full">
               <input
                 className="w-full px-2 py-2 lg:py-3 lg:px-3 bg-transparent rounded-md outline-none"
