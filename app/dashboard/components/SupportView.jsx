@@ -82,8 +82,6 @@ function SupportView({ supportReplyMessage, setSupportReplyMessage, item }) {
             }
         } catch (error) { }
     };
-
-    console.log(item);
     return (
         <>
             {
