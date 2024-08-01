@@ -171,7 +171,8 @@
 }
 
 .input-file{
-  font-size: 16px;
+  font-size: 14px;
+  font-weight: 500;
   margin-top: 3px;
   background: white;
   border-radius: 5px;
@@ -180,11 +181,10 @@
 }
 
 ::-webkit-file-upload-button{
-  color: black;
-  background: #bfc5cf;
-  padding: 10px;
+  color: #ffffffe5;
+  padding: 8px;
+  background: black;
   border: none;
-  border-radius: 5px 5px 30px;
 }
 
 

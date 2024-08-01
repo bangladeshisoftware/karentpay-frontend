@@ -5,7 +5,6 @@ import Datepicker from "react-tailwindcss-datepicker";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { toast } from "react-toastify";
-import Link from "next/link";
 import moment from "moment";
 import { GetCookies } from "@/app/_lib/cookiesSetting";
 import ApiRequest from "@/app/_lib/Api_request";
@@ -81,78 +80,8 @@ function Support() {
     setDateRange(newValue);
   };
 
-  const transactions = [
-    {
-      id: 1,
-
-      currencyName: "USD",
-      network: "Bank Transfer",
-      depositAddress: "N/A",
-      trxid: "TRX123456",
-      debit: 1000,
-      date: "2024-02-01",
-      status: "Edit",
-    },
-    {
-      id: 2,
-
-      currencyName: "USD",
-      network: "Bank Transfer",
-      depositAddress: "N/A",
-      trxid: "TRX123456",
-      debit: 1000,
-      date: "2024-03-01",
-      status: "Edit",
-    },
-    {
-      id: 3,
-
-      currencyName: "USD",
-      network: "Bank Transfer",
-      depositAddress: "N/A",
-      trxid: "TRX123456",
-      debit: 1000,
-      date: "2024-04-01",
-      status: "Edit",
-    },
-    {
-      id: 4,
-
-      currencyName: "USD",
-      network: "Bank Transfer",
-      depositAddress: "N/A",
-      trxid: "TRX123456",
-      debit: 1000,
-      date: "2024-05-01",
-      status: "Edit",
-    },
-    {
-      id: 5,
-
-      currencyName: "USD",
-      network: "Bank Transfer",
-      depositAddress: "N/A",
-      trxid: "TRX123456",
-      debit: 1000,
-      date: "2024-06-01",
-      status: "Edit",
-    },
-    {
-      id: 6,
-
-      currencyName: "USD",
-      network: "Bank Transfer",
-      depositAddress: "N/A",
-      trxid: "TRX123456",
-      debit: 1000,
-      date: "2024-07-01",
-      status: "Edit",
-    },
-    // Add more transaction objects here as needed
-  ];
-
   // Filter transactions based on the selected date range
-  const filteredTransactions = transactions.filter((transaction) => {
+  const filteredTransactions = tecket.filter((transaction) => {
     const transactionDate = new Date(transaction.date);
     const startDateObj = dateRange.startDate
       ? new Date(dateRange.startDate)
@@ -172,7 +101,6 @@ function Support() {
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
-
 
 
   const handleSubmit = (e) => {
@@ -197,24 +125,25 @@ function Support() {
         },
       })
       .then((response) => {
-        if(response.status === "201"){
-          toast.success("Tecket Added Successfully");
+        console.log(response);
+        if(response.status === 201){
+          setIsModalOpen(false);
+          toast.success("Tacket Added Successfully");
 
         }
       })
       .catch((error) => {
         console.error("Error:", error);
-        toast.success("Failed to Add Tecket");
+        toast.success("Failed to Add Tacket");
       });
-    setIsModalOpen(false);
   };
 
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 6;
-  const totalItems = tecket.length;
+  const totalItems = filteredTransactions.length;
   const totalPages = Math.ceil(totalItems / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
-  const visibleTransactions = tecket.slice(
+  const visibleTransactions = filteredTransactions.slice(
     startIndex,
     startIndex + itemsPerPage
   );
@@ -230,7 +159,6 @@ function Support() {
   const handlePageClick = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
-
   return (
     <div className="mt-4 lg:mt-10 ml-0 lg:ml-8">
       <div className=" border shadow-lg mb-4 lg:mb-2 p-3 lg:p-3 mt-3 rounded-md text-center lg:text-left lg:hidden  ">
@@ -352,13 +280,13 @@ function Support() {
                         </td>
                         <td className="px-4 py-2 whitespace-nowrap">
                           <h2>
-                            {item.date
-                              ? moment(item.date).format("Do MMM YYYY")
+                            {item.created_at
+                              ? moment(item.created_at).format("Do MMM YYYY")
                               : "--"}
                           </h2>
                           <h2 className="opacity-80">
                             {item.time
-                              ? moment(item.date).format("h:mm a")
+                              ? moment(item.created_at).format("h:mm a")
                               : "--"}
                           </h2>
                         </td>
