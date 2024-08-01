@@ -33,34 +33,51 @@ const GetMore = () => {
           Become a member of Karentpay family and enjoy exclusive features and
           offers that enlighten your business
         </p>
-        <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1  gap-8 justify-center  mt-10">
-          {fetchData?.map((news) => (
-            <Link
-              href={`/news/${news?.id}`}
-              className="w-full scale-110 lg:scale-100 md:scale-100  mb-6 border rounded-lg shadow-lg"
-              key={news?.id}
-            >
-              <div className="h-full bg-white rounded-md">
-                <Image
-                  alt="testimonial"
-                  className="w-full h-56 mb-8 object-cover object-center inline-block rounded-t-lg"
-                  src={news?.featured_image ? news?.featured_image : ""}
-                  width={400}
-                  height={300}
-                  priority
-                />
-                <div className="px-4 pb-5">
-                  <h2 className="font-bold text-lg">{news?.title}</h2>
-                  <p className="text-justify">
-                    {news?.content
-                      ? htmlToTextConverter(news?.content?.slice(0, 150)) +
-                        "..."
-                      : ""}
-                  </p>
+        <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-8 justify-center mt-10">
+          {fetchData && fetchData.length > 0
+            ? fetchData?.slice(0, 6)?.map((news) => (
+                <Link
+                  href={`/news/${news?.id}`}
+                  className="w-full scale-110 lg:scale-100 md:scale-100 mb-6 border rounded-lg shadow-lg"
+                  key={news?.id}
+                >
+                  <div className="h-full bg-white rounded-md">
+                    <Image
+                      alt="testimonial"
+                      className="w-full h-56 mb-8 object-cover object-center inline-block rounded-t-lg"
+                      src={news?.featured_image ? news?.featured_image : ""}
+                      width={400}
+                      height={300}
+                      priority
+                    />
+                    <div className="px-4 pb-5">
+                      <h2 className="font-bold text-lg">{news?.title}</h2>
+                      <p className="text-justify">
+                        {news?.content
+                          ? htmlToTextConverter(news?.content?.slice(0, 150)) +
+                            "..."
+                          : ""}
+                      </p>
+                    </div>
+                  </div>
+                </Link>
+              ))
+            : Array.from({ length: 6 }).map((_, index) => (
+                <div
+                  className="w-full scale-110 lg:scale-100 md:scale-100 mb-6 border rounded-lg shadow-lg animate-pulse"
+                  key={index}
+                >
+                  <div className="h-full bg-white rounded-md">
+                    <div className="w-full h-56 mb-8 bg-gray-200 rounded-t-lg"></div>
+                    <div className="px-4 pb-5">
+                      <div className="h-6 bg-gray-200 rounded mb-2"></div>
+                      <div className="h-4 bg-gray-200 rounded mb-1"></div>
+                      <div className="h-4 bg-gray-200 rounded mb-1"></div>
+                      <div className="h-4 bg-gray-200 rounded"></div>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </Link>
-          ))}
+              ))}
         </div>
       </div>
     </section>
