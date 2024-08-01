@@ -12,6 +12,7 @@ const FooterComonent = ({ gradientColors }) => {
   const [footerSettings, setFooterSettings] = React.useState([]);
   const [color1, setColor1] = useState("");
   const [color2, setColor2] = useState("");
+  const [isGradient, setIsGradient] = useState(false);
 
   const fetchData = async () => {
     try {
@@ -34,15 +35,23 @@ const FooterComonent = ({ gradientColors }) => {
     if (gradientColors?.GradientColor1 && gradientColors?.GradientColor2) {
       setColor1(gradientColors?.GradientColor1);
       setColor2(gradientColors?.GradientColor2);
+      setIsGradient(true);
+    } else {
+      setColor1("");
+      setColor2("");
+      setIsGradient(false);
     }
   }, [gradientColors]);
 
   return (
     <>
       <section
-        className=" text-white mt-[70px]"
+        className={`mt-[70px] ${isGradient ? "text-white" : "text-gray-800"}`}
         style={{
-          background: `linear-gradient(to right, ${color1}, ${color2})`,
+          background:
+            color1 && color2
+              ? `linear-gradient(to right, ${color1}, ${color2})`
+              : "#e5e7eb",
         }}
       >
         <footer className="w-full container py-10">
