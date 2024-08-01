@@ -388,6 +388,7 @@ function Product_Catalog() {
             <EditProfile
               handleUpdate={handleUpdate}
               handleSelect={handleSelect}
+              user={user}
             />
           ) : (
             ""
@@ -538,7 +539,9 @@ function Product_Catalog() {
                     onClick={handlePaymentSetting}
                     className="bg-gradient-2 mx-auto lg:mx-0 md:mx-0 sm:mx-0 w-full lg:w-full md:w-full sm:w-full p-2 rounded-md text-center text-white mt-5 flex justify-center items-center hover:from-purple-700 hover:to-blue-600 gap-2"
                   >
-                    Update
+                    {
+                      data.length > 0 && data[0].id ? "Update" : "Add"
+                    }
                   </button>
                 </div>
                 {/* <div className="relative border my-3 mx-auto lg:mx-0 bg-white focus-within:border-[#2F65EC] hover:border-[#2F65EC] rounded-md w-full lg:w-full">

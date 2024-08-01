@@ -51,7 +51,7 @@ const FooterComonent = ({ gradientColors }) => {
           background:
             color1 && color2
               ? `linear-gradient(to right, ${color1}, ${color2})`
-              : "#e5e7eb",
+              : "#ffffff",
         }}
       >
         <footer className="w-full container py-10">

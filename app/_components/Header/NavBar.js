@@ -166,7 +166,7 @@ const NavBar = ({ gradientColors }) => {
         background:
           color1 && color2
             ? `linear-gradient(to right, ${color1}, ${color2})`
-            : "#e5e7eb",
+            : "#ffffff",
       }}
     >
       {/* large screens */}

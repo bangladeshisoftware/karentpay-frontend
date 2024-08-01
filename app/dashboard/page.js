@@ -235,7 +235,7 @@ function Dashboard() {
                 background:
                   color1 && color2
                     ? `linear-gradient(to bottom, ${color1}, ${color2})`
-                    : "#e5e7eb",
+                    : "#ffffff",
               }}
             >
               <aside
