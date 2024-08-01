@@ -2,8 +2,10 @@
 import ApiRequest from "@/app/_lib/Api_request";
 import { GetCookies } from "@/app/_lib/cookiesSetting";
 import useFetchingData from "@/lib/useFetchingData";
-import React, { useEffect, useState } from "react";
-import { FaRegEdit } from "react-icons/fa";
+import axios from "axios";
+import Image from "next/image";
+import React, { useEffect, useRef, useState } from "react";
+import { TiDeleteOutline } from "react-icons/ti";
 import { toast } from "react-toastify";
 import BankingDrawer from "./BankingDrawer/BankingDrawer";
 import EditProfile from "./Edit-Profile/EditProfile";
@@ -14,18 +16,28 @@ function Product_Catalog() {
   const [updated, setUpdated] = useState(false);
   const [isMobileDrawerOpen, setIsMobileDrawerOpen] = useState(false);
   const [isInternetDrawerOpen, setIsInternetDrawerOpen] = useState(false);
-  const [fileNames, setFileNames] = useState({
-    file0: "No file chosen",
-    file1: "No file chosen",
-    file2: "No file chosen",
-    file3: "No file chosen",
-    file4: "No file chosen",
-  });
+  const [paymentTitle, setPaymentTitle] = useState("");
+  const [companyLogo, setCompanyLogo] = useState("");
+  const [companyLogoLink, setCompanyLogoLink] = useState("");
+  const [support, setSupport] = useState("");
+  const [faq, setFaq] = useState("");
+  const [gift, setGift] = useState("");
+  const [loginLink, setLoginLink] = useState("");
+  const [data, setData] = useState([]);
+
   const [user, setUser] = useState("");
 
   useEffect(() => {
     getuser();
   }, []);
+
+  const imageRef = useRef(null);
+  const clearImage = () => {
+    setCompanyLogo("");
+    if (imageRef.current) {
+      imageRef.current.value = "";
+    }
+  };
 
   const getuser = async () => {
     const token = await GetCookies({ name: "auth_token" });
@@ -44,6 +56,8 @@ function Product_Catalog() {
     }
   };
 
+  // console.log(user);
+
   const handleSelect = (section) => {
     setSelected(section);
   };
@@ -52,16 +66,88 @@ function Product_Catalog() {
     setUpdated(!updated);
   };
 
-  const handlePaymentSetting = (e) => {
-    e.preventDefault();
-  };
+  // const { fetchData: paymentSettingsData } = useFetchingData(
+  //   "/api/merchant/payment-settings"
+  // );
+  // console.log(paymentSettingsData);
+  useEffect(() => {
+    const getPaymentSettings = async () => {
+      const token = await GetCookies({ name: "auth_token" });
+      try {
+        const response = await axios.get(
+          `${process.env.NEXT_PUBLIC_DATA_API}/merchant/payment-settings`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        // console.log(response.data[0]);
+        setData(response.data);
+        setPaymentTitle(response.data[0]?.payment_title);
+        setSupport(response.data[0]?.support);
+        setFaq(response.data[0]?.faq);
+        setGift(response.data[0]?.gift);
+        setLoginLink(response.data[0]?.login_link);
+        setCompanyLogoLink(response.data[0]?.company_logo);
+      } catch (error) {
+        console.error(error);
+      }
+    };
 
-  const handleFileChange = (e, fileKey) => {
-    const file = e.target.files[0];
-    setFileNames((prevState) => ({
-      ...prevState,
-      [fileKey]: file ? file.name : "No file chosen",
-    }));
+    getPaymentSettings();
+  }, []);
+
+  const handlePaymentSetting = async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData();
+    formData.append("payment_title", paymentTitle);
+    if (companyLogo) {
+      formData.append("company_logo", companyLogo);
+    }
+    formData.append("support", support);
+    formData.append("faq", faq);
+    formData.append("gift", gift);
+    formData.append("login_link", loginLink);
+
+    if (data.length > 0 && data[0].id) {
+      formData.append("_method", "PUT");
+    }
+
+    var token = await GetCookies({ name: "auth_token" });
+    try {
+      if (data.length > 0 && data[0].id) {
+        const response = await axios.post(
+          `${process.env.NEXT_PUBLIC_DATA_API}/merchant/payment-settings/${data[0].id}`,
+          formData,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+        console.log(response.data);
+        toast.success("Form submitted successfully!");
+      } else {
+        const response = await axios.post(
+          `${process.env.NEXT_PUBLIC_DATA_API}/merchant/payment-settings`,
+          formData,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+        console.log(response.data);
+        toast.success("Form submitted successfully!");
+      }
+    } catch (error) {
+      toast.error("Failed to submit form.");
+      console.error(error);
+    }
   };
 
   const [color1, setColor1] = useState("");
@@ -277,6 +363,12 @@ function Product_Catalog() {
                 <p className="border w-full rounded-sm p-2 ">{user.phone}</p>
               </h3>
             </div>
+            <div className="mt-8">
+              <h3 className="">
+                Image
+                <Image src={user.avatar ? user.avatar : ""} alt="profile" />
+              </h3>
+            </div>
 
             <div className="mt-8">
               <button
@@ -301,9 +393,9 @@ function Product_Catalog() {
             ""
           )}
         </div>
-        <div className="h-[60%]">
+        {/* <div className="h-[60%]">
           {selected == "verification" ? (
-            <form onSubmit={handlePaymentSetting} className="">
+            <form className="">
               <div className="my-6">
                 <label className="mt-6 ">Work in Progress</label>
               </div>
@@ -311,10 +403,10 @@ function Product_Catalog() {
           ) : (
             ""
           )}
-        </div>
-        <div className="h-[60%]">
+        </div> */}
+        {/* <div className="h-[60%]">
           {selected == "integration" ? (
-            <form onSubmit={handlePaymentSetting} className="">
+            <form  className="">
               <div className="my-6">
                 <label className="mt-6 ">Work in Progress</label>
               </div>
@@ -322,10 +414,10 @@ function Product_Catalog() {
           ) : (
             ""
           )}
-        </div>
-        <div className="h-[60%]">
+        </div> */}
+        {/* <div className="h-[60%]">
           {selected == "passkey" ? (
-            <form onSubmit={handlePaymentSetting} className="">
+            <form  className="">
               <div className="my-6">
                 <label className="mt-6 ">Work in Progress</label>
               </div>
@@ -333,46 +425,67 @@ function Product_Catalog() {
           ) : (
             ""
           )}
-        </div>
+        </div> */}
         <div className="h-[60%]">
           {selected == "paymentSettings" ? (
-            <form onSubmit={handlePaymentSetting} className="">
+            <form className="">
               <div className="my-6">
-                <h2 className="text-center">Work in Progress</h2>
-                <label className="mt-6 ">Payment Title</label>
+                <label className="mt-6 ">Payment Name</label>
                 <div className="border my-3 mx-auto lg:mx-0 bg-white focus-within:border-[#2F65EC] hover:border-[#2F65EC] rounded-md w-full lg:w-full">
                   <input
                     className="w-full px-2 py-2 lg:py-3 lg:px-3 bg-transparent rounded-md outline-none"
                     type="text"
                     name="name"
                     placeholder="Payment Title"
+                    value={paymentTitle}
+                    onChange={(e) => setPaymentTitle(e.target.value)}
                   />
                 </div>
               </div>
               <div className="my-6">
-                <label className="mt-6  ">Company Logo</label>
+                <label className="mt-6 ">Company Logo</label>
                 <div className="relative border my-3 mx-auto lg:mx-0 bg-white focus-within:border-[#2F65EC] hover:border-[#2F65EC] rounded-md w-full lg:w-full">
                   <input
                     className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                     type="file"
                     name="img1"
                     id="imgUpload1"
-                    onChange={(e) => handleFileChange(e, "file0")}
+                    ref={imageRef}
+                    onChange={(e) => setCompanyLogo(e.target.files[0])}
                   />
                   <div className="flex items-center justify-between rounded-md overflow-hidden">
                     <label
                       htmlFor="imgUpload1"
-                      className="px-4 py-2 lg:py-3 lg:px-6 text-center bg-black text-white cursor-pointer w-1/4"
+                      className="px-4 py-2 lg:py-3  text-center bg-black text-white cursor-pointer w-1/4"
                     >
                       Choose file
                     </label>
                     <span
                       id="fileName1"
-                      className="px-4 py-2 lg:py-3 lg:px-6 bg-transparent text-black w-full text-center"
+                      className="px-4 py-2 lg:py-3  bg-transparent text-black w-full text-center"
                     >
-                      {fileNames.file0}
+                      {companyLogo ? companyLogo.name : "No file chosen"}
                     </span>
                   </div>
+                </div>
+
+                <div className="relative">
+                  <Image
+                    // src={URL.createObjectURL(companyLogo)}
+                    src={
+                      companyLogo
+                        ? URL.createObjectURL(companyLogo)
+                        : companyLogoLink
+                    }
+                    alt="logo"
+                    width={100}
+                    height={50}
+                  />
+
+                  <TiDeleteOutline
+                    className="absolute top-0 right-0 cursor-pointer h-6 w-6"
+                    onClick={clearImage}
+                  />
                 </div>
               </div>
               <div className="border-b">
@@ -383,6 +496,8 @@ function Product_Catalog() {
                     type="text"
                     name="name"
                     placeholder=""
+                    value={support}
+                    onChange={(e) => setSupport(e.target.value)}
                   />
                 </div>
                 <label className="mt-6 ">Faq</label>
@@ -392,6 +507,8 @@ function Product_Catalog() {
                     type="text"
                     name="name"
                     placeholder=""
+                    value={faq}
+                    onChange={(e) => setFaq(e.target.value)}
                   />
                 </div>
                 <label className="mt-6 ">Gift</label>
@@ -401,6 +518,8 @@ function Product_Catalog() {
                     type="text"
                     name="name"
                     placeholder=""
+                    value={gift}
+                    onChange={(e) => setGift(e.target.value)}
                   />
                 </div>
                 <label className="mt-6 ">Login</label>
@@ -409,8 +528,18 @@ function Product_Catalog() {
                     className="w-full px-2 py-2 lg:py-3 lg:px-3 bg-transparent rounded-md outline-none"
                     type="text"
                     name="name"
-                    placeholder=""
+                    placeholder="http://example.com/loginlink"
+                    value={loginLink}
+                    onChange={(e) => setLoginLink(e.target.value)}
                   />
+                </div>
+                <div className="my-8">
+                  <button
+                    onClick={handlePaymentSetting}
+                    className="bg-gradient-2 mx-auto lg:mx-0 md:mx-0 sm:mx-0 w-full lg:w-full md:w-full sm:w-full p-2 rounded-md text-center text-white mt-5 flex justify-center items-center hover:from-purple-700 hover:to-blue-600 gap-2"
+                  >
+                    Update
+                  </button>
                 </div>
                 {/* <div className="relative border my-3 mx-auto lg:mx-0 bg-white focus-within:border-[#2F65EC] hover:border-[#2F65EC] rounded-md w-full lg:w-full">
                   <input
@@ -482,7 +611,9 @@ function Product_Catalog() {
                   </div>
                 </div> */}
               </div>
-              <div className="">
+
+              {/* payment gateway */}
+              {/* <div className="">
                 <h3 className="mt-6  ">Manage Your Payment Gateway</h3>
                 <button
                   onClick={() => {
@@ -500,7 +631,7 @@ function Product_Catalog() {
                 >
                   Internet Banking
                 </button>
-              </div>
+              </div> */}
             </form>
           ) : (
             ""
