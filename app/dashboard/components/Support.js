@@ -109,6 +109,7 @@ function Support() {
     const formData = new FormData();
     formData.append("user_id", user?.id);
     formData.append("type", "Payment Gateway");
+    formData.append("user_avatar", user?.avatar);
     formData.append("status", "open");
 
     formData.append("subject", subject);
