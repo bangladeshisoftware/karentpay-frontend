@@ -25,6 +25,7 @@ const NavBar = ({ gradientColors }) => {
   const buttonRef = useRef(null); // Ref for the hamburger button
   const [color1, setColor1] = useState("");
   const [color2, setColor2] = useState("");
+  const [isGradient, setIsGradient] = useState(false);
 
   const { fetchData } = useFetchingData("/api/front/pages");
 
@@ -128,12 +129,6 @@ const NavBar = ({ gradientColors }) => {
     { label: "Contact", href: "/contact" },
     {
       label: "Pages",
-      // submenu: [
-      //   { label: "About", href: "/about" },
-      //   { label: "Privacy & Policy", href: "/privacy-policy" },
-      //   { label: "Terms & Conditions", href: "/terms-and-conditions" },
-      //   { label: "No Refund", href: "/refund" },
-      // ],
       submenu: submenuItems,
     },
   ];
@@ -154,14 +149,24 @@ const NavBar = ({ gradientColors }) => {
     if (gradientColors.GradientColor1 && gradientColors.GradientColor2) {
       setColor1(gradientColors.GradientColor1);
       setColor2(gradientColors.GradientColor2);
+      setIsGradient(true);
+    } else {
+      setColor1("");
+      setColor2("");
+      setIsGradient(false);
     }
   }, [gradientColors]);
 
   return (
     <nav
-      className="text-gray-200 py-2 sticky top-0 z-50"
+      className={`py-2 sticky top-0 z-50 ${
+        isGradient ? "text-gray-200" : "text-gray-800"
+      }`}
       style={{
-        background: `linear-gradient(to right, ${color1}, ${color2})`,
+        background:
+          color1 && color2
+            ? `linear-gradient(to right, ${color1}, ${color2})`
+            : "#e5e7eb",
       }}
     >
       {/* large screens */}

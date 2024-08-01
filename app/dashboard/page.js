@@ -203,6 +203,7 @@ function Dashboard() {
 
   const [color1, setColor1] = useState("");
   const [color2, setColor2] = useState("");
+  const [isGradient, setIsGradient] = useState(false);
 
   const { fetchData } = useFetchingData("/api/front/setting/color-setting");
 
@@ -213,19 +214,28 @@ function Dashboard() {
     ) {
       setColor1(fetchData.settings.GradientColor1);
       setColor2(fetchData.settings.GradientColor2);
+      setIsGradient(true);
+    } else {
+      setColor1("");
+      setColor2("");
+      setIsGradient(false);
     }
   }, [fetchData]);
-
 
   return (
     <div className={`${selectedContainer.type} flex h-screen mx-auto `}>
       <ResizablePanelGroup direction="horizontal">
         {windowWidth >= 1024 && (
-          <ResizablePanel defaultSize={15} minSize={getMinSize()}>
+          <ResizablePanel defaultSize={25} minSize={getMinSize()}>
             <div
-              className="text-white rounded-md"
+              className={` rounded-md ${
+                isGradient ? "text-gray-200" : "text-gray-800"
+              }`}
               style={{
-                background: `linear-gradient(to bottom, ${color1}, ${color2})`,
+                background:
+                  color1 && color2
+                    ? `linear-gradient(to bottom, ${color1}, ${color2})`
+                    : "#e5e7eb",
               }}
             >
               <aside
@@ -237,8 +247,8 @@ function Dashboard() {
                   {/* <li
                     className={`mb-4 cursor-pointer flex items-center p-2 rounded-md transition-all duration-300 ${
                       activeComponent === "home"
-                        ? "bg-gradient-2 text-gray-200"
-                        : "hover:bg-gradient-to-r from-blue-600 to-purple-400 text-gray-200"
+                        ? "bg-gradient-2 "
+                        : "hover:bg-gradient-to-r from-blue-600 to-purple-400 "
                     }`}
                     onClick={() => setActiveComponent("home")}
                   >
@@ -248,8 +258,8 @@ function Dashboard() {
                   <li
                     className={`mb-4 cursor-pointer flex items-center p-2 rounded-md transition-all duration-300 ${
                       activeComponent === "balance"
-                        ? "bg-gradient-2 text-gray-200"
-                        : "hover:bg-gradient-to-r from-blue-600 to-purple-400 text-gray-200"
+                        ? "bg-gradient-2 "
+                        : "hover:bg-gradient-to-r from-blue-600 to-purple-400 "
                     }`}
                     onClick={() => setActiveComponent("balance")}
                   >
@@ -259,8 +269,8 @@ function Dashboard() {
                   <li
                     className={`mb-4 cursor-pointer flex items-center p-2 rounded-md transition-all duration-300 ${
                       activeComponent === "cashin"
-                        ? "bg-gradient-2 text-gray-200"
-                        : "hover:bg-gradient-to-r from-blue-600 to-purple-400 text-gray-200"
+                        ? "bg-gradient-2 "
+                        : "hover:bg-gradient-to-r from-blue-600 to-purple-400 "
                     }`}
                     onClick={() => setActiveComponent("cashin")}
                   >
@@ -270,8 +280,8 @@ function Dashboard() {
                   <li
                     className={`mb-4 cursor-pointer flex items-center p-2 rounded-md transition-all duration-300 ${
                       activeComponent === "payout"
-                        ? "bg-gradient-2 text-gray-200"
-                        : "hover:bg-gradient-to-r from-blue-600 to-purple-400 text-gray-200"
+                        ? "bg-gradient-2 "
+                        : "hover:bg-gradient-to-r from-blue-600 to-purple-400 "
                     }`}
                     onClick={() => setActiveComponent("payout")}
                   >
@@ -281,8 +291,8 @@ function Dashboard() {
                   <li
                     className={`mb-4 cursor-pointer flex items-center p-2 rounded-md transition-all duration-300 ${
                       activeComponent === "wtransactions"
-                        ? "bg-gradient-2 text-gray-200"
-                        : "hover:bg-gradient-to-r from-blue-600 to-purple-400 text-gray-200"
+                        ? "bg-gradient-2 "
+                        : "hover:bg-gradient-to-r from-blue-600 to-purple-400 "
                     }`}
                     onClick={() => setActiveComponent("wtransactions")}
                   >
@@ -292,8 +302,8 @@ function Dashboard() {
                   <li
                     className={`mb-4 cursor-pointer flex items-center p-2 rounded-md transition-all duration-300 ${
                       activeComponent === "payments"
-                        ? "bg-gradient-2 text-gray-200"
-                        : "hover:bg-gradient-to-r from-blue-600 to-purple-400 text-gray-200"
+                        ? "bg-gradient-2 "
+                        : "hover:bg-gradient-to-r from-blue-600 to-purple-400 "
                     }`}
                     onClick={() => setActiveComponent("payments")}
                   >
@@ -303,8 +313,8 @@ function Dashboard() {
                   <li
                     className={`mb-4 cursor-pointer flex items-center p-2 rounded-md transition-all duration-300 ${
                       activeComponent === "developer"
-                        ? "bg-gradient-2 text-gray-200"
-                        : "hover:bg-gradient-to-r from-blue-600 to-purple-400 text-gray-200"
+                        ? "bg-gradient-2 "
+                        : "hover:bg-gradient-to-r from-blue-600 to-purple-400 "
                     }`}
                     onClick={() => setActiveComponent("developer")}
                   >
@@ -314,8 +324,8 @@ function Dashboard() {
                   <li
                     className={`mb-4 cursor-pointer flex items-center p-2 rounded-md transition-all duration-300 ${
                       activeComponent === "support"
-                        ? "bg-gradient-2 text-gray-200"
-                        : "hover:bg-gradient-to-r from-blue-600 to-purple-400 text-gray-200"
+                        ? "bg-gradient-2 "
+                        : "hover:bg-gradient-to-r from-blue-600 to-purple-400 "
                     }`}
                     onClick={() => setActiveComponent("support")}
                   >
@@ -325,8 +335,8 @@ function Dashboard() {
                   <li
                     className={`mb-4 cursor-pointer flex items-center p-2 rounded-md transition-all duration-300 ${
                       activeComponent === "productCatalog"
-                        ? "bg-gradient-2 text-gray-200"
-                        : "hover:bg-gradient-to-r from-blue-600 to-purple-400 text-gray-200"
+                        ? "bg-gradient-2 "
+                        : "hover:bg-gradient-to-r from-blue-600 to-purple-400 "
                     }`}
                     onClick={() => setActiveComponent("productCatalog")}
                   >
