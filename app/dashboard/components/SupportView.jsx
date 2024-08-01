@@ -28,8 +28,6 @@ function SupportView({ supportReplyMessage, setSupportReplyMessage, item }) {
 
             formData.append('attachment_image', chooseFile);
         }
-
-
         axios
             .post(
                 `${process.env.NEXT_PUBLIC_DATA_API}/admin/add_reply/${item.id}`,
