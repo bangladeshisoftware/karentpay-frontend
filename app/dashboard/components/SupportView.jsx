@@ -83,7 +83,7 @@ function SupportView({ supportReplyMessage, setSupportReplyMessage, item }) {
         } catch (error) { }
     };
 
-    console.log(replyMessage);
+    console.log(item);
     return (
         <>
             {
@@ -91,31 +91,36 @@ function SupportView({ supportReplyMessage, setSupportReplyMessage, item }) {
                     id="popup-modal"
                     className="fixed top-0 right-0 left-0 z-50 flex justify-center items-center w-full h-full bg-black/30 bg-opacity-50"
                 >
-                    <div className="relative p-4 w-full max-w-3xl max-h-full overflow-y-scroll h-[90vh] bg-white  rounded-[4px] shadow">
+                    <div className="relative md:p-4 w-full max-w-3xl  overflow-y-scroll max-h-[90vh] bg-white  rounded-[4px] shadow">
                         <div className="relative  dark:bg-gray-700">
 
                             {/* Modal content */}
                             <div className="p-4 pr-10 md:p-5 ">
                                 <div className="flex gap-3">
-                                    <h2 className="w-8 h-8 rounded-full flex items-center justify-center border text-lg font-bold">{item.user?.name.slice(0, 1)}</h2>
-                                    <div>
+                                    <div className="w-8 lg:w-[5%] h-8 border  overflow-hidden rounded-full flex items-center justify-center">
+
+                                        <h2 className="text-lg font-bold">{item.user?.name.slice(0, 1)}</h2>
+                                    </div>
+                                    <div className="w-[95%]">
                                         <h2>{item.user?.name}</h2>
                                         <h2>Subject : {item.subject}</h2>
-                                        <h2>Message : {item.message}</h2>
+                                        <h2 className="mb-5">Message : {item.message}</h2>
                                         {
-                                            item.image && <Image width={700} height={600} src={item.image} alt={item.name} />
+                                            item.image && <Image width={700} height={600} src={process.env.NEXT_PUBLIC_BASE_URL + '/public/' + item.image} alt={item.name} />
                                         }
                                     </div>
                                 </div>
                                 {
                                     replyMessage?.map((item, index) => <div key={index} className="flex gap-3 mt-3 bg-slate-50 p-3 rounded-[4px]">
-                                        <h2 className="rounded-full flex items-center justify-center border text-lg font-bold" style={{width: "32px", height: "27px"}}>{item.user?.name.slice(0, 1)}</h2>
-                                        <div>
+
+                                        <div className="w-8 lg:w-[5%] h-8 border  overflow-hidden rounded-full flex items-center justify-center">
+                                            <h2 className="text-lg font-bold">{item.user?.name.slice(0, 1)}</h2>
+                                        </div>
+                                        <div className="w[95%]">
                                             <h2>{item.user?.name}</h2>
-                                            <h2>Subject : {item.subject}</h2>
-                                            <h2>Message : {item.message}</h2>
+                                            <h2>{item.message}</h2>
                                             {
-                                                item.attachment_image&& <Image width={700} height={600} src={item.attachment_image} alt={item.user.name}/>
+                                                item.attachment_image && <Image width={700} height={600} src={item.attachment_image} alt={item.user.name} />
                                             }
                                         </div>
                                     </div>)
@@ -160,7 +165,7 @@ function SupportView({ supportReplyMessage, setSupportReplyMessage, item }) {
                                     <button
                                         onClick={() => setSupportReplyMessage("")}
                                         type="button"
-                                        className="py-2.5 px-5 ms-3 text-size  font-medium focus:outline-none  rounded-[4px] border border-gray-200 bg-gray-100 hover:bg-gray-400 hover:text-white dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-600"
+                                        className="py-2.5 px-5 ms-3 text-size  font-medium focus:outline-none  rounded-[4px] border bg-[#F9FAFB] hover:bg-[#dfe2e6]"
 
                                     >
                                         No, cancel
