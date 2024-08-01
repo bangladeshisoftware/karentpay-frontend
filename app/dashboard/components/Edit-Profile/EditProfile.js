@@ -1,19 +1,21 @@
 "use client";
 
 import ApiRequest from "@/app/_lib/Api_request";
+import { GetCookies } from "@/app/_lib/cookiesSetting";
+import axios from "axios";
 import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
 import { TiDeleteOutline } from "react-icons/ti";
 import { toast } from "react-toastify";
 
-const EditProfile = ({ handleUpdate, handleSelect, user }) => {
+const EditProfile = ({ user }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [companyLogo, setCompanyLogo] = useState(null);
-  const [companyLogoLink, setCompanyLogoLink] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [profileImage, setProfileImage] = useState(null);
+  const [profileImageLink, setProfileImageLink] = useState("");
+  const [oldPassword, setOldPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
 
   const [countries, setCountries] = useState([]);
   const [showCountryList, setShowCountryList] = useState(false);
@@ -48,30 +50,62 @@ const EditProfile = ({ handleUpdate, handleSelect, user }) => {
 
   useEffect(() => {
     if (user) {
-      setName(user.name);
-      setEmail(user.email);
-      setPhone(user.phone);
-      setCompanyLogoLink(user.avatar);
+      setName(user?.name);
+      setEmail(user?.email);
+      setPhone(user?.phone);
+      setProfileImageLink(user?.avatar);
       const userCountry = countries.find(
-        (country) => country.id === user.country
+        (country) => country.id === user?.country
       );
       if (userCountry) {
-        setSelectedCountry(userCountry.name);
-        setPhoneCode(userCountry.phone_code);
+        setSelectedCountry(userCountry?.name);
+        setPhoneCode(userCountry?.phone_code);
       }
     }
   }, [user, countries]);
 
   const handleCountryClick = (country) => {
-    setSelectedCountry(country.name);
-    setCountryId(country.id);
-    setPhoneCode(country.phone_code);
+    setSelectedCountry(country?.name);
+    setCountryId(country?.id);
+    setPhoneCode(country?.phone_code);
     setShowCountryList(false);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Add your form submission logic here
+
+    const formData = new FormData();
+
+    formData.append("_method", "PUT");
+    formData.append("name", name);
+    formData.append("country", countryId);
+    formData.append("phone", phone);
+    if (profileImage) {
+      formData.append("avatar", profileImage);
+    }
+    if (oldPassword && newPassword) {
+      formData.append("password", oldPassword);
+      formData.append("password_confirmation", newPassword);
+    }
+
+    const token = await GetCookies({ name: "auth_token" });
+
+    try {
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/admin/user`,
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      console.log(response);
+    } catch (error) {
+      console.error("Error updating profile:", error);
+    }
   };
 
   const filteredCountries = countries.filter((country) =>
@@ -79,7 +113,7 @@ const EditProfile = ({ handleUpdate, handleSelect, user }) => {
   );
 
   const clearImage = () => {
-    setCompanyLogo(null);
+    setProfileImage(null);
     if (imageRef.current) {
       imageRef.current.value = "";
     }
@@ -87,7 +121,7 @@ const EditProfile = ({ handleUpdate, handleSelect, user }) => {
 
   return (
     <div className="lg:mx-24">
-      <form onSubmit={handleSubmit}>
+      <form>
         <div className="border my-6 mx-auto lg:mx-0 bg-white focus-within:border-[#2F65EC] hover:border-[#2F65EC] rounded-md w-full lg:w-full">
           <input
             className="w-full px-2 py-2 lg:py-3 lg:px-3 bg-transparent rounded-md outline-none"
@@ -159,7 +193,7 @@ const EditProfile = ({ handleUpdate, handleSelect, user }) => {
               name="img1"
               id="imgUpload1"
               ref={imageRef}
-              onChange={(e) => setCompanyLogo(e.target.files[0])}
+              onChange={(e) => setProfileImage(e.target.files[0])}
             />
             <div className="flex items-center justify-between rounded-md overflow-hidden">
               <label
@@ -172,17 +206,17 @@ const EditProfile = ({ handleUpdate, handleSelect, user }) => {
                 id="fileName1"
                 className="px-4 py-2 lg:py-3 bg-transparent text-black w-full text-center"
               >
-                {companyLogo ? companyLogo.name : "No file chosen"}
+                {profileImage ? profileImage.name : "No file chosen"}
               </span>
             </div>
           </div>
-          {(companyLogo || companyLogoLink) && (
+          {(profileImage || profileImageLink) && (
             <div className="relative">
               <Image
                 src={
-                  companyLogo
-                    ? URL.createObjectURL(companyLogo)
-                    : companyLogoLink
+                  profileImage
+                    ? URL.createObjectURL(profileImage)
+                    : profileImageLink
                 }
                 alt="logo"
                 width={100}
@@ -200,7 +234,7 @@ const EditProfile = ({ handleUpdate, handleSelect, user }) => {
             className="w-full px-2 py-2 lg:py-3 bg-transparent rounded-md outline-none"
             type="password"
             placeholder="Old Password"
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) => setOldPassword(e.target.value)}
           />
         </div>
         <div className="border my-6 mx-auto lg:mx-0 bg-white focus-within:border-[#2F65EC] hover:border-[#2F65EC] rounded-md w-full lg:w-full">
@@ -209,11 +243,12 @@ const EditProfile = ({ handleUpdate, handleSelect, user }) => {
             type="password"
             name="confirmPassword"
             placeholder="New Password"
-            onChange={(e) => setConfirmPassword(e.target.value)}
+            onChange={(e) => setNewPassword(e.target.value)}
           />
         </div>
         <div>
           <button
+            onClick={handleSubmit}
             className="bg-gradient-to-r from-blue-500 to-purple-600 mx-auto lg:mx-0 w-full lg:w-full p-2 rounded-md text-center text-white mt-5 flex justify-center items-center hover:from-purple-700 hover:to-blue-600 gap-2"
             type="submit"
           >
@@ -221,7 +256,7 @@ const EditProfile = ({ handleUpdate, handleSelect, user }) => {
           </button>
         </div>
       </form>
-      <button
+      {/* <button
         onClick={() => {
           handleUpdate();
           handleSelect("profile");
@@ -229,7 +264,7 @@ const EditProfile = ({ handleUpdate, handleSelect, user }) => {
         className="bg-gradient-to-r from-blue-500 to-purple-600 mx-auto lg:mx-0 w-full lg:w-full p-2 rounded-md text-center text-white mt-5 flex justify-center items-center hover:from-purple-700 hover:to-blue-600 gap-2"
       >
         Back
-      </button>
+      </button> */}
     </div>
   );
 };

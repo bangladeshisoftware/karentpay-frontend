@@ -27,6 +27,24 @@ function Product_Catalog() {
 
   const [user, setUser] = useState("");
 
+   const getuser = async () => {
+     const token = await GetCookies({ name: "auth_token" });
+     // console.log("token", token);
+     if (token) {
+       const response = await ApiRequest({
+         url: "/user",
+         method: "get",
+       });
+       console.log(response);
+       // if (response.status == 200) {
+       setUser(response?.data);
+       //   console.log(response.data.user);
+       // } else {
+       //   toast.error(response.message);
+       // }
+     }
+   };
+
   useEffect(() => {
     getuser();
   }, []);
@@ -39,22 +57,7 @@ function Product_Catalog() {
     }
   };
 
-  const getuser = async () => {
-    const token = await GetCookies({ name: "auth_token" });
-    console.log("token", token);
-    if (token) {
-      const response = await ApiRequest({
-        url: "/marchentuser",
-        method: "get",
-      });
-      if (response.status == 200) {
-        setUser(response.data);
-        console.log(response.data.user);
-      } else {
-        toast.error(response.message);
-      }
-    }
-  };
+ 
 
   // console.log(user);
 
@@ -75,7 +78,7 @@ function Product_Catalog() {
       const token = await GetCookies({ name: "auth_token" });
       try {
         const response = await axios.get(
-          `${process.env.NEXT_PUBLIC_DATA_API}/merchant/payment-settings`,
+          `${process.env.NEXT_PUBLIC_BASE_URL}/api/merchant/payment-settings`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -119,7 +122,7 @@ function Product_Catalog() {
     try {
       if (data.length > 0 && data[0].id) {
         const response = await axios.post(
-          `${process.env.NEXT_PUBLIC_DATA_API}/merchant/payment-settings/${data[0].id}`,
+          `${process.env.NEXT_PUBLIC_BASE_URL}/api/merchant/payment-settings/${data[0].id}`,
           formData,
           {
             headers: {
@@ -132,7 +135,7 @@ function Product_Catalog() {
         toast.success("Form submitted successfully!");
       } else {
         const response = await axios.post(
-          `${process.env.NEXT_PUBLIC_DATA_API}/merchant/payment-settings`,
+          `${process.env.NEXT_PUBLIC_BASE_URL}/api//merchant/payment-settings`,
           formData,
           {
             headers: {
@@ -335,53 +338,56 @@ function Product_Catalog() {
         className="container bg-white w-full h-full
        border shadow-md rounded-sm mt-12  pb-8 lg:px-12 xs:px-12 px-4"
       >
-        {selected == "profile" && !updated && (
-          <div className="lg:mx-24 xl:mx-24 md:mx-16 sm:mx-8 mx-0 font-normal">
-            <div className="mt-8">
-              <h3 className="">
-                Name
-                <p className="border w-full rounded-sm p-2 ">{user.name}</p>
-              </h3>
-            </div>
-            <div className="mt-8">
-              <h3 className="">
-                Country
-                <p className="border w-full rounded-sm p-2 ">
-                  {user.country_name}
-                </p>
-              </h3>
-            </div>
-            <div className="mt-8">
-              <h3 className="">
-                Email
-                <p className="border w-full rounded-sm p-2 ">{user.email}</p>
-              </h3>
-            </div>
-            <div className="mt-8">
-              <h3 className="">
-                Phone
-                <p className="border w-full rounded-sm p-2 ">{user.phone}</p>
-              </h3>
-            </div>
-            <div className="mt-8">
-              <h3 className="">
-                Image
-                <Image src={user.avatar ? user.avatar : ""} alt="profile" />
-              </h3>
-            </div>
+        {selected == "profile" && (
+          // <div className="lg:mx-24 xl:mx-24 md:mx-16 sm:mx-8 mx-0 font-normal">
+          //   <div className="mt-8">
+          //     <h3 className="">
+          //       Name
+          //       <p className="border w-full rounded-sm p-2 ">{user?.name}</p>
+          //     </h3>
+          //   </div>
+          //   <div className="mt-8">
+          //     <h3 className="">
+          //       Country
+          //       <p className="border w-full rounded-sm p-2 ">
+          //         {user.country_name}
+          //       </p>
+          //     </h3>
+          //   </div>
+          //   <div className="mt-8">
+          //     <h3 className="">
+          //       Email
+          //       <p className="border w-full rounded-sm p-2 ">{user.email}</p>
+          //     </h3>
+          //   </div>
+          //   <div className="mt-8">
+          //     <h3 className="">
+          //       Phone
+          //       <p className="border w-full rounded-sm p-2 ">{user.phone}</p>
+          //     </h3>
+          //   </div>
+          //   <div className="mt-8">
+          //     <h3 className="">
+          //       Image
+          //       <Image src={user.avatar ? user.avatar : ""} alt="profile" />
+          //     </h3>
+          //   </div>
 
-            <div className="mt-8">
-              <button
-                onClick={() => {
-                  handleUpdate();
-                  handleSelect("update");
-                }}
-                className="bg-gradient-2 mx-auto lg:mx-0 md:mx-0 sm:mx-0 w-full lg:w-full md:w-full sm:w-full p-2 rounded-md text-center text-white mt-5 flex justify-center items-center hover:from-purple-700 hover:to-blue-600 gap-2"
-              >
-                Update
-              </button>
-            </div>
-          </div>
+          //   <div className="mt-8">
+          //     <button
+          //       onClick={() => {
+          //         handleUpdate();
+          //         handleSelect("update");
+          //       }}
+          //       className="bg-gradient-2 mx-auto lg:mx-0 md:mx-0 sm:mx-0 w-full lg:w-full md:w-full sm:w-full p-2 rounded-md text-center text-white mt-5 flex justify-center items-center hover:from-purple-700 hover:to-blue-600 gap-2"
+          //     >
+          //       Update
+          //     </button>
+          //   </div>
+          // </div>
+          <EditProfile
+            user={user}
+          />
         )}
         <div>
           {updated && selected == "update" ? (
@@ -539,9 +545,7 @@ function Product_Catalog() {
                     onClick={handlePaymentSetting}
                     className="bg-gradient-2 mx-auto lg:mx-0 md:mx-0 sm:mx-0 w-full lg:w-full md:w-full sm:w-full p-2 rounded-md text-center text-white mt-5 flex justify-center items-center hover:from-purple-700 hover:to-blue-600 gap-2"
                   >
-                    {
-                      data.length > 0 && data[0].id ? "Update" : "Add"
-                    }
+                    {data.length > 0 && data[0].id ? "Update" : "Add"}
                   </button>
                 </div>
                 {/* <div className="relative border my-3 mx-auto lg:mx-0 bg-white focus-within:border-[#2F65EC] hover:border-[#2F65EC] rounded-md w-full lg:w-full">

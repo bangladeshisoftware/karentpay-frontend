@@ -29,26 +29,26 @@ function SupportView({ supportReplyMessage, setSupportReplyMessage, item }) {
             formData.append('attachment_image', chooseFile);
         }
         axios
-            .post(
-                `${process.env.NEXT_PUBLIC_DATA_API}/admin/add_reply/${item.id}`,
-                formData,
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                        "Content-Type": "multipart/form-data",
-                    },
-                }
-            )
-            .then((response) => {
-                if (response.status === 201) {
-                    setRender(true)
-                    toast.success("✒️ Replay Message Added success");
-                }
-            })
-            .catch((error) => {
-                console.log(error);
-                toast.error("📵 Failed to add replay message");
-            });
+          .post(
+            `${process.env.NEXT_PUBLIC_BASE_URL}/api/admin/add_reply/${item.id}`,
+            formData,
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "multipart/form-data",
+              },
+            }
+          )
+          .then((response) => {
+            if (response.status === 201) {
+              setRender(true);
+              toast.success("✒️ Replay Message Added success");
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+            toast.error("📵 Failed to add replay message");
+          });
 
     }
 
@@ -70,12 +70,12 @@ function SupportView({ supportReplyMessage, setSupportReplyMessage, item }) {
     const fetchData = async () => {
         try {
             const response = await axios.get(
-                `${process.env.NEXT_PUBLIC_DATA_API}/admin/tickets/${item.id}/replies`,
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
-                }
+              `${process.env.NEXT_PUBLIC_BASE_URL}/api/admin/tickets/${item.id}/replies`,
+              {
+                headers: {
+                  Authorization: `Bearer ${token}`,
+                },
+              }
             );
             if (response.status === 200) {
                 setReplyMessage(response.data);

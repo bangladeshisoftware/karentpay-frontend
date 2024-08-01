@@ -57,7 +57,7 @@ function Support() {
     try {
       const token = Cookies.get("auth_token");
       const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_DATA_API}/admin/tickets/user`,
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/admin/tickets/user`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -119,7 +119,7 @@ function Support() {
     const token = Cookies.get("auth_token");
 
     axios
-      .post(process.env.NEXT_PUBLIC_DATA_API + "/admin/tickets", formData, {
+      .post(process.env.NEXT_PUBLIC_BASE_URL + "/api/admin/tickets", formData, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "multipart/form-data",
@@ -127,10 +127,9 @@ function Support() {
       })
       .then((response) => {
         console.log(response);
-        if(response.status === 201){
+        if (response.status === 201) {
           setIsModalOpen(false);
           toast.success("Tacket Added Successfully");
-
         }
       })
       .catch((error) => {

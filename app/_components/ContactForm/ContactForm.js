@@ -39,7 +39,7 @@ export default function CardWithForm() {
 
     try {
       const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_DATA_API}/front/contact`,
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/front/contact`,
         formData
       );
       toast.success("Form submitted successfully!");
