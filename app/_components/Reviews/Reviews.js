@@ -13,17 +13,24 @@ const Reviews = () => {
   return (
     <section className="mt-[70px]">
       <div className="container mx-auto">
-        <div className="flex flex-col md:flex-row md:justify-between items-center md:items-start">
-          <h2 className="text-2xl sm:text-3xl font-bold text-center md:text-left mb-4 md:mb-0">
-            Customer Reviews
-          </h2>
-          <Link
-            href="/customer-reviews"
-            className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded flex items-center gap-1 w-fit text-sm"
-          >
-            Show more <ArrowRight className="w-4 h-4" />
-          </Link>
-        </div>
+        {reviews ? (
+          <div className="flex flex-col md:flex-row md:justify-between items-center md:items-start">
+            <h2 className="text-2xl sm:text-3xl font-bold text-center md:text-left mb-4 md:mb-0">
+              Customer Reviews
+            </h2>
+            <Link
+              href="/customer-reviews"
+              className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded flex items-center gap-1 w-fit text-sm"
+            >
+              Show more <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+        ) : (
+          <div className="flex flex-col md:flex-row md:justify-between items-center md:items-start animate-pulse">
+            <div className="h-8 bg-gray-200 rounded mb-4 md:mb-0 w-3/4 mx-auto md:mx-0 md:w-1/3"></div>
+            <div className="px-4 py-2 bg-gray-200 rounded w-20 h-8"></div>
+          </div>
+        )}
         <div className="flex flex-wrap gap-4 justify-center mt-10">
           {reviews.length > 0
             ? reviews

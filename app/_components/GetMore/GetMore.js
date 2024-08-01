@@ -14,25 +14,36 @@ const GetMore = () => {
   return (
     <section className="mt-[70px]">
       <div className="container mx-auto">
-        <div className="flex flex-col md:flex-row md:justify-between items-center md:items-start">
-          <h2 className="text-2xl sm:text-3xl font-bold text-center md:text-left mb-4 md:mb-0">
-            Get more from{" "}
-            <span className=" gradient-text">
-              {" "}
-              {settingsData?.settings?.siteName}
-            </span>
-          </h2>
-          <Link
-            href="/news"
-            className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded flex items-center gap-1 w-fit text-sm"
-          >
-            See all <ArrowRight className="w-4 h-4" />
-          </Link>
-        </div>
-        <p className="mt-6 text-lg md:text-xl text-center md:text-left">
-          Become a member of Karentpay family and enjoy exclusive features and
-          offers that enlighten your business
-        </p>
+        {settingsData?.settings ? (
+          <div className="flex flex-col md:flex-row md:justify-between items-center md:items-start">
+            <h2 className="text-2xl sm:text-3xl font-bold text-center md:text-left mb-4 md:mb-0">
+              Get more from{" "}
+              <span className=" gradient-text">
+                {" "}
+                {settingsData?.settings?.siteName}
+              </span>
+            </h2>
+            <Link
+              href="/news"
+              className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded flex items-center gap-1 w-fit text-sm"
+            >
+              See all <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+        ) : (
+          <div className="flex flex-col md:flex-row md:justify-between items-center md:items-start animate-pulse">
+            <div className="h-8 bg-gray-200 rounded mb-4 md:mb-0 w-3/4 mx-auto md:mx-0 md:w-1/3"></div>
+            <div className="px-4 py-2 bg-gray-200 rounded w-20 h-8"></div>
+          </div>
+        )}
+        {settingsData?.settings ? (
+          <p className="mt-6 text-lg md:text-xl text-center md:text-left">
+            Become a member of Karentpay family and enjoy exclusive features and
+            offers that enlighten your business
+          </p>
+        ) : (
+          <div className="mt-6 h-6 bg-gray-200 rounded w-3/4 mx-auto md:mx-0 md:w-1/2"></div>
+        )}
         <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-8 justify-center mt-10">
           {fetchData && fetchData.length > 0
             ? fetchData?.slice(0, 6)?.map((news) => (
