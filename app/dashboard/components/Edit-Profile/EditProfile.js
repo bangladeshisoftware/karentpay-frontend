@@ -5,6 +5,7 @@ import { GetCookies } from "@/app/_lib/cookiesSetting";
 import axios from "axios";
 import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { TiDeleteOutline } from "react-icons/ti";
 import { toast } from "react-toastify";
 
@@ -16,6 +17,8 @@ const EditProfile = ({ user }) => {
   const [profileImageLink, setProfileImageLink] = useState("");
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
+  const [showOldPassword, setShowOldPassword] = useState(false);
+  const [showNewPassword, setShowNewPassword] = useState(false);
 
   const [countries, setCountries] = useState([]);
   const [showCountryList, setShowCountryList] = useState(false);
@@ -103,8 +106,10 @@ const EditProfile = ({ user }) => {
       );
 
       console.log(response);
+      toast.success("Profile updated successfully");
     } catch (error) {
       console.error("Error updating profile:", error);
+      toast.error("Error updating profile");
     }
   };
 
@@ -120,7 +125,7 @@ const EditProfile = ({ user }) => {
   };
 
   return (
-    <div className="lg:mx-24">
+    <div className="lg:mx-24 pb-10">
       <form>
         <div className="border my-6 mx-auto lg:mx-0 bg-white focus-within:border-[#2F65EC] hover:border-[#2F65EC] rounded-md w-full lg:w-full">
           <input
@@ -198,7 +203,7 @@ const EditProfile = ({ user }) => {
             <div className="flex items-center justify-between rounded-md overflow-hidden">
               <label
                 htmlFor="imgUpload1"
-                className="px-4 py-2 lg:py-3 text-center bg-black text-white cursor-pointer w-1/4"
+                className="px-4 py-3 text-center bg-black text-white cursor-pointer w-1/2"
               >
                 Choose file
               </label>
@@ -229,22 +234,44 @@ const EditProfile = ({ user }) => {
             </div>
           )}
         </div>
-        <div className="border my-6 mx-auto lg:mx-0 bg-white focus-within:border-[#2F65EC] hover:border-[#2F65EC] rounded-md w-full lg:w-full">
+        <div className="border my-6 mx-auto lg:mx-0 bg-white focus-within:border-[#2F65EC] hover:border-[#2F65EC] rounded-md w-full lg:w-full relative">
           <input
             className="w-full px-2 py-2 lg:py-3 bg-transparent rounded-md outline-none"
-            type="password"
+            type={showOldPassword ? "text" : "password"}
             placeholder="Old Password"
             onChange={(e) => setOldPassword(e.target.value)}
           />
+
+          <div
+            className="absolute right-0 top-0 bottom-0 flex items-center pr-2"
+            onClick={() => setShowOldPassword(!showOldPassword)}
+          >
+            {showOldPassword ? (
+              <FaEye className="cursor-pointer" />
+            ) : (
+              <FaEyeSlash className="cursor-pointer" />
+            )}
+          </div>
         </div>
-        <div className="border my-6 mx-auto lg:mx-0 bg-white focus-within:border-[#2F65EC] hover:border-[#2F65EC] rounded-md w-full lg:w-full">
+        <div className="border my-6 mx-auto lg:mx-0 bg-white focus-within:border-[#2F65EC] hover:border-[#2F65EC] rounded-md w-full lg:w-full relative">
           <input
             className="w-full px-2 py-2 lg:py-3 bg-transparent rounded-md outline-none"
-            type="password"
+            type={showNewPassword ? "text" : "password"}
             name="confirmPassword"
             placeholder="New Password"
             onChange={(e) => setNewPassword(e.target.value)}
           />
+
+          <div
+            className="absolute right-0 top-0 bottom-0 flex items-center pr-2"
+            onClick={() => setShowNewPassword(!showNewPassword)}
+          >
+            {showNewPassword ? (
+              <FaEye className="cursor-pointer" />
+            ) : (
+              <FaEyeSlash className="cursor-pointer" />
+            )}
+          </div>
         </div>
         <div>
           <button
