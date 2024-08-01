@@ -2,7 +2,6 @@
 import BecomeMerchant from "@/app/_components/Header/BecomeMerchent/BecomeMerchant";
 import ApiRequest from "@/app/_lib/Api_request";
 import { GetCookies, deleteCookies } from "@/app/_lib/cookiesSetting";
-import useFetchData from "@/lib/useFetchData";
 import useFetchingData from "@/lib/useFetchingData";
 import Image from "next/image";
 import Link from "next/link";
