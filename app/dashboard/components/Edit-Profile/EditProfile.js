@@ -15,10 +15,10 @@ const EditProfile = ({ user }) => {
   const [phone, setPhone] = useState("");
   const [profileImage, setProfileImage] = useState(null);
   const [profileImageLink, setProfileImageLink] = useState("");
-  const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
-  const [showOldPassword, setShowOldPassword] = useState(false);
+  const [newPasswordConfirm, setNewPasswordConfirm] = useState("");
   const [showNewPassword, setShowNewPassword] = useState(false);
+  const [showNewPasswordConfirm, setShowNewPasswordConfirm] = useState(false);
 
   const [countries, setCountries] = useState([]);
   const [showCountryList, setShowCountryList] = useState(false);
@@ -86,9 +86,9 @@ const EditProfile = ({ user }) => {
     if (profileImage) {
       formData.append("avatar", profileImage);
     }
-    if (oldPassword && newPassword) {
-      formData.append("password", oldPassword);
-      formData.append("password_confirmation", newPassword);
+    if (newPassword && newPasswordConfirm) {
+      formData.append("password", newPassword);
+      formData.append("password_confirmation", newPasswordConfirm);
     }
 
     const token = await GetCookies({ name: "auth_token" });
@@ -181,7 +181,7 @@ const EditProfile = ({ user }) => {
           <span className="ml-2 text-slate-600">{phoneCode}</span>
           <input
             className="w-full pr-2 pl-1 py-2 lg:py-3 bg-transparent rounded-md outline-none"
-            type="number"
+            type="text"
             name="phone"
             placeholder="Phone No."
             required
@@ -237,27 +237,7 @@ const EditProfile = ({ user }) => {
         <div className="border my-6 mx-auto lg:mx-0 bg-white focus-within:border-[#2F65EC] hover:border-[#2F65EC] rounded-md w-full lg:w-full relative">
           <input
             className="w-full px-2 py-2 lg:py-3 bg-transparent rounded-md outline-none"
-            type={showOldPassword ? "text" : "password"}
-            placeholder="Old Password"
-            onChange={(e) => setOldPassword(e.target.value)}
-          />
-
-          <div
-            className="absolute right-0 top-0 bottom-0 flex items-center pr-2"
-            onClick={() => setShowOldPassword(!showOldPassword)}
-          >
-            {showOldPassword ? (
-              <FaEye className="cursor-pointer" />
-            ) : (
-              <FaEyeSlash className="cursor-pointer" />
-            )}
-          </div>
-        </div>
-        <div className="border my-6 mx-auto lg:mx-0 bg-white focus-within:border-[#2F65EC] hover:border-[#2F65EC] rounded-md w-full lg:w-full relative">
-          <input
-            className="w-full px-2 py-2 lg:py-3 bg-transparent rounded-md outline-none"
             type={showNewPassword ? "text" : "password"}
-            name="confirmPassword"
             placeholder="New Password"
             onChange={(e) => setNewPassword(e.target.value)}
           />
@@ -267,6 +247,26 @@ const EditProfile = ({ user }) => {
             onClick={() => setShowNewPassword(!showNewPassword)}
           >
             {showNewPassword ? (
+              <FaEye className="cursor-pointer" />
+            ) : (
+              <FaEyeSlash className="cursor-pointer" />
+            )}
+          </div>
+        </div>
+        <div className="border my-6 mx-auto lg:mx-0 bg-white focus-within:border-[#2F65EC] hover:border-[#2F65EC] rounded-md w-full lg:w-full relative">
+          <input
+            className="w-full px-2 py-2 lg:py-3 bg-transparent rounded-md outline-none"
+            type={showNewPasswordConfirm ? "text" : "password"}
+            name="confirmPassword"
+            placeholder="New Password Confirm"
+            onChange={(e) => setNewPasswordConfirm(e.target.value)}
+          />
+
+          <div
+            className="absolute right-0 top-0 bottom-0 flex items-center pr-2"
+            onClick={() => setShowNewPasswordConfirm(!showNewPasswordConfirm)}
+          >
+            {showNewPasswordConfirm ? (
               <FaEye className="cursor-pointer" />
             ) : (
               <FaEyeSlash className="cursor-pointer" />
