@@ -59,7 +59,7 @@ function SupportView({ supportReplyMessage, setSupportReplyMessage, item }) {
     useEffect(() => {
         fetchData();
     }, [render]);
-
+    
     useEffect(() => {
         setRender(false);
     }, []);

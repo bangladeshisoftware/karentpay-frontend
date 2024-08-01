@@ -27,27 +27,24 @@ function Product_Catalog() {
 
   const [user, setUser] = useState("");
 
-   const getuser = async () => {
-     const token = await GetCookies({ name: "auth_token" });
-     // console.log("token", token);
-     if (token) {
-       const response = await ApiRequest({
-         url: "/user",
-         method: "get",
-       });
-       console.log(response);
-       // if (response.status == 200) {
-       setUser(response?.data);
-       //   console.log(response.data.user);
-       // } else {
-       //   toast.error(response.message);
-       // }
-     }
-   };
-
   useEffect(() => {
+    const getuser = async () => {
+      const token = await GetCookies({ name: "auth_token" });
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/user`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      setUser(response?.data?.data?.user);
+    };
+
     getuser();
   }, []);
+
+  console.log(user);
 
   const imageRef = useRef(null);
   const clearImage = () => {
@@ -56,10 +53,6 @@ function Product_Catalog() {
       imageRef.current.value = "";
     }
   };
-
- 
-
-  // console.log(user);
 
   const handleSelect = (section) => {
     setSelected(section);
@@ -385,9 +378,7 @@ function Product_Catalog() {
           //     </button>
           //   </div>
           // </div>
-          <EditProfile
-            user={user}
-          />
+          <EditProfile user={user} />
         )}
         <div>
           {updated && selected == "update" ? (
