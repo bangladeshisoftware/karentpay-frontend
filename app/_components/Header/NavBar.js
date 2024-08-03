@@ -170,7 +170,7 @@ const NavBar = ({ gradientColors }) => {
       }}
     >
       {/* large screens */}
-      <div className="container lg:flex wide-laptop:flex small-laptop:flex hidden items-center justify-between relative">
+      <div className="container-3 mx-auto lg:flex wide-laptop:flex small-laptop:flex hidden items-center justify-between relative">
         <div className="flex items-center gap-5 h-10">
           {dropdownItemsMainMenu.slice(0, 7).map((item) => (
             <Link

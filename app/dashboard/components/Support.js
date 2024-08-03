@@ -20,6 +20,7 @@ function Support() {
   const [message, setMessage] = useState("");
   const [Image, setImage] = useState("");
   const [supportReplyMessage, setSupportReplyMessage] = useState(null);
+  const [searchSubjectTicket, setSearchSubjectTicket] = useState("")
 
     // user data fetch function 
     const [user, setUser] = useState("");
@@ -70,11 +71,12 @@ function Support() {
     } catch (error) { }
   };
 
-
+console.log(tecket);
   const [dateRange, setDateRange] = useState({
     startDate: null,
     endDate: null,
   });
+
 
   const handleDateRangeChange = (newValue) => {
     setDateRange(newValue);
@@ -196,6 +198,7 @@ function Support() {
                         <input
                           type="text"
                           id="simple-search"
+                          onChange={(e)=> setSearchSubjectTicket(e.target.value)}
                           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                           placeholder="Search"
                           required=""
@@ -298,7 +301,7 @@ function Support() {
                         </td>
                         <td className="px-4 py-2 ">
                           <div className="flex items-center gap-2">
-                            <button onClick={()=> setSupportReplyMessage(item.track_id)}
+                            <button onClick={()=> setSupportReplyMessage(item.id)}
                               className=" text-xl w-fit text-white bg-blue-500 hover:bg-blue-800 rounded-[4px]  p-2 dark:bg-blue-600 dark:hover:bg-blue-500 flex items-center gap-1">
                               <FaEye />
                             </button>

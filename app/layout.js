@@ -8,23 +8,36 @@ import "./globals.css";
 const rubik = Rubik({ subsets: ["latin"] });
 
 export default async function RootLayout({ children }) {
-  const data = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/front/setting/header-setting`,
-    {
-      cache: "no-store",
+  let backgroundImageStyle = {};
+  
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/front/setting/header-setting`,
+      {
+        cache: "no-store",
+      }
+    );
+    
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
     }
-  ).then((res) => res.json());
-  // console.log(data?.settings?.HeaderBackground);
-
-  const backgroundImageStyle = {
-    backgroundImage: `url(${data?.settings?.HeaderBackground})`,
-    backgroundSize: "cover", // This will ensure the background covers the entire element
-    backgroundPosition: "center",
-    backgroundRepeat: "no-repeat",
-    backgroundAttachment: "fixed",
-    width: "100%", // Set the width as required
-    height: "100vh", // Set the height as required
-  };
+    
+    const data = await response.json();
+    
+    if (data?.settings?.HeaderBackground) {
+      backgroundImageStyle = {
+        backgroundImage: `url(${data.settings.HeaderBackground})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        backgroundAttachment: "fixed",
+        width: "100%",
+        height: "100vh",
+      };
+    }
+  } catch (error) {
+    console.error("Failed to fetch header setting:", error);
+  }
 
   return (
     <html lang="en">
@@ -39,45 +52,48 @@ export default async function RootLayout({ children }) {
 }
 
 export async function generateMetadata() {
-  const data = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/front/setting/logo-identity`,
-    {
-      cache: "no-store",
+  let metadata = {
+    title: "Next.js Starter",
+    description: "Next.js Starter Description",
+    keywords: "nextjs, starter, template",
+    icons: {
+      icon: "/public/favicon.ico",
+    },
+  };
+
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/front/setting/logo-identity`,
+      {
+        cache: "no-store",
+      }
+    );
+    
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
     }
-  ).then((res) => res.json());
 
-  if (data?.success && data?.settings) {
-    let keywordsString;
+    const data = await response.json();
 
-    if (data?.settings?.siteKeyword) {
-      keywordsString = data?.settings?.siteKeyword;
-    } else {
-      keywordsString = "nextjs, starter, template";
+    if (data?.success && data?.settings) {
+      const keywordsString = data?.settings?.siteKeyword || "nextjs, starter, template";
+      const keywordsArray = keywordsString.split(",").map((keyword) => keyword.trim());
+
+      metadata = {
+        title: {
+          template: `${data.settings.siteName} | %s`,
+          default: data.settings.siteName,
+        },
+        description: data.settings.siteDescription,
+        keywords: keywordsArray,
+        icons: {
+          icon: data.settings.faviconImage,
+        },
+      };
     }
-
-    const keywordsArray = keywordsString
-      .split(",")
-      .map((keyword) => keyword.trim());
-
-    return {
-      title: {
-        template: `${data?.settings?.siteName} | %s`,
-        default: data?.settings?.siteName,
-      },
-      description: data?.settings?.siteDescription,
-      keywords: keywordsArray,
-      icons: {
-        icon: data?.settings?.faviconImage,
-      },
-    };
-  } else {
-    return {
-      title: "Next.js Starter",
-      description: "Next.js Starter Description",
-      keywords: "nextjs, starter, template",
-      icons: {
-        icon: "/public/favicon.ico",
-      },
-    };
+  } catch (error) {
+    console.error("Failed to fetch metadata:", error);
   }
+
+  return metadata;
 }

@@ -50,7 +50,7 @@ function Payout() {
         url: "/transactions",
         method: "get",
       });
-      console.log("all transaction",response.data);
+      console.log("all transaction", response.data);
       if (response.status == 200) {
         settransactionsData(response.data);
         // console.log(response.data);
@@ -68,7 +68,7 @@ function Payout() {
           url: "/transactions",
           formdata: { search: data },
         });
-       
+
         if (response.status == 200) {
           settransactionsData(response.data);
           // console.log(response.data);
@@ -206,30 +206,32 @@ function Payout() {
                       <th scope="col" className="px-4 py-3 lg:w-[150px]">
                         Date
                       </th>
-                      <th scope="col" className="px-4 py-3 lg:w-[150px]">
-                        Reference
-                      </th>
 
-                      <th scope="col" className="px-4 py-3">
-                        Method
-                      </th>
-                      <th scope="col" className="px-4 py-3">
-                        Amount
-                      </th>
                       <th scope="col" className="px-4 py-3">
                         TrxId
                       </th>
 
                       <th scope="col" className="px-4 py-3">
-                        customerMsisdn
+                        Payout Number
+                      </th>
+                      <th scope="col" className="px-4 py-3">
+                        Method
+                      </th>
+
+
+                      <th scope="col" className="px-4 py-3">
+                        Amount
                       </th>
                       <th scope="col" className="px-4 py-3">
                         Status
                       </th>
+                      <th scope="col" className="px-4 py-3 lg:w-[150px]">
+                        Reason
+                      </th>
                     </tr>
                   </thead>
                   <tbody>
-                    { visibleTransactions?.map((transaction, index) => (
+                    {visibleTransactions?.map((transaction, index) => (
                       <tr
                         className="border-b dark:border-gray-700"
                         key={transaction.id}
@@ -238,10 +240,10 @@ function Payout() {
                           scope="row"
                           className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                         >
-                         {startIndex + index + 1}
+                          {startIndex + index + 1}
                         </td>
                         <td className="px-4 py-3">
-                        
+
                           {formatDateTime(transaction.created_at)}
                         </td>
                         <td
@@ -252,7 +254,7 @@ function Payout() {
                           {transaction.payment_method}
                         </td>
                         <td className="px-4 py-3">{transaction.amount}</td>
-                        <td className="px-4 py-3">{transaction.trxID?transaction.trxID:"--"}</td>
+                        <td className="px-4 py-3">{transaction.trxID ? transaction.trxID : "--"}</td>
                         <td className="px-4 py-3">
                           {transaction.withdraw_number}
                         </td>
@@ -370,7 +372,7 @@ function Payout() {
                 aria-label="Table navigation"
               >
                 <span className="text-sm font-normal text-gray-500 dark:text-gray-400">
-                Showing {startIndex + 1} -{" "}
+                  Showing {startIndex + 1} -{" "}
                   {Math.min(startIndex + itemsPerPage, totalItems)} of{" "}
                   {totalItems} Transactions
                 </span>
@@ -401,11 +403,10 @@ function Payout() {
                     <li key={i}>
                       <button
                         onClick={() => handlePageClick(i + 1)}
-                        className={`flex items-center justify-center text-sm py-2 px-3 leading-tight ${
-                          currentPage === i + 1
-                            ? "text-primary-600 bg-primary-50 border border-primary-300"
-                            : "text-gray-500 bg-white border border-gray-300"
-                        } hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white`}
+                        className={`flex items-center justify-center text-sm py-2 px-3 leading-tight ${currentPage === i + 1
+                          ? "text-primary-600 bg-primary-50 border border-primary-300"
+                          : "text-gray-500 bg-white border border-gray-300"
+                          } hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white`}
                       >
                         {i + 1}
                       </button>

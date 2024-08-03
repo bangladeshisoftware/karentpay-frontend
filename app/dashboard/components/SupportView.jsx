@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 
 function SupportView({ supportReplyMessage, setSupportReplyMessage, item }) {
     const [render, setRender] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     const [replayMessage, setReplayMessage] = useState("");
 
@@ -17,9 +18,9 @@ function SupportView({ supportReplyMessage, setSupportReplyMessage, item }) {
     };
 
     const token = Cookies.get("auth_token");
-    console.log(supportReplyMessage);
     // handel added reply post
     const handleSupportReplyMessage = (item) => {
+        setLoading(true)
         const formData = new FormData();
         formData.append('ticket_id', item.track_id);
         formData.append('user_id', item.user_id);
@@ -41,12 +42,14 @@ function SupportView({ supportReplyMessage, setSupportReplyMessage, item }) {
             )
             .then((response) => {
                 if (response.status === 201) {
+                    setReplayMessage("")
                     setRender(true);
+                    setLoading(false)
                     toast.success("✒️ Replay Message Added success");
                 }
             })
             .catch((error) => {
-                console.log(error);
+                setLoading(false)
                 toast.error("📵 Failed to add replay message");
             });
 
@@ -63,7 +66,6 @@ function SupportView({ supportReplyMessage, setSupportReplyMessage, item }) {
     useEffect(() => {
         setRender(false);
     }, []);
-    console.log(supportReplyMessage);
 
     const fetchData = async () => {
         try {
@@ -82,11 +84,10 @@ function SupportView({ supportReplyMessage, setSupportReplyMessage, item }) {
     };
 
     fetchData()
-    console.log(replyMessage);
     return (
         <>
             {
-                supportReplyMessage === item.track_id && <div
+                supportReplyMessage === item.id && <div
                     id="popup-modal"
                     className="fixed top-0 right-0 left-0 z-50 flex justify-center items-center w-full h-full bg-black/30 bg-opacity-50"
                 >
@@ -137,6 +138,7 @@ function SupportView({ supportReplyMessage, setSupportReplyMessage, item }) {
                                     </label>
                                     <textarea
                                         onChange={(e) => setReplayMessage(e.target.value)}
+                                        value={replayMessage}
                                         id="message"
                                         rows="8"
                                         name="description"
@@ -148,7 +150,7 @@ function SupportView({ supportReplyMessage, setSupportReplyMessage, item }) {
                                     ></textarea>
                                 </div>
                                 <h2 className="block my-1 mt-3">
-                                    Choose File (O)
+                                    Choose File ( Optional )
                                 </h2>
                                 <input
                                     onChange={handleChooseFileChange}
@@ -161,8 +163,9 @@ function SupportView({ supportReplyMessage, setSupportReplyMessage, item }) {
                                         onClick={() => handleSupportReplyMessage(item)}
                                         type="button"
                                         className="text-white bg-gradient-to-r from-[#395BEF] to-[#5C28D5] focus:outline-none font-medium rounded-[4px] text-size  inline-flex items-center px-5 py-2.5 text-center"
+                                        disabled={loading}
                                     >
-                                        Send <IoIosSend />
+                                       {loading ? "Loading..." : <>Send <IoIosSend /></> } 
                                     </button>
                                     <button
                                         onClick={() => setSupportReplyMessage("")}

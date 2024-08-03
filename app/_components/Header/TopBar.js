@@ -98,7 +98,7 @@ const TopBar = ({ topbarGradientColors }) => {
         background: `linear-gradient(to right, ${color1}, ${color2})`,
       }}
     >
-      <div className="container justify-between items-center hidden lg:flex wide-laptop:flex small-laptop:flex">
+      <div className="container-3 mx-auto justify-between items-center hidden lg:flex wide-laptop:flex small-laptop:flex">
         {/* large screens */}
         <div className="flex items-center justify-between w-full">
           <Link href="/">

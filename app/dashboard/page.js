@@ -344,6 +344,7 @@ function Dashboard() {
                     {windowWidth >= 1024 && "Settings"}
                   </li>
                 </ul>
+                
               </aside>
             </div>
           </ResizablePanel>

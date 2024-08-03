@@ -46,7 +46,7 @@ const CustomerReview = () => {
                     <Image
                       alt="testimonial"
                       className="w-32 h-32 mb-8 object-cover object-center rounded-full inline-block border-2 border-gray-200 bg-gray-100"
-                      src={process.env.NEXT_PUBLIC_BASE_URL + review.user_image}
+                      src={review.user_image}
                       width={200}
                       height={200}
                       priority
