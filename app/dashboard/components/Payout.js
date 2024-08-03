@@ -53,7 +53,7 @@ function Payout() {
       console.log("all transaction", response.data);
       if (response.status == 200) {
         settransactionsData(response.data);
-        // console.log(response.data);
+        console.log(response.data);
       } else {
         toast.error(response.message);
       }
@@ -248,18 +248,18 @@ function Payout() {
                         </td>
                         <td
                           className="px-4 py-3 relative cursor-pointer break-words word-break-all overflow-hidden"
-                          onClick={() => handleCopy(transaction.id, transaction.reference)}
-                        >{transaction.reference}</td>
-                        <td className="px-4 py-3">
-                          {transaction.payment_method}
-                        </td>
-                        <td className="px-4 py-3">{transaction.amount}</td>
-                        <td className="px-4 py-3">{transaction.trxID ? transaction.trxID : "--"}</td>
+                          onClick={() => handleCopy(transaction.id, transaction.trxID)}
+                        >{transaction.trxID}</td>
                         <td className="px-4 py-3">
                           {transaction.withdraw_number}
                         </td>
+                        <td className="px-4 py-3">{transaction.payment_method}</td>
+                        <td className="px-4 py-3">{transaction.amount}</td>
                         <td className="px-4 py-3">
                           {transaction.status}
+                        </td>
+                        <td className="px-4 py-3">
+                          {transaction.failed_reason ? transaction.failed_reason : '---'}
                         </td>
                       </tr>
                     ))}
