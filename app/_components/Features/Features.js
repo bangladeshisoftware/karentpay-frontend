@@ -34,7 +34,7 @@ const Features = () => {
               >
                 <CardHeader>
                   <Image
-                    src={process.env.NEXT_PUBLIC_BASE_URL + feature.image}
+                    src={feature.image}
                     alt={feature.image}
                     width={100}
                     height={100}

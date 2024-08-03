@@ -17,7 +17,7 @@ function SupportView({ supportReplyMessage, setSupportReplyMessage, item }) {
     };
 
     const token = Cookies.get("auth_token");
-
+    console.log(supportReplyMessage);
     // handel added reply post
     const handleSupportReplyMessage = (item) => {
         const formData = new FormData();
@@ -29,26 +29,26 @@ function SupportView({ supportReplyMessage, setSupportReplyMessage, item }) {
             formData.append('attachment_image', chooseFile);
         }
         axios
-          .post(
-            `${process.env.NEXT_PUBLIC_BASE_URL}/api/admin/add_reply/${item.id}`,
-            formData,
-            {
-              headers: {
-                Authorization: `Bearer ${token}`,
-                "Content-Type": "multipart/form-data",
-              },
-            }
-          )
-          .then((response) => {
-            if (response.status === 201) {
-              setRender(true);
-              toast.success("✒️ Replay Message Added success");
-            }
-          })
-          .catch((error) => {
-            console.log(error);
-            toast.error("📵 Failed to add replay message");
-          });
+            .post(
+                `${process.env.NEXT_PUBLIC_BASE_URL}/api/admin/add_reply/${item.id}`,
+                formData,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                        "Content-Type": "multipart/form-data",
+                    },
+                }
+            )
+            .then((response) => {
+                if (response.status === 201) {
+                    setRender(true);
+                    toast.success("✒️ Replay Message Added success");
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+                toast.error("📵 Failed to add replay message");
+            });
 
     }
 
@@ -61,28 +61,28 @@ function SupportView({ supportReplyMessage, setSupportReplyMessage, item }) {
     }, [render]);
     
     useEffect(() => {
-
-        fetchData()
         setRender(false);
     }, []);
-
-
+    console.log(supportReplyMessage);
 
     const fetchData = async () => {
         try {
             const response = await axios.get(
-              `${process.env.NEXT_PUBLIC_BASE_URL}/api/admin/tickets/${item.id}/replies`,
-              {
-                headers: {
-                  Authorization: `Bearer ${token}`,
-                },
-              }
+                `${process.env.NEXT_PUBLIC_BASE_URL}/api/admin/tickets/${supportReplyMessage}/replies`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
             );
             if (response.status === 200) {
                 setReplyMessage(response.data);
             }
         } catch (error) { }
     };
+
+    fetchData()
+    console.log(replyMessage);
     return (
         <>
             {
@@ -113,7 +113,10 @@ function SupportView({ supportReplyMessage, setSupportReplyMessage, item }) {
                                     replyMessage?.map((item, index) => <div key={index} className="flex gap-3 mt-3 bg-slate-50 p-3 rounded-[4px]">
 
                                         <div className="w-8 lg:w-[5%] h-8 border  overflow-hidden rounded-full flex items-center justify-center">
-                                            <h2 className="text-lg font-bold">{item.user?.name.slice(0, 1)}</h2>
+                                            {
+                                                item.user.avatar ? <Image width={700} height={600} src={item.user.avatar} alt={item.name} /> :
+                                                    <h2 className="text-lg font-bold">{item.user?.name.slice(0, 1)}</h2>
+                                            }
                                         </div>
                                         <div className="w[95%]">
                                             <h2>{item.user?.name}</h2>
