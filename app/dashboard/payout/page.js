@@ -6,7 +6,7 @@ import { GetCookies } from "@/app/_lib/cookiesSetting";
 import { toast } from "react-toastify";
 import { format } from "date-fns";
 
-function Transactions() {
+function Payout() {
   const [transactions, setTransactions] = useState([]);
   const [transactionsData, settransactionsData] = useState([]);
   const [dateRange, setDateRange] = useState({
@@ -16,8 +16,27 @@ function Transactions() {
 
 
 
+  const [copiedReferenceId, setCopiedReferenceId] = useState(null);
+  const [hoveredReferenceId, setHoveredReferenceId] = useState(null);
+
+
   const handleDateRangeChange = async (newValue) => {
-  console.log("daterange")
+    console.log("newValue:", newValue);
+    setDateRange(newValue);
+    const token = await GetCookies({ name: "auth_token" });
+    if (token) {
+      const response = await ApiRequest({
+        url: "/transactionsByDate",
+        formdata: { startDate: newValue.startDate, endDate: newValue.endDate },
+      });
+
+      if (response.status == 200) {
+        settransactionsData(response.data);
+        console.log(response.data);
+      } else {
+        toast.error(response.message);
+      }
+    }
   };
 
   useEffect(() => {
@@ -28,19 +47,49 @@ function Transactions() {
     const token = await GetCookies({ name: "auth_token" });
     if (token) {
       const response = await ApiRequest({
-        url: "/payout_history",
+        url: "/transactions",
         method: "get",
       });
+      console.log("all transaction", response.data);
       if (response.status == 200) {
         settransactionsData(response.data);
-        // console.log(response.data);
+        console.log(response.data);
       } else {
         toast.error(response.message);
       }
     }
   };
 
+  const searchData = async (data) => {
+    if (data.length > 1) {
+      const token = await GetCookies({ name: "auth_token" });
+      if (token) {
+        const response = await ApiRequest({
+          url: "/transactions",
+          formdata: { search: data },
+        });
 
+        if (response.status == 200) {
+          settransactionsData(response.data);
+          // console.log(response.data);
+        } else {
+          toast.error(response.message);
+        }
+      }
+    }
+  };
+
+  const handleCopy = (id, text) => {
+    navigator.clipboard
+      .writeText(text)
+      .then(() => {
+        setCopiedReferenceId(id);
+        setTimeout(() => setCopiedReferenceId(null), 2000);
+      })
+      .catch((err) => {
+        console.error("Failed to copy: ", err);
+      });
+  };
 
   const formatDateTime = (date) => {
     if (!date) return '';
@@ -56,7 +105,7 @@ function Transactions() {
 
   // Pagination logic
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 4;
+  const itemsPerPage = 3;
   const totalItems = transactionsData.length;
   const totalPages = Math.ceil(totalItems / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
@@ -76,16 +125,15 @@ function Transactions() {
   const handlePageClick = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
-
   // Filter transactions based on the selected date range
 
   return (
-    <div className="mt-4 lg:mt-10 ">
+    <div className="">
       <div className=" border shadow-lg mb-4 lg:mb-2 p-3 lg:p-3 mt-3 rounded-md text-center lg:text-left lg:hidden  ">
-        <h3 className="text-xl font-semibold">Cash In Transaction </h3>
+        <h3 className="text-xl font-semibold">Payout Transaction</h3>
       </div>
       <div className="lg:px-0 px-1">
-        <section className=" shadow-md border rounded-md ml-0 lg:ml-5 mb-36">
+        <section className=" shadow-md border rounded-md ml-0 ">
           <div className=" max-w-screen-xl ">
             {/* <!-- Start coding here --> */}
             <div className="bg-white dark:bg-gray-800  shadow-md sm:rounded-lg overflow-hidden">
@@ -113,7 +161,7 @@ function Transactions() {
                       </div>
                       <div className="flex">
                         <input
-                       
+                          onChange={(e) => searchData(e.target.value)}
                           type="text"
                           id="simple-search"
                           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
@@ -148,64 +196,70 @@ function Transactions() {
                   </div>
                 </div>
               </div>
-              <div className="overflow-x-auto h-96">
+              <div className="overflow-x-auto h-[55vh]">
                 <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                   <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
                       <th scope="col" className="px-4 py-3">
-                        Sl 
+                        Sl
                       </th>
                       <th scope="col" className="px-4 py-3 lg:w-[150px]">
                         Date
                       </th>
-                      <th scope="col" className="px-4 py-3">
-                        Method
-                      </th>
-                     
-                      <th scope="col" className="px-4 py-3">
-                        Amount
-                      </th>
-                      {/* <th scope="col" className="px-4 py-3">
-                        Reference
-                      </th> */}
-                  
+
                       <th scope="col" className="px-4 py-3">
                         TrxId
                       </th>
+
                       <th scope="col" className="px-4 py-3">
-                        customerMsisdn
+                        Payout Number
+                      </th>
+                      <th scope="col" className="px-4 py-3">
+                        Method
+                      </th>
+
+
+                      <th scope="col" className="px-4 py-3">
+                        Amount
                       </th>
                       <th scope="col" className="px-4 py-3">
                         Status
                       </th>
+                      <th scope="col" className="px-4 py-3 lg:w-[150px]">
+                        Reason
+                      </th>
                     </tr>
                   </thead>
                   <tbody>
-                    {transactionsData?.map((transaction, index) => (
+                    {visibleTransactions?.map((transaction, index) => (
                       <tr
                         className="border-b dark:border-gray-700"
                         key={transaction.id}
                       >
-                        <th
+                        <td
                           scope="row"
                           className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                         >
                           {startIndex + index + 1}
-                        </th>
+                        </td>
                         <td className="px-4 py-3">
-                          {/* {transaction.created_at && format(transaction.created_at, "dd" + " " + "MMMM" + " " + "yyyy")} */}
+
                           {formatDateTime(transaction.created_at)}
-                        </td>                      
-                        <td className="px-4 py-3">
-                          {transaction.payment_method}
                         </td>
+                        <td
+                          className="px-4 py-3 relative cursor-pointer break-words word-break-all overflow-hidden"
+                          onClick={() => handleCopy(transaction.id, transaction.trxID)}
+                        >{transaction.trxID}</td>
+                        <td className="px-4 py-3">
+                          {transaction.withdraw_number}
+                        </td>
+                        <td className="px-4 py-3">{transaction.payment_method}</td>
                         <td className="px-4 py-3">{transaction.amount}</td>
-                        <td className="px-4 py-3">{transaction.trxID}</td>
                         <td className="px-4 py-3">
-                          {transaction.customerMsisdn}
+                          {transaction.status}
                         </td>
                         <td className="px-4 py-3">
-                          {transaction.transactionStatus}
+                          {transaction.failed_reason ? transaction.failed_reason : '---'}
                         </td>
                       </tr>
                     ))}
@@ -313,7 +367,7 @@ function Transactions() {
                   </li>
                 </ul>
               </nav> */}
-                            <nav
+              <nav
                 className="flex flex-col mt-2 md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0 p-16"
                 aria-label="Table navigation"
               >
@@ -350,8 +404,8 @@ function Transactions() {
                       <button
                         onClick={() => handlePageClick(i + 1)}
                         className={`flex items-center justify-center text-sm py-2 px-3 leading-tight ${currentPage === i + 1
-                            ? "text-primary-600 bg-primary-50 border border-primary-300"
-                            : "text-gray-500 bg-white border border-gray-300"
+                          ? "text-primary-600 bg-primary-50 border border-primary-300"
+                          : "text-gray-500 bg-white border border-gray-300"
                           } hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white`}
                       >
                         {i + 1}
@@ -390,4 +444,4 @@ function Transactions() {
   );
 }
 
-export default Transactions;
+export default Payout;

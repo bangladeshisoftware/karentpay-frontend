@@ -7,9 +7,9 @@ import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
 import { TiDeleteOutline } from "react-icons/ti";
 import { toast } from "react-toastify";
-import BankingDrawer from "./BankingDrawer/BankingDrawer";
-import EditProfile from "./Edit-Profile/EditProfile";
-import ToggleButton from "./Toggle/ToggleButton";
+import BankingDrawer from "../components/BankingDrawer/BankingDrawer";
+import EditProfile from "../components/Edit-Profile/EditProfile";
+import ToggleButton from "../components/Toggle/ToggleButton";
 
 function Product_Catalog() {
   const [selected, setSelected] = useState("profile");
@@ -162,7 +162,7 @@ function Product_Catalog() {
   }, [fetchData]);
 
   return (
-    <div className=" mt-0 lg:mt-10 z-10 ml-0 lg:ml-8 px-0 lg:px-0 flex flex-col">
+    <div className="  z-10 ml-0 px-0 lg:px-0 flex flex-col">
       <div className=" border shadow-lg mb-4 lg:mb-2 p-3 lg:p-3 mt-3 rounded-md text-center lg:text-left lg:hidden  ">
         <h3 className="text-xl font-semibold">Settings</h3>
       </div>

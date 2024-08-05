@@ -1,411 +1,727 @@
 "use client";
-import ApiRequest from "@/app/_lib/Api_request";
-import Balance from "@/app/dashboard/components/Balance";
-import Header from "@/app/dashboard/components/Header";
-import Home from "@/app/dashboard/components/Home";
-import Product_Catalog from "@/app/dashboard/components/Settings";
-import Transactions from "@/app/dashboard/components/Transactions";
 import React, { useEffect, useState } from "react";
-import { AiOutlineDollar } from "react-icons/ai";
-import { CiUser } from "react-icons/ci";
-import { FaHandsHelping, FaParking, FaWordpress } from "react-icons/fa";
-import { FaRegFileWord, FaRegUser, FaSackDollar } from "react-icons/fa6";
-import { FiHome } from "react-icons/fi";
-import { GrTransaction } from "react-icons/gr";
-import { ImPaypal } from "react-icons/im";
-import { IoSettings, IoSettingsOutline } from "react-icons/io5";
-import {
-  MdDeveloperMode,
-  MdOutlineLocalParking,
-  MdOutlinePayment,
-  MdSpaceDashboard,
-} from "react-icons/md";
-import { PiHandWithdrawFill } from "react-icons/pi";
-import { SiConstruct3, SiPlausibleanalytics } from "react-icons/si";
-import { TbSquareLetterW } from "react-icons/tb";
+import { HiOutlineCurrencyDollar } from "react-icons/hi";
 import { toast } from "react-toastify";
+import ApiRequest from "@/app/_lib/Api_request";
+import Datepicker from "react-tailwindcss-datepicker";
+import { GetCookies } from "@/app/_lib/cookiesSetting";
+import { format } from "date-fns";
+import { FaPlus } from "react-icons/fa";
 
-import Payment from "@/app/dashboard/components/payment";
-import Support from "@/app/dashboard/components/Support";
-import Wtransactions from "@/app/dashboard/components/Wtransactions";
-import {
-  ResizableHandle,
-  ResizablePanel,
-  ResizablePanelGroup,
-} from "@/components/ui/resizable";
-import useFetchingData from "@/lib/useFetchingData";
-import Developer from "./components/Developer";
-import PaymentCopy from "./components/PaymentCopy";
-import Payout from "./components/Payout";
 
-function Dashboard() {
-  const [activeComponent, setActiveComponent] = useState("balance");
-  const [isOn, setIsOn] = useState(true);
-  const [windowWidth, setWindowWidth] = useState(1024); // Default to 1024, update after mounting
+function page() {
+  const [balance, setbalance] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedBalance, setSelectedBalance] = useState('Select Balance');
 
-  // ali hasan code
-  const [checkedState, setCheckedState] = useState([]);
-  const [isAllChecked, setIsAllChecked] = useState(true);
-  const array = [];
-  // ali hasan code
-  const containerType = [
-    {
-      id: 1,
-      type: "container-dashboard",
-      minSize: 15,
-    },
-    {
-      id: 2,
-      type: "container-1",
-      minSize: 20,
-    },
-    {
-      id: 3,
-      type: "container-2",
-      minSize: 20,
-    },
-    {
-      id: 4,
-      type: "container-3",
-      minSize: 20,
-    },
-    {
-      id: 5,
-      type: "container-4",
-      minSize: 40,
-    },
-    {
-      id: 6,
-      type: "container-5",
-      minSize: 50,
-    },
-    {
-      id: 7,
-      type: "container-6",
-    },
-    {
-      id: 8,
-      type: "container-7",
-    },
-    {
-      id: 9,
-      type: "container-8",
-    },
-    {
-      id: 10,
-      type: "container-9",
-    },
-  ];
 
-  const selectedContainer =
-    windowWidth < 1024 ? containerType[0] : containerType[3];
+  const[allbalance,setAllbalance]=useState(null);
 
-  const toggleSwitch = () => {
-    if (!isOn) {
-      setIsOn(true);
-    } else {
-      setIsOn(false);
-      // getTestKey();
+
+  const[ricived,setRicived]=useState(0);
+  const[charge,setCharge]=useState(0);
+const[select,setselect]=useState(0);
+
+const[inputBalance,setInputBalance]=useState('');
+
+
+
+useEffect(() => {
+  
+    if(select==1){      
+      setCharge(allbalance?.payment_withdraw_percent)     
+      var cutAmount = (allbalance?.payment_withdraw_percent / 100) * inputBalance;
+      setRicived(inputBalance - cutAmount);
+     
+    }else if(select==2){      
+      setCharge(allbalance?.withdraw_percent)      
+      var cutAmount = (allbalance?.withdraw_percent / 100) * inputBalance;
+      setRicived(inputBalance - cutAmount);
+      
+    }else{
+      setCharge(0)
+      setRicived(0);
     }
-  };
 
-  const getTestKey = async () => {
+ 
+}, [select,inputBalance]);
+
+
+const handleSubmit = async() => {
+  let ojb={
+    amount:inputBalance,
+    select:select
+  }
+
+  const response=await ApiRequest({
+    url:"/marchent_balance_transfer",
+    formdata:ojb,
+  });
+  if(response.status==200){
+    handlePayment();
+    getallBalance();
+    getTransection();
+    setIsModalOpen(false);
+  }else{
+    toast.error(response.message);
+  }
+  
+};
+
+
+  useEffect(() => {
+    handlePayment();
+    getallBalance();
+    getTransection();
+  }, []);
+
+  const[transfer_history,setTransfer_history]=useState([]);
+  const getTransection=async()=>{
+    const response=await ApiRequest({
+      url:"/transfer_history",
+      method:"get",
+    });
+    if(response.status==200){
+      setTransfer_history(response.data)
+    }
+  }
+
+
+  const getallBalance=async()=>{
+    const response=await ApiRequest({
+      url:"/marchent_balance",
+      method:"get",
+    });
+    if(response?.status==200){
+      setAllbalance(response.data)
+    }
+    console.log(response);
+  }
+
+  const handlePayment = async () => {
     const response = await ApiRequest({
-      url: "/marchentuser/check_live",
+      url: "/user",
       method: "get",
     });
-    if (response.status === 200) {
-      setIsOn(false);
+    if (response.status == 200) {
+      setbalance(response.data.user.balance);
     } else {
       toast.error(response.message);
     }
   };
 
-  const renderComponent = () => {
-    switch (activeComponent) {
-      case "balance":
-        return <Balance />;
-      case "cashin":
-        return <Transactions />;
-      case "payout":
-        return <Payout />;
-      case "wtransactions":
-        return <Wtransactions />;
-      case "payments":
-        // return <Payment />;
-        return <PaymentCopy />;
-        const handleCheckboxChange = (position) => {
-          const updatedCheckedState = checkedState.map((item, index) =>
-            index === position ? !item : item
-          );
-
-          setCheckedState(updatedCheckedState);
-          setIsAllChecked(updatedCheckedState.every((item) => item));
-        };
-
-        const handleSelectAllChange = () => {
-          const newState = !isAllChecked;
-          setCheckedState(new Array(array.length).fill(newState));
-          setIsAllChecked(newState);
-        };
-
-      case "developer":
-        return <Developer isTest={isOn} />;
-      case "support":
-        return <Support />;
-      case "productCatalog":
-        return <Product_Catalog />;
-      default:
-        return <Home />;
-    }
+  const handleCreateTicket = () => {
+    setIsModalOpen(true);
   };
 
-  const getMinSize = () => {
-    const container = containerType.find(
-      (c) => c.type === selectedContainer.type
-    );
-    return container ? container.minSize : 10;
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
   };
 
-  const handleResize = () => {
-    setWindowWidth(window.innerWidth);
+ 
+
+  const [transactions, setTransactions] = useState([]);
+  const [transactionsData, settransactionsData] = useState([]);
+  const [dateRange, setDateRange] = useState({
+    startDate: null,
+    endDate: null,
+  });
+
+ 
+
+
+  const handleDateRangeChange = async (newValue) => {
+    console.log("newValue:", newValue);
+   
+    
   };
 
   useEffect(() => {
-    setWindowWidth(window.innerWidth); // Set initial width on mount
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
+    fatchData();
   }, []);
 
-  const [scrollDirection, setScrollDirection] = useState("up");
-
-  useEffect(() => {
-    let lastScrollY = window.scrollY;
-
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      if (currentScrollY > lastScrollY && currentScrollY > 50) {
-        setScrollDirection("down");
-      } else if (currentScrollY < lastScrollY) {
-        setScrollDirection("up");
+  const fatchData = async () => {
+    const token = await GetCookies({ name: "auth_token" });
+    if (token) {
+      const response = await ApiRequest({
+        url: "/transactions",
+        method: "get",
+      });
+      if (response.status == 200) {
+        settransactionsData(response.data);
+        // console.log(response.data);
+      } else {
+        toast.error(response.message);
       }
-      lastScrollY = currentScrollY;
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
-  const [color1, setColor1] = useState("");
-  const [color2, setColor2] = useState("");
-  const [isGradient, setIsGradient] = useState(false);
-
-  const { fetchData } = useFetchingData("/api/front/setting/color-setting");
-
-  useEffect(() => {
-    if (
-      fetchData?.settings?.GradientColor1 &&
-      fetchData?.settings?.GradientColor2
-    ) {
-      setColor1(fetchData.settings.GradientColor1);
-      setColor2(fetchData.settings.GradientColor2);
-      setIsGradient(true);
-    } else {
-      setColor1("");
-      setColor2("");
-      setIsGradient(false);
     }
-  }, [fetchData]);
+  };
+
+  const [search, setSearch] = useState('');
+
+  // useEffect(() => {
+  //   if (search != '' && search.length > 0) {
+  //     getWithdrwSearch();
+  //   }
+  // }, [search])
+  // const getWithdrwSearch = async () => {
+  //   const response = await ApiRequest({
+  //     url: "/withdrawal_request_search",
+  //     formdata: { search: search },
+
+  //   });
+  //   if (response.status == 200) {
+  //     setTransactions(response.data);
+  //   } else {
+  //     console.log(response);
+  //   }
+
+  // }
+
+
+
+
+
+
+  const getPlaceholderText = () => {
+    if (selectedBalance === 'Withdraw Balance') {
+      return 'Enter Withdraw Balance';
+    } else if (selectedBalance === 'Robotics Balance') {
+      return 'Enter Robotics Balance';
+    } else {
+      return ' ';
+    }
+  }
+
+  const formatDateTime = (date) => {
+    if (!date) return '';
+    const formattedDate = format(new Date(date), 'dd MMMM yyyy');
+    const formattedTime = format(new Date(date), 'HH:mm:ss');
+    return (
+      <div>
+        <div>{formattedDate}</div>
+        <div>{formattedTime}</div>
+      </div>
+    );
+  };
+
+  // Pagination logic
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 4;
+  const totalItems = transfer_history.length;
+  const totalPages = Math.ceil(totalItems / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const visibleTransactions = transfer_history.slice(
+    startIndex,
+    startIndex + itemsPerPage
+  );
+
+  const handleNextPage = () => {
+    setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages));
+  };
+
+  const handlePreviousPage = () => {
+    setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
+  };
+
+  const handlePageClick = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
 
   return (
-    <div className={`${selectedContainer.type} flex h-screen mx-auto `}>
-      <ResizablePanelGroup direction="horizontal">
-        {windowWidth >= 1024 && (
-          <ResizablePanel defaultSize={25} minSize={getMinSize()}>
-            <div
-              className={` rounded-md ${
-                isGradient ? "text-gray-200" : "text-gray-800"
-              }`}
-              style={{
-                background:
-                  color1 && color2
-                    ? `linear-gradient(to bottom, ${color1}, ${color2})`
-                    : "#ffffff",
-              }}
-            >
-              <aside
-                className={`py-5 px-4 mt-10 ${
-                  windowWidth < 1024 ? "hidden" : "block"
-                }`}
+    <div className="rounded-md ml-0 ">
+      <div className=" border shadow-lg mb-4 lg:mb-2 p-3 lg:p-3 mt-3 rounded-md text-center lg:text-left lg:hidden  ">
+        <h3 className="text-xl font-semibold">Balance</h3>
+      </div>
+      {/* <div className=" flex justify-center lg:justify-end  ">
+        <button
+          type="button"
+          className="btn bg-gradient-2 text-white justify-center rounded-md  flex items-center px-8 py-3 mb-2 "
+          onClick={handleCreateTicket}
+        >
+          Transfer Balance
+        </button>
+      </div> */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 justify-around gap-2 px-1 lg:px-0 ">
+        <div className="border shadow-lg rounded-md w-full h-40 flex items-center transition-all duration-300 hover:shadow-lg bg-white sm:h-40">
+          <div className="flex-grow ml-8">
+            <div>
+              <p className="font-bold">Main Balance</p>
+            </div>
+            <div>
+              <h2 className="text-2xl font-bold my-2">{allbalance?.wallet}</h2>
+            </div>
+           
+          </div>
+          <div className="mr-8 text-5xl text-black p-3 ">
+            <HiOutlineCurrencyDollar className="text-red-500 text-opacity-80" />
+          </div>
+        </div>
+
+        <div className="border shadow-lg rounded-md w-full h-40 flex items-center transition-all duration-300 hover:shadow-lg bg-white sm:h-40">
+          <div className="flex-grow ml-8">
+            <div>
+              <p className="font-bold">Robotic Balance</p>
+            </div>
+            <div>
+              <h2 className="text-2xl font-bold my-2">{allbalance?.automation_wallet}</h2>
+            </div>
+           
+          </div>
+          <div className="mr-8 text-5xl text-black p-3 ">
+            <HiOutlineCurrencyDollar className="text-green-700 text-opacity-80" />
+          </div>
+        </div>
+
+        <div className="border shadow-lg rounded-md w-full h-40 flex items-center transition-all duration-300 hover:shadow-lg bg-white sm:h-40 mb-2">
+          <div className="flex-grow ml-8">
+            <div>
+              <p className="font-bold">Withdraw Balance</p>
+            </div>
+            <div>
+              <h2 className="text-2xl font-bold my-2">{allbalance?.withdrawal_wallet}</h2>
+            </div>
+           
+          </div>
+          <div className="mr-8 text-5xl text-black p-3 ">
+            <HiOutlineCurrencyDollar className="text-blue-700 text-opacity-80" />
+          </div>
+        </div>
+      </div>
+      <div className="grid grid-cols-1 lg:grid-cols-3 justify-around gap-2 px-1 lg:px-0 pb-2">
+        <div className="border shadow-lg rounded-md w-full h-40 flex items-center transition-all duration-300 hover:shadow-lg bg-white sm:h-40">
+          <div className="flex-grow ml-8">
+            <div>
+              <p className="font-bold">Total Cash In </p>
+            </div>
+            <div>
+              <h2 className="text-2xl font-bold my-2">{allbalance?.total_cashin}</h2>
+            </div>
+           
+          </div>
+          <div className="mr-8 text-5xl text-black p-3 ">
+            <HiOutlineCurrencyDollar className="text-violet-800 text-opacity-80" />
+          </div>
+        </div>
+
+        <div className="border shadow-lg rounded-md w-full h-40 flex items-center transition-all duration-300 hover:shadow-lg bg-white sm:h-40">
+          <div className="flex-grow ml-8">
+            <div>
+              <p className="font-bold">Total Payout </p>
+            </div>
+            <div>
+              <h2 className="text-2xl font-bold my-2">{allbalance?.total_withdraw}</h2>
+            </div>
+           
+          </div>
+          <div className="mr-8 text-5xl text-black p-3 ">
+            <HiOutlineCurrencyDollar className="text-pink-700 text-opacity-80" />
+          </div>
+        </div>
+
+        <div className="border shadow-lg rounded-md w-full h-40 flex items-center transition-all duration-300 hover:shadow-lg bg-white sm:h-40 mb-4">
+          <div className="flex-grow ml-8">
+            <div>
+              <p className="font-bold">Total Received From Link</p>
+            </div>
+            <div>
+              <h2 className="text-2xl font-bold my-2">{allbalance?.link_wallet}</h2>
+            </div>
+          
+          </div>
+          <div className="mr-8 text-5xl text-black p-3 ">
+            <HiOutlineCurrencyDollar className="text-yellow-500 text-opacity-80" />
+          </div>
+        </div>
+      </div>
+
+      <div className="lg:px-0 px-1">
+        <section className=" shadow-md border rounded-md ml-0 ">
+          <div className=" max-w-screen-xl ">
+            {/* <!-- Start coding here --> */}
+            <div className="bg-white dark:bg-gray-800  shadow-md sm:rounded-lg overflow-hidden">
+            <div className="relative  flex flex-col md:flex-row items-center space-y-3 md:space-y-0 md:space-x-4 p-4 ">
+                <div className="w-full md:w-full">
+                  <form className="flex items-center">
+                    <label htmlFor="simple-search" className="sr-only">
+                      Search
+                    </label>
+                    <div className="relative w-full ">
+                      <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                        <svg
+                          aria-hidden="true"
+                          className="w-5 h-5 text-gray-500 dark:text-gray-400"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                            clipRule="evenodd"
+                          />
+                        </svg>
+                      </div>
+                      <div className="grid grid-flow-col w-[100%]">
+                        <input
+                          value={search}
+                          onChange={(e) => {
+                            setSearch(e.target.value)
+                          }}
+                          type="text"
+                          id="simple-search"
+                          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                          placeholder="Search"
+                          required=""
+                        />
+
+                        <button
+                          type="button"
+                          className="btn bg-gradient-2 text-white justify-center rounded-md ml-2 mr-2 pr-2 flex items-center"
+                          onClick={handleCreateTicket}
+                        >
+                          {/* <FaPlus className=" ml-2 mr-2 " /> */}
+                          Transfer Balance
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                <div className="w-fit md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0 border border-blue-500 rounded-md">
+                  <div className="flex items-center space-x-3 w-full md:w-auto">
+                    <Datepicker
+                      showShortcuts={true}
+                      showFooter={true}
+                      configs={{
+                        shortcuts: {
+                          today: "Today",
+                          yesterday: "Yesterday",
+                          past: (period) => `Past ${period}`,
+                          currentMonth: "Current Month",
+                          pastMonth: "Past Month",
+                        },
+                        footer: {
+                          cancel: "Cancel",
+                          apply: "Apply",
+                        },
+                      }}
+                      value={dateRange}
+                      onChange={handleDateRangeChange}
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className="overflow-x-auto h-[55vh]">
+                <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                  <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <tr>
+                      <th scope="col" className="px-4 py-3">
+                        Sl
+                      </th>
+                      <th scope="col" className="px-4 py-3 lg:w-[150px]">
+                        Date
+                      </th>
+                      <th scope="col" className="px-4 py-3 lg:w-[200px] md:w-[300px] w-[150px]">
+                        Amount
+                      </th>
+
+                      <th scope="col" className="px-4 py-3">
+                        Method
+                      </th>
+                      <th scope="col" className="px-4 py-3">
+                        Charge
+                      </th>
+                     
+                      <th scope="col" className="px-4 py-3">
+                        Status
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {visibleTransactions?.map((transaction, index) => (
+                      <tr
+                        className="border-b dark:border-gray-700"
+                        key={transaction.id}
+                      >
+                        <th
+                          scope="row"
+                          className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                        >
+                          {startIndex + index + 1}
+                        </th>
+                        <td className="px-4 py-3">
+                          {/* {transaction.created_at && format(transaction.created_at, "dd" + " " + "MMMM" + " " + "yyyy")} */}
+                          {formatDateTime(transaction.created_at)}
+                        </td>
+                       
+                        <td className="px-4 py-3">
+                          {transaction.total_amount}
+                        </td>
+                        <td className="px-4 py-3">{transaction.method}</td>
+                        <td className="px-4 py-3">
+                          {transaction.charge}{' '}%
+                        </td>
+                        <td className="px-4 py-3">
+                          {transaction.status}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              {/* this is pagination */}
+              {/* <nav
+                className="flex flex-col mt-2  md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0 p-16"
+                aria-label="Table navigation"
               >
-                <ul>
-                  {/* <li
-                    className={`mb-4 cursor-pointer flex items-center p-2 rounded-md transition-all duration-300 ${
-                      activeComponent === "home"
-                        ? "bg-gradient-2 "
-                        : "hover:bg-gradient-to-r from-blue-600 to-purple-400 "
-                    }`}
-                    onClick={() => setActiveComponent("home")}
-                  >
-                    <MdSpaceDashboard className="mr-2 text-2xl" />
-                    {windowWidth >= 1024 && "Dashboard"}
-                  </li> */}
-                  <li
-                    className={`mb-4 cursor-pointer flex items-center p-2 rounded-md transition-all duration-300 ${
-                      activeComponent === "balance"
-                        ? "bg-gradient-2 "
-                        : "hover:bg-gradient-to-r from-blue-600 to-purple-400 "
-                    }`}
-                    onClick={() => setActiveComponent("balance")}
-                  >
-                    <FaSackDollar className="mr-2 text-2xl" />
-                    {windowWidth >= 1024 && "Dashboard"}
+                <span className="text-sm font-normal text-gray-500 dark:text-gray-400">
+                  Showing
+                  <span className="font-semibold text-gray-900 dark:text-white">
+                    1-10
+                  </span>
+                  of
+                  <span className="font-semibold text-gray-900 dark:text-white">
+                    1000
+                  </span>
+                </span>
+                <ul className="inline-flex items-stretch -space-x-px">
+                  <li>
+                    <a
+                      href="#"
+                      className="flex items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                    >
+                      <span className="sr-only">Previous</span>
+                      <svg
+                        className="w-5 h-5"
+                        aria-hidden="true"
+                        fill="currentColor"
+                        viewbox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+                          clip-rule="evenodd"
+                        />
+                      </svg>
+                    </a>
                   </li>
-                  <li
-                    className={`mb-4 cursor-pointer flex items-center p-2 rounded-md transition-all duration-300 ${
-                      activeComponent === "cashin"
-                        ? "bg-gradient-2 "
-                        : "hover:bg-gradient-to-r from-blue-600 to-purple-400 "
-                    }`}
-                    onClick={() => setActiveComponent("cashin")}
-                  >
-                    <SiConstruct3 className="mr-2 text-2xl" />
-                    {windowWidth >= 1024 && "Cash In"}
+                  <li>
+                    <a
+                      href="#"
+                      className="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                    >
+                      1
+                    </a>
                   </li>
-                  <li
-                    className={`mb-4 cursor-pointer flex items-center p-2 rounded-md transition-all duration-300 ${
-                      activeComponent === "payout"
-                        ? "bg-gradient-2 "
-                        : "hover:bg-gradient-to-r from-blue-600 to-purple-400 "
-                    }`}
-                    onClick={() => setActiveComponent("payout")}
-                  >
-                    <SiPlausibleanalytics className="mr-2 text-2xl" />
-                    {windowWidth >= 1024 && "Payout"}
+                  <li>
+                    <a
+                      href="#"
+                      className="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                    >
+                      2
+                    </a>
                   </li>
-                  <li
-                    className={`mb-4 cursor-pointer flex items-center p-2 rounded-md transition-all duration-300 ${
-                      activeComponent === "wtransactions"
-                        ? "bg-gradient-2 "
-                        : "hover:bg-gradient-to-r from-blue-600 to-purple-400 "
-                    }`}
-                    onClick={() => setActiveComponent("wtransactions")}
-                  >
-                    <FaWordpress className="mr-2 text-2xl" />
-                    {windowWidth >= 1024 && "W Transactions"}
+                  <li>
+                    <a
+                      href="#"
+                      aria-current="page"
+                      className="flex items-center justify-center text-sm z-10 py-2 px-3 leading-tight text-primary-600 bg-primary-50 border border-primary-300 hover:bg-primary-100 hover:text-primary-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white"
+                    >
+                      3
+                    </a>
                   </li>
-                  <li
-                    className={`mb-4 cursor-pointer flex items-center p-2 rounded-md transition-all duration-300 ${
-                      activeComponent === "payments"
-                        ? "bg-gradient-2 "
-                        : "hover:bg-gradient-to-r from-blue-600 to-purple-400 "
-                    }`}
-                    onClick={() => setActiveComponent("payments")}
-                  >
-                    <FaParking className="mr-2 text-2xl" />
-                    {windowWidth >= 1024 && "Payments"}
+                  <li>
+                    <a
+                      href="#"
+                      className="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                    >
+                      ...
+                    </a>
                   </li>
-                  <li
-                    className={`mb-4 cursor-pointer flex items-center p-2 rounded-md transition-all duration-300 ${
-                      activeComponent === "developer"
-                        ? "bg-gradient-2 "
-                        : "hover:bg-gradient-to-r from-blue-600 to-purple-400 "
-                    }`}
-                    onClick={() => setActiveComponent("developer")}
-                  >
-                    <MdDeveloperMode className="mr-2 text-2xl" />
-                    {windowWidth >= 1024 && "Developer"}
+                  <li>
+                    <a
+                      href="#"
+                      className="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                    >
+                      100
+                    </a>
                   </li>
-                  <li
-                    className={`mb-4 cursor-pointer flex items-center p-2 rounded-md transition-all duration-300 ${
-                      activeComponent === "support"
-                        ? "bg-gradient-2 "
-                        : "hover:bg-gradient-to-r from-blue-600 to-purple-400 "
-                    }`}
-                    onClick={() => setActiveComponent("support")}
-                  >
-                    <FaHandsHelping className="mr-2 text-2xl" />
-                    {windowWidth >= 1024 && "Support"}
-                  </li>
-                  <li
-                    className={`mb-4 cursor-pointer flex items-center p-2 rounded-md transition-all duration-300 ${
-                      activeComponent === "productCatalog"
-                        ? "bg-gradient-2 "
-                        : "hover:bg-gradient-to-r from-blue-600 to-purple-400 "
-                    }`}
-                    onClick={() => setActiveComponent("productCatalog")}
-                  >
-                    <IoSettings className="mr-2 text-2xl" />
-                    {windowWidth >= 1024 && "Settings"}
+                  <li>
+                    <a
+                      href="#"
+                      className="flex items-center justify-center h-full py-1.5 px-3 leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                    >
+                      <span className="sr-only">Next</span>
+                      <svg
+                        className="w-5 h-5"
+                        aria-hidden="true"
+                        fill="currentColor"
+                        viewbox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                          clip-rule="evenodd"
+                        />
+                      </svg>
+                    </a>
                   </li>
                 </ul>
-                
-              </aside>
+              </nav> */}
+              <nav
+                className="flex flex-col mt-2 md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0 p-16 "
+                aria-label="Table navigation"
+              >
+                <span className="text-sm font-normal text-gray-500 dark:text-gray-400">
+                  Showing {startIndex + 1} -{" "}
+                  {Math.min(startIndex + itemsPerPage, totalItems)} of{" "}
+                  {totalItems} Transactions
+                </span>
+                <ul className="inline-flex items-stretch -space-x-px">
+                  <li>
+                    <button
+                      onClick={handlePreviousPage}
+                      className="flex items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                      disabled={currentPage === 1}
+                    >
+                      <span className="sr-only">Previous</span>
+                      <svg
+                        className="w-5 h-5"
+                        aria-hidden="true"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    </button>
+                  </li>
+                  {Array.from({ length: totalPages }, (_, i) => (
+                    <li key={i}>
+                      <button
+                        onClick={() => handlePageClick(i + 1)}
+                        className={`flex items-center justify-center text-sm py-2 px-3 leading-tight ${currentPage === i + 1
+                            ? "text-primary-600 bg-primary-50 border border-primary-300"
+                            : "text-gray-500 bg-white border border-gray-300"
+                          } hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white`}
+                      >
+                        {i + 1}
+                      </button>
+                    </li>
+                  ))}
+                  <li>
+                    <button
+                      onClick={handleNextPage}
+                      className="flex items-center justify-center h-full py-1.5 px-3 leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                      disabled={currentPage === totalPages}
+                    >
+                      <span className="sr-only">Next</span>
+                      <svg
+                        className="w-5 h-5"
+                        aria-hidden="true"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    </button>
+                  </li>
+                </ul>
+              </nav>
             </div>
-          </ResizablePanel>
-        )}
-        <ResizableHandle />
-        {/* Navbar for small and medium devices */}
-        <nav
-          className={`lg:hidden inset-x-0 fixed bottom-0 left-0 w-full border-t-2  bg-white text-gray-700 flex justify-between px-4 py-4 z-50 transition-transform duration-75 ${
-            scrollDirection === "down"
-              ? "transform translate-y-full"
-              : "transform translate-y-0"
-          }`}
-        >
-          <MdSpaceDashboard
-            className="text-2xl cursor-pointer"
-            onClick={() => setActiveComponent("balance")}
-          />
-          {/* <FaSackDollar
-            className="text-2xl cursor-pointer"
-            onClick={() => setActiveComponent("balance")}
-          /> */}
-          <SiConstruct3
-            className="text-2xl cursor-pointer"
-            onClick={() => setActiveComponent("cashin")}
-          />
-          <SiPlausibleanalytics
-            className="text-2xl cursor-pointer"
-            onClick={() => setActiveComponent("payout")}
-          />
-          <FaWordpress
-            className="text-2xl cursor-pointer"
-            onClick={() => setActiveComponent("wtransactions")}
-          />
-          <FaParking
-            className="text-2xl cursor-pointer"
-            onClick={() => setActiveComponent("payments")}
-          />
-          <MdDeveloperMode
-            className="text-2xl cursor-pointer"
-            onClick={() => setActiveComponent("developer")}
-          />
-          <FaHandsHelping
-            className="text-2xl cursor-pointer"
-            onClick={() => setActiveComponent("support")}
-          />
-          <IoSettings
-            className="text-2xl cursor-pointer"
-            onClick={() => setActiveComponent("productCatalog")}
-          />
-        </nav>
-        <ResizablePanel defaultSize={85} minSize={40}>
-          <div className="flex-1 p-0 overflow-y-auto scrollbar-hide ">
-            {activeComponent === "developer" && (
-              <Header isOn={isOn} toggleSwitch={toggleSwitch} />
-            )}
-            <main className="h-screen ">{renderComponent()}</main>
           </div>
-        </ResizablePanel>
-      </ResizablePanelGroup>
+        </section>
+      </div>
+
+      {isModalOpen && (
+        <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full">
+          <div className="relative top-20 lg:top-40 mx-auto my-auto p-5 border sm:w-[550px] sm:h-[520px] md:w-[600px] md:h-[520px] lg:w-[600px] lg:h-[550px] shadow-lg rounded-md bg-white">
+            <div className="mt-6 text-center ">
+              <h3 className="text-3xl mb-4 leading-6 font-medium gradient-text">
+                Transfer Balance to Robotic/Withdraw
+              </h3>
+              <div className="flex justify-evenly mt-2 items-center">
+                <div className="mt-2 mb-10">
+                  <h3 className="text-2xl">
+                    Main Balance = <span>{allbalance?.wallet}</span>
+                  </h3>
+
+                  <h3 className={`text-xl  ${allbalance?.wallet<inputBalance?"text-red-500":"text-green-500"} `}>
+                    Received Balance = <span>{allbalance?.wallet<inputBalance?"Not Enough Balance":ricived}</span>
+                  </h3>
+                  
+                </div>
+              </div>
+              <div className="flex justify-around  gap-x-1 lg:gap-x-5 mt-2 items-center ">
+                {/* Dropdown here */}
+                <div className="mt-2">
+                  <select
+                    className="border border-blue-500 rounded-md  px-2 py-2   lg:py-2 lg:px-16"
+                    value={select}
+                    onChange={(e)=>{
+                      setselect(e.target.value);
+                    }}
+                  >
+                    <option value={0}>Select Balance</option>
+                    <option value={1}>Robotics Balance</option>
+                    <option value={2}>Withdraw Balance</option>
+                  </select>
+                </div>
+                <div className="mt-2">
+                  <h3 className="text-md text-red-500 border border-red-500 rounded-md py-1 px-3 lg:py-1 lg:px-6">
+                    Charge  {charge} %
+                  </h3>
+                </div>
+              </div>
+              <form action={handleSubmit}>
+                <div className="mt-2 px-7 py-3">
+                  <label className="flex justify-start my-2">{getPlaceholderText()}</label>
+                  <input
+                    type="number"
+                    className="w-full px-4 py-2 border rounded-md border-blue-500"
+                    placeholder={getPlaceholderText()}
+                    value={inputBalance}
+                    onChange ={(e) =>{   
+                      if(e.target.value>0) {
+                        setInputBalance(Math.floor(e.target.value))    
+                      } else{
+                        setInputBalance('')    
+                      }                             
+                                       
+                     }}
+                    required
+                  />
+                </div>
+                <div className="items-center px-6 py-3">
+                  <button className="py-2 bg-gradient-2 mb-5 text-white text-base font-medium rounded-md w-full shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300">
+                    Submit
+                  </button>
+                  <button
+                    type="button"
+                    onClick={handleCloseModal}
+                    className="mt-2 py-2 bg-red-500 text-white text-base font-medium rounded-md w-full shadow-sm hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-300"
+                  >
+                    Close
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      )}
+
     </div>
   );
 }
 
-export default Dashboard;
+export default page;

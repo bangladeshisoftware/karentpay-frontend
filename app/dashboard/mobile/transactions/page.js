@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import Transactions from '../../components/Transactions';
+import Transactions from '../../cash-in/page';
 
 export default function TransactionsPage() {
   return <Transactions />;

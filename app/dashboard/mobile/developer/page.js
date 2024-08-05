@@ -1,7 +1,7 @@
 'use client';
 import React, { useState } from 'react';
-import Developer from '../../components/Developer';
 import Header from '../../components/Header'; // Assuming you have this component
+import Developer from '../../developer/page';
 
 export default function DeveloperPage() {
   const [isOn, setIsOn] = useState(true);

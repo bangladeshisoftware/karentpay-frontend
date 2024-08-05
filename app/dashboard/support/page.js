@@ -1,3 +1,4 @@
+"use client"
 import React, { useState, useEffect } from "react";
 import { MdUploadFile } from "react-icons/md";
 import { FaEye } from "react-icons/fa";
@@ -8,7 +9,7 @@ import { toast } from "react-toastify";
 import moment from "moment";
 import { GetCookies } from "@/app/_lib/cookiesSetting";
 import ApiRequest from "@/app/_lib/Api_request";
-import SupportView from "./SupportView";
+import SupportView from "../components/SupportView";
 //  import time formate package
 
 moment().format();
@@ -162,13 +163,13 @@ console.log(tecket);
     setCurrentPage(pageNumber);
   };
   return (
-    <div className="mt-4 lg:mt-10 ml-0 lg:ml-8">
+    <div className=" ml-0 ">
       <div className=" border shadow-lg mb-4 lg:mb-2 p-3 lg:p-3 mt-3 rounded-md text-center lg:text-left lg:hidden  ">
         <h3 className="text-xl font-semibold">Support</h3>
       </div>
 
       <div className=" lg:px-0 ">
-        <section className="shadow-md border rounded-md   mb-36 ">
+        <section className="shadow-md border rounded-md  ">
           <div className="max-w-screen-xl">
             {/* <!-- Start coding here --> */}
             <div className="bg-white dark:bg-gray-800  shadow-md sm:rounded-lg overflow-hidden">
@@ -244,7 +245,7 @@ console.log(tecket);
               </div>
 
 
-              <div className="overflow-x-auto mt-2">
+              <div className="overflow-x-auto mt-2 h-[55vh]">
                 <table className="w-full text-size text-left text-black dark:text-white">
                   <thead className="text-xs uppercase bg-gray-50 dark:bg-gray-700">
                     <tr>

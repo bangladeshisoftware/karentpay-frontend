@@ -93,13 +93,13 @@ function PaymentCopy() {
   };
 
   return (
-    <div className="mt-4 lg:mt-10 ">
+    <div className=" ">
 
       <div className=" border shadow-lg mb-4 lg:mb-2 p-3 lg:p-3 mt-3 rounded-md text-center lg:text-left lg:hidden  ">
         <h3 className="text-xl font-semibold">Payment</h3>
       </div>
       <div className="lg:px-0 px-1">
-        <section className=" shadow-md border rounded-md ml-0 lg:ml-5 mb-36">
+        <section className=" shadow-md border rounded-md ml-0  ">
           <div className=" max-w-screen-xl ">
             {/* <!-- Start coding here --> */}
             <div className="bg-white dark:bg-gray-800  shadow-md sm:rounded-lg overflow-hidden">
@@ -113,7 +113,7 @@ function PaymentCopy() {
                   New Link
                 </button>
               </div>
-              <div className="overflow-x-auto mt-3">
+              <div className="overflow-x-auto mt-3 h-[55vh]">
                 <table className="w-full text-sm text-left text-black dark:text-gray-400">
                   <thead className="text-xs text-gray-700 uppercase bg-gray-200 dark:bg-gray-700 dark:text-gray-400">
                     <tr>

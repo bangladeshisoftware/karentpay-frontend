@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import Wtransactions from '../../components/Wtransactions';
+import Wtransactions from '../../wtransactions/page';
 
 export default function WtransactionsPage() {
   return <Wtransactions />;
