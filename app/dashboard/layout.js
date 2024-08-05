@@ -93,7 +93,7 @@ export default function LoginLayout({ children }) {
     };
   }, []);
 
-  
+
   return (
     <>
       <div className={` flex h-[85vh] w-full lg:w-[74vw] mx-auto `}>
@@ -177,7 +177,7 @@ export default function LoginLayout({ children }) {
 
                 <Link href={'/dashboard/payments'}>
                   <li
-                    className={`mb-4 cursor-pointer flex items-center p-2 rounded-md transition-all duration-300 ${ pathname.includes('/dashboard/payments')
+                    className={`mb-4 cursor-pointer flex items-center p-2 rounded-md transition-all duration-300 ${pathname.includes('/dashboard/payments')
                       ? "bg-gradient-2 "
                       : "hover:bg-gradient-to-r from-blue-600 to-purple-400 "
                       }`}
@@ -233,49 +233,68 @@ export default function LoginLayout({ children }) {
             </aside>
           </div>
           <nav
-          className={`lg:hidden inset-x-0 fixed bottom-0 left-0 w-full border-t-2  bg-white text-gray-700 flex justify-between px-4 py-4 z-50 transition-transform duration-75 ${
-            scrollDirection === "down"
+            className={`lg:hidden inset-x-0 fixed bottom-0 left-0 w-full border-t-2  bg-white text-gray-700 flex justify-between px-4 py-4 z-50 transition-transform duration-75 ${scrollDirection === "down"
               ? "transform translate-y-full"
               : "transform translate-y-0"
-          }`}
-        >
-          <MdSpaceDashboard
-            className="text-2xl cursor-pointer"
-            onClick={() => setActiveComponent("balance")}
-          />
-          {/* <FaSackDollar
-            className="text-2xl cursor-pointer"
-            onClick={() => setActiveComponent("balance")}
-          /> */}
-          <SiConstruct3
-            className="text-2xl cursor-pointer"
-            onClick={() => setActiveComponent("cashin")}
-          />
-          <SiPlausibleanalytics
-            className="text-2xl cursor-pointer"
-            onClick={() => setActiveComponent("payout")}
-          />
-          <FaWordpress
-            className="text-2xl cursor-pointer"
-            onClick={() => setActiveComponent("wtransactions")}
-          />
-          <FaParking
-            className="text-2xl cursor-pointer"
-            onClick={() => setActiveComponent("payments")}
-          />
-          <MdDeveloperMode
-            className="text-2xl cursor-pointer"
-            onClick={() => setActiveComponent("developer")}
-          />
-          <FaHandsHelping
-            className="text-2xl cursor-pointer"
-            onClick={() => setActiveComponent("support")}
-          />
-          <IoSettings
-            className="text-2xl cursor-pointer"
-            onClick={() => setActiveComponent("productCatalog")}
-          />
-        </nav>
+              }`}
+          >
+            <Link href={'/dashboard/mobile/home'}>
+              <MdSpaceDashboard
+                className="text-2xl cursor-pointer"
+                onClick={() => setActiveComponent("balance")}
+              />
+            </Link>
+
+            <Link href={'/dashboard/mobile/transactions'}>
+              <SiConstruct3
+                className="text-2xl cursor-pointer"
+                onClick={() => setActiveComponent("cashin")}
+              />
+            </Link>
+
+            <Link href={'http://localhost:3000/dashboard/mobile/payout'}>
+              <SiPlausibleanalytics
+                className="text-2xl cursor-pointer"
+                onClick={() => setActiveComponent("payout")}
+              />
+            </Link>
+
+            <Link href={'http://localhost:3000/dashboard/mobile/wtransactions'}>
+              <FaWordpress
+                className="text-2xl cursor-pointer"
+                onClick={() => setActiveComponent("wtransactions")}
+              />
+            </Link>
+
+            <Link href={'/dashboard/mobile/payment'}>
+              <FaParking
+                className="text-2xl cursor-pointer"
+                onClick={() => setActiveComponent("payments")}
+              />
+            </Link>
+
+            <Link href={'/dashboard/mobile/developer'}>
+              <MdDeveloperMode
+                className="text-2xl cursor-pointer"
+                onClick={() => setActiveComponent("developer")}
+              />
+            </Link>
+
+            <Link href={'/dashboard/mobile/support'}>
+              <FaHandsHelping
+                className="text-2xl cursor-pointer"
+                onClick={() => setActiveComponent("support")}
+              />
+            </Link>
+
+            <Link href={'/dashboard/mobile/settings'}>
+              <IoSettings
+                className="text-2xl cursor-pointer"
+                onClick={() => setActiveComponent("productCatalog")}
+              />
+            </Link>
+
+          </nav>
           <section className="w-full mt-10 rounded-2xl overflow-y-scroll scroll-smooth hide-scrollbar ">
             {children}
           </section>
