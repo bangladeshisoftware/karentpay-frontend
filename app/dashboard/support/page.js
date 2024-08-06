@@ -22,29 +22,30 @@ function Support() {
   const [Image, setImage] = useState("");
   const [supportReplyMessage, setSupportReplyMessage] = useState(null);
   const [searchSubjectTicket, setSearchSubjectTicket] = useState("")
+  const [isdisable, setisdisable] = useState(false)
 
-    // user data fetch function 
-    const [user, setUser] = useState("");
-    useEffect(() => {
-      const getUser = async () => {
-        const token = await GetCookies({ name: "auth_token" });
-        // console.log("token 411", token);
-  
-        if (token) {
-          const response = await ApiRequest({
-            url: "/user",
-            method: "get",
-          });
-          if (response.status == 200) {
-            setUser(response.data.user);
-          } else {
-            toast.error(response.message);
-          }
+  // user data fetch function 
+  const [user, setUser] = useState("");
+  useEffect(() => {
+    const getUser = async () => {
+      const token = await GetCookies({ name: "auth_token" });
+      // console.log("token 411", token);
+
+      if (token) {
+        const response = await ApiRequest({
+          url: "/user",
+          method: "get",
+        });
+        if (response.status == 200) {
+          setUser(response.data.user);
+        } else {
+          toast.error(response.message);
         }
-      };
-  
-      getUser();
-    }, []);
+      }
+    };
+
+    getUser();
+  }, []);
 
 
   const [tecket, settecket] = useState([]);
@@ -65,14 +66,14 @@ function Support() {
             Authorization: `Bearer ${token}`,
           },
         }
-      ); 
-      if(response.status === 200){
+      );
+      if (response.status === 200) {
         settecket(response.data);
       }
     } catch (error) { }
   };
 
-console.log(tecket);
+  console.log(tecket);
   const [dateRange, setDateRange] = useState({
     startDate: null,
     endDate: null,
@@ -107,6 +108,7 @@ console.log(tecket);
 
 
   const handleSubmit = (e) => {
+    setisdisable(true)
     e.preventDefault();
 
     const formData = new FormData();
@@ -134,15 +136,17 @@ console.log(tecket);
           setIsModalOpen(false);
           toast.success("Tacket Added Successfully");
         }
+        setisdisable(false)
       })
       .catch((error) => {
         console.error("Error:", error);
         toast.success("Failed to Add Tacket");
+        setisdisable(false)
       });
   };
 
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 6;
+  const itemsPerPage = 8;
   const totalItems = filteredTransactions.length;
   const totalPages = Math.ceil(totalItems / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
@@ -199,7 +203,7 @@ console.log(tecket);
                         <input
                           type="text"
                           id="simple-search"
-                          onChange={(e)=> setSearchSubjectTicket(e.target.value)}
+                          onChange={(e) => setSearchSubjectTicket(e.target.value)}
                           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                           placeholder="Search"
                           required=""
@@ -245,7 +249,7 @@ console.log(tecket);
               </div>
 
 
-              <div className="overflow-x-auto mt-2 h-[55vh]">
+              <div className="overflow-x-auto mt-2 h-[60vh]">
                 <table className="w-full text-size text-left text-black dark:text-white">
                   <thead className="text-xs uppercase bg-gray-50 dark:bg-gray-700">
                     <tr>
@@ -277,7 +281,7 @@ console.log(tecket);
                         className="border-b dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700"
                       >
                         <td className="px-4 py-2 whitespace-nowrap">
-                          {index + 1}
+                          {startIndex + index + 1}
                         </td>
                         <td className="px-4 py-2 ">
                           <h2 className="flex items-center">{item?.track_id}</h2>
@@ -302,12 +306,12 @@ console.log(tecket);
                         </td>
                         <td className="px-4 py-2 ">
                           <div className="flex items-center gap-2">
-                            <button onClick={()=> setSupportReplyMessage(item.id)}
+                            <button onClick={() => setSupportReplyMessage(item.id)}
                               className=" text-xl w-fit text-white bg-blue-500 hover:bg-blue-800 rounded-[4px]  p-2 dark:bg-blue-600 dark:hover:bg-blue-500 flex items-center gap-1">
                               <FaEye />
                             </button>
                           </div>
-                          <SupportView supportReplyMessage={supportReplyMessage} setSupportReplyMessage={setSupportReplyMessage} item={item}/>
+                          <SupportView supportReplyMessage={supportReplyMessage} setSupportReplyMessage={setSupportReplyMessage} item={item} />
                         </td>
                       </tr>
                     ))}
@@ -316,7 +320,7 @@ console.log(tecket);
                 </table>
               </div>
               <nav
-                className="flex flex-col mt-2 md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0 p-16 "
+                className="flex flex-col mt-2 md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0 px-16 py-10 "
                 aria-label="Table navigation"
               >
                 <span className="text-sm font-normal text-gray-500 dark:text-gray-400">
@@ -408,6 +412,7 @@ console.log(tecket);
                     required
                   />
                   <textarea
+                    required
                     rows="5"
                     className="w-full p-2 mt-3 border rounded-md"
                     placeholder="Message"
@@ -424,8 +429,10 @@ console.log(tecket);
                   </div>
                 </div>
                 <div className="items-center px-6 py-3">
-                  <button className=" py-2 bg-gradient-2 text-white text-base font-medium rounded-md w-full shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300">
-                    Submit
+                  <button disabled={isdisable} className=" py-2 bg-gradient-2 text-white text-base font-medium rounded-md w-full shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300">
+                    {
+                      isdisable ? 'Submiting...' : "Submit"
+                    }
                   </button>
                   <button
                     type="button"

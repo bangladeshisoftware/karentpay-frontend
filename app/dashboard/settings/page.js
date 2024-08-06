@@ -329,7 +329,7 @@ function Product_Catalog() {
 
       <div
         className="container bg-white w-full h-full
-       border shadow-md rounded-sm mt-12  pb-8 lg:px-12 xs:px-12 px-4"
+       border shadow-md rounded-sm mt-8  pb-8 lg:px-12 xs:px-12 px-4"
       >
         {selected == "profile" && (
           // <div className="lg:mx-24 xl:mx-24 md:mx-16 sm:mx-8 mx-0 font-normal">
