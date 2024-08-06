@@ -71,7 +71,7 @@ function PaymentCopy() {
 
   // Pagination logic
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 4;
+  const itemsPerPage = 12;
   const totalItems = link.length;
   const totalPages = Math.ceil(totalItems / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
@@ -113,7 +113,7 @@ function PaymentCopy() {
                   New Link
                 </button>
               </div>
-              <div className="overflow-x-auto mt-3 h-[55vh]">
+              <div className="overflow-x-auto mt-3 h-[62vh]">
                 <table className="w-full text-sm text-left text-black dark:text-gray-400">
                   <thead className="text-xs text-gray-700 uppercase bg-gray-200 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
@@ -325,7 +325,7 @@ function PaymentCopy() {
                 </ul>
               </nav> */}
               <nav
-                className="flex flex-col mt-2 md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0 p-16 "
+                className="flex flex-col mt-2 md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0 px-16 py-8 "
                 aria-label="Table navigation"
               >
                 <span className="text-sm font-normal text-gray-500 dark:text-gray-400">
