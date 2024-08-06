@@ -9,7 +9,8 @@ import { format } from "date-fns";
 import { FaPlus } from "react-icons/fa";
 
 
-function page() {
+function Page() {
+  
   const [balance, setbalance] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedBalance, setSelectedBalance] = useState('Select Balance');
@@ -724,4 +725,4 @@ const handleSubmit = async() => {
   );
 }
 
-export default page;
+export default Page;
