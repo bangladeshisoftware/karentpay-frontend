@@ -134,7 +134,7 @@ function Support() {
         console.log(response);
         if (response.status === 201) {
           setIsModalOpen(false);
-          toast.success("Tacket Added Successfully");
+          toast.success("Ticket Added Successfully");
         }
         setisdisable(false)
       })
