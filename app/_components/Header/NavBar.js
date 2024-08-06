@@ -146,7 +146,7 @@ const NavBar = ({ gradientColors }) => {
   ];
 
   useEffect(() => {
-    if (gradientColors.GradientColor1 && gradientColors.GradientColor2) {
+    if (gradientColors?.GradientColor1 && gradientColors?.GradientColor2) {
       setColor1(gradientColors.GradientColor1);
       setColor2(gradientColors.GradientColor2);
       setIsGradient(true);
@@ -170,13 +170,13 @@ const NavBar = ({ gradientColors }) => {
       }}
     >
       {/* large screens */}
-      <div className="container-3 mx-auto lg:flex wide-laptop:flex small-laptop:flex hidden items-center justify-between relative">
-        <div className="flex items-center gap-5 h-10">
+      <div className="relative items-center justify-between hidden mx-auto container-3 lg:flex wide-laptop:flex small-laptop:flex">
+        <div className="flex items-center h-10 gap-5">
           {dropdownItemsMainMenu.slice(0, 7).map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="rounded p-1 hover:text-white hover:bg-blue-800"
+              className="p-1 rounded hover:text-white hover:bg-blue-800"
             >
               {item.label}
             </Link>
@@ -200,20 +200,20 @@ const NavBar = ({ gradientColors }) => {
       </div>
 
       {/* small and medium screens */}
-      <div className="container lg:hidden wide-laptop:hidden small-laptop:hidden flex items-center justify-between relative px-2">
+      <div className="container relative flex items-center justify-between px-2 lg:hidden wide-laptop:hidden small-laptop:hidden">
         <div className="flex items-center">
           <button
             ref={buttonRef}
             onClick={() => setIsOpen(!isOpen)}
             className="p-1 m-0 "
           >
-            <Menu className="w-14 h-16 text-white" />
+            <Menu className="h-16 text-white w-14" />
           </button>
           <Link href="/">
             <Image
               src={MobileLogo}
               alt="Logo"
-              className="w-44 h-10 bg-white rounded px-2 py-1 ml-6"
+              className="h-10 px-2 py-1 ml-6 bg-white rounded w-44"
             />
           </Link>
         </div>
@@ -222,10 +222,10 @@ const NavBar = ({ gradientColors }) => {
       {isOpen && (
         <div
           ref={menuRef}
-          className="lg:hidden wide-laptop:hidden small-laptop:hidden absolute top-full left-0 w-full bg-gradient-2 text-gray-200 flex flex-col items-start p-4"
+          className="absolute left-0 flex flex-col items-start w-full p-4 text-gray-200 lg:hidden wide-laptop:hidden small-laptop:hidden top-full bg-gradient-2"
         >
           <button
-            className="flex items-center justify-between rounded p-1 hover:text-white hover:bg-blue-800 w-full text-left"
+            className="flex items-center justify-between w-full p-1 text-left rounded hover:text-white hover:bg-blue-800"
             onClick={() => setMainMenuOpen(!mainMenuOpen)}
           >
             <span>Main Menu</span>
@@ -241,7 +241,7 @@ const NavBar = ({ gradientColors }) => {
                 <Link
                   key={item.label}
                   href={item.href || "#"} // Default to '#' if href is not provided
-                  className="rounded p-1 hover:text-white hover:bg-blue-800 w-full text-left"
+                  className="w-full p-1 text-left rounded hover:text-white hover:bg-blue-800"
                   onClick={() => setIsOpen(false)}
                 >
                   {item.label}
@@ -249,7 +249,7 @@ const NavBar = ({ gradientColors }) => {
               ))}
               {/* Adjusted the code to render "Pages" submenu under the "Main Menu" */}
               <button
-                className="flex items-center justify-between rounded p-1 hover:text-white hover:bg-blue-800 w-full text-left"
+                className="flex items-center justify-between w-full p-1 text-left rounded hover:text-white hover:bg-blue-800"
                 onClick={() => setPagesMenuOpen(!pagesMenuOpen)}
               >
                 <span>Pages</span>
@@ -267,7 +267,7 @@ const NavBar = ({ gradientColors }) => {
                       <Link
                         key={subItem.label}
                         href={subItem.href || "#"}
-                        className="rounded p-1 hover:text-white hover:bg-blue-800 w-full text-left"
+                        className="w-full p-1 text-left rounded hover:text-white hover:bg-blue-800"
                         onClick={() => setIsOpen(false)}
                       >
                         {subItem.label}
@@ -278,7 +278,7 @@ const NavBar = ({ gradientColors }) => {
             </div>
           )}
           <button
-            className="flex items-center justify-between rounded p-1 hover:text-white hover:bg-blue-800 w-full text-left mt-4"
+            className="flex items-center justify-between w-full p-1 mt-4 text-left rounded hover:text-white hover:bg-blue-800"
             onClick={() => setDashboardMenuOpen(!dashboardMenuOpen)}
           >
             <span>Dashboard</span>
@@ -294,7 +294,7 @@ const NavBar = ({ gradientColors }) => {
                 <Link
                   key={item.label}
                   href={item.href || "#"} // Default to '#' if href is not provided
-                  className="rounded p-1 hover:text-white hover:bg-blue-800 w-full text-left"
+                  className="w-full p-1 text-left rounded hover:text-white hover:bg-blue-800"
                   onClick={() => setIsOpen(false)}
                 >
                   {item.label}
@@ -305,7 +305,7 @@ const NavBar = ({ gradientColors }) => {
           {/* Additional links for small and medium screens */}
           <Link
             href="/become_merchant"
-            className="rounded p-1 hover:text-white hover:bg-blue-800 w-full text-left mt-4"
+            className="w-full p-1 mt-4 text-left rounded hover:text-white hover:bg-blue-800"
             onClick={handleOpenDrawer}
           >
             Become a Merchant
@@ -315,7 +315,7 @@ const NavBar = ({ gradientColors }) => {
             <>
               <Link
                 href="/auth/login"
-                className="rounded p-1 hover:text-white hover:bg-blue-800 w-full text-left"
+                className="w-full p-1 text-left rounded hover:text-white hover:bg-blue-800"
                 onClick={() => logOut()}
               >
                 Sign out
@@ -325,7 +325,7 @@ const NavBar = ({ gradientColors }) => {
             <>
               <Link
                 href="/auth/login"
-                className="rounded p-1 hover:text-white hover:bg-blue-800 w-full text-left"
+                className="w-full p-1 text-left rounded hover:text-white hover:bg-blue-800"
                 onClick={() => setIsOpen(false)}
               >
                 Merchant Login
