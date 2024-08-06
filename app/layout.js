@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic"
 import Footer from "@/app/_components/Footer/Footer";
 import Header from "@/app/_components/Header/Header";
 import { Rubik } from "@next/font/google";

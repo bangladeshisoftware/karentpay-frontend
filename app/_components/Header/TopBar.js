@@ -7,7 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
 import { toast } from "react-toastify";
-import Dashboard from "./../../dashboard/Page";
+import Dashboard from "../../dashboard/page";
 
 const TopBar = ({ topbarGradientColors }) => {
   const [dropdownDefaultButton, setDropdownDefaultButton] = useState(false);

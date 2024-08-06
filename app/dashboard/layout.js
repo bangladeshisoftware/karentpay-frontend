@@ -295,7 +295,7 @@ export default function LoginLayout({ children }) {
             </Link>
 
           </nav>
-          <section className="w-full mt-10 rounded-2xl overflow-y-scroll scroll-smooth hide-scrollbar ">
+          <section className="w-full mt-10 rounded-xl border-t-[2px] border-b-[2px] overflow-y-scroll scroll-smooth hide-scrollbar ">
             {children}
           </section>
         </div>
