@@ -288,8 +288,12 @@ const handleSubmit = async() => {
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-1 lg:grid-cols-3 justify-around gap-2 px-1 lg:px-0 pb-2">
-        <div className="border shadow-lg rounded-md w-full h-40 flex items-center transition-all duration-300 hover:shadow-lg bg-white sm:h-40">
+
+
+
+      <div className="grid grid-cols-1 lg:grid-cols-6 justify-around gap-2 px-1 lg:px-0 pb-2">
+
+        <div className="border shadow-lg col-span-2  rounded-md w-full h-40 flex items-center transition-all duration-300 hover:shadow-lg bg-white sm:h-40">
           <div className="flex-grow ml-8">
             <div>
               <p className="font-bold">Total Cash In </p>
@@ -304,7 +308,7 @@ const handleSubmit = async() => {
           </div>
         </div>
 
-        <div className="border shadow-lg rounded-md w-full h-40 flex items-center transition-all duration-300 hover:shadow-lg bg-white sm:h-40">
+        <div className="border shadow-lg col-span-2 rounded-md w-full h-40 flex items-center transition-all duration-300 hover:shadow-lg bg-white sm:h-40">
           <div className="flex-grow ml-8">
             <div>
               <p className="font-bold">Total Payout </p>
@@ -319,7 +323,7 @@ const handleSubmit = async() => {
           </div>
         </div>
 
-        <div className="border shadow-lg rounded-md w-full h-40 flex items-center transition-all duration-300 hover:shadow-lg bg-white sm:h-40 mb-4">
+        <div className="border shadow-lg col-span-2 rounded-md w-full h-40 flex items-center transition-all duration-300 hover:shadow-lg bg-white sm:h-40 ">
           <div className="flex-grow ml-8">
             <div>
               <p className="font-bold">Total Received From Link</p>
@@ -333,6 +337,69 @@ const handleSubmit = async() => {
             <HiOutlineCurrencyDollar className="text-yellow-500 text-opacity-80" />
           </div>
         </div>
+
+        <div className="border col-span-3 shadow-lg rounded-md w-full h-40 flex items-center transition-all duration-300 hover:shadow-lg bg-white sm:h-40">
+          <div className="flex-grow ml-8">
+            <div>
+              <p className="font-bold">Bkash Cash In </p>
+            </div>
+            <div>
+              <h2 className="text-2xl font-bold my-2">{allbalance?.total_withdraw}</h2>
+            </div>
+           
+          </div>
+          <div className="mr-8 text-5xl text-black p-3 ">
+            <HiOutlineCurrencyDollar className="text-pink-700 text-opacity-80" />
+          </div>
+        </div>
+
+        <div className="border shadow-lg col-span-3 rounded-md w-full h-40 flex items-center transition-all duration-300 hover:shadow-lg bg-white sm:h-40">
+          <div className="flex-grow ml-8">
+            <div>
+              <p className="font-bold">Bkash Payout </p>
+            </div>
+            <div>
+              <h2 className="text-2xl font-bold my-2">{allbalance?.total_withdraw}</h2>
+            </div>
+           
+          </div>
+          <div className="mr-8 text-5xl text-black p-3 ">
+            <HiOutlineCurrencyDollar className="text-pink-700 text-opacity-80" />
+          </div>
+        </div>
+
+        <div className="border shadow-lg col-span-3 rounded-md w-full h-40 flex items-center transition-all duration-300 hover:shadow-lg bg-white sm:h-40">
+          <div className="flex-grow ml-8">
+            <div>
+              <p className="font-bold">Nagad Cash In</p>
+            </div>
+            <div>
+              <h2 className="text-2xl font-bold my-2">{allbalance?.total_withdraw}</h2>
+            </div>
+          </div>
+          <div className="mr-8 text-5xl text-black p-3 ">
+            <HiOutlineCurrencyDollar className="text-yellow-700 text-opacity-80" />
+          </div>
+        </div>
+
+        <div className="border shadow-lg col-span-3 rounded-md w-full h-40 flex items-center transition-all duration-300 hover:shadow-lg bg-white sm:h-40">
+          <div className="flex-grow ml-8">
+            <div>
+              <p className="font-bold">Nagad Payout</p>
+            </div>
+            <div>
+              <h2 className="text-2xl font-bold my-2">{allbalance?.total_withdraw}</h2>
+            </div>
+           
+          </div>
+          <div className="mr-8 text-5xl text-black p-3 ">
+            <HiOutlineCurrencyDollar className="text-yellow-700 text-opacity-80" />
+          </div>
+        </div>
+
+
+
+
       </div>
 
       <div className="lg:px-0 px-1">

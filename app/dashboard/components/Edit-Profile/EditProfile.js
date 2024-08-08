@@ -40,6 +40,7 @@ const EditProfile = ({ user }) => {
 
         if (response.status === 200) {
           setCountries(response.data);
+          console.log(response.data)
         } else {
           toast.error(response.message);
         }
@@ -50,7 +51,6 @@ const EditProfile = ({ user }) => {
 
     fetchCountries();
   }, []);
-
   useEffect(() => {
     if (user) {
       setName(user?.name);
@@ -66,6 +66,7 @@ const EditProfile = ({ user }) => {
       }
     }
   }, [user, countries]);
+
 
   const handleCountryClick = (country) => {
     setSelectedCountry(country?.name);
@@ -174,19 +175,20 @@ const EditProfile = ({ user }) => {
             name="email"
             placeholder="Email"
             value={email}
-            disabled
+            
           />
         </div>
         <div className="flex items-center border my-6 mx-auto lg:mx-0 bg-white focus-within:border-[#2F65EC] hover:border-[#2F65EC] rounded-md w-full lg:w-full">
           <span className="ml-2 text-slate-600">{phoneCode}</span>
           <input
-            className="w-full pr-2 pl-1 py-2 lg:py-3 bg-transparent rounded-md outline-none"
-            type="text"
+            className="w-full pr-2 pl-1 py-2 lg:py-3 bg-transparent rounded-md outline-none focus:outline-none cursor-not-allowed"
+            type="phone"
             name="phone"
             placeholder="Phone No."
             required
             onChange={(e) => setPhone(e.target.value)}
-            value={phone}
+            // value={phone}
+            defaultValue={phone}
           />
         </div>
         <div className="my-6">

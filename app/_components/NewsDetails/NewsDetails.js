@@ -1,6 +1,7 @@
 "use client";
 
 import { htmlToTextConverter } from "@/lib/htmlToTextConverter";
+import parse from "html-react-parser"
 import axios from "axios";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -51,14 +52,14 @@ const NewsDetails = ({ id }) => {
             priority
           />
 
-          <div className="px-4 pb-10">
+          <div className="pb-10">
             <h2 className="font-bold text-xl lg:text-2xl">
               {newsDetails?.title}
             </h2>
             <p className="text-sm text-gray-500">
               Category: {newsDetails?.category?.name}
             </p>
-            <p className="mt-3">{htmlToTextConverter(newsDetails?.content)}</p>
+            <div className="mt-3">{parse(`${newsDetails?.content}`)}</div>
           </div>
         </div>
       )}

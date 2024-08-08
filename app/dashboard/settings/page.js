@@ -128,7 +128,7 @@ function Product_Catalog() {
         toast.success("Form submitted successfully!");
       } else {
         const response = await axios.post(
-          `${process.env.NEXT_PUBLIC_BASE_URL}/api//merchant/payment-settings`,
+          `${process.env.NEXT_PUBLIC_BASE_URL}/api/merchant/payment-settings`,
           formData,
           {
             headers: {

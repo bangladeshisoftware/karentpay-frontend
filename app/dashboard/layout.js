@@ -5,6 +5,7 @@ import {
   deleteCookies,
 } from "@/app/_lib/cookiesSetting";
 import useFetchingData from "@/lib/useFetchingData";
+import Cookies from "js-cookie";
 import Link from "next/link";
 import { redirect, usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -32,16 +33,15 @@ import { toast } from "react-toastify";
 
 
 export default function LoginLayout({ children }) {
-  const token = GetCookies({ name: "auth_token" });
+  const token =Cookies.get('auth_token');
   const pathname = usePathname();
   console.log(pathname)
-
+  
 
 
   if (token == undefined || !token) {
     redirect("/auth/login");
   }
-
 
 
   const [isGradient, setIsGradient] = useState(false);
