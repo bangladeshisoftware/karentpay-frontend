@@ -21,7 +21,6 @@ function Payout() {
 
 
   const handleDateRangeChange = async (newValue) => {
-    console.log("newValue:", newValue);
     setDateRange(newValue);
     const token = await GetCookies({ name: "auth_token" });
     if (token) {
@@ -32,7 +31,6 @@ function Payout() {
 
       if (response?.status == 200) {
         settransactionsData(response?.data);
-        console.log(response?.data);
       } else {
         toast.error(response?.message);
       }
@@ -50,10 +48,9 @@ function Payout() {
         url: "/transactions",
         method: "get",
       });
-      console.log("all transaction", response?.data);
       if (response?.status == 200) {
         settransactionsData(response?.data);
-        console.log(response?.data);
+
       } else {
         toast.error(response?.message);
       }
@@ -71,7 +68,6 @@ function Payout() {
 
         if (response?.status == 200) {
           settransactionsData(response?.data);
-          // console.log(response?.data);
         } else {
           toast.error(response?.message);
         }

@@ -30,7 +30,7 @@ const ApiRequest=async({url,formdata=null,method="post",type="application/json"}
         }
       );
       
-      console.log(response);
+
 
         let { data } = await response;
         if(type=="multipart/form-data"){
@@ -42,7 +42,7 @@ const ApiRequest=async({url,formdata=null,method="post",type="application/json"}
       } catch (error) {  
         toast.error("Api Connection Failed, Please check your connection or reload the page");
         //return response;         
-       console.log(error);
+
       }
 }
 

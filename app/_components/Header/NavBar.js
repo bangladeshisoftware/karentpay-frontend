@@ -34,7 +34,7 @@ const NavBar = ({ gradientColors }) => {
   useEffect(() => {
     const getUser = async () => {
       const token = await GetCookies({ name: "auth_token" });
-      // console.log("token 411", token);
+
 
       if (token) {
         const response = await ApiRequest({
@@ -52,7 +52,7 @@ const NavBar = ({ gradientColors }) => {
     getUser();
   }, []);
 
-  // console.log(fetchData);
+
 
   const logOut = async () => {
     if (localStorage.getItem("secret_key")) {
@@ -63,7 +63,7 @@ const NavBar = ({ gradientColors }) => {
       location.reload(true);
       toast.success("Successfully Logged Out");
     } else {
-      // console.log(deleteToken);
+
     }
   };
 

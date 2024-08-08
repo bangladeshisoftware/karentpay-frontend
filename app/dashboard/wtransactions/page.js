@@ -31,11 +31,10 @@ function Wtransactions() {
       url: "/withdraw_history",
       method: "get",
     });
-    console.log(response);
     if (response?.status === 200) {
       setTransactions(response?.data);
     } else {
-      console.log(response);
+
     }
   }
 
@@ -48,13 +47,13 @@ function Wtransactions() {
       formdata: formdata,
 
     });
-    console.log(response);
+
     if (response?.status === 201) {
       toast.success("Withdraw Request Success");
       getWithdrw();
       closeModal();
     } else {
-      console.log(response);
+
       toast.error(response?.message);
     }
   }
@@ -78,23 +77,23 @@ function Wtransactions() {
     if (response?.status == 200) {
       setTransactions(response?.data);
     } else {
-      console.log(response);
+
     }
 
   }
 
   const handleDateRangeChange = async (newValue) => {
-    console.log("newValue:", newValue);
+
     setDateRange(newValue);
     const response = await ApiRequest({
       url: "/withdraw_history_by_date",
       formdata: { startDate: newValue.startDate, endDate: newValue.endDate },
     });
-    console.log(response);
+
     if (response?.status === 200) {
       setTransactions(response?.data);
     } else {
-      console.log(response);
+
     }
 
   };
@@ -146,11 +145,11 @@ function Wtransactions() {
       url: "/get_withdraw_type",
       method: "get",
     });
-    console.log(response);
+
     if (response?.status === 200) {
       setMaindata(response?.data);
     } else {
-      console.log(response);
+
     }
   }
 

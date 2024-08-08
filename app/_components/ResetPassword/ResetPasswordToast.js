@@ -22,7 +22,6 @@ export function ResetPasswordToast({ open, setOpen }) {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (email) {
-      console.log(email);
       toast.success("Password reset email sent!", { autoClose: 1000 });
       setEmail("");
       setOpen(false);

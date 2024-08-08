@@ -133,8 +133,7 @@ function ProfileForm({ className, handleNext,handleData }) {
           if(response?.status==200){
             setcompany(response?.data.company);
             setindustry(response?.data.industry);
-          }else{
-            console.log(response);   
+          }else{ 
           }  
         }
   return (
@@ -316,7 +315,6 @@ function BusinessInfoForm({ className, handlePrevious,data,setOpen }) {
     }else{
       toast.error(response?.message);
     }
-    console.log(response);   
     
   }
 

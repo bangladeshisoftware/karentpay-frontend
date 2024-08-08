@@ -26,16 +26,13 @@ app.prepare().then(() => {
       }
 
     } catch (err) {
-      console.error('Error occurred handling', req.url, err);
       res.statusCode = 500;
       res.end('internal server error');
     }
   })
     .once('error', (err) => {
-      console.error(err);
       process.exit(1);
     })
     .listen(port, () => {
-      console.log(`> Ready on http://${hostname}:${port}`);
     });
 });

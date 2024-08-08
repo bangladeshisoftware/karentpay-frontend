@@ -28,11 +28,11 @@ export default function Production() {
       url: "/production_key",
       method: "get",
     });
-    console.log(response);
+
     if (response?.status === 200) {
       setKeys(response?.data);
     } else {
-      console.log(response);
+;
     }
   };
 
@@ -89,7 +89,7 @@ export default function Production() {
       url: "/get_marchent_apply_info",
       method: "get",
     });
-    console.log(response);
+
     if (response?.status === 200) {
       if(response?.data.length>0){
         setData(response?.data); 
@@ -97,7 +97,7 @@ export default function Production() {
         setData(null);
       }      
     } else {
-      console.log(response);
+  
     }
   }
 
@@ -118,7 +118,7 @@ export default function Production() {
               <h1> For Live key Please Apply Merchant {' '}
                 <button 
                 onClick={()=>{
-                  console.log("clocked")
+
                   setIsDrawerOpen(true);
                 }}
                 className="button text-bold text-blue-500">Apply</button> 

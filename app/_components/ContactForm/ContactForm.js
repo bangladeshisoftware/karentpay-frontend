@@ -35,7 +35,7 @@ export default function CardWithForm() {
       return toast.error("Please fill in all required fields.");
     }
 
-    // console.log(formData);
+
 
     try {
       const response = await axios.post(
@@ -43,11 +43,11 @@ export default function CardWithForm() {
         formData
       );
       toast.success("Form submitted successfully!");
-      // console.log(response?.data);
+
       setFormData({ name: "", email: "", phone: "", address: "", message: "" });
     } catch (error) {
       toast.error("Failed to submit form.");
-      // console.error(error);
+
     }
   };
 

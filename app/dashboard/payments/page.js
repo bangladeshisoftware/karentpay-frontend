@@ -23,7 +23,7 @@ function PaymentCopy() {
         setlink(response?.data);
       }
     } else {
-      console.log(response);
+
     }
   };
 
@@ -34,7 +34,7 @@ function PaymentCopy() {
     if (response?.status === 200) {
       getPayLink();
     } else {
-      console.log(response);
+
     }
   };
 
@@ -64,7 +64,7 @@ function PaymentCopy() {
     if (response?.status === 200) {
       getPayLink();
     } else {
-      console.log(response);
+
     }
     setDeleteModalOpen(false);
   };
@@ -161,7 +161,6 @@ function PaymentCopy() {
                           <div className="flex items-center gap-2">
                             <button
                               onClick={() => {
-                                console.log(item.id);
                                 setDeleteid(item.id);
                                 setDeleteModalOpen(true);
                               }}

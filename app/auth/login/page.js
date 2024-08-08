@@ -38,7 +38,6 @@ export default function Login() {
       }    
      
     }else if(response?.status==400){
-      console.log(response?.message);
       var err=JSON.parse(response?.message);
       if (err.email) {
         toast.error(err.email[0]);        

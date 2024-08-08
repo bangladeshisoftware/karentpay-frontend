@@ -76,7 +76,6 @@ export default function Register() {
 
     } else if (response?.status == 400) {
       var err = JSON.parse(response?.message);
-      console.log(err);
       if (err.name) {
         toast.error(err.name[0]);
       } else if (err.email) {

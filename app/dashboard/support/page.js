@@ -29,7 +29,7 @@ function Support() {
   useEffect(() => {
     const getUser = async () => {
       const token = await GetCookies({ name: "auth_token" });
-      // console.log("token 411", token);
+
 
       if (token) {
         const response = await ApiRequest({
@@ -73,7 +73,7 @@ function Support() {
     } catch (error) { }
   };
 
-  console.log(tecket);
+
   const [dateRange, setDateRange] = useState({
     startDate: null,
     endDate: null,
@@ -131,7 +131,7 @@ function Support() {
         },
       })
       .then((response) => {
-        console.log(response);
+
         if (response?.status === 201) {
           setIsModalOpen(false);
           toast.success("Ticket Added Successfully");

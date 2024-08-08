@@ -35,7 +35,6 @@ import { toast } from "react-toastify";
 export default function LoginLayout({ children }) {
   const token = Cookies.get('auth_token');
   const pathname = usePathname();
-  console.log(pathname)
 
 
 

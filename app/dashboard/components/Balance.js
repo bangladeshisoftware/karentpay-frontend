@@ -95,7 +95,6 @@ const handleSubmit = async() => {
     if(response?.status==200){
       setAllbalance(response?.data)
     }
-    console.log(response);
   }
 
   const handlePayment = async () => {
@@ -131,7 +130,6 @@ const handleSubmit = async() => {
 
 
   const handleDateRangeChange = async (newValue) => {
-    console.log("newValue:", newValue);
    
     
   };
@@ -149,7 +147,7 @@ const handleSubmit = async() => {
       });
       if (response?.status == 200) {
         settransactionsData(response?.data);
-        // console.log(response?.data);
+
       } else {
         toast.error(response?.message);
       }
@@ -172,7 +170,7 @@ const handleSubmit = async() => {
   //   if (response?.status == 200) {
   //     setTransactions(response?.data);
   //   } else {
-  //     console.log(response);
+
   //   }
 
   // }

@@ -6,7 +6,6 @@ import React from 'react';
 
 const IframeMap = () => {
   const { fetchData } = useFetchingData("/api/front/settings/contact-page");
-  console.log(fetchData?.settings?.GoogleMapIframeLink)
   if (fetchData?.settings?.GoogleMapIframeLink) {
     return (
       <div style={{ width: '100%', height: '450px' }}>

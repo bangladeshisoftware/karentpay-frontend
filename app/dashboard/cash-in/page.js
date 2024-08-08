@@ -21,7 +21,7 @@ function Transactions() {
 
   const handleDateRangeChange = async (newValue) => {
 
-    console.log("daterange")
+
   };
 
   useEffect(() => {
@@ -37,7 +37,6 @@ function Transactions() {
       });
       if (response?.status == 200) {
         settransactionsData(response?.data);
-        // console.log(response?.data);
       } else {
         toast.error(response?.message);
       }

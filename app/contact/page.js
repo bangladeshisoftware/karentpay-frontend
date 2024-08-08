@@ -13,7 +13,7 @@ import useFetchingData from '@/lib/useFetchingData';
 const Contact = () => {
 
   const { fetchData } = useFetchingData("/api/front/contact-page-locations");
-  // console.log(fetchData[0]?.id)
+
 
   return (
     <div className='container mx-auto px-4 sm:px-6 lg:px-8'>

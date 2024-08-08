@@ -20,7 +20,7 @@ const Test = () => {
     if (response?.status === 200) {
       setKey(response?.data[0]);
     } else {
-      console.log(response);
+      
     }
 
   };
@@ -146,9 +146,7 @@ const Test = () => {
                       </div>
                     )}
                     <div className=" break-words word-break-all overflow-hidden">{key?.privet_key}</div>
-                    {
-                      console.log(key?.privet_key,'private key')
-                    }
+                    
                     <br />
                   </span>
                   {showText ? (
