@@ -24,7 +24,7 @@ const TopBar = ({ topbarGradientColors }) => {
 
   const token = async () => {
     const token = await GetCookies({ name: "auth_token" });
-    // console.log("token", token);
+
     if (token) {
       setAuthToken(true);
     } else {
@@ -41,7 +41,7 @@ const TopBar = ({ topbarGradientColors }) => {
       location.reload(true);
       toast.success("Successfully Logged Out");
     } else {
-      console.log(deleteToken);
+
     }
   };
 
@@ -68,7 +68,7 @@ const TopBar = ({ topbarGradientColors }) => {
 
   const handlePayment = async () => {
     const token = await GetCookies({ name: "auth_token" });
-    // console.log("token", token);
+
     if (token) {
       const response = await ApiRequest({
         url: "/user",
@@ -90,7 +90,6 @@ const TopBar = ({ topbarGradientColors }) => {
       setColor2(topbarGradientColors?.Color2);
     }
   }, [topbarGradientColors]);
-console.log(user)
   return (
     <section
       className="py-2"
@@ -192,7 +191,7 @@ console.log(user)
                   >
                     <span className="relative px-5 py-2 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded group-hover:bg-opacity-0 flex items-center gap-1">
                       {user && user.name}
-                      <Image src={user.avatar} width={100} height={100} alt="avatar" className="rounded-full w-6 h-6"></Image>
+                      <Image src={user?.avatar} width={100} height={100} alt="avatar" className="rounded-full w-6 h-6"></Image>
                     </span>
                   </button>
                 )}

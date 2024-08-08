@@ -1,10 +1,5 @@
 "use client";
-import customerSupport from "@/app/_assets/customer-agent.png";
-import easyIntegration from "@/app/_assets/data-integration.png";
-import notificationImage from "@/app/_assets/notification.png";
-import secureApiImage from "@/app/_assets/secure.png";
-import global from "@/app/_assets/targeting.png";
-import flexibilityImage from "@/app/_assets/yay.png";
+
 import {
   Card,
   CardContent,
@@ -34,7 +29,7 @@ const Features = () => {
               >
                 <CardHeader>
                   <Image
-                    src={feature.image}
+                    src={feature?.image}
                     alt={feature.image}
                     width={100}
                     height={100}

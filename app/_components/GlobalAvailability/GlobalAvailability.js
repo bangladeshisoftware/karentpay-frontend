@@ -26,8 +26,8 @@ const GlobalAvailability = async () => {
           {minifiedCountries.map((country, index) => (
             <div key={index} className="flex items-center gap-2">
               <Image
-                src={country.flag}
-                alt={country.name}
+                src={country?.flag}
+                alt={country?.name}
                 width={20}
                 height={10}
                 className="w-7 rounded"

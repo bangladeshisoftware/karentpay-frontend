@@ -40,7 +40,7 @@ const EditProfile = ({ user }) => {
 
         if (response?.status === 200) {
           setCountries(response?.data);
-          console.log(response?.data)
+
         } else {
           toast.error(response?.message);
         }
@@ -106,7 +106,6 @@ const EditProfile = ({ user }) => {
         }
       );
 
-      console.log(response);
       toast.success("Profile updated successfully");
     } catch (error) {
       console.error("Error updating profile:", error);
@@ -222,7 +221,7 @@ const EditProfile = ({ user }) => {
               <Image
                 src={
                   profileImage
-                    ? URL.createObjectURL(profileImage)
+                    ? URL?.createObjectURL(profileImage)
                     : profileImageLink
                 }
                 alt="logo"

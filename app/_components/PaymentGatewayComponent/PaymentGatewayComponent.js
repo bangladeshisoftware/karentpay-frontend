@@ -89,10 +89,10 @@ const PaymentGatewayComponent = () => {
               >
                 <Image
                   className="h-auto"
-                  src={exchanger.img}
+                  src={exchanger?.img}
                   height={100}
                   width={100}
-                  alt={exchanger.title}
+                  alt={exchanger?.title}
                 />
                 <h3 className="text-lg font-medium">{exchanger.title}</h3>
               </div>
@@ -112,8 +112,8 @@ const PaymentGatewayComponent = () => {
             >
               <Image
                 className="h-auto w-[100px]"
-                src={exchanger.img}
-                alt={exchanger.title}
+                src={exchanger?.img}
+                alt={exchanger?.title}
               />
               <h3 className="text-lg font-medium">{exchanger.title}</h3>
             </div>

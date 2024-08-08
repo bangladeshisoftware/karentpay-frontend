@@ -39,8 +39,8 @@ const Slider = () => {
               fetchData.map((slider, index) => (
                 <CarouselItem className="p-0 relative" key={index}>
                   <Image
-                    src={slider.BannerImage}
-                    alt={slider.BannerText || "Banner Image"}
+                    src={slider?.BannerImage}
+                    alt={slider?.BannerText || "Banner Image"}
                     className="w-full h-[60vh]"
                     width={1000}
                     height={700}

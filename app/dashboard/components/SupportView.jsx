@@ -106,7 +106,7 @@ function SupportView({ supportReplyMessage, setSupportReplyMessage, item }) {
                                         <h2>Subject : {item.subject}</h2>
                                         <h2 className="mb-5">Message : {item.message}</h2>
                                         {
-                                            item.image && <Image width={700} height={600} src={process.env.NEXT_PUBLIC_BASE_URL + '/public/' + item.image} alt={item.name} />
+                                            item.image && <Image width={700} height={600} src={process?.env.NEXT_PUBLIC_BASE_URL + '/public/' + item?.image} alt={item.name} />
                                         }
                                     </div>
                                 </div>
@@ -115,7 +115,7 @@ function SupportView({ supportReplyMessage, setSupportReplyMessage, item }) {
 
                                         <div className="w-8 lg:w-[5%] h-8 border  overflow-hidden rounded-full flex items-center justify-center">
                                             {
-                                                item.user.avatar ? <Image width={700} height={600} src={item.user.avatar} alt={item.name} /> :
+                                                item.user.avatar ? <Image width={700} height={600} src={item?.user?.avatar} alt={item.name} /> :
                                                     <h2 className="text-lg font-bold">{item.user?.name.slice(0, 1)}</h2>
                                             }
                                         </div>
@@ -123,7 +123,7 @@ function SupportView({ supportReplyMessage, setSupportReplyMessage, item }) {
                                             <h2>{item.user?.name}</h2>
                                             <h2>{item.message}</h2>
                                             {
-                                                item.attachment_image && <Image width={700} height={600} src={item.attachment_image} alt={item.user.name} />
+                                                item.attachment_image && <Image width={700} height={600} src={item?.attachment_image} alt={item?.user?.name} />
                                             }
                                         </div>
                                     </div>)

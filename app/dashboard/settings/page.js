@@ -44,7 +44,7 @@ function Product_Catalog() {
     getuser();
   }, []);
 
-  console.log(user);
+
 
   const imageRef = useRef(null);
   const clearImage = () => {
@@ -65,7 +65,7 @@ function Product_Catalog() {
   // const { fetchData: paymentSettingsData } = useFetchingData(
   //   "/api/merchant/payment-settings"
   // );
-  // console.log(paymentSettingsData);
+
   useEffect(() => {
     const getPaymentSettings = async () => {
       const token = await GetCookies({ name: "auth_token" });
@@ -78,7 +78,7 @@ function Product_Catalog() {
             },
           }
         );
-        // console.log(response?.data[0]);
+
         setData(response?.data);
         setPaymentTitle(response?.data[0]?.payment_title);
         setSupport(response?.data[0]?.support);
@@ -124,7 +124,7 @@ function Product_Catalog() {
             },
           }
         );
-        console.log(response?.data);
+
         toast.success("Form submitted successfully!");
       } else {
         const response = await axios.post(
@@ -137,7 +137,7 @@ function Product_Catalog() {
             },
           }
         );
-        console.log(response?.data);
+
         toast.success("Form submitted successfully!");
       }
     } catch (error) {
@@ -472,7 +472,7 @@ function Product_Catalog() {
                     // src={URL.createObjectURL(companyLogo)}
                     src={
                       companyLogo
-                        ? URL.createObjectURL(companyLogo)
+                        ? URL?.createObjectURL(companyLogo)
                         : companyLogoLink
                     }
                     alt="logo"

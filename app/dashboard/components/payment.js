@@ -53,7 +53,6 @@ const Payment = () => {
       if (response?.status === 200) {
         localStorage.setItem('secret_key', response?.data[0].privet_key)
       } else {
-        console.log(response);
       }
     }
   }
@@ -80,7 +79,6 @@ const Payment = () => {
       }
 
       // if (!mobileStatus.bkash || !mobileStatus.nagad || !mobileStatus.rocket || !mobileStatus.upay) {
-      //   console.log(mobileStatus[mobilePay.key]);
       //   toast.error(`${mobilePay.title} is turned off. Please select an active payment method.`);
       //   return;
       // }
@@ -110,7 +108,7 @@ const Payment = () => {
       } else {
         toast.error(response?.message);
       }
-      console.log(response);
+
     } else {
       toast.error('Just for mobile payment Available');
     }
@@ -190,7 +188,7 @@ const Payment = () => {
     if (response?.status === 200) {
       setlink(response?.data);
     } else {
-      console.log(response);
+
     }
   }
 
@@ -202,7 +200,7 @@ const Payment = () => {
     if (response?.status === 200) {
       setlink(response?.data);
     } else {
-      console.log(response);
+
     }
   }
 
@@ -284,7 +282,7 @@ const Payment = () => {
                       bank.id === mobilePay.id ? 'border-purple-600 scale-110' : ''
                     } w-full scale-110 lg:scale-100 md:scale-100 lg:w-[100px] md:w-[70px] h-[120px] flex flex-col items-center justify-center border rounded-lg shadow-md transition-transform duration-300 hover:scale-110 cursor-pointer`}
                   >
-                    <Image className="h-auto" src={bank.img} height={50} width={80} alt={bank.title} />
+                    <Image className="h-auto" src={bank?.img} height={50} width={80} alt={bank.title} />
                     <h3 className="text-sm font-medium">{bank.title}</h3>
                   </div>
                 
@@ -311,7 +309,7 @@ const Payment = () => {
                   <div
                     className="w-full scale-110 lg:scale-100 md:scale-100 lg:w-[100px] md:w-[70px] h-[120px] flex flex-col items-center justify-center border rounded-lg shadow-md transition-transform duration-300 hover:scale-110 cursor-pointer"
                   >
-                    <Image className="h-auto" src={bank.img} height={50} width={80} alt={bank.title} />
+                    <Image className="h-auto" src={bank?.img} height={50} width={80} alt={bank.title} />
                     <h3 className="text-sm font-medium">{bank.title}</h3>
                   </div>
                 
