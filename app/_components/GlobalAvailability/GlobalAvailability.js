@@ -7,7 +7,7 @@ const GlobalAvailability = async () => {
       method: 'GET'
     }
   );
-  const result = await response.json();
+  const result = await response?.json();
   const countries = result?.data ?? [];
   const minifiedCountries = countries?.slice(0, 32);
 

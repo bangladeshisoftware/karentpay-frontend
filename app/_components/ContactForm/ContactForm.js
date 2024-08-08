@@ -43,7 +43,7 @@ export default function CardWithForm() {
         formData
       );
       toast.success("Form submitted successfully!");
-      // console.log(response.data);
+      // console.log(response?.data);
       setFormData({ name: "", email: "", phone: "", address: "", message: "" });
     } catch (error) {
       toast.error("Failed to submit form.");

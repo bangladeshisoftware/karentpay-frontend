@@ -14,7 +14,7 @@ const DynamicPage = ({ page }) => {
       const response = await axios.get(
         `${process.env.NEXT_PUBLIC_BASE_URL}/api/front/page/${page}`
       );
-      setPost(response.data);
+      setPost(response?.data);
       setLoading(false);
     };
     fetchPost();

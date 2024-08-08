@@ -18,9 +18,9 @@ function PaymentCopy() {
       url: "/v1/pay_with_link",
       method: "get",
     });
-    if (response.status === 200) {
-      if (Array.isArray(response.data)) {
-        setlink(response.data);
+    if (response?.status === 200) {
+      if (Array.isArray(response?.data)) {
+        setlink(response?.data);
       }
     } else {
       console.log(response);
@@ -31,7 +31,7 @@ function PaymentCopy() {
     const response = await ApiRequest({
       url: "/v1/pay_with_link",
     });
-    if (response.status === 200) {
+    if (response?.status === 200) {
       getPayLink();
     } else {
       console.log(response);
@@ -61,7 +61,7 @@ function PaymentCopy() {
       url: "/v1/pay_with_link/" + id,
       method: "delete",
     });
-    if (response.status === 200) {
+    if (response?.status === 200) {
       getPayLink();
     } else {
       console.log(response);

@@ -41,10 +41,10 @@ const NavBar = ({ gradientColors }) => {
           url: "/user",
           method: "get",
         });
-        if (response.status == 200) {
-          setUser(response.data.user);
+        if (response?.status == 200) {
+          setUser(response?.data.user);
         } else {
-          toast.error(response.message);
+          toast.error(response?.message);
         }
       }
     };

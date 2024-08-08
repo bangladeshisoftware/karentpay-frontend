@@ -130,9 +130,9 @@ function ProfileForm({ className, handleNext,handleData }) {
             url:'/business_structure',
             method:'get',
           });
-          if(response.status==200){
-            setcompany(response.data.company);
-            setindustry(response.data.industry);
+          if(response?.status==200){
+            setcompany(response?.data.company);
+            setindustry(response?.data.industry);
           }else{
             console.log(response);   
           }  
@@ -310,11 +310,11 @@ function BusinessInfoForm({ className, handlePrevious,data,setOpen }) {
       formdata:formdata
     });
    
-    if (response.status==201) {
+    if (response?.status==201) {
       toast.success('Form Submitted Successfully, We will contact your Email soon');
       setOpen(false);
     }else{
-      toast.error(response.message);
+      toast.error(response?.message);
     }
     console.log(response);   
     

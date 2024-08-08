@@ -30,11 +30,11 @@ function Payout() {
         formdata: { startDate: newValue.startDate, endDate: newValue.endDate },
       });
 
-      if (response.status == 200) {
-        settransactionsData(response.data);
-        console.log(response.data);
+      if (response?.status == 200) {
+        settransactionsData(response?.data);
+        console.log(response?.data);
       } else {
-        toast.error(response.message);
+        toast.error(response?.message);
       }
     }
   };
@@ -50,12 +50,12 @@ function Payout() {
         url: "/transactions",
         method: "get",
       });
-      console.log("all transaction", response.data);
-      if (response.status == 200) {
-        settransactionsData(response.data);
-        console.log(response.data);
+      console.log("all transaction", response?.data);
+      if (response?.status == 200) {
+        settransactionsData(response?.data);
+        console.log(response?.data);
       } else {
-        toast.error(response.message);
+        toast.error(response?.message);
       }
     }
   };
@@ -69,11 +69,11 @@ function Payout() {
           formdata: { search: data },
         });
 
-        if (response.status == 200) {
-          settransactionsData(response.data);
-          // console.log(response.data);
+        if (response?.status == 200) {
+          settransactionsData(response?.data);
+          // console.log(response?.data);
         } else {
-          toast.error(response.message);
+          toast.error(response?.message);
         }
       }
     }

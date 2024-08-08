@@ -31,10 +31,10 @@ export default function Register() {
           method: 'Get'
         });
 
-        if (response.status == 200) {
-          setCountries(response.data);
+        if (response?.status == 200) {
+          setCountries(response?.data);
         } else {
-          toast.error(response.message)
+          toast.error(response?.message)
         }
 
       } catch (error) {
@@ -65,8 +65,8 @@ export default function Register() {
       formdata: formdata
     });
 
-    if (response.status == 201) {
-      const token = await SetCookies({ name: "auth_token", value: response.data.trim() });
+    if (response?.status == 201) {
+      const token = await SetCookies({ name: "auth_token", value: response?.data.trim() });
       if (token) {
         toast.success("Successfully Registered");
         location.reload();
@@ -74,8 +74,8 @@ export default function Register() {
         toast.error("Something went wrong");
       }
 
-    } else if (response.status == 400) {
-      var err = JSON.parse(response.message);
+    } else if (response?.status == 400) {
+      var err = JSON.parse(response?.message);
       console.log(err);
       if (err.name) {
         toast.error(err.name[0]);
@@ -90,7 +90,7 @@ export default function Register() {
       }
 
     } else {
-      toast.error(response.message);
+      toast.error(response?.message);
     }
 
   };

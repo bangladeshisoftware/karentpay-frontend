@@ -38,11 +38,11 @@ const EditProfile = ({ user }) => {
           method: "GET",
         });
 
-        if (response.status === 200) {
-          setCountries(response.data);
-          console.log(response.data)
+        if (response?.status === 200) {
+          setCountries(response?.data);
+          console.log(response?.data)
         } else {
-          toast.error(response.message);
+          toast.error(response?.message);
         }
       } catch (error) {
         console.error("Error fetching country data:", error);

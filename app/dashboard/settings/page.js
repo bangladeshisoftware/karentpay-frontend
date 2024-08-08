@@ -78,14 +78,14 @@ function Product_Catalog() {
             },
           }
         );
-        // console.log(response.data[0]);
-        setData(response.data);
-        setPaymentTitle(response.data[0]?.payment_title);
-        setSupport(response.data[0]?.support);
-        setFaq(response.data[0]?.faq);
-        setGift(response.data[0]?.gift);
-        setLoginLink(response.data[0]?.login_link);
-        setCompanyLogoLink(response.data[0]?.company_logo);
+        // console.log(response?.data[0]);
+        setData(response?.data);
+        setPaymentTitle(response?.data[0]?.payment_title);
+        setSupport(response?.data[0]?.support);
+        setFaq(response?.data[0]?.faq);
+        setGift(response?.data[0]?.gift);
+        setLoginLink(response?.data[0]?.login_link);
+        setCompanyLogoLink(response?.data[0]?.company_logo);
       } catch (error) {
         console.error(error);
       }
@@ -124,7 +124,7 @@ function Product_Catalog() {
             },
           }
         );
-        console.log(response.data);
+        console.log(response?.data);
         toast.success("Form submitted successfully!");
       } else {
         const response = await axios.post(
@@ -137,7 +137,7 @@ function Product_Catalog() {
             },
           }
         );
-        console.log(response.data);
+        console.log(response?.data);
         toast.success("Form submitted successfully!");
       }
     } catch (error) {

@@ -41,7 +41,7 @@ function SupportView({ supportReplyMessage, setSupportReplyMessage, item }) {
                 }
             )
             .then((response) => {
-                if (response.status === 201) {
+                if (response?.status === 201) {
                     setReplayMessage("")
                     setRender(true);
                     setLoading(false)
@@ -77,8 +77,8 @@ function SupportView({ supportReplyMessage, setSupportReplyMessage, item }) {
                     },
                 }
             );
-            if (response.status === 200) {
-                setReplyMessage(response.data);
+            if (response?.status === 200) {
+                setReplyMessage(response?.data);
             }
         } catch (error) { }
     };

@@ -36,10 +36,10 @@ function Support() {
           url: "/user",
           method: "get",
         });
-        if (response.status == 200) {
-          setUser(response.data.user);
+        if (response?.status == 200) {
+          setUser(response?.data.user);
         } else {
-          toast.error(response.message);
+          toast.error(response?.message);
         }
       }
     };
@@ -67,8 +67,8 @@ function Support() {
           },
         }
       );
-      if (response.status === 200) {
-        settecket(response.data);
+      if (response?.status === 200) {
+        settecket(response?.data);
       }
     } catch (error) { }
   };
@@ -132,7 +132,7 @@ function Support() {
       })
       .then((response) => {
         console.log(response);
-        if (response.status === 201) {
+        if (response?.status === 201) {
           setIsModalOpen(false);
           toast.success("Ticket Added Successfully");
         }

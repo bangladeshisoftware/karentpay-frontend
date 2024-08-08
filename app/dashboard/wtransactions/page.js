@@ -32,8 +32,8 @@ function Wtransactions() {
       method: "get",
     });
     console.log(response);
-    if (response.status === 200) {
-      setTransactions(response.data);
+    if (response?.status === 200) {
+      setTransactions(response?.data);
     } else {
       console.log(response);
     }
@@ -49,13 +49,13 @@ function Wtransactions() {
 
     });
     console.log(response);
-    if (response.status === 201) {
+    if (response?.status === 201) {
       toast.success("Withdraw Request Success");
       getWithdrw();
       closeModal();
     } else {
       console.log(response);
-      toast.error(response.message);
+      toast.error(response?.message);
     }
   }
 
@@ -75,8 +75,8 @@ function Wtransactions() {
       formdata: { search: search },
 
     });
-    if (response.status == 200) {
-      setTransactions(response.data);
+    if (response?.status == 200) {
+      setTransactions(response?.data);
     } else {
       console.log(response);
     }
@@ -91,8 +91,8 @@ function Wtransactions() {
       formdata: { startDate: newValue.startDate, endDate: newValue.endDate },
     });
     console.log(response);
-    if (response.status === 200) {
-      setTransactions(response.data);
+    if (response?.status === 200) {
+      setTransactions(response?.data);
     } else {
       console.log(response);
     }
@@ -147,8 +147,8 @@ function Wtransactions() {
       method: "get",
     });
     console.log(response);
-    if (response.status === 200) {
-      setMaindata(response.data);
+    if (response?.status === 200) {
+      setMaindata(response?.data);
     } else {
       console.log(response);
     }

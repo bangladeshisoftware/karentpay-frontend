@@ -29,8 +29,8 @@ export default function Production() {
       method: "get",
     });
     console.log(response);
-    if (response.status === 200) {
-      setKeys(response.data);
+    if (response?.status === 200) {
+      setKeys(response?.data);
     } else {
       console.log(response);
     }
@@ -90,9 +90,9 @@ export default function Production() {
       method: "get",
     });
     console.log(response);
-    if (response.status === 200) {
-      if(response.data.length>0){
-        setData(response.data); 
+    if (response?.status === 200) {
+      if(response?.data.length>0){
+        setData(response?.data); 
       }else{
         setData(null);
       }      

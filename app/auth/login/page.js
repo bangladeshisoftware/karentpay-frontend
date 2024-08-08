@@ -27,9 +27,9 @@ export default function Login() {
       return;  
     }
 
-    if(response.status==200){      
-      localStorage.setItem("auth_token",response.data.trim());
-      const token=await SetCookies({name:"auth_token",value:response.data.trim()}); 
+    if(response?.status==200){      
+      localStorage.setItem("auth_token",response?.data.trim());
+      const token=await SetCookies({name:"auth_token",value:response?.data.trim()}); 
       if(token){
         toast.success("Successfully Logged In");
         location.reload();
@@ -37,9 +37,9 @@ export default function Login() {
         toast.error("Something went wrong");
       }    
      
-    }else if(response.status==400){
-      console.log(response.message);
-      var err=JSON.parse(response.message);
+    }else if(response?.status==400){
+      console.log(response?.message);
+      var err=JSON.parse(response?.message);
       if (err.email) {
         toast.error(err.email[0]);        
       }else if(err.password){
@@ -49,7 +49,7 @@ export default function Login() {
       }
     }
     else{
-      toast.error(response.message);
+      toast.error(response?.message);
     }
 
   };

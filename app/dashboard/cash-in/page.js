@@ -35,11 +35,11 @@ function Transactions() {
         url: "/payout_history",
         method: "get",
       });
-      if (response.status == 200) {
-        settransactionsData(response.data);
-        // console.log(response.data);
+      if (response?.status == 200) {
+        settransactionsData(response?.data);
+        // console.log(response?.data);
       } else {
-        toast.error(response.message);
+        toast.error(response?.message);
       }
     }
   };

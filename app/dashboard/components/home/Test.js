@@ -17,8 +17,8 @@ const Test = () => {
       url: "/key",
       method: "get",
     });
-    if (response.status === 200) {
-      setKey(response.data[0]);
+    if (response?.status === 200) {
+      setKey(response?.data[0]);
     } else {
       console.log(response);
     }

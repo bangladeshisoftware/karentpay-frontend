@@ -58,13 +58,13 @@ const handleSubmit = async() => {
     url:"/marchent_balance_transfer",
     formdata:ojb,
   });
-  if(response.status==200){
+  if(response?.status==200){
     handlePayment();
     getallBalance();
     getTransection();
     setIsModalOpen(false);
   }else{
-    toast.error(response.message);
+    toast.error(response?.message);
   }
   
 };
@@ -82,8 +82,8 @@ const handleSubmit = async() => {
       url:"/transfer_history",
       method:"get",
     });
-    if(response.status==200){
-      setTransfer_history(response.data)
+    if(response?.status==200){
+      setTransfer_history(response?.data)
     }
   }
 
@@ -94,7 +94,7 @@ const handleSubmit = async() => {
       method:"get",
     });
     if(response?.status==200){
-      setAllbalance(response.data)
+      setAllbalance(response?.data)
     }
     console.log(response);
   }
@@ -104,10 +104,10 @@ const handleSubmit = async() => {
       url: "/user",
       method: "get",
     });
-    if (response.status == 200) {
-      setbalance(response.data.user.balance);
+    if (response?.status == 200) {
+      setbalance(response?.data.user.balance);
     } else {
-      toast.error(response.message);
+      toast.error(response?.message);
     }
   };
 
@@ -148,11 +148,11 @@ const handleSubmit = async() => {
         url: "/transactions",
         method: "get",
       });
-      if (response.status == 200) {
-        settransactionsData(response.data);
-        // console.log(response.data);
+      if (response?.status == 200) {
+        settransactionsData(response?.data);
+        // console.log(response?.data);
       } else {
-        toast.error(response.message);
+        toast.error(response?.message);
       }
     }
   };
@@ -170,8 +170,8 @@ const handleSubmit = async() => {
   //     formdata: { search: search },
 
   //   });
-  //   if (response.status == 200) {
-  //     setTransactions(response.data);
+  //   if (response?.status == 200) {
+  //     setTransactions(response?.data);
   //   } else {
   //     console.log(response);
   //   }

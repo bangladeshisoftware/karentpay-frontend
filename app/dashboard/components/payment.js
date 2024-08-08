@@ -50,8 +50,8 @@ const Payment = () => {
         url: "/key",
         method: "get",
       });
-      if (response.status === 200) {
-        localStorage.setItem('secret_key', response.data[0].privet_key)
+      if (response?.status === 200) {
+        localStorage.setItem('secret_key', response?.data[0].privet_key)
       } else {
         console.log(response);
       }
@@ -105,10 +105,10 @@ const Payment = () => {
           callback_url: process.env.NEXT_PUBLIC_PAYMENT_DOMAIN
         }
       });
-      if (response.status == 201) {
-        window.location = response.data.payment_url;
+      if (response?.status == 201) {
+        window.location = response?.data.payment_url;
       } else {
-        toast.error(response.message);
+        toast.error(response?.message);
       }
       console.log(response);
     } else {
@@ -187,8 +187,8 @@ const Payment = () => {
       url: "/v1/pay_with_link",
       method: "get",
     });
-    if (response.status === 200) {
-      setlink(response.data);
+    if (response?.status === 200) {
+      setlink(response?.data);
     } else {
       console.log(response);
     }
@@ -199,8 +199,8 @@ const Payment = () => {
     const response = await ApiRequest({
       url: "/v1/pay_with_link",
     });
-    if (response.status === 200) {
-      setlink(response.data);
+    if (response?.status === 200) {
+      setlink(response?.data);
     } else {
       console.log(response);
     }

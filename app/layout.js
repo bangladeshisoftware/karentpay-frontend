@@ -19,11 +19,11 @@ export default async function RootLayout({ children }) {
       }
     );
     
-    if (!response.ok) {
+    if (!response?.ok) {
       throw new Error('Network response was not ok');
     }
     
-    const data = await response.json();
+    const data = await response?.json();
     
     if (data?.settings?.HeaderBackground) {
       backgroundImageStyle = {
@@ -70,11 +70,11 @@ export async function generateMetadata() {
       }
     );
     
-    if (!response.ok) {
+    if (!response?.ok) {
       throw new Error('Network response was not ok');
     }
 
-    const data = await response.json();
+    const data = await response?.json();
 
     if (data?.success && data?.settings) {
       const keywordsString = data?.settings?.siteKeyword || "nextjs, starter, template";
