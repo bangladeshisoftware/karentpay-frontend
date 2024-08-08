@@ -33,16 +33,17 @@ import { toast } from "react-toastify";
 
 
 export default function LoginLayout({ children }) {
-  const token =Cookies.get('auth_token');
+  const token = Cookies.get('auth_token');
   const pathname = usePathname();
   console.log(pathname)
-  
 
 
-  if (token == undefined || !token) {
-    redirect("/auth/login");
-  }
 
+  useEffect(() => {
+    if (token == undefined || !token) {
+      redirect("/auth/login");
+    }
+  },[])
 
   const [isGradient, setIsGradient] = useState(false);
   const { fetchData } = useFetchingData("/api/front/setting/color-setting");
