@@ -98,10 +98,10 @@ export default function Register() {
 
 
   return (
-    <div className="bg-white h-full flex flex-row items-center py-10 my-auto">
+    <div className="h-full flex flex-row items-center py-10 my-auto">
       <div className="flex justify-center items-center w-full h-full my-auto">
-        <div className="lg:h-[1000px] lg:w-[550px] md:w-[550px] sm:w-[550px] h-full w-full shadow-2xl rounded-2xl mt-16 pb-6 lg:px-20 md:px-20 sm:px-20 px-10 my-auto border-t flex flex-col">
-          <div className="mx-auto lg:mt-14 mt-4">
+        <div className=" pb-20 bg-white lg:w-[550px] md:w-[550px] sm:w-[550px] w-full shadow-2xl rounded-2xl mt-16  lg:px-20 md:px-20 sm:px-20 px-10 my-auto border-t flex flex-col">
+          {/* <div className="mx-auto lg:mt-14 mt-4">
             <Image
               className=""
               src={logo}
@@ -109,9 +109,9 @@ export default function Register() {
               height={62}
               alt="Epayget logo"
             />
-          </div>
+          </div> */}
           <div className="lg:pt-5 lg:mt-5 mt-3 mb-5 text-[1.5rem] font-semibold text-[#2F65EC] text-center mx-auto">
-            <h2>PayGet Sign Up</h2>
+            <h2 className="w-full text-left">PayGet Sign Up</h2>
           </div>
           <form action={handleSignUp} className="">
             <div className="border my-6 mx-auto lg:mx-0 bg-white focus-within:border-[#2F65EC] hover:border-[#2F65EC] rounded-md w-full lg:w-full">

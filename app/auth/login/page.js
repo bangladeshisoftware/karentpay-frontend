@@ -56,12 +56,12 @@ export default function Login() {
   return (
     <>
     
-      <div className=" bg-white h-screen  flex flex-row items-center ">
+      <div className=" flex flex-row items-center ">
       <ResetPasswordToast open={isDrawerOpen} setOpen={setIsDrawerOpen} />
-      <div className="flex justify-center items-center w-full h-screen p-5 ">
-        <div className="h-[680px] lg:w-[550px] md:w-[550px] sm:w-[550px]  w-full shadow-2xl border-t rounded-2xl py-14 pb-5 lg:px-20 md:px-20 sm:px-20 px-10 flex flex-col  ">
+      <div className="flex justify-center items-center w-full mt-20 mb-5  p-5 ">
+        <div className="h-[680px] bg-white lg:w-[550px] md:w-[550px] sm:w-[550px]  w-full shadow-2xl border-t rounded-2xl py-14 lg:px-20 md:px-20 sm:px-20 px-10 flex flex-col  ">
           <div className="mx-auto">
-            <Image className="" src={logo} width={150} height={62} alt="" />
+            {/* <Image className="" src={logo} width={150} height={62} alt="" /> */}
           </div>
           <div className="pt-6 mb-5 text-[1.5rem] font-semibold text-[#2F65EC] text-center mx-auto">
             <h2>PayGet Sign in</h2>
