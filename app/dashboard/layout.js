@@ -39,9 +39,9 @@ export default function LoginLayout({ children }) {
   
 
 
-  // if (token == undefined || !token) {
-  //   redirect("/auth/login");
-  // }
+  if (token == undefined || !token) {
+    redirect("/auth/login");
+  }
 
 
   const [isGradient, setIsGradient] = useState(false);
