@@ -81,7 +81,7 @@ const TopBar = ({ topbarGradientColors }) => {
       }
     }
   };
-
+  console.log(user?.avatar == null)
   const { fetchData } = useFetchingData("/api/front/setting/header-setting");
 
   useEffect(() => {
@@ -191,7 +191,9 @@ const TopBar = ({ topbarGradientColors }) => {
                   >
                     <span className="relative px-5 py-2 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded group-hover:bg-opacity-0 flex items-center gap-1">
                       {user && user.name}
-                      <Image src={user?.avatar} width={100} height={100} alt="avatar" className="rounded-full w-6 h-6"></Image>
+                      {
+                        user?.avatar == null || user?.avatar == undefined ? '' : <Image src={user?.avatar} width={100} height={100} alt="avatar" className="rounded-full w-6 h-6"></Image>
+                      }
                     </span>
                   </button>
                 )}

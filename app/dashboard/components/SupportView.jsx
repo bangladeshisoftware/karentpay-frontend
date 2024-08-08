@@ -115,7 +115,7 @@ function SupportView({ supportReplyMessage, setSupportReplyMessage, item }) {
 
                                         <div className="w-8 lg:w-[5%] h-8 border  overflow-hidden rounded-full flex items-center justify-center">
                                             {
-                                                item.user.avatar ? <Image width={700} height={600} src={item?.user?.avatar} alt={item.name} /> :
+                                                item?.user?.avatar ? <Image width={700} height={600} src={item?.user?.avatar} alt={item?.name} /> :
                                                     <h2 className="text-lg font-bold">{item.user?.name.slice(0, 1)}</h2>
                                             }
                                         </div>
