@@ -105,7 +105,7 @@ const handleSubmit = async() => {
       method: "get",
     });
     if (response?.status == 200) {
-      setbalance(response?.data.user.balance);
+      setbalance(response?.data?.user?.balance);
     } else {
       toast.error(response?.message);
     }
@@ -344,7 +344,7 @@ const handleSubmit = async() => {
               <p className="font-bold">Bkash Cash In </p>
             </div>
             <div>
-              <h2 className="text-2xl font-bold my-2">{allbalance?.total_withdraw}</h2>
+              <h2 className="text-2xl font-bold my-2">{allbalance?.bkash_cashin}</h2>
             </div>
            
           </div>
@@ -359,7 +359,7 @@ const handleSubmit = async() => {
               <p className="font-bold">Bkash Payout </p>
             </div>
             <div>
-              <h2 className="text-2xl font-bold my-2">{allbalance?.total_withdraw}</h2>
+              <h2 className="text-2xl font-bold my-2">{allbalance?.bkash_payout}</h2>
             </div>
            
           </div>
@@ -374,7 +374,7 @@ const handleSubmit = async() => {
               <p className="font-bold">Nagad Cash In</p>
             </div>
             <div>
-              <h2 className="text-2xl font-bold my-2">{allbalance?.total_withdraw}</h2>
+              <h2 className="text-2xl font-bold my-2">{allbalance?.nagad_cashin}</h2>
             </div>
           </div>
           <div className="mr-8 text-5xl text-black p-3 ">
@@ -388,7 +388,7 @@ const handleSubmit = async() => {
               <p className="font-bold">Nagad Payout</p>
             </div>
             <div>
-              <h2 className="text-2xl font-bold my-2">{allbalance?.total_withdraw}</h2>
+              <h2 className="text-2xl font-bold my-2">{allbalance?.nagad_payout}</h2>
             </div>
            
           </div>
