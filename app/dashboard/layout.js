@@ -238,56 +238,56 @@ export default function LoginLayout({ children }) {
               : "transform translate-y-0"
               }`}
           >
-            <Link href={'/dashboard/mobile/home'}>
+            <Link href={'/dashboard'}>
               <MdSpaceDashboard
                 className="text-2xl cursor-pointer"
                 onClick={() => setActiveComponent("balance")}
               />
             </Link>
 
-            <Link href={'/dashboard/mobile/transactions'}>
+            <Link href={'/dashboard/cash-in'}>
               <SiConstruct3
                 className="text-2xl cursor-pointer"
                 onClick={() => setActiveComponent("cashin")}
               />
             </Link>
 
-            <Link href={'/dashboard/mobile/payout'}>
+            <Link href={'/dashboard/payout'}>
               <SiPlausibleanalytics
                 className="text-2xl cursor-pointer"
                 onClick={() => setActiveComponent("payout")}
               />
             </Link>
 
-            <Link href={'/dashboard/mobile/wtransactions'}>
+            <Link href={'/dashboard/wtransactions'}>
               <FaWordpress
                 className="text-2xl cursor-pointer"
                 onClick={() => setActiveComponent("wtransactions")}
               />
             </Link>
 
-            <Link href={'/dashboard/mobile/payment'}>
+            <Link href={'/dashboard/payments'}>
               <FaParking
                 className="text-2xl cursor-pointer"
                 onClick={() => setActiveComponent("payments")}
               />
             </Link>
 
-            <Link href={'/dashboard/mobile/developer'}>
+            <Link href={'/dashboard/developer'}>
               <MdDeveloperMode
                 className="text-2xl cursor-pointer"
                 onClick={() => setActiveComponent("developer")}
               />
             </Link>
 
-            <Link href={'/dashboard/mobile/support'}>
+            <Link href={'/dashboard/support'}>
               <FaHandsHelping
                 className="text-2xl cursor-pointer"
                 onClick={() => setActiveComponent("support")}
               />
             </Link>
 
-            <Link href={'/dashboard/mobile/settings'}>
+            <Link href={'/dashboard/settings'}>
               <IoSettings
                 className="text-2xl cursor-pointer"
                 onClick={() => setActiveComponent("productCatalog")}
@@ -295,7 +295,7 @@ export default function LoginLayout({ children }) {
             </Link>
 
           </nav>
-          <section className="w-full mt-10 rounded-md border-t-[1px] border-b-[1px] overflow-y-scroll scroll-smooth hide-scrollbar ">
+          <section className="w-full mt-0 lg:mt-10  rounded-md border-t-[1px] lg:border-b-[1px] overflow-y-scroll scroll-smooth hide-scrollbar ">
             {children}
           </section>
         </div>

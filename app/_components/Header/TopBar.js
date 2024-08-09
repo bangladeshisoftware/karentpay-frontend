@@ -92,7 +92,7 @@ const TopBar = ({ topbarGradientColors }) => {
   }, [topbarGradientColors]);
   return (
     <section
-      className="py-2"
+      className="py-0 lg:py-2"
       style={{
         background: `linear-gradient(to right, ${color1}, ${color2})`,
       }}

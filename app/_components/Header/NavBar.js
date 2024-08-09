@@ -134,15 +134,14 @@ const NavBar = ({ gradientColors }) => {
   ];
 
   const dropdownItemsDashboard = [
-    { label: "Home", href: "/dashboard/mobile/home" },
-    { label: "Balance", href: "/dashboard/mobile/balance" },
-    { label: "Cash In", href: "/dashboard/mobile/transactions" },
-    { label: "Payout", href: "/dashboard/mobile/payout" },
-    { label: "W Transactions", href: "/dashboard/mobile/wtransactions" },
-    { label: "Payment", href: "/dashboard/mobile/payment" },
-    { label: "Developer", href: "/dashboard/mobile/developer" },
-    { label: "Support", href: "/dashboard/mobile/support" },
-    { label: "Settings", href: "/dashboard/mobile/settings" },
+    { label: "Home", href: "/dashboard" },
+    { label: "Cash In", href: "/dashboard/cash-in" },
+    { label: "Payout", href: "/dashboard/payout" },
+    { label: "W Transactions", href: "/dashboard/wtransactions" },
+    { label: "Payment", href: "/dashboard/payments" },
+    { label: "Developer", href: "/dashboard/developer" },
+    { label: "Support", href: "/dashboard/support" },
+    { label: "Settings", href: "/dashboard/settings" },
   ];
 
   useEffect(() => {

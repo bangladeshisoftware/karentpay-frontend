@@ -10,7 +10,7 @@ export default function Developer() {
 
   return (
 
-    <div className=" bg-white rounded-md pt-3 ml-0  px-1 lg:px-2 h-full">
+    <div className=" bg-white rounded-md pt-3 ml-0  px-1 lg:px-2 h-full border-[1px]">
       <Header
         setIsOn={setIsOn}
         isOn={isOn}

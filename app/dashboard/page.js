@@ -226,7 +226,7 @@ const handleSubmit = async() => {
 
   return (
     <div className="rounded-md ml-0 ">
-      <div className="  shadow-lg mb-4 lg:mb-2 p-3 lg:p-3 mt-3 rounded-md text-center lg:text-left lg:hidden  ">
+      <div className="  shadow-lg lg:mb-2 p-3 lg:p-3 py-4 rounded-md text-center lg:text-left lg:hidden  ">
         <h3 className="text-xl font-semibold">Balance</h3>
       </div>
       {/* <div className=" flex justify-center lg:justify-end  ">
@@ -398,7 +398,7 @@ const handleSubmit = async() => {
 
       </div>
 
-      <div className="lg:px-0 px-1">
+      <div className="lg:px-0 px-1 mt-3">
         <section className=" shadow-md border rounded-md ml-0 ">
           <div className=" max-w-screen-xl ">
             {/* <!-- Start coding here --> */}
