@@ -252,14 +252,14 @@ export default function LoginLayout({ children }) {
               />
             </Link>
 
-            <Link href={'http://localhost:3000/dashboard/mobile/payout'}>
+            <Link href={'/dashboard/mobile/payout'}>
               <SiPlausibleanalytics
                 className="text-2xl cursor-pointer"
                 onClick={() => setActiveComponent("payout")}
               />
             </Link>
 
-            <Link href={'http://localhost:3000/dashboard/mobile/wtransactions'}>
+            <Link href={'/dashboard/mobile/wtransactions'}>
               <FaWordpress
                 className="text-2xl cursor-pointer"
                 onClick={() => setActiveComponent("wtransactions")}
