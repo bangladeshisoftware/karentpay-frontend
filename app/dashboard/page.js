@@ -10,64 +10,64 @@ import { FaPlus } from "react-icons/fa";
 
 
 function Page() {
-  
+
   const [balance, setbalance] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedBalance, setSelectedBalance] = useState('Select Balance');
 
 
-  const[allbalance,setAllbalance]=useState(null);
+  const [allbalance, setAllbalance] = useState(null);
 
 
-  const[ricived,setRicived]=useState(0);
-  const[charge,setCharge]=useState(0);
-const[select,setselect]=useState(0);
+  const [ricived, setRicived] = useState(0);
+  const [charge, setCharge] = useState(0);
+  const [select, setselect] = useState(0);
 
-const[inputBalance,setInputBalance]=useState('');
+  const [inputBalance, setInputBalance] = useState('');
 
 
 
-useEffect(() => {
-  
-    if(select==1){      
-      setCharge(allbalance?.payment_withdraw_percent)     
+  useEffect(() => {
+
+    if (select == 1) {
+      setCharge(allbalance?.payment_withdraw_percent)
       var cutAmount = (allbalance?.payment_withdraw_percent / 100) * inputBalance;
       setRicived(inputBalance - cutAmount);
-     
-    }else if(select==2){      
-      setCharge(allbalance?.withdraw_percent)      
+
+    } else if (select == 2) {
+      setCharge(allbalance?.withdraw_percent)
       var cutAmount = (allbalance?.withdraw_percent / 100) * inputBalance;
       setRicived(inputBalance - cutAmount);
-      
-    }else{
+
+    } else {
       setCharge(0)
       setRicived(0);
     }
 
- 
-}, [select,inputBalance]);
+
+  }, [select, inputBalance]);
 
 
-const handleSubmit = async() => {
-  let ojb={
-    amount:inputBalance,
-    select:select
-  }
+  const handleSubmit = async () => {
+    let ojb = {
+      amount: inputBalance,
+      select: select
+    }
 
-  const response=await ApiRequest({
-    url:"/marchent_balance_transfer",
-    formdata:ojb,
-  });
-  if(response?.status==200){
-    handlePayment();
-    getallBalance();
-    getTransection();
-    setIsModalOpen(false);
-  }else{
-    toast.error(response?.message);
-  }
-  
-};
+    const response = await ApiRequest({
+      url: "/marchent_balance_transfer",
+      formdata: ojb,
+    });
+    if (response?.status == 200) {
+      handlePayment();
+      getallBalance();
+      getTransection();
+      setIsModalOpen(false);
+    } else {
+      toast.error(response?.message);
+    }
+
+  };
 
 
   useEffect(() => {
@@ -76,24 +76,24 @@ const handleSubmit = async() => {
     getTransection();
   }, []);
 
-  const[transfer_history,setTransfer_history]=useState([]);
-  const getTransection=async()=>{
-    const response=await ApiRequest({
-      url:"/transfer_history",
-      method:"get",
+  const [transfer_history, setTransfer_history] = useState([]);
+  const getTransection = async () => {
+    const response = await ApiRequest({
+      url: "/transfer_history",
+      method: "get",
     });
-    if(response?.status==200){
+    if (response?.status == 200) {
       setTransfer_history(response?.data)
     }
   }
 
 
-  const getallBalance=async()=>{
-    const response=await ApiRequest({
-      url:"/marchent_balance",
-      method:"get",
+  const getallBalance = async () => {
+    const response = await ApiRequest({
+      url: "/marchent_balance",
+      method: "get",
     });
-    if(response?.status==200){
+    if (response?.status == 200) {
       setAllbalance(response?.data)
     }
   }
@@ -118,7 +118,7 @@ const handleSubmit = async() => {
     setIsModalOpen(false);
   };
 
- 
+
 
   const [transactions, setTransactions] = useState([]);
   const [transactionsData, settransactionsData] = useState([]);
@@ -127,12 +127,12 @@ const handleSubmit = async() => {
     endDate: null,
   });
 
- 
+
 
 
   const handleDateRangeChange = async (newValue) => {
-   
-    
+
+
   };
 
   useEffect(() => {
@@ -173,10 +173,7 @@ const handleSubmit = async() => {
   //   }
 
   // }
-
-
-
-
+  console.log(allbalance)
 
 
   const getPlaceholderText = () => {
@@ -247,7 +244,7 @@ const handleSubmit = async() => {
             <div>
               <h2 className="text-2xl font-bold my-2">{allbalance?.wallet}</h2>
             </div>
-           
+
           </div>
           <div className="mr-8 text-5xl text-black p-3 ">
             <HiOutlineCurrencyDollar className="text-red-500 text-opacity-80" />
@@ -262,7 +259,7 @@ const handleSubmit = async() => {
             <div>
               <h2 className="text-2xl font-bold my-2">{allbalance?.automation_wallet}</h2>
             </div>
-           
+
           </div>
           <div className="mr-8 text-5xl text-black p-3 ">
             <HiOutlineCurrencyDollar className="text-green-700 text-opacity-80" />
@@ -277,7 +274,7 @@ const handleSubmit = async() => {
             <div>
               <h2 className="text-2xl font-bold my-2">{allbalance?.withdrawal_wallet}</h2>
             </div>
-           
+
           </div>
           <div className="mr-8 text-5xl text-black p-3 ">
             <HiOutlineCurrencyDollar className="text-blue-700 text-opacity-80" />
@@ -297,7 +294,7 @@ const handleSubmit = async() => {
             <div>
               <h2 className="text-2xl font-bold my-2">{allbalance?.total_cashin}</h2>
             </div>
-           
+
           </div>
           <div className="mr-8 text-5xl text-black p-3 ">
             <HiOutlineCurrencyDollar className="text-violet-800 text-opacity-80" />
@@ -312,7 +309,7 @@ const handleSubmit = async() => {
             <div>
               <h2 className="text-2xl font-bold my-2">{allbalance?.total_withdraw}</h2>
             </div>
-           
+
           </div>
           <div className="mr-8 text-5xl text-black p-3 ">
             <HiOutlineCurrencyDollar className="text-pink-700 text-opacity-80" />
@@ -327,7 +324,7 @@ const handleSubmit = async() => {
             <div>
               <h2 className="text-2xl font-bold my-2">{allbalance?.link_wallet}</h2>
             </div>
-          
+
           </div>
           <div className="mr-8 text-5xl text-black p-3 ">
             <HiOutlineCurrencyDollar className="text-yellow-500 text-opacity-80" />
@@ -342,7 +339,7 @@ const handleSubmit = async() => {
             <div>
               <h2 className="text-2xl font-bold my-2">{allbalance?.bkash_cashin}</h2>
             </div>
-           
+
           </div>
           <div className="mr-8 text-5xl text-black p-3 ">
             <HiOutlineCurrencyDollar className="text-pink-700 text-opacity-80" />
@@ -357,7 +354,7 @@ const handleSubmit = async() => {
             <div>
               <h2 className="text-2xl font-bold my-2">{allbalance?.bkash_payout}</h2>
             </div>
-           
+
           </div>
           <div className="mr-8 text-5xl text-black p-3 ">
             <HiOutlineCurrencyDollar className="text-pink-700 text-opacity-80" />
@@ -386,7 +383,7 @@ const handleSubmit = async() => {
             <div>
               <h2 className="text-2xl font-bold my-2">{allbalance?.nagad_payout}</h2>
             </div>
-           
+
           </div>
           <div className="mr-8 text-5xl text-black p-3 ">
             <HiOutlineCurrencyDollar className="text-yellow-700 text-opacity-80" />
@@ -403,7 +400,7 @@ const handleSubmit = async() => {
           <div className=" max-w-screen-xl ">
             {/* <!-- Start coding here --> */}
             <div className="bg-white dark:bg-gray-800  shadow-md sm:rounded-lg overflow-hidden">
-            <div className="relative  flex flex-col md:flex-row items-center space-y-3 md:space-y-0 md:space-x-4 p-4 ">
+              <div className="relative  flex flex-col md:flex-row items-center space-y-3 md:space-y-0 md:space-x-4 p-4 ">
                 <div className="w-full md:w-full">
                   <form className="flex items-center">
                     <label htmlFor="simple-search" className="sr-only">
@@ -494,7 +491,7 @@ const handleSubmit = async() => {
                       <th scope="col" className="px-4 py-3">
                         Charge
                       </th>
-                     
+
                       <th scope="col" className="px-4 py-3">
                         Status
                       </th>
@@ -516,7 +513,7 @@ const handleSubmit = async() => {
                           {/* {transaction.created_at && format(transaction.created_at, "dd" + " " + "MMMM" + " " + "yyyy")} */}
                           {formatDateTime(transaction.created_at)}
                         </td>
-                       
+
                         <td className="px-4 py-3">
                           {transaction.total_amount}
                         </td>
@@ -670,8 +667,8 @@ const handleSubmit = async() => {
                       <button
                         onClick={() => handlePageClick(i + 1)}
                         className={`flex items-center justify-center text-sm py-2 px-3 leading-tight ${currentPage === i + 1
-                            ? "text-primary-600 bg-primary-50 border border-primary-300"
-                            : "text-gray-500 bg-white border border-gray-300"
+                          ? "text-primary-600 bg-primary-50 border border-primary-300"
+                          : "text-gray-500 bg-white border border-gray-300"
                           } hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white`}
                       >
                         {i + 1}
@@ -720,10 +717,10 @@ const handleSubmit = async() => {
                     Main Balance = <span>{allbalance?.wallet}</span>
                   </h3>
 
-                  <h3 className={`text-xl  ${allbalance?.wallet<inputBalance?"text-red-500":"text-green-500"} `}>
-                    Received Balance = <span>{allbalance?.wallet<inputBalance?"Not Enough Balance":ricived}</span>
+                  <h3 className={`text-xl  ${allbalance?.wallet < inputBalance ? "text-red-500" : "text-green-500"} `}>
+                    Received Balance = <span>{allbalance?.wallet < inputBalance ? "Not Enough Balance" : ricived}</span>
                   </h3>
-                  
+
                 </div>
               </div>
               <div className="flex justify-around  mt-2 items-center ">
@@ -732,7 +729,7 @@ const handleSubmit = async() => {
                   <select
                     className="border border-blue-500 rounded-md  px-2 py-2   lg:py-2 lg:px-16"
                     value={select}
-                    onChange={(e)=>{
+                    onChange={(e) => {
                       setselect(e.target.value);
                     }}
                   >
@@ -755,14 +752,14 @@ const handleSubmit = async() => {
                     className="w-full px-4 py-2 border rounded-md border-blue-500"
                     placeholder={getPlaceholderText()}
                     value={inputBalance}
-                    onChange ={(e) =>{   
-                      if(e.target.value>0) {
-                        setInputBalance(Math.floor(e.target.value))    
-                      } else{
-                        setInputBalance('')    
-                      }                             
-                                       
-                     }}
+                    onChange={(e) => {
+                      if (e.target.value > 0) {
+                        setInputBalance(Math.floor(e.target.value))
+                      } else {
+                        setInputBalance('')
+                      }
+
+                    }}
                     required
                   />
                 </div>
