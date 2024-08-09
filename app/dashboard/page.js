@@ -238,7 +238,7 @@ const handleSubmit = async() => {
           Transfer Balance
         </button>
       </div> */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 justify-around gap-2 px-1 lg:px-0 ">
+      <div className="grid grid-cols-1 lg:grid-cols-3 justify-around  px-1 lg:px-0 ">
         <div className="border shadow-lg rounded-md w-full h-40 flex items-center transition-all duration-300 hover:shadow-lg bg-white sm:h-40">
           <div className="flex-grow ml-8">
             <div>
@@ -269,7 +269,7 @@ const handleSubmit = async() => {
           </div>
         </div>
 
-        <div className="border shadow-lg rounded-md w-full h-40 flex items-center transition-all duration-300 hover:shadow-lg bg-white sm:h-40 mb-2">
+        <div className="border shadow-lg rounded-md w-full h-40 flex items-center transition-all duration-300 hover:shadow-lg bg-white sm:h-40">
           <div className="flex-grow ml-8">
             <div>
               <p className="font-bold">Withdraw Balance</p>
@@ -287,7 +287,7 @@ const handleSubmit = async() => {
 
 
 
-      <div className="grid grid-cols-1 lg:grid-cols-6 justify-around gap-2 px-1 lg:px-0 pb-2">
+      <div className="grid grid-cols-1 lg:grid-cols-6 justify-around px-1 lg:px-0 pb-2">
 
         <div className="border shadow-lg col-span-2  rounded-md w-full h-40 flex items-center transition-all duration-300 hover:shadow-lg bg-white sm:h-40">
           <div className="flex-grow ml-8">
@@ -726,7 +726,7 @@ const handleSubmit = async() => {
                   
                 </div>
               </div>
-              <div className="flex justify-around  gap-x-1 lg:gap-x-5 mt-2 items-center ">
+              <div className="flex justify-around  mt-2 items-center ">
                 {/* Dropdown here */}
                 <div className="mt-2">
                   <select
