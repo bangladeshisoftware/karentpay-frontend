@@ -12,7 +12,6 @@ export default function DeveloperPage() {
 
   return (
     <div>
-      <Header isOn={isOn} toggleSwitch={toggleSwitch} />
       <Developer isTest={isOn} />
     </div>
   );
