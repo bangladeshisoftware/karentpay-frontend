@@ -9,6 +9,7 @@ import { toast } from 'react-toastify';
 import { useRouter } from "next/navigation";
 import { SetCookies, GetCookies } from "@/app/_lib/cookiesSetting";
 import { IoMdClose } from "react-icons/io";
+import useFetchingData from "@/lib/useFetchingData";
 
 export default function Register() {
   const router = useRouter();
@@ -93,6 +94,7 @@ export default function Register() {
     }
 
   };
+  const { fetchData } = useFetchingData('/api/front/setting/logo-identity')
 
 
 
@@ -111,7 +113,9 @@ export default function Register() {
             />
           </div> */}
           <div className="lg:pt-5 lg:mt-5 mt-3 mb-5 text-[1.5rem] font-semibold text-[#2F65EC] text-center mx-auto">
-            <h2 className="w-full text-left">PayGet Sign Up</h2>
+          {fetchData?.settings?.siteName &&
+                <h2>{fetchData?.settings?.siteName} Sign Up</h2>
+              }
           </div>
           <form action={handleSignUp} className="">
             <div className="border my-6 mx-auto lg:mx-0 bg-white focus-within:border-[#2F65EC] hover:border-[#2F65EC] rounded-md w-full lg:w-full">
