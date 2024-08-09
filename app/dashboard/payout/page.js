@@ -5,6 +5,7 @@ import ApiRequest from "@/app/_lib/Api_request";
 import { GetCookies } from "@/app/_lib/cookiesSetting";
 import { toast } from "react-toastify";
 import { format } from "date-fns";
+import Looader from "@/lib/looder";
 
 function Payout() {
   const [transactions, setTransactions] = useState([]);
@@ -18,6 +19,7 @@ function Payout() {
 
   const [copiedReferenceId, setCopiedReferenceId] = useState(null);
   const [hoveredReferenceId, setHoveredReferenceId] = useState(null);
+  const [looding, setlooding] = useState(true);
 
 
   const handleDateRangeChange = async (newValue) => {
@@ -31,8 +33,12 @@ function Payout() {
 
       if (response?.status == 200) {
         settransactionsData(response?.data);
+        setlooding(false)
+
       } else {
         toast.error(response?.message);
+        setlooding(false)
+
       }
     }
   };
@@ -50,9 +56,12 @@ function Payout() {
       });
       if (response?.status == 200) {
         settransactionsData(response?.data);
+        setlooding(false)
 
       } else {
         toast.error(response?.message);
+        setlooding(false)
+
       }
     }
   };
@@ -68,8 +77,10 @@ function Payout() {
 
         if (response?.status == 200) {
           settransactionsData(response?.data);
+        setlooding(false)
         } else {
           toast.error(response?.message);
+        setlooding(false)
         }
       }
     }
@@ -124,7 +135,10 @@ function Payout() {
   // Filter transactions based on the selected date range
 
   return (
-    <div className="">
+    <div className="relative">
+      {looding &&
+        <Looader></Looader>
+      }
       <div className="py-4 text-center lg:hidden">
         <h3 className="text-xl font-semibold">Payout Transaction</h3>
       </div>

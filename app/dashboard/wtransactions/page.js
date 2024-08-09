@@ -5,6 +5,7 @@ import Datepicker from "react-tailwindcss-datepicker";
 import ApiRequest from "@/app/_lib/Api_request";
 import { format } from "date-fns";
 import { toast } from 'react-toastify';
+import Looader from "@/lib/looder";
 
 
 
@@ -33,7 +34,10 @@ function Wtransactions() {
     });
     if (response?.status === 200) {
       setTransactions(response?.data);
+      setlooding(false)
+
     } else {
+      setlooding(false)
 
     }
   }
@@ -76,7 +80,10 @@ function Wtransactions() {
     });
     if (response?.status == 200) {
       setTransactions(response?.data);
+      setlooding(false)
+
     } else {
+      setlooding(false)
 
     }
 
@@ -92,7 +99,10 @@ function Wtransactions() {
 
     if (response?.status === 200) {
       setTransactions(response?.data);
+      setlooding(false)
+
     } else {
+      setlooding(false)
 
     }
 
@@ -133,14 +143,15 @@ function Wtransactions() {
     setCurrentPage(pageNumber);
   };
 
-  const[maindata,setMaindata]=useState([])
-  const[data,setData]=useState([])
+  const [maindata, setMaindata] = useState([])
+  const [data, setData] = useState([])
+  const [looding, setlooding] = useState(true);
 
 
-  useEffect(()=>{
+  useEffect(() => {
     getPayment();
-  },[])
-  const getPayment=async()=>{
+  }, [])
+  const getPayment = async () => {
     const response = await ApiRequest({
       url: "/get_withdraw_type",
       method: "get",
@@ -154,13 +165,16 @@ function Wtransactions() {
   }
 
 
-  const changeType = (name)=>{
-    let filteredData  = maindata.filter((data) =>  data.method === name);
+  const changeType = (name) => {
+    let filteredData = maindata.filter((data) => data.method === name);
     setData(filteredData)
   }
 
   return (
-    <div className="">
+    <div className="relative">
+      {looding &&
+        <Looader></Looader>
+      }
       <div className="py-4 text-center lg:hidden">
         <h3 className="text-xl font-semibold">Withdraw Transaction</h3>
       </div>
@@ -511,7 +525,7 @@ function Wtransactions() {
                     Currency Name
                   </label>
                   <select
-                    onChange={(e)=>{
+                    onChange={(e) => {
                       changeType(e.target.value);
                     }}
                     name="currency"
@@ -531,10 +545,10 @@ function Wtransactions() {
                     required
                     className="mt-1 block w-full pl-4 py-4 rounded-md border shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                     <option value=''>--Select--</option>
-                    {data?.map((item,index) => (
+                    {data?.map((item, index) => (
                       <option key={index} value={item.network}>{item.network}</option>
                     ))}
-                 
+
                   </select>
                 </div>
                 <div className="mb-4">

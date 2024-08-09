@@ -5,17 +5,19 @@ import ApiRequest from "@/app/_lib/Api_request";
 import { GetCookies } from "@/app/_lib/cookiesSetting";
 import { toast } from "react-toastify";
 import { format } from "date-fns";
+import Looader from "@/lib/looder";
 
 
 function Transactions() {
   const [transactions, setTransactions] = useState([]);
   const [transactionsData, settransactionsData] = useState([]);
+  const [looding, setlooding] = useState(true);
   const [dateRange, setDateRange] = useState({
     startDate: null,
     endDate: null,
   });
 
-  
+
 
 
 
@@ -37,8 +39,11 @@ function Transactions() {
       });
       if (response?.status == 200) {
         settransactionsData(response?.data);
+        setlooding(false)
       } else {
         toast.error(response?.message);
+        setlooding(false)
+
       }
     }
   };
@@ -83,7 +88,10 @@ function Transactions() {
   // Filter transactions based on the selected date range
 
   return (
-    <div className="  h-full">
+    <div className="  h-full relative">
+      {looding &&
+        <Looader></Looader>
+      }
       <div className=" py-4 text-center lg:hidden  ">
         <h3 className="text-xl font-semibold">Cash In Transaction </h3>
       </div>
